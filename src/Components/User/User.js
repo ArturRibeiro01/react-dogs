@@ -8,7 +8,7 @@ import UserStats from './UserStats'
 const User = () => {
     return (
         <section className="container">
-            <UserHeader />
+            <UserHeader/>
             <Routes>
                 <Route path ="/" element={<Feed/>} />
                 <Route path ="/postar" element={<UserPhotoPost/>} />

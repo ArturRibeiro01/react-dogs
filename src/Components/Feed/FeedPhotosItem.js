@@ -3,9 +3,9 @@ import React from 'react'
 const FeedPhotosItem = ({photo}) => {
     return (
         <li>
-            <img src={photo.src} alt={photo.title}/>
+            Eu sou o FeedPhotosItem
         </li>
-    )
+    );
 }
 
 export default FeedPhotosItem

@@ -3,9 +3,8 @@ import React from 'react'
 const Loading = () => {
     return (
         <div>
-            Carregando
+            Carregando...
         </div>
     )
 }
-
 export default Loading

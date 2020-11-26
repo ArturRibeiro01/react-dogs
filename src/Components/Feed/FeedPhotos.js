@@ -3,7 +3,7 @@ import FeedPhotosItem from './FeedPhotosItem'
 import useFetch from '../../Hooks/useFetch'
 import { PHOTOS_GET } from '../../Api';
 import Error from '../Helper/Error';
-import Loading from '../Helper/Loading;'
+import Loading from '../Helper/Loading'
 
 const FeedPhotos = () => {
     const {data, loading, error, request } = useFetch();
@@ -19,11 +19,16 @@ const FeedPhotos = () => {
 
     if(error) return <Error error={error} />;
     if(loading) return <Loading />
-    return (
-        <div>
-            <FeedPhotosItem/>
-        </div>
-    )
+    if(data)
+        return (
+            <ul>
+                {data.map((photo) =>(
+                    <FeedPhotosItem key={photo.id} photo={photo}/>
+                    
+                ))}
+            </ul>
+        );
+    else return null
 }
 
 export default FeedPhotos

@@ -49,7 +49,6 @@ button, input {
     position: relative;
     z-index: 1;
 }
-
 .title::after {
     content: '';
     display: block;
@@ -62,7 +61,6 @@ button, input {
     border-radius: 0.2rem;
     z-index: -1;
 }
-
 .animeLeft{
     opacity: 0;
     transform: translate3d(-20px);

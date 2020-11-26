@@ -68,3 +68,4 @@ export function PHOTOS_GET({page, total, user}){
         },
     }
 }
+

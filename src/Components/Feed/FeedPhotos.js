@@ -17,18 +17,10 @@ const FeedPhotos = () => {
         fetchPhotos();
     }, [request]);
 
-    if(error) return <Error error={error} />;
-    if(loading) return <Loading />
-    if(data)
-        return (
-            <ul>
-                {data.map((photo) =>(
-                    <FeedPhotosItem key={photo.id} photo={photo}/>
-                    
-                ))}
-            </ul>
-        );
-    else return null
-}
+    if (error) return <Error error={error}/>;
+    if (loading) return <Loading />;
+    
+
+};
 
 export default FeedPhotos

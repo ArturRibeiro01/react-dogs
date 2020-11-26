@@ -19,8 +19,17 @@ const FeedPhotos = () => {
 
     if (error) return <Error error={error}/>;
     if (loading) return <Loading />;
-    
+    if (data) return (
+        <ul>
+            <li>
+                teste
+            </li>
+            <li>
+                teste
+            </li>
+        </ul>
 
+    );else return null
 };
 
 export default FeedPhotos

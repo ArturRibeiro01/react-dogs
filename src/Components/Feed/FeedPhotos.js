@@ -23,7 +23,7 @@ const FeedPhotos = () => {
 
         return (
             <ul>
-                teste
+                teste 2
             </ul>
         );
         else return null

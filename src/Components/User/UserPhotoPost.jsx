@@ -15,6 +15,7 @@ const UserPhotoPost = () => {
     const [img, setImg] = React.useState({
 
     });
+    const [imgError, setImgError] = React.useState(null);
     const {data, error, loading, request} = useFetch();
     const navigate = useNavigate();
     
@@ -25,7 +26,10 @@ const UserPhotoPost = () => {
 
     function handleSubmit(event){
         event.preventDefault();
-        if(!nome.validate() || !peso.validate() || !idade.validate() || !img.raw) return;
+        const hasImg = Boolean(img.raw);
+        setImgError(hasImg ? null : 'Selecione uma imagem.');
+
+        if(!nome.validate() || !peso.validate() || !idade.validate() || !hasImg) return;
 
         const formData = new FormData();
         formData.append('img', img.raw);
@@ -38,11 +42,26 @@ const UserPhotoPost = () => {
     }
 
     function handleImgChange({target}){
+        const file = target.files?.[0];
+        if(!file) {
+            setImg({});
+            setImgError('Selecione uma imagem.');
+            return;
+        }
+
+        if(img.preview) URL.revokeObjectURL(img.preview);
+        setImgError(null);
         setImg({
-            preview: URL.createObjectURL(target.files[0]),
-            raw: target.files[0],
+            preview: URL.createObjectURL(file),
+            raw: file,
         });
     }
+
+    React.useEffect(() => {
+        return () => {
+            if(img.preview) URL.revokeObjectURL(img.preview);
+        };
+    }, [img.preview]);
 
     return (
         <section className={`${styles.photoPost} animeLeft`} >
@@ -70,8 +89,10 @@ const UserPhotoPost = () => {
                     type="file"
                     name="img"
                     id="img"
+                    accept="image/*"
                     onChange={handleImgChange}
                 />
+                <Error error={imgError} />
                 {loading ? (
                     <Button disabled>Enviando....</Button>
                 ) : (

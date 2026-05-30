@@ -3,7 +3,7 @@
 ## Projeto
 
 - App React chamado `dogs`, migrado de Create React App para Vite.
-- Usa React 17 e `react-router-dom` `^6.0.0-beta.0`.
+- Usa React 19 e `react-router-dom` 6 estavel.
 - API base em `src/api.js`: `https://dogsapi.origamid.dev/json`.
 - O app parece seguir o projeto Dogs da Origamid, com login, conta do usuario, feed, postagem de foto e estatisticas.
 
@@ -48,6 +48,11 @@
 
 - Bugs iniciais de runtime ja corrigidos: imports `api`, headers Bearer, `PHOTOS_GET`, `useFetch`, `useForm`, `ProtectedRoute`, `NavLink` e feed basico com dados reais.
 - Vite exige JSX em arquivos `.jsx`; componentes, `App`, `UserContext` e entrypoint foram renomeados de `.js` para `.jsx`.
+- React foi atualizado para 19.2.6; entrypoint usa `createRoot` de `react-dom/client`.
+- React Router foi atualizado para 6.30.2. A linha 7 exigia Node >=20, mas a maquina atual estava em Node 18.16.0.
+- Vite foi atualizado para 6.4.2, que ainda suporta Node 18. Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
+- Dependencias nao usadas `history` e `web-vitals` foram removidas.
+- Testing Library foi atualizada e movida para `devDependencies`, mas `yarn test` ainda e placeholder ate a issue de testes.
 
 ## Backlog E Portfolio
 
@@ -61,4 +66,4 @@
 - Em 2026-05-30, a API `https://dogsapi.origamid.dev/json/api/photo/?_page=1&_total=1&_user=0` respondeu `200 application/json` com dados reais. A raiz `/json` respondeu `404`, mas isso nao invalida os endpoints especificos.
 - `npm outdated` indicou dependencias muito antigas: React 17 atual contra React 19 latest, React Router beta contra versoes modernas, Testing Library antiga e `react-scripts` 4.
 - `npm audit --production` reportou 210 vulnerabilidades, incluindo 20 criticas, principalmente via dependencias transientes antigas da stack CRA/react-scripts.
-- O projeto saiu de `react-scripts` para Vite 5 em 2026-05-30. `yarn build` passa e `yarn dev --host 127.0.0.1` sobe em `http://127.0.0.1:5173/`.
+- O projeto saiu de `react-scripts` para Vite 5 em 2026-05-30. `yarn build` passa e `yarn dev --host 127.0.0.1` sobe localmente; a porta pode variar se `5173` estiver ocupada.

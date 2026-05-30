@@ -3,7 +3,8 @@ import React from 'react'
 const FeedPhotosItem = ({photo}) => {
     return (
         <li>
-            Eu sou o FeedPhotosItem
+            <img src={photo.src} alt={photo.title} />
+            <span>{photo.title}</span>
         </li>
     );
 }

@@ -14,6 +14,7 @@ const UserHeaderNav = () => {
     const mobile = useMedia('(max-width: 40rem)');
     const [mobileMenu, setMobileMenu] = React.useState(false);
     const {pathname} = useLocation();
+    const getActiveClassName = ({isActive}) => isActive ? styles.active : undefined;
 
     
     React.useEffect(() => {
@@ -38,17 +39,17 @@ const UserHeaderNav = () => {
                 ${mobile ? styles.navMobile : styles.nav} 
                 ${mobileMenu && styles.navMobileActive}`
             }>
-            <NavLink to="/conta" end activeClassName={styles.active}>
+            <NavLink to="/conta" end className={getActiveClassName}>
                 <MinhasFotos/>
                 {mobile && 'Minhas Fotos'}
             </NavLink>
 
-            <NavLink to="/conta/estatisticas" activeClassName={styles.active} > 
+            <NavLink to="/conta/estatisticas" className={getActiveClassName} > 
                 <Estatisticas/>
                 {mobile && 'Estatísticas'}
             </NavLink>
 
-            <NavLink to="/conta/postar" activeClassName={styles.active} >
+            <NavLink to="/conta/postar" className={getActiveClassName} >
                 <AdicionarFoto/>
                 {mobile && 'Adicionar Foto'}
             </NavLink>

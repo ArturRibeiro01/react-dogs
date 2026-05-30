@@ -1,5 +1,5 @@
 import React from 'react'
-import { PHOTOS_GET } from '../../api';
+import { photoApi } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
@@ -10,8 +10,7 @@ const FeedPhotos = () => {
 
     React.useEffect(() => {
         async function fetchPhotos() {
-            const {url, options} = PHOTOS_GET({page: 1, total: 6, user: 0});
-            await request(url, options);
+            await request(() => photoApi.list({page: 1, total: 6, user: 0}));
         }
         fetchPhotos();
     }, [request]);

@@ -3,7 +3,7 @@ import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 import Error from '../Helper/Error';
 import useForm from '../../Hooks/useForm'
-import { USER_POST } from '../../api';
+import { userApi } from '../../api';
 import {UserContext} from '../../UserContext'
 import useFetch from '../../Hooks/useFetch';
 
@@ -20,12 +20,11 @@ const LoginCreate = () => {
         event.preventDefault();
         if(!username.validate() || !email.validate() || !password.validate()) return;
 
-        const {url, options} = USER_POST({
+        const {response} = await request(() => userApi.create({
             username: username.value,
             email: email.value,
             password: password.value
-        })
-        const {response} = await request(url, options);
+        }));
         if(response && response.ok) userLogin(username.value, password.value);
     }
 

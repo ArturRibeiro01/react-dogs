@@ -1,5 +1,5 @@
 import React from 'react'
-import {TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET} from './api'
+import { authApi, tokenStorage, userApi } from './api'
 import {useNavigate} from 'react-router-dom'
 
 export const UserContext = React.createContext();
@@ -17,7 +17,7 @@ export const UserStorage = ({children}) => {
         setError(null);
         setLoading(false);
         setLogin(false);
-        window.localStorage.removeItem('token');
+        tokenStorage.remove();
         navigate('/login');
  
     }, [navigate])
@@ -25,10 +25,8 @@ export const UserStorage = ({children}) => {
 
 
     async function getUser(token){
-        const {url, options} = USER_GET(token);
-        const response = await fetch (url, options);
-        const json = await response.json();
-        setData(json);
+        const { data } = await userApi.get(token);
+        setData(data);
         setLogin(true);
     }
 
@@ -36,12 +34,9 @@ export const UserStorage = ({children}) => {
         try{
         setError(null);
         setLoading(true);
-        const {url, options} = TOKEN_POST({username, password});
-        const tokenRes = await fetch(url, options);
-
-        if(!tokenRes.ok) throw new Error(`Error: Usuário Inválido`);
-        const {token} = await tokenRes.json();
-        window.localStorage.setItem('token', token);
+        const { data } = await authApi.login({username, password});
+        const {token} = data;
+        tokenStorage.set(token);
         await getUser(token);
         navigate('/conta');
         }catch(err) {
@@ -54,14 +49,12 @@ export const UserStorage = ({children}) => {
 
     React.useEffect(() =>{
         async function autoLogin(){
-            const token = window.localStorage.getItem('token');
+            const token = tokenStorage.get();
             if(token) {
                 try{
                 setError(null); 
                 setLoading(true);
-                const {url, options} = TOKEN_VALIDATE_POST(token);
-                const response = await fetch(url, options);
-                if(!response.ok) throw new Error('Token invalido');
+                await authApi.validateToken(token);
                 await getUser(token);
                 navigate('/conta');
                 } catch (err){

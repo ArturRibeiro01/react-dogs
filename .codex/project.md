@@ -12,6 +12,7 @@
 - `yarn start` ou `yarn dev`: inicia o servidor de desenvolvimento via Vite.
 - `yarn build`: gera build de producao em `dist`.
 - `yarn preview`: serve o build localmente.
+- `yarn check:api`: valida o endpoint publico de fotos da API configurada.
 - `yarn test`: placeholder atual, pois ainda nao ha framework de testes configurado apos a migracao para Vite.
 
 ## Estrutura Relevante
@@ -20,7 +21,7 @@
 - `vite.config.mjs`: configuracao do Vite, React plugin e SVGR.
 - `src/index.jsx`: entrypoint React.
 - `src/App.jsx`: configura `BrowserRouter`, `UserStorage`, `Header`, `Footer` e rotas principais.
-- `src/api.js`: centraliza factories de requests para token, usuario e fotos.
+- `src/api.js`: centraliza `apiRequest`, base URL por `VITE_API_URL`, token storage e endpoints por dominio.
 - `src/UserContext.jsx`: estado global de usuario/autenticacao.
 - `src/Hooks/useFetch.js`: hook de fetch reutilizavel.
 - `src/Hooks/useForm.js`: hook de formularios e validacao.
@@ -55,6 +56,8 @@
 - Dependencias nao usadas `history` e `web-vitals` foram removidas.
 - Testing Library foi atualizada e movida para `devDependencies`, mas `yarn test` ainda e placeholder ate a issue de testes.
 - README atual documenta a stack e comandos atuais, mas a versao final de portfolio com screenshots ainda fica para issue propria.
+- API client foi criado em `src/api.js`; consumidores devem preferir `authApi`, `userApi`, `photoApi`, `healthApi` e `tokenStorage`.
+- `.env.example` documenta `VITE_API_URL` para troca futura por API propria.
 
 ## Backlog E Portfolio
 

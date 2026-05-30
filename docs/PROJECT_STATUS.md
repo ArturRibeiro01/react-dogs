@@ -30,6 +30,9 @@ Atualizado em 2026-05-30.
 - Testing Library atualizada e movida para `devDependencies`.
 - Yarn definido como package manager unico.
 - `package-lock.json` removido.
+- Base URL da API configuravel via `VITE_API_URL`.
+- API client criado em `src/api.js`.
+- Health check da API criado em `scripts/check-api-health.mjs`.
 - Build validado com `yarn build`.
 - Smoke test local validado via Vite com resposta HTTP 200.
 
@@ -48,4 +51,3 @@ Atualizado em 2026-05-30.
 
 - A API externa `https://dogsapi.origamid.dev/json` estava funcional em 2026-05-30 para o endpoint publico de fotos.
 - O backlog detalhado fica em `docs/github-issues`.
-

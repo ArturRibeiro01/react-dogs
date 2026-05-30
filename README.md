@@ -45,6 +45,12 @@ Preview do build:
 yarn preview
 ```
 
+Checar saúde da API:
+
+```bash
+yarn check:api
+```
+
 Testes:
 
 ```bash
@@ -65,6 +71,12 @@ Base URL atual:
 
 ```txt
 https://dogsapi.origamid.dev/json
+```
+
+Para apontar o app para outra API, crie um `.env.local` baseado em `.env.example`:
+
+```bash
+VITE_API_URL=https://sua-api.example.com
 ```
 
 Em 2026-05-30, o endpoint público de fotos foi validado com sucesso:
@@ -88,6 +100,8 @@ src/
   Hooks/
 docs/
   github-issues/
+scripts/
+  check-api-health.mjs
 ```
 
 Os arquivos com JSX usam extensão `.jsx`, porque o Vite é mais estrito que o antigo Create React App.
@@ -102,6 +116,8 @@ Já foi feito:
 - Correção dos principais bugs de runtime na API, fetch, validação básica, rotas protegidas e feed inicial.
 - Remoção de dependências não usadas, como `history` e `web-vitals`.
 - Uso de Yarn como único package manager.
+- Base URL da API configurável via `VITE_API_URL`.
+- Health check da API via `yarn check:api`.
 
 Próximas frentes planejadas:
 
@@ -119,4 +135,3 @@ O backlog detalhado fica em:
 ```txt
 docs/github-issues/
 ```
-

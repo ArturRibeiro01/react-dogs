@@ -15,7 +15,7 @@ Ja cobertas localmente:
 
 Parcialmente cobertas localmente:
 
-- `04` Renderizar feed com dados reais da API
+- Nenhuma `priority-high` de produto neste momento.
 
 Se as issues forem publicadas no GitHub depois dessas mudancas, vale criar as concluidas ja com uma nota de fechamento ou simplesmente omiti-las do script de criacao.
 
@@ -26,14 +26,14 @@ Se as issues forem publicadas no GitHub depois dessas mudancas, vale criar as co
 3. [x] `03` Padronizar rotas para React Router v6
 4. [x] `21` Criar API client e configuracao por ambiente
 5. [x] `08` Modernizar dependencias e tooling
-6. [ ] `04` Renderizar feed com dados reais da API
+6. [x] `04` Renderizar feed com dados reais da API
 7. [ ] `13` Migrar projeto para TypeScript
 
 ## Proxima Issue Recomendada
 
-`04` Renderizar feed com dados reais da API.
+`13` Migrar projeto para TypeScript.
 
-Motivo: e a ultima `priority-high` de produto ainda pendente/parcial antes da migracao para TypeScript. O feed basico ja existe, mas ainda falta acabamento de estados, UX e comportamento.
+Motivo: e a ultima issue `priority-high` pendente. As issues high de estabilizacao e produto ja foram cobertas localmente.
 
 ## Priority Medium
 
@@ -69,6 +69,7 @@ Depois das issues `priority-high`, a ordem funcional recomendada continua sendo:
 - `01` Corrigir imports e bugs que quebram chamadas da API
 - `02` Corrigir validacao dos formularios
 - `03` Padronizar rotas para React Router v6
+- `04` Renderizar feed com dados reais da API
 - `08` Modernizar dependencias e tooling
 - `16` Criar plano de saude e contingencia para API externa
 - `21` Criar API client e configuracao por ambiente

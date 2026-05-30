@@ -85,6 +85,12 @@ Em 2026-05-30, o endpoint público de fotos foi validado com sucesso:
 GET /api/photo/?_page=1&_total=1&_user=0
 ```
 
+Contrato atual da API e plano para API própria:
+
+```txt
+docs/API.md
+```
+
 ## Estrutura
 
 ```txt

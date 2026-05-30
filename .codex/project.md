@@ -22,6 +22,7 @@
 - `src/index.jsx`: entrypoint React.
 - `src/App.jsx`: configura `BrowserRouter`, `UserStorage`, `Header`, `Footer` e rotas principais.
 - `src/api.js`: centraliza `apiRequest`, base URL por `VITE_API_URL`, token storage e endpoints por dominio.
+- `docs/API.md`: documenta endpoints usados hoje e contrato esperado para API propria futura.
 - `src/UserContext.jsx`: estado global de usuario/autenticacao.
 - `src/Hooks/useFetch.js`: hook de fetch reutilizavel.
 - `src/Hooks/useForm.js`: hook de formularios e validacao.
@@ -58,6 +59,7 @@
 - README atual documenta a stack e comandos atuais, mas a versao final de portfolio com screenshots ainda fica para issue propria.
 - API client foi criado em `src/api.js`; consumidores devem preferir `authApi`, `userApi`, `photoApi`, `healthApi` e `tokenStorage`.
 - `.env.example` documenta `VITE_API_URL` para troca futura por API propria.
+- `apiRequest` diferencia erro HTTP de erro de rede/API indisponivel usando `ApiError.isNetworkError`.
 
 ## Backlog E Portfolio
 

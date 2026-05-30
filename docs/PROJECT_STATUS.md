@@ -33,6 +33,8 @@ Atualizado em 2026-05-30.
 - Base URL da API configuravel via `VITE_API_URL`.
 - API client criado em `src/api.js`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
+- Contrato atual da API documentado em `docs/API.md`.
+- Erros de rede da API agora exibem uma mensagem amigavel.
 - Build validado com `yarn build`.
 - Smoke test local validado via Vite com resposta HTTP 200.
 
@@ -40,7 +42,6 @@ Atualizado em 2026-05-30.
 
 - Configurar testes reais. Hoje `yarn test` e placeholder.
 - Migrar para TypeScript.
-- Criar API client com base URL por ambiente.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formularios com React Hook Form e Zod.
 - Definir CSS-in-JS e themes.

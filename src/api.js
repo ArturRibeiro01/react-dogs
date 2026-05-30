@@ -4,11 +4,13 @@ export const API_URL =
 const TOKEN_KEY = 'token';
 
 export class ApiError extends Error {
-  constructor(message, { response, data } = {}) {
+  constructor(message, { response, data, cause, isNetworkError = false } = {}) {
     super(message);
     this.name = 'ApiError';
     this.response = response;
     this.data = data;
+    this.cause = cause;
+    this.isNetworkError = isNetworkError;
   }
 }
 
@@ -52,12 +54,23 @@ async function parseResponse(response) {
 export async function apiRequest(path, options = {}) {
   const { body, token, headers, ...fetchOptions } = options;
   const isFormData = body instanceof FormData;
+  let response;
 
-  const response = await fetch(resolveUrl(path), {
-    ...fetchOptions,
-    headers: createHeaders({ body, token, headers }),
-    body: isFormData || typeof body === 'string' ? body : JSON.stringify(body),
-  });
+  try {
+    response = await fetch(resolveUrl(path), {
+      ...fetchOptions,
+      headers: createHeaders({ body, token, headers }),
+      body: isFormData || typeof body === 'string' ? body : JSON.stringify(body),
+    });
+  } catch (error) {
+    throw new ApiError(
+      'Nao foi possivel conectar com a API. Tente novamente em instantes.',
+      {
+        cause: error,
+        isNetworkError: true,
+      },
+    );
+  }
 
   const data = await parseResponse(response);
 

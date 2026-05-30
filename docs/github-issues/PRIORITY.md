@@ -9,13 +9,13 @@ Ja cobertas localmente:
 - `01` Corrigir imports e bugs que quebram chamadas da API
 - `03` Padronizar rotas para React Router v6
 - `08` Modernizar dependencias e tooling
+- `16` Criar plano de saude e contingencia para API externa
 - `21` Criar API client e configuracao por ambiente
 
 Parcialmente cobertas localmente:
 
 - `02` Corrigir validacao dos formularios
 - `04` Renderizar feed com dados reais da API
-- `16` Criar plano de saude e contingencia para API externa
 
 Se as issues forem publicadas no GitHub depois dessas mudancas, vale criar as concluidas ja com uma nota de fechamento ou simplesmente omiti-las do script de criacao.
 
@@ -23,7 +23,6 @@ Se as issues forem publicadas no GitHub depois dessas mudancas, vale criar as co
 
 1. `02` Finalizar validacao dos formularios
 2. `04` Evoluir feed com estados e acabamento
-3. `16` Finalizar plano de contingencia da API externa
 
 ## Fase 2 - Completar Produto
 
@@ -54,4 +53,5 @@ Se as issues forem publicadas no GitHub depois dessas mudancas, vale criar as co
 - `01` Corrigir imports e bugs que quebram chamadas da API
 - `03` Padronizar rotas para React Router v6
 - `08` Modernizar dependencias e tooling
+- `16` Criar plano de saude e contingencia para API externa
 - `21` Criar API client e configuracao por ambiente

@@ -40,10 +40,10 @@ Concluidas ou majoritariamente cobertas localmente:
 - `01` Corrigir imports e bugs que quebram chamadas da API.
 - `03` Padronizar rotas para React Router v6.
 - `08` Modernizar dependencias e tooling.
+- `16` Saude e contingencia da API.
 - `21` Criar API client e configuracao por ambiente.
 
 Parcialmente cobertas localmente:
 
 - `02` Validacao dos formularios: typo e guardas basicas corrigidos, mas ainda falta padronizacao futura com React Hook Form/Zod.
 - `04` Feed com dados reais: feed basico renderiza fotos da API, mas ainda falta acabamento de UX/modal/paginacao conforme evolucao do produto.
-- `16` Saude e contingencia da API: health check e `VITE_API_URL` criados, mas ainda falta fallback/mock ou backend proprio.

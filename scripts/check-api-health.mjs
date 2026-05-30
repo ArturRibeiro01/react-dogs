@@ -1,5 +1,5 @@
 const apiUrl = process.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
-const url = new URL('/api/photo/', apiUrl);
+const url = new URL(`${apiUrl.replace(/\/$/, '')}/api/photo/`);
 
 url.searchParams.set('_page', '1');
 url.searchParams.set('_total', '1');

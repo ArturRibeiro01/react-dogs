@@ -21,10 +21,12 @@ const useForm = (type) => {
 
     function validate(value){
         if(type === false) return true;
-        if(value.length < 1){
+        const fieldValue = String(value ?? '').trim();
+
+        if(fieldValue.length < 1){
             setError('Preencha um valor.');
             return false;
-        }else if(types[type] && !types[type].regex.test(value)) {
+        }else if(types[type] && !types[type].regex.test(fieldValue)) {
             setError(types[type].message);
             return false;
         }else{

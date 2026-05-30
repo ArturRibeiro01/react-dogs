@@ -12,14 +12,14 @@ Deixar validacao de formularios previsivel, simples e reutilizavel.
 
 - [x] Corrigir `lenght` para `length`.
 - [x] Garantir que campos vazios exibam erro.
-- Revisar validacoes de email, senha e numero.
+- [x] Revisar validacoes de email, senha e numero.
 - [x] Validar formulario de cadastro antes de enviar request.
 - [x] Validar formulario de postagem antes de enviar foto.
 
 ## Criterios De Aceite
 
 - [x] Campos obrigatorios nao sao enviados vazios.
-- [ ] Mensagens de erro aparecem no blur e no submit.
+- [x] Mensagens de erro aparecem no blur e no submit.
 - [x] Cadastro e postagem bloqueiam envio invalido.
 
 ## Observacoes

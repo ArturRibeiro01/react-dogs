@@ -1,6 +1,6 @@
 ## Contexto
 
-O README ainda e o padrao do Create React App. Para portfolio, ele precisa explicar o produto, stack, decisoes tecnicas, como rodar e o que foi modernizado.
+O README ja foi atualizado para refletir a stack atual, comandos com Yarn/Vite e status da modernizacao. Para portfolio, ainda precisa evoluir visualmente e narrativamente: explicar melhor o produto, decisoes tecnicas, screenshots, aprendizados e roadmap.
 
 ## Objetivo
 
@@ -17,7 +17,6 @@ Transformar o README em uma pagina de apresentacao profissional do projeto.
 
 ## Criterios De Aceite
 
-- README nao contem mais texto generico do CRA.
-- Uma pessoa consegue rodar o projeto seguindo o README.
+- [x] README nao contem mais texto generico do CRA.
+- [x] Uma pessoa consegue rodar o projeto seguindo o README.
 - O README comunica evolucao de junior para senior sem exagero.
-

@@ -5,10 +5,9 @@
       ".vscode": false,
       ".gitignore": true,
       "package.json": false,
-      "package-lock.json": true,
+      "package-lock.json": false,
       "public": false,
       "yarn.lock":true,
       "README.md":false
-
     }
 }

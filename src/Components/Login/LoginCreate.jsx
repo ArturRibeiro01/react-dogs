@@ -3,7 +3,7 @@ import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 import Error from '../Helper/Error';
 import useForm from '../../Hooks/useForm'
-import { USER_POST } from '../../Api';
+import { USER_POST } from '../../api';
 import {UserContext} from '../../UserContext'
 import useFetch from '../../Hooks/useFetch';
 
@@ -18,17 +18,19 @@ const LoginCreate = () => {
 
     async function handleSubmit(event){
         event.preventDefault();
+        if(!username.validate() || !email.validate() || !password.validate()) return;
+
         const {url, options} = USER_POST({
             username: username.value,
             email: email.value,
             password: password.value
         })
         const {response} = await request(url, options);
-        if(response.ok) userLogin(username.value, password.value);
+        if(response && response.ok) userLogin(username.value, password.value);
     }
 
     return (
-        <section className='animeleft'>
+        <section className='animeLeft'>
             <h1 className="title">Cadastre-se</h1>
             <form onSubmit={handleSubmit}>
                 <Input label="Usuário" type="text" name="username"{...username} />

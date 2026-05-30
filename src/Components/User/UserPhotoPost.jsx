@@ -5,7 +5,7 @@ import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
 import useFetch from '../../Hooks/useFetch'
 import Error from '../Helper/Error'
-import { PHOTO_POST } from '../../Api'
+import { PHOTO_POST } from '../../api'
 import { useNavigate } from 'react-router-dom'
 
 const UserPhotoPost = () => {
@@ -25,6 +25,8 @@ const UserPhotoPost = () => {
 
     function handleSubmit(event){
         event.preventDefault();
+        if(!nome.validate() || !peso.validate() || !idade.validate() || !img.raw) return;
+
         const formData = new FormData();
         formData.append('img', img.raw);
         formData.append('nome', nome.value);

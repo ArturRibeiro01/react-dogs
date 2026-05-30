@@ -5,7 +5,7 @@ import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
 import useFetch from '../../Hooks/useFetch'
 import Error from '../Helper/Error'
-import { PHOTO_POST } from '../../Api'
+import { photoApi, tokenStorage } from '../../api'
 import { useNavigate } from 'react-router-dom'
 
 const UserPhotoPost = () => {
@@ -25,15 +25,16 @@ const UserPhotoPost = () => {
 
     function handleSubmit(event){
         event.preventDefault();
+        if(!nome.validate() || !peso.validate() || !idade.validate() || !img.raw) return;
+
         const formData = new FormData();
         formData.append('img', img.raw);
         formData.append('nome', nome.value);
         formData.append('peso', peso.value);
         formData.append('idade', idade.value);
 
-        const token = window.localStorage.getItem('token');
-        const {url, options} = PHOTO_POST(formData, token);
-        request (url, options);
+        const token = tokenStorage.get();
+        request(() => photoApi.create(formData, token));
     }
 
     function handleImgChange({target}){

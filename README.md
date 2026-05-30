@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Dogs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rede social para cachorros baseada no projeto Dogs da Origamid.
 
-## Available Scripts
+Este repositório começou como um projeto de estudo em React e está sendo modernizado como projeto de portfólio, com foco em estabilidade, atualização de stack e melhoria progressiva de arquitetura.
 
-In the project directory, you can run:
+## Stack
 
-### `yarn start`
+- React `^19.2.6`
+- React DOM `^19.2.6`
+- React Router `6.30.2`
+- Vite `^6.4.2`
+- Yarn Classic
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requisitos
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node 18+
+- Yarn 1.x
 
-### `yarn test`
+Observação: Vite 8, `@vitejs/plugin-react` 6 e React Router 7 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto usa as versões modernas compatíveis com esse runtime.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Scripts
 
-### `yarn build`
+Instalar dependências:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Rodar em desenvolvimento:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+yarn dev
+```
 
-### `yarn eject`
+Build de produção:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Preview do build:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn preview
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Checar saúde da API:
 
-## Learn More
+```bash
+yarn check:api
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Testes:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn test
+```
 
-### Code Splitting
+No momento, `yarn test` é um placeholder. A configuração real de testes será adicionada em uma etapa própria.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API
 
-### Analyzing the Bundle Size
+A API base está centralizada em:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```txt
+src/api.js
+```
 
-### Making a Progressive Web App
+Base URL atual:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```txt
+https://dogsapi.origamid.dev/json
+```
 
-### Advanced Configuration
+Para apontar o app para outra API, crie um `.env.local` baseado em `.env.example`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+VITE_API_URL=https://sua-api.example.com
+```
 
-### Deployment
+Em 2026-05-30, o endpoint público de fotos foi validado com sucesso:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```txt
+GET /api/photo/?_page=1&_total=1&_user=0
+```
 
-### `yarn build` fails to minify
+## Estrutura
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```txt
+index.html
+vite.config.mjs
+src/
+  App.jsx
+  index.jsx
+  api.js
+  UserContext.jsx
+  Assets/
+  Components/
+  Hooks/
+docs/
+  github-issues/
+scripts/
+  check-api-health.mjs
+```
+
+Os arquivos com JSX usam extensão `.jsx`, porque o Vite é mais estrito que o antigo Create React App.
+
+## Status Da Modernização
+
+Já foi feito:
+
+- Migração de Create React App para Vite.
+- Atualização para React 19.
+- Atualização do React Router beta para React Router 6 estável.
+- Correção dos principais bugs de runtime na API, fetch, validação básica, rotas protegidas e feed inicial.
+- Remoção de dependências não usadas, como `history` e `web-vitals`.
+- Uso de Yarn como único package manager.
+- Base URL da API configurável via `VITE_API_URL`.
+- Health check da API via `yarn check:api`.
+
+Próximas frentes planejadas:
+
+- TypeScript.
+- Zustand.
+- React Hook Form + Zod.
+- API client com configuração por ambiente.
+- Testes automatizados.
+- CI.
+- CSS-in-JS e themes.
+- README final de portfólio com screenshots.
+
+O backlog detalhado fica em:
+
+```txt
+docs/github-issues/
+```

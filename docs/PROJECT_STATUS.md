@@ -36,6 +36,7 @@ Atualizado em 2026-05-30.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API agora exibem uma mensagem amigavel.
 - Validacao atual dos formularios concluida: campos obrigatorios, email, senha, numeros e imagem de postagem.
+- Feed com dados reais concluido: grid responsivo, visualizacoes, estado vazio e filtro por usuario na conta.
 - Build validado com `yarn build`.
 - Smoke test local validado via Vite com resposta HTTP 200.
 

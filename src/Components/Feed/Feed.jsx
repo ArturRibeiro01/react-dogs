@@ -2,11 +2,11 @@ import React from 'react'
 import FeedModal from './FeedModal'
 import FeedPhotos from './FeedPhotos'
 
-const Feed = () => {
+const Feed = ({user = 0}) => {
     return (
         <div>
             <FeedModal/>
-            <FeedPhotos/>
+            <FeedPhotos user={user}/>
         </div>
     )
 }

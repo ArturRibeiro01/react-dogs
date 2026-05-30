@@ -1,6 +1,6 @@
 ## Contexto
 
-Status local: parcialmente coberta em 2026-05-30.
+Status local: concluida em 2026-05-30.
 
 O hook `useForm` tem um typo em `value.lenght`, o que faz a validacao de campo vazio falhar. Alguns formularios usam `useForm()` sem tipo, o que precisa continuar funcionando.
 

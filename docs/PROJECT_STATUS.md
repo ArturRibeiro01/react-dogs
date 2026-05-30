@@ -35,6 +35,7 @@ Atualizado em 2026-05-30.
 - Health check da API criado em `scripts/check-api-health.mjs`.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API agora exibem uma mensagem amigavel.
+- Validacao atual dos formularios concluida: campos obrigatorios, email, senha, numeros e imagem de postagem.
 - Build validado com `yarn build`.
 - Smoke test local validado via Vite com resposta HTTP 200.
 

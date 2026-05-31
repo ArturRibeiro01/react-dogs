@@ -2,7 +2,7 @@
 
 Status local: concluida em 2026-05-30.
 
-O app tem alguns bugs simples que impedem fluxos centrais de funcionar corretamente: imports usando `Api` com maiuscula enquanto o arquivo real e `src/api.js`, header `Authorization` sem espaco depois de `Bearer`, URL de fotos com espaco inicial e parse de JSON sem `await` no hook de fetch.
+O app tinha alguns bugs simples que impediam fluxos centrais de funcionar corretamente: imports usando `Api` com maiuscula enquanto o arquivo real era `src/api.js` na epoca, header `Authorization` sem espaco depois de `Bearer`, URL de fotos com espaco inicial e parse de JSON sem `await` no hook de fetch.
 
 ## Objetivo
 

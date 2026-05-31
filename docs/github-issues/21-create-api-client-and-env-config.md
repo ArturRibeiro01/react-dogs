@@ -2,7 +2,7 @@
 
 Status local: concluida em 2026-05-30.
 
-`src/api.js` hoje centraliza factories de requests, mas chamadas `fetch`, tratamento de erro, token e base URL ficam espalhados. A base URL tambem esta hardcoded.
+`src/api.ts` hoje centraliza factories de requests, mas chamadas `fetch`, tratamento de erro, token e base URL ficam espalhados. A base URL tambem esta hardcoded.
 
 ## Objetivo
 

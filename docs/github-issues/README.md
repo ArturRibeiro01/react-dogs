@@ -42,6 +42,7 @@ Concluidas ou majoritariamente cobertas localmente:
 - `03` Padronizar rotas para React Router v6.
 - `04` Feed com dados reais.
 - `08` Modernizar dependencias e tooling.
+- `13` Migracao para TypeScript.
 - `16` Saude e contingencia da API.
 - `21` Criar API client e configuracao por ambiente.
 

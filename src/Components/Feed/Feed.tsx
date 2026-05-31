@@ -2,7 +2,11 @@ import React from 'react'
 import FeedModal from './FeedModal'
 import FeedPhotos from './FeedPhotos'
 
-const Feed = ({user = 0}) => {
+type FeedProps = {
+    user?: number | string;
+};
+
+const Feed = ({user = 0}: FeedProps) => {
     return (
         <div>
             <FeedModal/>

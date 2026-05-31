@@ -7,16 +7,22 @@ import useFetch from '../../Hooks/useFetch'
 import Error from '../Helper/Error'
 import { photoApi, tokenStorage } from '../../api'
 import { useNavigate } from 'react-router-dom'
+import type { Photo } from '../../types'
+
+type PhotoUploadState = {
+    preview?: string;
+    raw?: File;
+};
 
 const UserPhotoPost = () => {
     const nome = useForm();
     const peso = useForm('number');
     const idade = useForm('number');
-    const [img, setImg] = React.useState({
+    const [img, setImg] = React.useState<PhotoUploadState>({
 
     });
-    const [imgError, setImgError] = React.useState(null);
-    const {data, error, loading, request} = useFetch();
+    const [imgError, setImgError] = React.useState<string | null>(null);
+    const {data, error, loading, request} = useFetch<Photo>();
     const navigate = useNavigate();
     
     
@@ -24,15 +30,16 @@ const UserPhotoPost = () => {
        if(data) navigate('/conta');
     }, [data,navigate]);
 
-    function handleSubmit(event){
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        const hasImg = Boolean(img.raw);
+        const file = img.raw;
+        const hasImg = Boolean(file);
         setImgError(hasImg ? null : 'Selecione uma imagem.');
 
-        if(!nome.validate() || !peso.validate() || !idade.validate() || !hasImg) return;
+        if(!nome.validate() || !peso.validate() || !idade.validate() || !file) return;
 
         const formData = new FormData();
-        formData.append('img', img.raw);
+        formData.append('img', file);
         formData.append('nome', nome.value);
         formData.append('peso', peso.value);
         formData.append('idade', idade.value);
@@ -41,7 +48,7 @@ const UserPhotoPost = () => {
         request(() => photoApi.create(formData, token));
     }
 
-    function handleImgChange({target}){
+    function handleImgChange({target}: React.ChangeEvent<HTMLInputElement>){
         const file = target.files?.[0];
         if(!file) {
             setImg({});

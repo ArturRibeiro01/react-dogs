@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, type NavLinkRenderProps } from 'react-router-dom'
 import { UserContext } from '../../UserContext'
 import MinhasFotos from '../../Assets/feed.svg?react';
 import Estatisticas from '../../Assets/estatisticas.svg?react';
@@ -14,7 +14,7 @@ const UserHeaderNav = () => {
     const mobile = useMedia('(max-width: 40rem)');
     const [mobileMenu, setMobileMenu] = React.useState(false);
     const {pathname} = useLocation();
-    const getActiveClassName = ({isActive}) => isActive ? styles.active : undefined;
+    const getActiveClassName = ({isActive}: NavLinkRenderProps) => isActive ? styles.active : undefined;
 
     
     React.useEffect(() => {

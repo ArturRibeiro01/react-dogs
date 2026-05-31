@@ -1,5 +1,7 @@
 import React from 'react'
 
+type FormType = keyof typeof types | false | '';
+
 const types = {
     email:{
         regex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -15,18 +17,18 @@ const types = {
     }
 }
 
-const useForm = (type) => {
+const useForm = (type?: FormType) => {
     const [value, setValue] = React.useState('');
-    const [error, setError] = React.useState(null);
+    const [error, setError] = React.useState<string | null>(null);
 
-    function validate(value){
+    function validate(value: string){
         if(type === false) return true;
         const fieldValue = String(value ?? '').trim();
 
         if(fieldValue.length < 1){
             setError('Preencha um valor.');
             return false;
-        }else if(types[type] && !types[type].regex.test(fieldValue)) {
+        }else if(type && type in types && !types[type].regex.test(fieldValue)) {
             setError(types[type].message);
             return false;
         }else{
@@ -35,7 +37,7 @@ const useForm = (type) => {
         }
     }
 
-    function onChange({target}){
+    function onChange({target}: React.ChangeEvent<HTMLInputElement>){
         if(error) validate(target.value);
         setValue(target.value);
     }

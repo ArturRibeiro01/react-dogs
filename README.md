@@ -2,7 +2,23 @@
 
 Rede social para cachorros baseada no projeto Dogs da Origamid.
 
-Este repositório começou como um projeto de estudo em React e está sendo modernizado como projeto de portfólio, com foco em estabilidade, atualização de stack e melhoria progressiva de arquitetura.
+Este repositório começou como um projeto de estudo em React e está sendo modernizado como projeto de portfólio. O foco atual é estabilizar o produto, atualizar a stack, documentar decisões técnicas e evoluir a arquitetura sem perder o comportamento já funcional.
+
+## Status
+
+O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público e o feed da conta já usam dados reais da API externa da Origamid, com validação básica de formulários, tratamento de erro de rede e configuração de API por ambiente.
+
+Próxima issue recomendada:
+
+```txt
+05 - Implementar modal de detalhes da foto
+```
+
+O backlog pendente fica em:
+
+```txt
+docs/github-issues/
+```
 
 ## Stack
 
@@ -11,6 +27,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 - React Router `6.30.2`
 - TypeScript `^6.0.3`
 - Vite `^6.4.2`
+- Vite SVGR para SVGs como componentes React
 - Yarn Classic
 
 ## Requisitos
@@ -18,85 +35,131 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 - Node 18+
 - Yarn 1.x
 
-Observação: Vite 8, `@vitejs/plugin-react` 6 e React Router 7 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto usa as versões modernas compatíveis com esse runtime.
+Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto usa as versões modernas compatíveis com esse runtime.
 
-## Scripts
+## Como Rodar
 
-Instalar dependências:
+Instale as dependências:
 
 ```bash
 yarn install
 ```
 
-Rodar em desenvolvimento:
+Crie um `.env.local` se quiser sobrescrever a API:
+
+```bash
+cp .env.example .env.local
+```
+
+Rode em desenvolvimento:
 
 ```bash
 yarn dev
 ```
 
-Build de produção:
+Faça build de produção:
 
 ```bash
 yarn build
 ```
 
-Checar tipos:
-
-```bash
-yarn typecheck
-```
-
-Preview do build:
+Faça preview do build:
 
 ```bash
 yarn preview
 ```
 
-Checar saúde da API:
+## Scripts
+
+```bash
+yarn dev
+```
+
+Sobe o Vite em modo desenvolvimento.
+
+```bash
+yarn typecheck
+```
+
+Executa `tsc --noEmit`.
+
+```bash
+yarn build
+```
+
+Executa typecheck e build de produção.
+
+```bash
+yarn preview
+```
+
+Serve localmente o build gerado.
 
 ```bash
 yarn check:api
 ```
 
-Testes:
+Valida se a API pública responde com uma lista de fotos.
 
 ```bash
 yarn test
 ```
 
-No momento, `yarn test` é um placeholder. A configuração real de testes será adicionada em uma etapa própria.
+Placeholder por enquanto. A configuração real de testes será adicionada em issue própria.
 
-## API
+## Configuração
 
-A API base está centralizada em:
+A API base fica centralizada em:
 
 ```txt
 src/api.ts
 ```
 
-Base URL atual:
+URL padrão:
 
 ```txt
 https://dogsapi.origamid.dev/json
 ```
 
-Para apontar o app para outra API, crie um `.env.local` baseado em `.env.example`:
+Variável suportada:
 
 ```bash
-VITE_API_URL=https://sua-api.example.com
+VITE_API_URL=https://dogsapi.origamid.dev/json
 ```
 
-Em 2026-05-30, o endpoint público de fotos foi validado com sucesso:
-
-```txt
-GET /api/photo/?_page=1&_total=1&_user=0
-```
-
-Contrato atual da API e plano para API própria:
+Contrato atual da API:
 
 ```txt
 docs/API.md
 ```
+
+## Funcionalidades Implementadas
+
+- Login com JWT.
+- Validação automática do token salvo.
+- Logout.
+- Cadastro de usuário.
+- Feed público com fotos reais.
+- Feed da conta filtrado por usuário logado.
+- Upload de foto autenticado.
+- Validação básica de formulários.
+- Estado de loading, erro e lista vazia no feed.
+- Tratamento amigável para falha de rede da API.
+- Health check da API externa.
+
+## Funcionalidades Pendentes
+
+- Modal de detalhes da foto.
+- Recuperação e redefinição de senha.
+- Tela de estatísticas do usuário.
+- Error Boundary e feedback global.
+- Testes automatizados.
+- CI.
+- Melhorias de acessibilidade e responsividade.
+- Organização de arquitetura e aliases.
+- Zustand.
+- React Hook Form + Zod.
+- CSS-in-JS e tokens/themes.
 
 ## Estrutura
 
@@ -108,45 +171,71 @@ src/
   App.tsx
   index.tsx
   api.ts
-  UserContext.tsx
   types.ts
+  UserContext.tsx
+  App.css
   Assets/
   Components/
+    Feed/
+    Forms/
+    Header.tsx
+    Helper/
+    Login/
+    User/
   Hooks/
 docs/
+  API.md
+  PROJECT_STATUS.md
   github-issues/
 scripts/
   check-api-health.mjs
 ```
 
-Os componentes usam `.tsx`, enquanto hooks/helpers sem JSX usam `.ts`.
+Convenções atuais:
 
-## Status Da Modernização
+- Componentes React usam `.tsx`.
+- Hooks, helpers e cliente de API usam `.ts`.
+- CSS ainda usa CSS global e CSS Modules.
+- SVGs usados como componentes React são importados com `?react`.
+- O acesso à API deve passar por `src/api.ts`.
+- Tipos compartilhados ficam em `src/types.ts`.
+
+## Fluxo De Branches
+
+O fluxo atual do projeto é:
+
+```txt
+feature/* -> develop -> main
+```
+
+- `develop`: integração e homologação.
+- `main`: produção.
+
+Quando a esteira de CI/CD for configurada, a intenção é validar PRs para `develop`, publicar ambiente de homologação a partir de `develop` e reservar deploy de produção para `main`.
+
+## Documentação
+
+- `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
+- `docs/PROJECT_STATUS.md`: estado atual da modernização.
+- `docs/github-issues/README.md`: como publicar ou acompanhar issues pendentes.
+- `docs/github-issues/PRIORITY.md`: ordem recomendada de trabalho.
+
+## Histórico Da Modernização
 
 Já foi feito:
 
 - Migração de Create React App para Vite.
+- Migração para TypeScript.
 - Atualização para React 19.
-- Atualização do React Router beta para React Router 6 estável.
-- Correção dos principais bugs de runtime na API, fetch, validação básica, rotas protegidas e feed inicial.
-- Remoção de dependências não usadas, como `history` e `web-vitals`.
-- Uso de Yarn como único package manager.
-- Base URL da API configurável via `VITE_API_URL`.
-- Health check da API via `yarn check:api`.
-- Migração para TypeScript com `yarn typecheck`.
+- Atualização para React Router 6 estável.
+- Centralização da API em `src/api.ts`.
+- Configuração de `VITE_API_URL`.
+- Remoção de dependências antigas não usadas.
+- Uso de Yarn como package manager único.
+- Feed real com dados da API.
+- Validação básica dos formulários.
+- Documentação inicial de API, status e backlog.
 
-Próximas frentes planejadas:
+## Observações
 
-- Zustand.
-- React Hook Form + Zod.
-- API client com configuração por ambiente.
-- Testes automatizados.
-- CI.
-- CSS-in-JS e themes.
-- README final de portfólio com screenshots.
-
-O backlog detalhado fica em:
-
-```txt
-docs/github-issues/
-```
+A API pública da Origamid é uma dependência externa. Para portfólio mais robusto, o plano futuro é criar ou acoplar um backend próprio, ou pelo menos oferecer modo demo/mock para reduzir risco de indisponibilidade externa.

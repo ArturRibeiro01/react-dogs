@@ -1,16 +1,35 @@
 # API Contract
 
-Este app ainda consome a API publica do projeto Dogs da Origamid:
+Este app consome a API pública do projeto Dogs da Origamid.
 
 ```txt
 https://dogsapi.origamid.dev/json
 ```
 
-A base URL pode ser trocada por ambiente usando:
+A base URL pode ser trocada por ambiente:
 
 ```bash
 VITE_API_URL=https://sua-api.example.com
 ```
+
+O cliente HTTP do app fica em:
+
+```txt
+src/api.ts
+```
+
+Os tipos compartilhados ficam em:
+
+```txt
+src/types.ts
+```
+
+## Estado Da API
+
+Validações feitas recentemente:
+
+- `GET /api/photo/?_page=1&_total=1&_user=0` respondia com array em 2026-05-30.
+- `POST /api/password/lost` e `POST /api/password/reset` existem e processam requisições em 2026-05-31.
 
 ## Health Check
 
@@ -31,9 +50,29 @@ O comando espera:
 - status HTTP `2xx`
 - resposta JSON em formato de array
 
-## Endpoints Usados Atualmente
+## Erros
 
-### Auth
+A API costuma responder erros em JSON com este formato:
+
+```json
+{
+  "code": "error",
+  "message": "Mensagem de erro.",
+  "data": {
+    "status": 401
+  }
+}
+```
+
+O cliente `apiRequest` tenta extrair `message` e transforma falhas de rede em uma mensagem amigável:
+
+```txt
+Nao foi possivel conectar com a API. Tente novamente em instantes.
+```
+
+## Auth
+
+### Login
 
 ```txt
 POST /jwt-auth/v1/token
@@ -52,9 +91,14 @@ Resposta esperada:
 
 ```json
 {
-  "token": "jwt-token"
+  "token": "jwt-token",
+  "user_email": "email@example.com",
+  "user_nicename": "usuario",
+  "user_display_name": "usuario"
 }
 ```
+
+### Validar Token
 
 ```txt
 POST /jwt-auth/v1/token/validate
@@ -66,7 +110,9 @@ Headers:
 Authorization: Bearer <token>
 ```
 
-### User
+## User
+
+### Buscar Usuário Logado
 
 ```txt
 GET /api/user
@@ -78,6 +124,19 @@ Headers:
 Authorization: Bearer <token>
 ```
 
+Resposta esperada:
+
+```json
+{
+  "id": 1,
+  "username": "usuario",
+  "nome": "Nome",
+  "email": "email@example.com"
+}
+```
+
+### Criar Usuário
+
 ```txt
 POST /api/user
 ```
@@ -88,11 +147,66 @@ Body:
 {
   "username": "usuario",
   "email": "email@example.com",
-  "password": "senha"
+  "password": "Senha123"
 }
 ```
 
-### Photos
+## Password
+
+### Solicitar Recuperação
+
+```txt
+POST /api/password/lost
+```
+
+Body:
+
+```json
+{
+  "login": "usuario-ou-email",
+  "url": "http://localhost:5173/login/resetar"
+}
+```
+
+Observações:
+
+- `login` pode ser usuário ou email.
+- `url` é a rota para onde o usuário será enviado pelo link de recuperação.
+- A API envia a key/token por email quando o usuário existe.
+
+Erro confirmado com usuário inexistente:
+
+```json
+{
+  "code": "error",
+  "message": "Usuário não existe.",
+  "data": {
+    "status": 401
+  }
+}
+```
+
+### Redefinir Senha
+
+```txt
+POST /api/password/reset
+```
+
+Body:
+
+```json
+{
+  "login": "usuario-ou-email",
+  "key": "token-da-url",
+  "password": "NovaSenha123"
+}
+```
+
+Esse endpoint ainda não está implementado no frontend, mas será usado pela issue `06`.
+
+## Photos
+
+### Listar Fotos
 
 ```txt
 GET /api/photo/?_page=1&_total=6&_user=0
@@ -100,9 +214,9 @@ GET /api/photo/?_page=1&_total=6&_user=0
 
 Query params:
 
-- `_page`: pagina atual
-- `_total`: quantidade por pagina
-- `_user`: `0` para publico ou identificador do usuario
+- `_page`: página atual.
+- `_total`: quantidade por página.
+- `_user`: `0` para feed público ou identificador do usuário.
 
 Resposta esperada:
 
@@ -120,6 +234,8 @@ Resposta esperada:
   }
 ]
 ```
+
+### Criar Foto
 
 ```txt
 POST /api/photo
@@ -144,24 +260,26 @@ Campos:
 - `peso`
 - `idade`
 
-## Futuro Backend Proprio
+## Futuro Backend Próprio
 
-Quando este app passar a consumir uma API propria, o backend deve preservar ou adaptar os contratos acima.
+Quando este app passar a consumir uma API própria, o backend deve preservar ou adaptar os contratos acima.
 
-Recomendacao:
+Recomendações:
 
-- manter compatibilidade inicial com os nomes de campos atuais para reduzir mudancas no frontend
-- criar endpoints equivalentes de auth, usuario e fotos
-- documentar autenticacao e formato de erro
-- expor um endpoint de health check dedicado, como `GET /health`
+- manter compatibilidade inicial com os nomes de campos atuais
+- criar endpoints equivalentes de auth, usuário, fotos e recuperação de senha
+- documentar autenticação e formato de erro
+- expor um endpoint dedicado de health check, como `GET /health`
+- oferecer ambiente de staging/homologação
+- definir política para storage das imagens
 
 ## Fallback E Demo
 
-Ainda nao existe fallback com dados mockados.
+Ainda não existe fallback com dados mockados.
 
-Opcoes futuras:
+Opções futuras:
 
-- mock server local para portfolio
+- mock server local para portfólio
 - modo demo via `VITE_DEMO_MODE=true`
-- backend proprio hospedado com banco e storage de imagens
+- backend próprio hospedado com banco e storage de imagens
 - mensagens de erro mais ricas por tela quando a API externa estiver fora

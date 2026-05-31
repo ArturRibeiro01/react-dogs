@@ -36,43 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Corrigir imports e bugs que quebram chamadas da API" \
-  "docs/github-issues/01-fix-api-runtime-bugs.md" \
-  "bug" \
-  "priority-high"
-
-create_issue \
-  "Corrigir validacao dos formularios" \
-  "docs/github-issues/02-fix-form-validation.md" \
-  "bug" \
-  "priority-high"
-
-create_issue \
-  "Padronizar rotas para React Router v6" \
-  "docs/github-issues/03-update-react-router-v6.md" \
-  "tech-debt" \
-  "priority-high"
-
-create_issue \
-  "Renderizar feed com dados reais da API" \
-  "docs/github-issues/04-implement-feed-real-data.md" \
-  "feature" \
-  "priority-high"
-
-create_issue \
-  "Criar plano de saude e contingencia para API externa" \
-  "docs/github-issues/16-api-health-and-contingency-plan.md" \
-  "tech-debt" \
-  "documentation" \
-  "priority-medium"
-
-create_issue \
-  "Criar API client e configuracao por ambiente" \
-  "docs/github-issues/21-create-api-client-and-env-config.md" \
-  "tech-debt" \
-  "priority-high"
-
-create_issue \
   "Implementar modal de detalhes da foto" \
   "docs/github-issues/05-implement-photo-modal.md" \
   "feature" \
@@ -102,18 +65,6 @@ create_issue \
   "docs/github-issues/12-polish-ui-accessibility.md" \
   "ux" \
   "priority-low"
-
-create_issue \
-  "Modernizar dependencias e tooling" \
-  "docs/github-issues/08-modernize-dependencies-and-tooling.md" \
-  "tech-debt" \
-  "priority-high"
-
-create_issue \
-  "Migrar projeto para TypeScript" \
-  "docs/github-issues/13-migrate-to-typescript.md" \
-  "tech-debt" \
-  "priority-high"
 
 create_issue \
   "Organizar arquitetura de pastas e aliases" \

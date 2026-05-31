@@ -5,9 +5,14 @@ import FeedPhotosItem from './FeedPhotosItem';
 import Error from '../Helper/Error';
 import Loading from '../Helper/Loading';
 import styles from './FeedPhotos.module.css';
+import type { Photo } from '../../types';
 
-const FeedPhotos = ({user = 0}) => {
-    const {data, loading, error, request} = useFetch();
+type FeedPhotosProps = {
+    user?: number | string;
+};
+
+const FeedPhotos = ({user = 0}: FeedPhotosProps) => {
+    const {data, loading, error, request} = useFetch<Photo[]>();
 
     React.useEffect(() => {
         async function fetchPhotos() {

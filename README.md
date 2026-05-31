@@ -9,6 +9,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 - React `^19.2.6`
 - React DOM `^19.2.6`
 - React Router `6.30.2`
+- TypeScript `^6.0.3`
 - Vite `^6.4.2`
 - Yarn Classic
 
@@ -39,6 +40,12 @@ Build de produção:
 yarn build
 ```
 
+Checar tipos:
+
+```bash
+yarn typecheck
+```
+
 Preview do build:
 
 ```bash
@@ -64,7 +71,7 @@ No momento, `yarn test` é um placeholder. A configuração real de testes será
 A API base está centralizada em:
 
 ```txt
-src/api.js
+src/api.ts
 ```
 
 Base URL atual:
@@ -95,12 +102,14 @@ docs/API.md
 
 ```txt
 index.html
-vite.config.mjs
+vite.config.ts
+tsconfig.json
 src/
-  App.jsx
-  index.jsx
-  api.js
-  UserContext.jsx
+  App.tsx
+  index.tsx
+  api.ts
+  UserContext.tsx
+  types.ts
   Assets/
   Components/
   Hooks/
@@ -110,7 +119,7 @@ scripts/
   check-api-health.mjs
 ```
 
-Os arquivos com JSX usam extensão `.jsx`, porque o Vite é mais estrito que o antigo Create React App.
+Os componentes usam `.tsx`, enquanto hooks/helpers sem JSX usam `.ts`.
 
 ## Status Da Modernização
 
@@ -124,10 +133,10 @@ Já foi feito:
 - Uso de Yarn como único package manager.
 - Base URL da API configurável via `VITE_API_URL`.
 - Health check da API via `yarn check:api`.
+- Migração para TypeScript com `yarn typecheck`.
 
 Próximas frentes planejadas:
 
-- TypeScript.
 - Zustand.
 - React Hook Form + Zod.
 - API client com configuração por ambiente.

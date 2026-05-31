@@ -1,14 +1,40 @@
 import React from 'react'
 import { authApi, tokenStorage, userApi } from './api'
 import {useNavigate} from 'react-router-dom'
+import type { User } from './types';
 
-export const UserContext = React.createContext();
+type UserContextValue = {
+    data: User | null;
+    login: boolean | null;
+    loading: boolean;
+    error: string | null;
+    userLogin: (username: string, password: string) => Promise<void>;
+    userLogout: () => Promise<void>;
+};
 
-export const UserStorage = ({children}) => {
-    const [data, setData] = React.useState(null);
-    const [login, setLogin] = React.useState(null);
+type UserStorageProps = {
+    children: React.ReactNode;
+};
+
+const getErrorMessage = (error: unknown): string => {
+    if(error instanceof Error) return error.message;
+    return 'Ocorreu um erro inesperado.';
+};
+
+export const UserContext = React.createContext<UserContextValue>({
+    data: null,
+    login: null,
+    loading: false,
+    error: null,
+    userLogin: async () => {},
+    userLogout: async () => {},
+});
+
+export const UserStorage = ({children}: UserStorageProps) => {
+    const [data, setData] = React.useState<User | null>(null);
+    const [login, setLogin] = React.useState<boolean | null>(null);
     const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const [error, setError] = React.useState<string | null>(null);
     const navigate = useNavigate();
 
 
@@ -24,13 +50,13 @@ export const UserStorage = ({children}) => {
  
 
 
-    async function getUser(token){
+    async function getUser(token: string){
         const { data } = await userApi.get(token);
         setData(data);
         setLogin(true);
     }
 
-    async function userLogin(username, password){
+    async function userLogin(username: string, password: string){
         try{
         setError(null);
         setLoading(true);
@@ -40,7 +66,7 @@ export const UserStorage = ({children}) => {
         await getUser(token);
         navigate('/conta');
         }catch(err) {
-            setError(err.message);
+            setError(getErrorMessage(err));
             setLogin(false)
         }finally {
             setLoading(false)

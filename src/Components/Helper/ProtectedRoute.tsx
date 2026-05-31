@@ -2,7 +2,11 @@ import React from 'react'
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext'
 
-const ProtectedRoute = ({children}) => {
+type ProtectedRouteProps = {
+    children: React.ReactNode;
+};
+
+const ProtectedRoute = ({children}: ProtectedRouteProps) => {
 
     const {login} = React.useContext(UserContext);
     if(login === true) return children;

@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './FeedPhotosItem.module.css'
+import type { Photo } from '../../types';
 
-const FeedPhotosItem = ({photo}) => {
+type FeedPhotosItemProps = {
+    photo: Photo;
+};
+
+const FeedPhotosItem = ({photo}: FeedPhotosItemProps) => {
     const title = photo.title || photo.nome || 'Foto sem titulo';
     const views = photo.acessos ?? photo.views;
 

@@ -1,12 +1,13 @@
 # Project Status
 
-Atualizado em 2026-05-30.
+Atualizado em 2026-05-31.
 
 ## Stack Atual
 
 - React `^19.2.6`
 - React DOM `^19.2.6`
 - React Router `6.30.2`
+- TypeScript `^6.0.3`
 - Vite `^6.4.2`
 - Yarn Classic
 
@@ -21,7 +22,9 @@ Atualizado em 2026-05-30.
 - Migração de Create React App para Vite.
 - Remocao de `react-scripts`.
 - Entrada HTML movida para `index.html` na raiz.
-- Componentes com JSX renomeados para `.jsx`.
+- Componentes com JSX renomeados para `.tsx`.
+- Hooks, helpers e API client renomeados para `.ts`.
+- TypeScript configurado com `tsconfig.json` e script `yarn typecheck`.
 - Imports SVG ajustados para `*.svg?react`.
 - React atualizado para 19.
 - Entry point atualizado para `createRoot`.
@@ -31,19 +34,19 @@ Atualizado em 2026-05-30.
 - Yarn definido como package manager unico.
 - `package-lock.json` removido.
 - Base URL da API configuravel via `VITE_API_URL`.
-- API client criado em `src/api.js`.
+- API client criado em `src/api.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API agora exibem uma mensagem amigavel.
 - Validacao atual dos formularios concluida: campos obrigatorios, email, senha, numeros e imagem de postagem.
 - Feed com dados reais concluido: grid responsivo, visualizacoes, estado vazio e filtro por usuario na conta.
+- Tipos explicitos adicionados para API, usuario, fotos, contexto, hooks e componentes compartilhados.
 - Build validado com `yarn build`.
 - Smoke test local validado via Vite com resposta HTTP 200.
 
 ## Ainda Pendente
 
 - Configurar testes reais. Hoje `yarn test` e placeholder.
-- Migrar para TypeScript.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formularios com React Hook Form e Zod.
 - Definir CSS-in-JS e themes.

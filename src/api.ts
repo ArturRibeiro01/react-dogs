@@ -1,10 +1,42 @@
+import type {
+  ApiResponse,
+  AuthTokenResponse,
+  Photo,
+  PhotoListParams,
+  User,
+  UserCreateInput,
+} from './types';
+
 export const API_URL =
   import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
 
 const TOKEN_KEY = 'token';
 
+type ApiErrorOptions = {
+  response?: Response;
+  data?: unknown;
+  cause?: unknown;
+  isNetworkError?: boolean;
+};
+
+type JsonBody = Record<string, unknown>;
+
+type ApiRequestOptions = Omit<RequestInit, 'body' | 'headers'> & {
+  body?: BodyInit | JsonBody;
+  token?: string | null;
+  headers?: HeadersInit;
+};
+
 export class ApiError extends Error {
-  constructor(message, { response, data, cause, isNetworkError = false } = {}) {
+  response?: Response;
+  data?: unknown;
+  cause?: unknown;
+  isNetworkError: boolean;
+
+  constructor(
+    message: string,
+    { response, data, cause, isNetworkError = false }: ApiErrorOptions = {},
+  ) {
     super(message);
     this.name = 'ApiError';
     this.response = response;
@@ -14,24 +46,28 @@ export class ApiError extends Error {
   }
 }
 
-function getStoredToken() {
+function getStoredToken(): string | null {
   return window.localStorage.getItem(TOKEN_KEY);
 }
 
-function setStoredToken(token) {
+function setStoredToken(token: string): void {
   window.localStorage.setItem(TOKEN_KEY, token);
 }
 
-function removeStoredToken() {
+function removeStoredToken(): void {
   window.localStorage.removeItem(TOKEN_KEY);
 }
 
-function resolveUrl(path) {
+function resolveUrl(path: string): string {
   if (path.startsWith('http')) return path;
   return `${API_URL}${path}`;
 }
 
-function createHeaders({ body, token, headers }) {
+function createHeaders({
+  body,
+  token,
+  headers,
+}: Pick<ApiRequestOptions, 'body' | 'token' | 'headers'>): Headers {
   const requestHeaders = new Headers(headers);
 
   if (!(body instanceof FormData) && !requestHeaders.has('Content-Type')) {
@@ -45,13 +81,25 @@ function createHeaders({ body, token, headers }) {
   return requestHeaders;
 }
 
-async function parseResponse(response) {
+async function parseResponse<TData>(response: Response): Promise<TData | null> {
   const contentType = response.headers.get('content-type');
   if (!contentType || !contentType.includes('application/json')) return null;
   return response.json();
 }
 
-export async function apiRequest(path, options = {}) {
+function getErrorMessage(data: unknown): string | null {
+  if (data && typeof data === 'object' && 'message' in data) {
+    const message = data.message;
+    if (typeof message === 'string') return message;
+  }
+
+  return null;
+}
+
+export async function apiRequest<TData>(
+  path: string,
+  options: ApiRequestOptions = {},
+): Promise<ApiResponse<TData>> {
   const { body, token, headers, ...fetchOptions } = options;
   const isFormData = body instanceof FormData;
   let response;
@@ -72,16 +120,16 @@ export async function apiRequest(path, options = {}) {
     );
   }
 
-  const data = await parseResponse(response);
+  const data = await parseResponse<TData>(response);
 
   if (!response.ok) {
-    throw new ApiError(data?.message || 'Erro ao comunicar com a API.', {
+    throw new ApiError(getErrorMessage(data) || 'Erro ao comunicar com a API.', {
       response,
       data,
     });
   }
 
-  return { response, data };
+  return { response, data: data as TData };
 }
 
 export const tokenStorage = {
@@ -91,49 +139,49 @@ export const tokenStorage = {
 };
 
 export const authApi = {
-  login: (body) =>
-    apiRequest('/jwt-auth/v1/token', {
+  login: (body: { username: string; password: string }) =>
+    apiRequest<AuthTokenResponse>('/jwt-auth/v1/token', {
       method: 'POST',
       body,
     }),
 
-  validateToken: (token) =>
-    apiRequest('/jwt-auth/v1/token/validate', {
+  validateToken: (token: string) =>
+    apiRequest<unknown>('/jwt-auth/v1/token/validate', {
       method: 'POST',
       token,
     }),
 };
 
 export const userApi = {
-  get: (token) =>
-    apiRequest('/api/user', {
+  get: (token: string) =>
+    apiRequest<User>('/api/user', {
       method: 'GET',
       token,
     }),
 
-  create: (body) =>
-    apiRequest('/api/user', {
+  create: (body: UserCreateInput) =>
+    apiRequest<User>('/api/user', {
       method: 'POST',
       body,
     }),
 };
 
 export const photoApi = {
-  create: (formData, token) =>
-    apiRequest('/api/photo', {
+  create: (formData: FormData, token: string | null) =>
+    apiRequest<Photo>('/api/photo', {
       method: 'POST',
       body: formData,
       token,
     }),
 
-  list: ({ page, total, user }) => {
+  list: ({ page, total, user }: PhotoListParams) => {
     const params = new URLSearchParams({
-      _page: page,
-      _total: total,
-      _user: user,
+      _page: String(page),
+      _total: String(total),
+      _user: String(user),
     });
 
-    return apiRequest(`/api/photo/?${params.toString()}`, {
+    return apiRequest<Photo[]>(`/api/photo/?${params.toString()}`, {
       method: 'GET',
       cache: 'no-store',
     });

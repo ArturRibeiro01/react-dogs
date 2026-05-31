@@ -16,7 +16,7 @@ const LoginCreate = () => {
     const {loading, error, request} = useFetch();
 
 
-    async function handleSubmit(event){
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         if(!username.validate() || !email.validate() || !password.validate()) return;
 

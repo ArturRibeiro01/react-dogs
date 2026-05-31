@@ -66,10 +66,46 @@ jobs:
         with:
           path: current
 
+      - name: Resolve deploy branches
+        id: branches
+        working-directory: current
+        shell: bash
+        run: |
+          current_branch="${GITHUB_REF_NAME}"
+          dev_branch="develop"
+          prod_branch=""
+
+          if git ls-remote --exit-code --heads origin main >/dev/null 2>&1; then
+            prod_branch="main"
+          elif git ls-remote --exit-code --heads origin master >/dev/null 2>&1; then
+            prod_branch="master"
+          fi
+
+          if [ "$current_branch" = "$prod_branch" ]; then
+            paired_branch="$dev_branch"
+            current_base="/react-dogs/"
+            current_output="../site"
+            paired_base="/react-dogs/dev/"
+            paired_output="../site/dev"
+          else
+            paired_branch="$prod_branch"
+            current_base="/react-dogs/dev/"
+            current_output="../site/dev"
+            paired_base="/react-dogs/"
+            paired_output="../site"
+          fi
+
+          echo "paired_branch=$paired_branch" >> "$GITHUB_OUTPUT"
+          echo "current_base=$current_base" >> "$GITHUB_OUTPUT"
+          echo "current_output=$current_output" >> "$GITHUB_OUTPUT"
+          echo "paired_base=$paired_base" >> "$GITHUB_OUTPUT"
+          echo "paired_output=$paired_output" >> "$GITHUB_OUTPUT"
+
       - name: Checkout paired branch
+        if: steps.branches.outputs.paired_branch != ''
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name == 'main' && 'develop' || 'main' }}
+          ref: ${{ steps.branches.outputs.paired_branch }}
           path: paired
 
       - name: Setup Node
@@ -83,34 +119,43 @@ jobs:
         working-directory: current
         run: |
           yarn install --frozen-lockfile
-          if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            yarn build --base=/react-dogs/
-            mkdir -p ../site
-            cp -R dist/. ../site/
-          else
-            yarn build --base=/react-dogs/dev/
-            mkdir -p ../site/dev
-            cp -R dist/. ../site/dev/
-          fi
+          yarn build --base="${{ steps.branches.outputs.current_base }}"
+          mkdir -p "${{ steps.branches.outputs.current_output }}"
+          cp -R dist/. "${{ steps.branches.outputs.current_output }}/"
 
       - name: Build paired branch
+        if: steps.branches.outputs.paired_branch != ''
         working-directory: paired
         run: |
           yarn install --frozen-lockfile
-          if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            yarn build --base=/react-dogs/dev/
-            mkdir -p ../site/dev
-            cp -R dist/. ../site/dev/
-          else
-            yarn build --base=/react-dogs/
-            mkdir -p ../site
-            cp -R dist/. ../site/
-          fi
+          yarn build --base="${{ steps.branches.outputs.paired_base }}"
+          mkdir -p "${{ steps.branches.outputs.paired_output }}"
+          cp -R dist/. "${{ steps.branches.outputs.paired_output }}/"
 
       - name: Add SPA fallbacks
         run: |
-          cp site/index.html site/404.html
-          cp site/dev/index.html site/dev/404.html
+          if [ -f site/index.html ]; then
+            cp site/index.html site/404.html
+          elif [ -f site/dev/index.html ]; then
+            cat > site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="pt-BR">
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="refresh" content="0; url=/react-dogs/dev/" />
+              <title>Dogs</title>
+            </head>
+            <body>
+              <p>Redirecionando para o ambiente dev...</p>
+            </body>
+          </html>
+          HTML
+            cp site/index.html site/404.html
+          fi
+
+          if [ -f site/dev/index.html ]; then
+            cp site/dev/index.html site/dev/404.html
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -1,8 +1,8 @@
 # Backlog Para GitHub Issues
 
-Este diretorio contem issues prontas para publicar no GitHub.
+Este diretorio contem issues pendentes prontas para publicar no GitHub.
 
-Algumas melhorias ja foram executadas localmente antes da publicacao das issues. Consulte `docs/PROJECT_STATUS.md` e `docs/github-issues/PRIORITY.md` antes de criar ou executar novas issues.
+Issues ja concluidas localmente foram removidas deste diretorio. Consulte `docs/PROJECT_STATUS.md` e `docs/github-issues/PRIORITY.md` para o historico e a proxima ordem de trabalho.
 
 ## Como publicar
 
@@ -19,7 +19,7 @@ bash docs/github-issues/create-issues.sh
 Tambem da para criar uma por uma:
 
 ```bash
-gh issue create --title "Corrigir imports e bugs que quebram chamadas da API" --body-file docs/github-issues/01-fix-api-runtime-bugs.md --label bug --label priority-high
+gh issue create --title "Implementar modal de detalhes da foto" --body-file docs/github-issues/05-implement-photo-modal.md --label feature --label priority-medium
 ```
 
 ## Ordem Sugerida
@@ -28,14 +28,13 @@ A ordem completa esta em `docs/github-issues/PRIORITY.md`.
 
 Resumo:
 
-1. Estabilizar app, API, validacoes, rotas e feed.
-2. Completar produto: modal, senha, estatisticas, feedback global e acessibilidade.
-3. Modernizar base tecnica: dependencias, TypeScript, arquitetura, Zustand, formularios, CSS-in-JS e themes.
-4. Fechar qualidade/portfolio: testes, Husky/lint-staged, CI e README.
+1. Completar produto: modal, senha, estatisticas, feedback global e acessibilidade.
+2. Modernizar base tecnica: arquitetura, Zustand, formularios, CSS-in-JS e themes.
+3. Fechar qualidade/portfolio: testes, Husky/lint-staged, CI e README.
 
 ## Status Local
 
-Concluidas ou majoritariamente cobertas localmente:
+Issues concluidas removidas deste diretorio:
 
 - `01` Corrigir imports e bugs que quebram chamadas da API.
 - `02` Validacao dos formularios.

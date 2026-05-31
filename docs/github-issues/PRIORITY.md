@@ -14,12 +14,13 @@ Concluídas localmente:
 - `13` Migrar projeto para TypeScript.
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
+- `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 
 Pendentes:
 
 - Produto: `05`, `06`, `07`, `22`, `12`.
 - Arquitetura: `20`, `18`, `19`, `14`, `17`.
-- Qualidade/portfólio: `09`, `15`, `10`, `11`.
+- Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
@@ -42,8 +43,7 @@ Motivo: o feed já está funcional com dados reais. O modal é o próximo passo 
 9. [ ] `17` Adicionar themes de cores e tokens de design.
 10. [ ] `09` Adicionar cobertura inicial de testes.
 11. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-12. [ ] `10` Adicionar CI com GitHub Actions.
-13. [ ] `11` Melhorar README para portfólio.
+12. [ ] `11` Melhorar README para portfólio.
 
 ## Priority Low
 
@@ -71,8 +71,7 @@ Qualidade:
 
 1. `09` Testes.
 2. `15` Husky e lint-staged.
-3. `10` CI.
-4. `11` README final de portfólio.
+3. `11` README final de portfólio.
 
 ## Critério Para Reordenar
 
@@ -80,7 +79,7 @@ Reordene a fila se uma issue desbloquear claramente outra. Exemplos:
 
 - Se o modal exigir uma reorganização pesada, considerar `20` antes de continuar produto.
 - Se recuperação de senha exigir validação mais robusta, considerar parte de `19`.
-- Se CI for necessária para proteger merges em `develop`, subir `10` na fila.
+- Se a esteira precisar de deploy externo alem de GitHub Pages, criar uma nova issue especifica de CD.
 
 ## Histórico
 

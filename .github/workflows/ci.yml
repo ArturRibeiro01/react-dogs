@@ -1,0 +1,125 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+  push:
+    branches:
+      - develop
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: Typecheck, test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      - name: Test
+        run: yarn test
+
+      - name: Build
+        run: yarn build
+
+  deploy-pages:
+    name: Deploy GitHub Pages
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.event_name == 'push'
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+        with:
+          path: current
+
+      - name: Checkout paired branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name == 'main' && 'develop' || 'main' }}
+          path: paired
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: current/yarn.lock
+
+      - name: Build current branch
+        working-directory: current
+        run: |
+          yarn install --frozen-lockfile
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            yarn build --base=/react-dogs/
+            mkdir -p ../site
+            cp -R dist/. ../site/
+          else
+            yarn build --base=/react-dogs/dev/
+            mkdir -p ../site/dev
+            cp -R dist/. ../site/dev/
+          fi
+
+      - name: Build paired branch
+        working-directory: paired
+        run: |
+          yarn install --frozen-lockfile
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            yarn build --base=/react-dogs/dev/
+            mkdir -p ../site/dev
+            cp -R dist/. ../site/dev/
+          else
+            yarn build --base=/react-dogs/
+            mkdir -p ../site
+            cp -R dist/. ../site/
+          fi
+
+      - name: Add SPA fallbacks
+        run: |
+          cp site/index.html site/404.html
+          cp site/dev/index.html site/dev/404.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

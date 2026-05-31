@@ -25,6 +25,8 @@ yarn typecheck
 yarn build
 ```
 
+O CI roda esses comandos automaticamente em PRs para `develop` e `main`.
+
 Quando mexer em integração com API:
 
 ```bash
@@ -42,6 +44,8 @@ feature/* -> develop -> main
 - Abra PRs de feature para `develop`.
 - Use `develop` como integração/homologação.
 - Use `main` para produção.
+- O GitHub Pages publica `develop` em `/react-dogs/dev/`.
+- O GitHub Pages publica `main` em `/react-dogs/`.
 
 ## Convenções De Código
 
@@ -103,7 +107,6 @@ Próxima issue recomendada:
 ## Pendências Técnicas Conhecidas
 
 - `yarn test` ainda é placeholder.
-- Não há CI configurado.
 - Não há mock/demo mode.
 - A API externa é dependência de disponibilidade.
 - O estado global ainda usa Context API.

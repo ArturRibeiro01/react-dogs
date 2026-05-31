@@ -9,10 +9,12 @@ import {UserStorage} from './UserContext'
 import User from './Components/User/User';
 import ProtectedRoute from './Components/Helper/ProtectedRoute';
 
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
 const App = () => {
   return(
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <UserStorage>
           <Header />
           <Routes>

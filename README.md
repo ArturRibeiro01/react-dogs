@@ -1,5 +1,7 @@
 # Dogs
 
+[![CI/CD](https://github.com/ArturRibeiro01/react-dogs/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/ArturRibeiro01/react-dogs/actions/workflows/ci.yml)
+
 Rede social para cachorros baseada no projeto Dogs da Origamid.
 
 Este repositório começou como um projeto de estudo em React e está sendo modernizado como projeto de portfólio. O foco atual é estabilizar o produto, atualizar a stack, documentar decisões técnicas e evoluir a arquitetura sem perder o comportamento já funcional.
@@ -146,6 +148,8 @@ docs/API.md
 - Estado de loading, erro e lista vazia no feed.
 - Tratamento amigável para falha de rede da API.
 - Health check da API externa.
+- CI/CD com GitHub Actions.
+- Deploy no GitHub Pages para dev e produção.
 
 ## Funcionalidades Pendentes
 
@@ -154,7 +158,6 @@ docs/API.md
 - Tela de estatísticas do usuário.
 - Error Boundary e feedback global.
 - Testes automatizados.
-- CI.
 - Melhorias de acessibilidade e responsividade.
 - Organização de arquitetura e aliases.
 - Zustand.
@@ -208,15 +211,24 @@ O fluxo atual do projeto é:
 feature/* -> develop -> main
 ```
 
-- `develop`: integração e homologação.
+- `develop`: integração, homologação e ambiente dev.
 - `main`: produção.
 
-Quando a esteira de CI/CD for configurada, a intenção é validar PRs para `develop`, publicar ambiente de homologação a partir de `develop` e reservar deploy de produção para `main`.
+Ambientes publicados via GitHub Pages:
+
+```txt
+dev:  https://arturribeiro01.github.io/react-dogs/dev/
+prod: https://arturribeiro01.github.io/react-dogs/
+```
+
+Para o deploy funcionar, o GitHub Pages do repositório deve usar `GitHub Actions` como source.
 
 ## Documentação
 
 - `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
 - `docs/PROJECT_STATUS.md`: estado atual da modernização.
+- `docs/DEVELOPMENT.md`: guia para retomar desenvolvimento.
+- `docs/DEPLOYMENT.md`: desenho da esteira de CI/CD e GitHub Pages.
 - `docs/github-issues/README.md`: como publicar ou acompanhar issues pendentes.
 - `docs/github-issues/PRIORITY.md`: ordem recomendada de trabalho.
 
@@ -234,6 +246,7 @@ Já foi feito:
 - Uso de Yarn como package manager único.
 - Feed real com dados da API.
 - Validação básica dos formulários.
+- CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 
 ## Observações

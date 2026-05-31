@@ -19,6 +19,7 @@ docs/github-issues/PRIORITY.md
 - `13` Migrar projeto para TypeScript.
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
+- `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 
 ## Issues Pendentes
 
@@ -42,7 +43,6 @@ Qualidade e portfólio:
 
 - `09` Adicionar cobertura inicial de testes.
 - `15` Adicionar scripts de qualidade com Husky e lint-staged.
-- `10` Adicionar CI com GitHub Actions.
 - `11` Melhorar README para portfólio.
 
 ## Próxima Issue Recomendada
@@ -103,7 +103,7 @@ Resumo:
 
 1. Completar produto: modal, senha, estatísticas, feedback global e acessibilidade.
 2. Modernizar base técnica: arquitetura, Zustand, formulários, CSS-in-JS e themes.
-3. Fechar qualidade/portfólio: testes, Husky/lint-staged, CI e README.
+3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 
 ## Observações
 

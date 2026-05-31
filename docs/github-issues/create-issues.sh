@@ -112,12 +112,6 @@ create_issue \
   "priority-medium"
 
 create_issue \
-  "Adicionar CI com GitHub Actions" \
-  "docs/github-issues/10-add-ci.md" \
-  "ci" \
-  "priority-medium"
-
-create_issue \
   "Melhorar README para portfolio" \
   "docs/github-issues/11-improve-readme-portfolio.md" \
   "documentation" \

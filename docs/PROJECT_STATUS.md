@@ -52,6 +52,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - API client criado em `src/api.ts`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
+- CI/CD configurado em `.github/workflows/ci.yml`.
+- GitHub Pages configurado via Actions para publicar `develop` em `/dev` e `main` na raiz.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API exibem mensagem amigável.
 - Validação atual dos formulários concluída.
@@ -107,7 +109,6 @@ Qualidade:
 
 - Configurar testes reais.
 - Adicionar scripts de qualidade com Husky e lint-staged.
-- Adicionar CI com GitHub Actions.
 - Melhorar README final de portfólio com screenshots.
 
 ## Validações Recentes
@@ -126,6 +127,8 @@ yarn check:api
 - `yarn build`: passou.
 - `yarn check:api`: endpoint público de fotos funcional em 2026-05-30.
 - Endpoints de senha `/api/password/lost` e `/api/password/reset`: confirmados em 2026-05-31.
+- Build local com base `/react-dogs/`: passou.
+- Build local com base `/react-dogs/dev/`: passou.
 
 ## API
 
@@ -151,14 +154,15 @@ Fluxo pretendido:
 feature/* -> develop -> main
 ```
 
-- `develop`: integração/homologação.
-- `main`: produção.
+- `develop`: integração/homologação e deploy em `/react-dogs/dev/`.
+- `main`: produção e deploy em `/react-dogs/`.
 
-Quando a esteira for criada, o plano é configurar validações para PRs em `develop`, deploy de homologação a partir de `develop` e deploy de produção a partir de `main`.
+O workflow de Pages monta um artifact único contendo produção na raiz e dev em `/dev`, porque GitHub Pages publica um site por repositório.
 
 ## Referências
 
 - Backlog pendente: `docs/github-issues/`
 - Ordem de prioridade: `docs/github-issues/PRIORITY.md`
 - Contrato da API: `docs/API.md`
+- Deploy: `docs/DEPLOYMENT.md`
 - README principal: `README.md`

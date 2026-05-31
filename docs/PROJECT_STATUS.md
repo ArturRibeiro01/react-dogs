@@ -2,6 +2,12 @@
 
 Atualizado em 2026-05-31.
 
+## Resumo
+
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais e documentação inicial.
+
+Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, começando pelo modal de detalhes da foto.
+
 ## Stack Atual
 
 - React `^19.2.6`
@@ -9,51 +15,150 @@ Atualizado em 2026-05-31.
 - React Router `6.30.2`
 - TypeScript `^6.0.3`
 - Vite `^6.4.2`
+- Vite Plugin SVGR `^5.2.0`
 - Yarn Classic
 
 ## Ambiente
 
-- Node atual usado durante a modernizacao: `18.16.0`
-- React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
-- Por isso, o projeto foi modernizado ate as ultimas versoes compativeis com Node 18.
+- Node usado durante a modernização: `18.16.0`
+- Node recomendado: `18+`
+- Package manager: Yarn 1.x
 
-## Concluido
+Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto permanece nas versões modernas compatíveis com esse runtime.
+
+## Concluído
 
 - Migração de Create React App para Vite.
-- Remocao de `react-scripts`.
+- Remoção de `react-scripts`.
 - Entrada HTML movida para `index.html` na raiz.
+- Migração para TypeScript.
 - Componentes com JSX renomeados para `.tsx`.
 - Hooks, helpers e API client renomeados para `.ts`.
-- TypeScript configurado com `tsconfig.json` e script `yarn typecheck`.
+- `tsconfig.json` configurado.
+- Script `yarn typecheck` adicionado.
+- `yarn build` agora executa typecheck antes do build.
 - Imports SVG ajustados para `*.svg?react`.
 - React atualizado para 19.
 - Entry point atualizado para `createRoot`.
-- React Router atualizado da versao beta para 6 estavel.
-- `history` e `web-vitals` removidos por nao estarem em uso.
+- React Router atualizado da versão beta para 6 estável.
+- Rotas protegidas ajustadas.
+- `NavLink` atualizado para API do React Router 6.
+- `history` e `web-vitals` removidos por não estarem em uso.
 - Testing Library atualizada e movida para `devDependencies`.
-- Yarn definido como package manager unico.
+- Yarn definido como package manager único.
 - `package-lock.json` removido.
-- Base URL da API configuravel via `VITE_API_URL`.
+- Base URL da API configurável via `VITE_API_URL`.
+- `.env.example` criado.
 - API client criado em `src/api.ts`.
+- Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
 - Contrato atual da API documentado em `docs/API.md`.
-- Erros de rede da API agora exibem uma mensagem amigavel.
-- Validacao atual dos formularios concluida: campos obrigatorios, email, senha, numeros e imagem de postagem.
-- Feed com dados reais concluido: grid responsivo, visualizacoes, estado vazio e filtro por usuario na conta.
-- Tipos explicitos adicionados para API, usuario, fotos, contexto, hooks e componentes compartilhados.
-- Build validado com `yarn build`.
-- Smoke test local validado via Vite com resposta HTTP 200.
+- Erros de rede da API exibem mensagem amigável.
+- Validação atual dos formulários concluída.
+- Feed público com dados reais.
+- Feed da conta filtrado por usuário logado.
+- Grid responsivo do feed.
+- Visualizações e estado vazio no feed.
+- Upload de foto autenticado.
+- Endpoints de recuperação de senha verificados na API pública.
+
+## Issues Concluídas Localmente
+
+- `01` Corrigir imports e bugs que quebram chamadas da API.
+- `02` Corrigir validação dos formulários.
+- `03` Padronizar rotas para React Router v6.
+- `04` Renderizar feed com dados reais da API.
+- `08` Modernizar dependências e tooling.
+- `13` Migrar projeto para TypeScript.
+- `16` Criar plano de saúde e contingência para API externa.
+- `21` Criar API client e configuração por ambiente.
+
+Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
+
+## Próxima Frente
+
+Próxima issue recomendada:
+
+```txt
+05 - Implementar modal de detalhes da foto
+```
+
+Motivo: o feed já renderiza dados reais. O modal fecha o fluxo natural de clicar em uma foto e ver detalhes, preparando terreno para comentários, visualizações detalhadas e navegação mais rica.
 
 ## Ainda Pendente
 
-- Configurar testes reais. Hoje `yarn test` e placeholder.
+Produto:
+
+- Modal de detalhes da foto.
+- Recuperação e redefinição de senha.
+- Estatísticas do usuário.
+- Feedback global e Error Boundary.
+- Polimento de UI, responsividade e acessibilidade.
+
+Arquitetura:
+
+- Organizar pastas e aliases.
 - Migrar estado global de Context API para Zustand.
-- Padronizar formularios com React Hook Form e Zod.
-- Definir CSS-in-JS e themes.
-- Adicionar CI e hooks de qualidade.
-- Finalizar README de portfolio com screenshots.
+- Padronizar formulários com React Hook Form e Zod.
+- Avaliar CSS-in-JS.
+- Adicionar tokens/themes.
 
-## Observacoes
+Qualidade:
 
-- A API externa `https://dogsapi.origamid.dev/json` estava funcional em 2026-05-30 para o endpoint publico de fotos.
-- O backlog detalhado fica em `docs/github-issues`.
+- Configurar testes reais.
+- Adicionar scripts de qualidade com Husky e lint-staged.
+- Adicionar CI com GitHub Actions.
+- Melhorar README final de portfólio com screenshots.
+
+## Validações Recentes
+
+Comandos que devem continuar passando:
+
+```bash
+yarn typecheck
+yarn build
+yarn check:api
+```
+
+Últimas validações feitas durante a modernização:
+
+- `yarn typecheck`: passou.
+- `yarn build`: passou.
+- `yarn check:api`: endpoint público de fotos funcional em 2026-05-30.
+- Endpoints de senha `/api/password/lost` e `/api/password/reset`: confirmados em 2026-05-31.
+
+## API
+
+Base atual:
+
+```txt
+https://dogsapi.origamid.dev/json
+```
+
+Documentação:
+
+```txt
+docs/API.md
+```
+
+Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a recomendação futura é backend próprio ou modo demo/mock.
+
+## Branches
+
+Fluxo pretendido:
+
+```txt
+feature/* -> develop -> main
+```
+
+- `develop`: integração/homologação.
+- `main`: produção.
+
+Quando a esteira for criada, o plano é configurar validações para PRs em `develop`, deploy de homologação a partir de `develop` e deploy de produção a partir de `main`.
+
+## Referências
+
+- Backlog pendente: `docs/github-issues/`
+- Ordem de prioridade: `docs/github-issues/PRIORITY.md`
+- Contrato da API: `docs/API.md`
+- README principal: `README.md`

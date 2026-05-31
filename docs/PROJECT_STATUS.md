@@ -156,6 +156,7 @@ feature/* -> develop -> main
 
 - `develop`: integração/homologação e deploy em `/react-dogs/dev/`.
 - `main`: produção e deploy em `/react-dogs/`.
+- `master`: fallback temporário de produção enquanto `main` ainda não existir no remote.
 
 O workflow de Pages monta um artifact único contendo produção na raiz e dev em `/dev`, porque GitHub Pages publica um site por repositório.
 

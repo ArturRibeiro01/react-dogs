@@ -14,6 +14,8 @@ Mapeamento:
 - `develop` publica o ambiente de dev em `/react-dogs/dev/`.
 - `main` publica produção em `/react-dogs/`.
 
+Enquanto `main` ainda não existir no remote, o workflow usa `master` como fallback para montar a raiz de produção. O objetivo final continua sendo `main = prod`.
+
 ## Workflow
 
 Arquivo:
@@ -55,6 +57,7 @@ Quando o push acontece em `develop`:
 
 - a branch atual é buildada com base `/react-dogs/dev/`
 - a branch `main` é buildada com base `/react-dogs/`
+- se `main` ainda não existir, `master` é usada como fallback para a raiz
 
 Assim, cada publicação mantém os dois caminhos no mesmo site do Pages.
 
@@ -100,5 +103,6 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 
 - GitHub Pages oferece um site por repositório; os dois ambientes usam subpaths no mesmo site.
 - O ambiente publicado depende da branch pareada existir e conseguir buildar.
+- Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
 - `yarn test` ainda é placeholder; quando testes reais forem adicionados, o CI já está preparado para falhar em caso de regressão.
 - A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.

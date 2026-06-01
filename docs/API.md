@@ -202,7 +202,7 @@ Body:
 }
 ```
 
-Esse endpoint ainda não está implementado no frontend, mas será usado pela issue `06`.
+Esse endpoint é usado pelo frontend na rota `/login/resetar`.
 
 ## Photos
 
@@ -263,6 +263,12 @@ Campos:
 ## Futuro Backend Próprio
 
 Quando este app passar a consumir uma API própria, o backend deve preservar ou adaptar os contratos acima.
+
+O planejamento dessa frente está registrado na issue local:
+
+```txt
+docs/github-issues/23-plan-own-backend-api.md
+```
 
 Recomendações:
 

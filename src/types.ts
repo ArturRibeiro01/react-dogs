@@ -37,6 +37,17 @@ export type PhotoListParams = {
   user: number | string;
 };
 
+export type PasswordLostInput = {
+  login: string;
+  url: string;
+};
+
+export type PasswordResetInput = {
+  login: string;
+  key: string;
+  password: string;
+};
+
 export type ApiResponse<TData> = {
   response: Response;
   data: TData;

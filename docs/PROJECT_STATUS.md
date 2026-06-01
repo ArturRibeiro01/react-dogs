@@ -65,6 +65,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Visualizações e estado vazio no feed.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
+- Fluxo de recuperação e redefinição de senha implementado.
 
 ## Issues Concluídas Localmente
 
@@ -76,6 +77,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `13` Migrar projeto para TypeScript.
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
+- `06` Completar fluxo de recuperação de senha.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -94,7 +96,6 @@ Motivo: o feed já renderiza dados reais. O modal fecha o fluxo natural de clica
 Produto:
 
 - Modal de detalhes da foto.
-- Recuperação e redefinição de senha.
 - Estatísticas do usuário.
 - Feedback global e Error Boundary.
 - Polimento de UI, responsividade e acessibilidade.
@@ -147,6 +148,8 @@ docs/API.md
 ```
 
 Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a recomendação futura é backend próprio ou modo demo/mock.
+
+Existe uma issue pendente para planejar uma API própria em repositório separado: `23`.
 
 ## Branches
 

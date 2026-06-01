@@ -157,6 +157,7 @@ docs/API.md
 - Validação automática do token salvo.
 - Logout.
 - Cadastro de usuário.
+- Recuperação e redefinição de senha.
 - Feed público com fotos reais.
 - Feed da conta filtrado por usuário logado.
 - Upload de foto autenticado.
@@ -170,7 +171,6 @@ docs/API.md
 ## Funcionalidades Pendentes
 
 - Modal de detalhes da foto.
-- Recuperação e redefinição de senha.
 - Tela de estatísticas do usuário.
 - Error Boundary e feedback global.
 - Testes automatizados.

@@ -1,6 +1,8 @@
 import type {
   ApiResponse,
   AuthTokenResponse,
+  PasswordLostInput,
+  PasswordResetInput,
   Photo,
   PhotoListParams,
   User,
@@ -161,6 +163,20 @@ export const userApi = {
 
   create: (body: UserCreateInput) =>
     apiRequest<User>('/api/user', {
+      method: 'POST',
+      body,
+    }),
+};
+
+export const passwordApi = {
+  lost: (body: PasswordLostInput) =>
+    apiRequest<unknown>('/api/password/lost', {
+      method: 'POST',
+      body,
+    }),
+
+  reset: (body: PasswordResetInput) =>
+    apiRequest<unknown>('/api/password/reset', {
       method: 'POST',
       body,
     }),

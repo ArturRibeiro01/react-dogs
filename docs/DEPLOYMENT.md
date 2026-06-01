@@ -70,6 +70,16 @@ No repositório:
 3. Em `Build and deployment`, selecione `GitHub Actions` como source.
 4. Garanta que Actions estejam habilitadas em `Settings > Actions`.
 
+No environment `github-pages`:
+
+1. Abra `Settings`.
+2. Entre em `Environments`.
+3. Abra `github-pages`.
+4. Em `Deployment branches and tags`, permita as branches que podem publicar.
+5. Para este fluxo, permita `develop` e `main`.
+
+Se `main` ainda não existir e `master` for usada temporariamente como produção, permita também `master`. Quando `main` virar a branch de produção definitiva, remova `master` dessa regra.
+
 Se houver branch protection, configure os checks do workflow `CI/CD` como obrigatórios antes de mergear em `develop` ou `main`.
 
 ## Vite Base E React Router
@@ -106,3 +116,4 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 - Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
 - `yarn test` ainda é placeholder; quando testes reais forem adicionados, o CI já está preparado para falhar em caso de regressão.
 - A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.
+- O workflow força JavaScript Actions para Node 24 com `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` para antecipar a migração do GitHub Actions. Alguns avisos podem continuar aparecendo enquanto actions oficiais ainda declararem runtime Node 20 internamente.

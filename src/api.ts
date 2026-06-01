@@ -8,11 +8,19 @@ import type {
   User,
   UserCreateInput,
 } from './types';
+import {
+  mockAuthApi,
+  mockHealthApi,
+  mockPasswordApi,
+  mockPhotoApi,
+  mockUserApi,
+} from './mockApi';
 
 export const API_URL =
   import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
 
 const TOKEN_KEY = 'token';
+export const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
 type ApiErrorOptions = {
   response?: Response;
@@ -140,7 +148,7 @@ export const tokenStorage = {
   remove: removeStoredToken,
 };
 
-export const authApi = {
+const realAuthApi = {
   login: (body: { username: string; password: string }) =>
     apiRequest<AuthTokenResponse>('/jwt-auth/v1/token', {
       method: 'POST',
@@ -154,7 +162,7 @@ export const authApi = {
     }),
 };
 
-export const userApi = {
+const realUserApi = {
   get: (token: string) =>
     apiRequest<User>('/api/user', {
       method: 'GET',
@@ -168,7 +176,7 @@ export const userApi = {
     }),
 };
 
-export const passwordApi = {
+const realPasswordApi = {
   lost: (body: PasswordLostInput) =>
     apiRequest<unknown>('/api/password/lost', {
       method: 'POST',
@@ -182,7 +190,7 @@ export const passwordApi = {
     }),
 };
 
-export const photoApi = {
+const realPhotoApi = {
   create: (formData: FormData, token: string | null) =>
     apiRequest<Photo>('/api/photo', {
       method: 'POST',
@@ -204,6 +212,12 @@ export const photoApi = {
   },
 };
 
-export const healthApi = {
-  photos: () => photoApi.list({ page: 1, total: 1, user: 0 }),
+const realHealthApi = {
+  photos: () => realPhotoApi.list({ page: 1, total: 1, user: 0 }),
 };
+
+export const authApi = IS_DEMO_MODE ? mockAuthApi : realAuthApi;
+export const userApi = IS_DEMO_MODE ? mockUserApi : realUserApi;
+export const passwordApi = IS_DEMO_MODE ? mockPasswordApi : realPasswordApi;
+export const photoApi = IS_DEMO_MODE ? mockPhotoApi : realPhotoApi;
+export const healthApi = IS_DEMO_MODE ? mockHealthApi : realHealthApi;

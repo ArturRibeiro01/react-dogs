@@ -16,6 +16,7 @@ Concluídas localmente:
 - `21` Criar API client e configuração por ambiente.
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
+- `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 
 Pendentes:
 

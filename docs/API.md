@@ -24,6 +24,49 @@ Os tipos compartilhados ficam em:
 src/types.ts
 ```
 
+## Modo Demo/Mock
+
+O frontend possui um modo demo opcional para reduzir dependencia da API externa.
+
+Ativacao:
+
+```bash
+VITE_DEMO_MODE=true
+```
+
+Comportamento padrao:
+
+```bash
+VITE_DEMO_MODE=false
+```
+
+Credenciais demo:
+
+```txt
+usuario: demo
+senha: Demo1234
+```
+
+No modo demo, `src/api.ts` troca os clientes reais por mocks definidos em:
+
+```txt
+src/mockApi.ts
+```
+
+Fluxos cobertos pelo mock:
+
+- login
+- validacao de token
+- usuario logado
+- cadastro
+- recuperacao de senha
+- redefinicao de senha
+- listagem de fotos
+- upload de foto
+- health check de fotos
+
+O modo demo nao substitui a futura API propria. Ele existe para manter o app navegavel em portfolio, dev e homologacao mesmo se a API externa estiver indisponivel.
+
 ## Estado Da API
 
 Validações feitas recentemente:
@@ -281,11 +324,10 @@ Recomendações:
 
 ## Fallback E Demo
 
-Ainda não existe fallback com dados mockados.
+O modo demo/mock já existe no frontend e pode ser ativado com `VITE_DEMO_MODE=true`.
 
 Opções futuras:
 
-- mock server local para portfólio
-- modo demo via `VITE_DEMO_MODE=true`
+- mock server local mais completo para portfólio
 - backend próprio hospedado com banco e storage de imagens
 - mensagens de erro mais ricas por tela quando a API externa estiver fora

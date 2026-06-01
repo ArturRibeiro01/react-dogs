@@ -143,7 +143,25 @@ Variável suportada:
 
 ```bash
 VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_DEMO_MODE=false
 ```
+
+### Modo Demo
+
+Para rodar sem depender da API externa, ative:
+
+```bash
+VITE_DEMO_MODE=true
+```
+
+Credenciais demo:
+
+```txt
+usuario: demo
+senha: Demo1234
+```
+
+Nesse modo, login, usuário, feed, upload e recuperação de senha usam dados mockados em memória. A API real continua sendo o padrão quando `VITE_DEMO_MODE` está ausente ou `false`.
 
 Contrato atual da API:
 
@@ -158,6 +176,7 @@ docs/API.md
 - Logout.
 - Cadastro de usuário.
 - Recuperação e redefinição de senha.
+- Modo demo/mock opcional.
 - Feed público com fotos reais.
 - Feed da conta filtrado por usuário logado.
 - Upload de foto autenticado.

@@ -20,19 +20,21 @@ docs/github-issues/PRIORITY.md
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
+- `06` Completar fluxo de recuperação de senha.
+- `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 
 ## Issues Pendentes
 
 Produto:
 
 - `05` Implementar modal de detalhes da foto.
-- `06` Completar fluxo de recuperação de senha.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 
 Arquitetura:
 
+- `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
@@ -102,7 +104,7 @@ docs/github-issues/PRIORITY.md
 Resumo:
 
 1. Completar produto: modal, senha, estatísticas, feedback global e acessibilidade.
-2. Modernizar base técnica: arquitetura, Zustand, formulários, CSS-in-JS e themes.
+2. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
 3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 
 ## Observações

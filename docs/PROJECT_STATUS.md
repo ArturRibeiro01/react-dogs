@@ -50,6 +50,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Base URL da API configurável via `VITE_API_URL`.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
+- Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
 - CI/CD configurado em `.github/workflows/ci.yml`.
@@ -65,6 +66,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Visualizações e estado vazio no feed.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
+- Fluxo de recuperação e redefinição de senha implementado.
+- Login, usuário, feed, upload, senha e health check possuem mocks para modo demo.
 
 ## Issues Concluídas Localmente
 
@@ -76,6 +79,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `13` Migrar projeto para TypeScript.
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
+- `06` Completar fluxo de recuperação de senha.
+- `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -94,7 +99,6 @@ Motivo: o feed já renderiza dados reais. O modal fecha o fluxo natural de clica
 Produto:
 
 - Modal de detalhes da foto.
-- Recuperação e redefinição de senha.
 - Estatísticas do usuário.
 - Feedback global e Error Boundary.
 - Polimento de UI, responsividade e acessibilidade.
@@ -147,6 +151,8 @@ docs/API.md
 ```
 
 Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a recomendação futura é backend próprio ou modo demo/mock.
+
+Existe uma issue pendente para planejar uma API própria em repositório separado: `23`.
 
 ## Branches
 

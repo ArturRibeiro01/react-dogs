@@ -15,11 +15,13 @@ Concluídas localmente:
 - `16` Criar plano de saúde e contingência para API externa.
 - `21` Criar API client e configuração por ambiente.
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
+- `06` Completar fluxo de recuperação de senha.
+- `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 
 Pendentes:
 
-- Produto: `05`, `06`, `07`, `22`, `12`.
-- Arquitetura: `20`, `18`, `19`, `14`, `17`.
+- Produto: `05`, `07`, `22`, `12`.
+- Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
@@ -33,8 +35,8 @@ Motivo: o feed já está funcional com dados reais. O modal é o próximo passo 
 ## Priority Medium
 
 1. [ ] `05` Implementar modal de detalhes da foto.
-2. [ ] `06` Completar fluxo de recuperação de senha.
-3. [ ] `07` Implementar tela de estatísticas do usuário.
+2. [ ] `07` Implementar tela de estatísticas do usuário.
+3. [ ] `23` Planejar API própria para substituir API externa.
 4. [ ] `22` Adicionar Error Boundary e feedback global.
 5. [ ] `20` Organizar arquitetura de pastas e aliases.
 6. [ ] `18` Migrar estado global de Context API para Zustand.
@@ -54,18 +56,18 @@ Motivo: o feed já está funcional com dados reais. O modal é o próximo passo 
 Produto:
 
 1. `05` Modal de detalhes da foto.
-2. `06` Recuperação de senha.
-3. `07` Estatísticas do usuário.
-4. `22` Error Boundary e feedback global.
-5. `12` Polimento de UI, responsividade e acessibilidade.
+2. `07` Estatísticas do usuário.
+3. `22` Error Boundary e feedback global.
+4. `12` Polimento de UI, responsividade e acessibilidade.
 
 Arquitetura:
 
-1. `20` Organização de pastas e aliases.
-2. `18` Zustand.
-3. `19` React Hook Form e Zod.
-4. `14` CSS-in-JS.
-5. `17` Themes e tokens.
+1. `23` Planejamento de API propria.
+2. `20` Organização de pastas e aliases.
+3. `18` Zustand.
+4. `19` React Hook Form e Zod.
+5. `14` CSS-in-JS.
+6. `17` Themes e tokens.
 
 Qualidade:
 
@@ -78,7 +80,6 @@ Qualidade:
 Reordene a fila se uma issue desbloquear claramente outra. Exemplos:
 
 - Se o modal exigir uma reorganização pesada, considerar `20` antes de continuar produto.
-- Se recuperação de senha exigir validação mais robusta, considerar parte de `19`.
 - Se a esteira precisar de deploy externo alem de GitHub Pages, criar uma nova issue especifica de CD.
 
 ## Histórico

@@ -10,6 +10,22 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 
 O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público e o feed da conta já usam dados reais da API externa da Origamid, com validação básica de formulários, tratamento de erro de rede e configuração de API por ambiente.
 
+## Ambientes Publicados
+
+Produção:
+
+```txt
+https://arturribeiro01.github.io/react-dogs/
+```
+
+Dev/homologação:
+
+```txt
+https://arturribeiro01.github.io/react-dogs/dev/
+```
+
+Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação entre ambientes acontece por subpath: produção na raiz e dev em `/dev/`.
+
 Próxima issue recomendada:
 
 ```txt
@@ -217,8 +233,8 @@ feature/* -> develop -> main
 Ambientes publicados via GitHub Pages:
 
 ```txt
-dev:  https://arturribeiro01.github.io/react-dogs/dev/
 prod: https://arturribeiro01.github.io/react-dogs/
+dev:  https://arturribeiro01.github.io/react-dogs/dev/
 ```
 
 Para o deploy funcionar, o GitHub Pages do repositório deve usar `GitHub Actions` como source.

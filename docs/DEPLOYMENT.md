@@ -80,7 +80,36 @@ No environment `github-pages`:
 
 Se `main` ainda não existir e `master` for usada temporariamente como produção, permita também `master`. Quando `main` virar a branch de produção definitiva, remova `master` dessa regra.
 
-Se houver branch protection, configure os checks do workflow `CI/CD` como obrigatórios antes de mergear em `develop` ou `main`.
+## Proteção De Branches
+
+Fluxo esperado:
+
+```txt
+feature/* -> develop -> main
+```
+
+Regras recomendadas para `develop`:
+
+- bloquear deleção da branch
+- bloquear force push
+- exigir Pull Request antes de mergear
+- exigir o check `Typecheck, test and build` passando antes do merge
+
+Regras recomendadas para `main`:
+
+- bloquear deleção da branch
+- bloquear force push
+- exigir Pull Request antes de mergear
+- exigir o check `Typecheck, test and build` passando antes do merge
+
+O workflow também valida a origem de PRs para produção: se um Pull Request tiver destino `main`, ele só passa no CI quando a branch de origem for `develop`.
+
+Na prática:
+
+- branches de feature entram em `develop` via PR
+- `develop` entra em `main` via PR
+- push direto para `develop` ou `main` deve ser bloqueado pelas regras do GitHub
+- PR direto de feature para `main` falha no CI
 
 ## Vite Base E React Router
 

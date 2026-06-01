@@ -5,8 +5,8 @@ Este projeto usa GitHub Actions para CI/CD e GitHub Pages para publicação.
 ## Ambientes
 
 ```txt
-dev:  https://arturribeiro01.github.io/react-dogs/dev/
 prod: https://arturribeiro01.github.io/react-dogs/
+dev:  https://arturribeiro01.github.io/react-dogs/dev/
 ```
 
 Mapeamento:

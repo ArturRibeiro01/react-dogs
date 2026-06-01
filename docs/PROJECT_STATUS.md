@@ -54,6 +54,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Health check da API criado em `scripts/check-api-health.mjs`.
 - CI/CD configurado em `.github/workflows/ci.yml`.
 - GitHub Pages configurado via Actions para publicar `develop` em `/dev` e `main` na raiz.
+- Deploy de dev confirmado em `https://arturribeiro01.github.io/react-dogs/dev/`.
+- Deploy de produção confirmado em `https://arturribeiro01.github.io/react-dogs/`.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API exibem mensagem amigável.
 - Validação atual dos formulários concluída.

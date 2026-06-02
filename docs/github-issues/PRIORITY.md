@@ -21,42 +21,41 @@ Concluídas localmente:
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
 
 Pendentes:
 
-- Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
+- Arquitetura/back-end: `20`, `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-23 - Planejar API própria para substituir API externa
+20 - Organizar arquitetura de pastas e aliases
 ```
 
-Motivo: a frente principal de produto já está funcional e polida o suficiente para seguir. A API própria reduz dependência externa e prepara evolução do app.
+Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações.
 
 ## Priority Medium
 
-1. [ ] `23` Planejar API própria para substituir API externa.
-2. [ ] `20` Organizar arquitetura de pastas e aliases.
-3. [ ] `18` Migrar estado global de Context API para Zustand.
-4. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-5. [ ] `14` Escolher e migrar para CSS-in-JS.
-6. [ ] `17` Adicionar themes de cores e tokens de design.
-7. [ ] `09` Adicionar cobertura inicial de testes.
-8. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-9. [ ] `11` Melhorar README para portfólio.
+1. [ ] `20` Organizar arquitetura de pastas e aliases.
+2. [ ] `18` Migrar estado global de Context API para Zustand.
+3. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+4. [ ] `14` Escolher e migrar para CSS-in-JS.
+5. [ ] `17` Adicionar themes de cores e tokens de design.
+6. [ ] `09` Adicionar cobertura inicial de testes.
+7. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+8. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Arquitetura:
 
-1. `23` Planejamento de API propria.
-2. `20` Organização de pastas e aliases.
-3. `18` Zustand.
-4. `19` React Hook Form e Zod.
-5. `14` CSS-in-JS.
-6. `17` Themes e tokens.
+1. `20` Organização de pastas e aliases.
+2. `18` Zustand.
+3. `19` React Hook Form e Zod.
+4. `14` CSS-in-JS.
+5. `17` Themes e tokens.
 
 Qualidade:
 

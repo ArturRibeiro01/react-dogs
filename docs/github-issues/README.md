@@ -26,12 +26,12 @@ docs/github-issues/PRIORITY.md
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
 
 ## Issues Pendentes
 
 Arquitetura:
 
-- `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
@@ -47,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-23 - Planejar API própria para substituir API externa
+20 - Organizar arquitetura de pastas e aliases
 ```
 
-Motivo: a frente principal de produto já está funcional e polida o suficiente para seguir. A API própria reduz dependência externa e prepara evolução do app.
+Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Planejar API propria para substituir API externa" --body-file docs/github-issues/23-plan-own-backend-api.md --label tech-debt --label documentation --label priority-medium
+gh issue create --title "Organizar arquitetura de pastas e aliases" --body-file docs/github-issues/20-organize-source-architecture.md --label tech-debt --label priority-medium
 ```
 
 ## Labels Usadas

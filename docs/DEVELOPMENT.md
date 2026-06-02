@@ -83,6 +83,7 @@ Pontos importantes:
 - `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `useForm.ts` mantém validação simples enquanto a issue de React Hook Form/Zod não acontece.
+- `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
 
 ## Ordem De Trabalho
 
@@ -95,7 +96,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-23 - Planejar API própria para substituir API externa
+20 - Organizar arquitetura de pastas e aliases
 ```
 
 ## Ao Finalizar Uma Issue

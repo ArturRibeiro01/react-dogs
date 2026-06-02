@@ -6,7 +6,7 @@ Atualizado em 2026-06-02.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A próxima etapa recomendada é avançar na frente de arquitetura/back-end, começando pelo planejamento de API própria.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado. A próxima etapa recomendada é organizar a arquitetura do frontend.
 
 ## Stack Atual
 
@@ -51,6 +51,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Base URL da API configurável via `VITE_API_URL`.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
+- Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -96,6 +97,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -104,16 +106,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-23 - Planejar API própria para substituir API externa
+20 - Organizar arquitetura de pastas e aliases
 ```
 
-Motivo: a frente principal de produto já está funcional e polida o suficiente para seguir. A API própria é o próximo passo para reduzir dependência externa e preparar evolução do app.
+Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações sem aumentar bagunça estrutural.
 
 ## Ainda Pendente
 
 Arquitetura:
 
-- Planejar API própria para substituir API externa.
 - Organizar pastas e aliases.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formulários com React Hook Form e Zod.
@@ -159,9 +160,13 @@ Documentação:
 docs/API.md
 ```
 
-Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a recomendação futura é backend próprio ou modo demo/mock.
+Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a decisão registrada é criar uma API própria em outro repositório e manter o modo demo/mock como fallback.
 
-Existe uma issue pendente para planejar uma API própria em repositório separado: `23`.
+Plano:
+
+```txt
+docs/BACKEND_API_PLAN.md
+```
 
 ## Branches
 

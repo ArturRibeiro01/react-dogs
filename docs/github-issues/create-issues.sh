@@ -36,13 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Planejar API propria para substituir API externa" \
-  "docs/github-issues/23-plan-own-backend-api.md" \
-  "tech-debt" \
-  "documentation" \
-  "priority-medium"
-
-create_issue \
   "Organizar arquitetura de pastas e aliases" \
   "docs/github-issues/20-organize-source-architecture.md" \
   "tech-debt" \

@@ -82,7 +82,6 @@ export const UserStorage = ({children}: UserStorageProps) => {
                 setLoading(true);
                 await authApi.validateToken(token);
                 await getUser(token);
-                navigate('/conta');
                 } catch (err){
                     userLogout();
                 } finally{

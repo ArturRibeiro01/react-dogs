@@ -8,7 +8,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 
 ## Status
 
-O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta e o modal de detalhes já usam dados reais da API externa da Origamid, com validação básica de formulários, tratamento de erro de rede, modo demo/mock e configuração de API por ambiente.
+O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com validação básica de formulários, tratamento de erro de rede, modo demo/mock e configuração de API por ambiente.
 
 ## Ambientes Publicados
 
@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-07 - Implementar tela de estatísticas do usuário
+22 - Adicionar Error Boundary e feedback global
 ```
 
 O backlog pendente fica em:
@@ -180,6 +180,7 @@ docs/API.md
 - Feed público com fotos reais.
 - Feed da conta filtrado por usuário logado.
 - Modal de detalhes da foto.
+- Tela de estatísticas do usuário.
 - Upload de foto autenticado.
 - Validação básica de formulários.
 - Estado de loading, erro e lista vazia no feed.
@@ -190,7 +191,6 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- Tela de estatísticas do usuário.
 - Error Boundary e feedback global.
 - Testes automatizados.
 - Melhorias de acessibilidade e responsividade.

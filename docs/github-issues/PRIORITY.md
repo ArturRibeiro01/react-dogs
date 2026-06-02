@@ -18,34 +18,34 @@ Concluídas localmente:
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `05` Implementar modal de detalhes da foto.
+- `07` Implementar tela de estatísticas do usuário.
 
 Pendentes:
 
-- Produto: `07`, `22`, `12`.
+- Produto: `22`, `12`.
 - Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-07 - Implementar tela de estatísticas do usuário
+22 - Adicionar Error Boundary e feedback global
 ```
 
-Motivo: o feed e o modal de detalhes já cobrem a navegação principal por fotos. As estatísticas completam a próxima área do usuário autenticado.
+Motivo: feed, modal e estatísticas já cobrem as principais telas de produto. Feedback global reduz estados quebrados e melhora a experiência quando algo falha.
 
 ## Priority Medium
 
-1. [ ] `07` Implementar tela de estatísticas do usuário.
+1. [ ] `22` Adicionar Error Boundary e feedback global.
 2. [ ] `23` Planejar API própria para substituir API externa.
-3. [ ] `22` Adicionar Error Boundary e feedback global.
-4. [ ] `20` Organizar arquitetura de pastas e aliases.
-5. [ ] `18` Migrar estado global de Context API para Zustand.
-6. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-7. [ ] `14` Escolher e migrar para CSS-in-JS.
-8. [ ] `17` Adicionar themes de cores e tokens de design.
-9. [ ] `09` Adicionar cobertura inicial de testes.
-10. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-11. [ ] `11` Melhorar README para portfólio.
+3. [ ] `20` Organizar arquitetura de pastas e aliases.
+4. [ ] `18` Migrar estado global de Context API para Zustand.
+5. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+6. [ ] `14` Escolher e migrar para CSS-in-JS.
+7. [ ] `17` Adicionar themes de cores e tokens de design.
+8. [ ] `09` Adicionar cobertura inicial de testes.
+9. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+10. [ ] `11` Melhorar README para portfólio.
 
 ## Priority Low
 
@@ -55,9 +55,8 @@ Motivo: o feed e o modal de detalhes já cobrem a navegação principal por foto
 
 Produto:
 
-1. `07` Estatísticas do usuário.
-2. `22` Error Boundary e feedback global.
-3. `12` Polimento de UI, responsividade e acessibilidade.
+1. `22` Error Boundary e feedback global.
+2. `12` Polimento de UI, responsividade e acessibilidade.
 
 Arquitetura:
 

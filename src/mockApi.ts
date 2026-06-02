@@ -7,6 +7,7 @@ import type {
   PhotoComment,
   PhotoDetails,
   PhotoListParams,
+  PhotoStats,
   User,
   UserCreateInput,
 } from './types';
@@ -230,4 +231,18 @@ export const mockPhotoApi = {
 
 export const mockHealthApi = {
   photos: () => mockPhotoApi.list({ page: 1, total: 1, user: 0 }),
+};
+
+export const mockStatsApi = {
+  list: async () => {
+    const stats = demoPhotos
+      .filter((photo) => photo.author === DEMO_USERNAME)
+      .map<PhotoStats>((photo) => ({
+        id: photo.id,
+        title: photo.title || photo.nome || 'Foto sem titulo',
+        acessos: photo.acessos ?? photo.views ?? 0,
+      }));
+
+    return mockResponse<PhotoStats[]>(stats);
+  },
 };

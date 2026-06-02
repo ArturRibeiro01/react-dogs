@@ -42,6 +42,12 @@ export type PhotoDetails = {
   comments: PhotoComment[];
 };
 
+export type PhotoStats = {
+  id?: number;
+  title: string;
+  acessos: number;
+};
+
 export type PhotoListParams = {
   page: number;
   total: number;

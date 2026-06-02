@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-05-31.
+Atualizado em 2026-06-01.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário e documentação inicial.
 
-Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, seguindo pela tela de estatísticas do usuário.
+Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, seguindo por Error Boundary e feedback global.
 
 ## Stack Atual
 
@@ -42,6 +42,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Entry point atualizado para `createRoot`.
 - React Router atualizado da versão beta para 6 estável.
 - Rotas protegidas ajustadas.
+- Validação automática do token preserva rotas internas da conta.
 - `NavLink` atualizado para API do React Router 6.
 - `history` e `web-vitals` removidos por não estarem em uso.
 - Testing Library atualizada e movida para `devDependencies`.
@@ -66,10 +67,12 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Visualizações e estado vazio no feed.
 - Modal de detalhes da foto com fechamento por clique fora, botão e Escape.
 - Detalhe de foto integrado à API real e ao modo demo/mock.
+- Tela de estatísticas do usuário com total, média e visualização por foto.
+- Endpoint `/api/stats` integrado à API real e ao modo demo/mock.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
 - Fluxo de recuperação e redefinição de senha implementado.
-- Login, usuário, feed, upload, senha e health check possuem mocks para modo demo.
+- Login, usuário, feed, upload, senha, estatísticas e health check possuem mocks para modo demo.
 
 ## Issues Concluídas Localmente
 
@@ -84,6 +87,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `05` Implementar modal de detalhes da foto.
+- `07` Implementar tela de estatísticas do usuário.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -92,16 +96,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-07 - Implementar tela de estatísticas do usuário
+22 - Adicionar Error Boundary e feedback global
 ```
 
-Motivo: o feed e o modal de detalhes já completam o fluxo natural de navegação por fotos. A tela de estatísticas fecha a próxima área visível do app autenticado.
+Motivo: feed, modal e estatísticas já cobrem as principais telas de produto. Feedback global reduz estados quebrados e melhora a experiência quando algo falha.
 
 ## Ainda Pendente
 
 Produto:
 
-- Estatísticas do usuário.
 - Feedback global e Error Boundary.
 - Polimento de UI, responsividade e acessibilidade.
 

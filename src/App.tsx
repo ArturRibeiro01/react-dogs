@@ -1,15 +1,16 @@
-import React from 'react';
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import Home from './Components/Home';
-import Login from './Components/Login/Login';
-import {UserStorage} from './UserContext'
-import User from './Components/User/User';
-import ProtectedRoute from './Components/Helper/ProtectedRoute';
-import ErrorBoundary from './Components/Helper/ErrorBoundary';
-import NotFound from './Components/NotFound';
+
+import Footer from '@components/Footer';
+import Header from '@components/Header';
+import ErrorBoundary from '@components/Helper/ErrorBoundary';
+import ProtectedRoute from '@components/Helper/ProtectedRoute';
+import Home from '@components/Home';
+import Login from '@components/Login/Login';
+import NotFound from '@components/NotFound';
+import User from '@components/User/User';
+import { UserStorage } from '@/UserContext';
+
+import './App.css';
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 

@@ -1,13 +1,15 @@
-import React from 'react'
-import styles from './UserPhotoPost.module.css'
-import Input from '../Forms/Input'
-import Button from '../Forms/Button'
-import useForm from '../../Hooks/useForm'
-import useFetch from '../../Hooks/useFetch'
-import Error from '../Helper/Error'
-import { photoApi, tokenStorage } from '../../api'
-import { useNavigate } from 'react-router-dom'
-import type { Photo } from '../../types'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { photoApi, tokenStorage } from '@/api';
+import Button from '@components/Forms/Button';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import useFetch from '@hooks/useFetch';
+import useForm from '@hooks/useForm';
+import type { Photo } from '@/types';
+
+import styles from './UserPhotoPost.module.css';
 
 type PhotoUploadState = {
     preview?: string;

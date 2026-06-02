@@ -1,12 +1,14 @@
-import React from 'react'
-import { NavLink, useLocation, type NavLinkRenderProps } from 'react-router-dom'
-import { UserContext } from '../../UserContext'
-import MinhasFotos from '../../Assets/feed.svg?react';
-import Estatisticas from '../../Assets/estatisticas.svg?react';
-import AdicionarFoto from '../../Assets/adicionar.svg?react';
-import Sair from '../../Assets/sair.svg?react';
+import React from 'react';
+import { NavLink, useLocation, type NavLinkRenderProps } from 'react-router-dom';
+
+import AdicionarFoto from '@assets/adicionar.svg?react';
+import Estatisticas from '@assets/estatisticas.svg?react';
+import MinhasFotos from '@assets/feed.svg?react';
+import Sair from '@assets/sair.svg?react';
+import { UserContext } from '@/UserContext';
+import { useMedia } from '@hooks/useMedia';
+
 import styles from './UserHeaderNav.module.css';
-import { useMedia } from '../../Hooks/useMedia';
 
 
 const UserHeaderNav = () => {

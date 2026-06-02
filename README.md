@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-20 - Organizar arquitetura de pastas e aliases
+18 - Migrar estado global de Context API para Zustand
 ```
 
 O backlog pendente fica em:
@@ -262,6 +262,7 @@ Para o deploy funcionar, o GitHub Pages do repositório deve usar `GitHub Action
 ## Documentação
 
 - `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
+- `docs/ARCHITECTURE.md`: estrutura atual, aliases e convenção de imports.
 - `docs/BACKEND_API_PLAN.md`: decisão e plano para criar a API própria em outro repositório.
 - `docs/PROJECT_STATUS.md`: estado atual da modernização.
 - `docs/DEVELOPMENT.md`: guia para retomar desenvolvimento.

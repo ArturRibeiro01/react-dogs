@@ -36,12 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Organizar arquitetura de pastas e aliases" \
-  "docs/github-issues/20-organize-source-architecture.md" \
-  "tech-debt" \
-  "priority-medium"
-
-create_issue \
   "Migrar estado global de Context API para Zustand" \
   "docs/github-issues/18-migrate-context-api-to-zustand.md" \
   "tech-debt" \

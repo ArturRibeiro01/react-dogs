@@ -1,4 +1,3 @@
-import React from 'react'
 import StatusMessage from './StatusMessage';
 
 type ErrorProps = {

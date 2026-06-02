@@ -27,12 +27,12 @@ docs/github-issues/PRIORITY.md
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
 
 ## Issues Pendentes
 
 Arquitetura:
 
-- `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `14` Escolher e migrar para CSS-in-JS.
@@ -47,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-20 - Organizar arquitetura de pastas e aliases
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Organizar arquitetura de pastas e aliases" --body-file docs/github-issues/20-organize-source-architecture.md --label tech-debt --label priority-medium
+gh issue create --title "Migrar estado global de Context API para Zustand" --body-file docs/github-issues/18-migrate-context-api-to-zustand.md --label tech-debt --label priority-medium
 ```
 
 ## Labels Usadas

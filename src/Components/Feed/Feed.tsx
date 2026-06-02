@@ -1,6 +1,7 @@
-import React from 'react'
-import FeedModal from './FeedModal'
-import FeedPhotos from './FeedPhotos'
+import React from 'react';
+
+import FeedModal from './FeedModal';
+import FeedPhotos from './FeedPhotos';
 
 type FeedProps = {
     user?: number | string;

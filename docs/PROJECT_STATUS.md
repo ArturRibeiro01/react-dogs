@@ -6,7 +6,7 @@ Atualizado em 2026-06-02.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado. A próxima etapa recomendada é organizar a arquitetura do frontend.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado e os aliases/imports do frontend foram organizados. A próxima etapa recomendada é migrar o estado global para Zustand.
 
 ## Stack Atual
 
@@ -52,6 +52,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
+- Aliases de frontend configurados em Vite e TypeScript.
+- Convenção de imports documentada em `docs/ARCHITECTURE.md`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -98,6 +100,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -106,16 +109,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-20 - Organizar arquitetura de pastas e aliases
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações sem aumentar bagunça estrutural.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Migrar o estado global prepara a base para fluxos autenticados mais previsíveis.
 
 ## Ainda Pendente
 
 Arquitetura:
 
-- Organizar pastas e aliases.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formulários com React Hook Form e Zod.
 - Avaliar CSS-in-JS.

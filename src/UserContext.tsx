@@ -1,7 +1,8 @@
-import React from 'react'
-import { authApi, tokenStorage, userApi } from './api'
-import {useNavigate} from 'react-router-dom'
-import type { User } from './types';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { authApi, tokenStorage, userApi } from '@/api';
+import type { User } from '@/types';
 
 type UserContextValue = {
     data: User | null;

@@ -1,5 +1,6 @@
-import React from 'react'
-import type { ApiResponse } from '../types';
+import React from 'react';
+
+import type { ApiResponse } from '@/types';
 
 type RequestResult<TData> = {
     response?: Response;

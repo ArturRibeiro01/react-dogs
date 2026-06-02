@@ -1,11 +1,13 @@
-import React from 'react'
-import { photoApi } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import FeedPhotosItem from './FeedPhotosItem';
-import Error from '../Helper/Error';
-import Loading from '../Helper/Loading';
+import React from 'react';
+
+import { photoApi } from '@/api';
+import Error from '@components/Helper/Error';
+import Loading from '@components/Helper/Loading';
+import useFetch from '@hooks/useFetch';
+import type { Photo } from '@/types';
+
 import styles from './FeedPhotos.module.css';
-import type { Photo } from '../../types';
+import FeedPhotosItem from './FeedPhotosItem';
 
 type FeedPhotosProps = {
     user?: number | string;

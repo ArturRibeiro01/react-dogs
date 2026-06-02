@@ -1,10 +1,12 @@
-import React from 'react'
-import { photoApi } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import Error from '../Helper/Error';
-import Loading from '../Helper/Loading';
+import React from 'react';
+
+import { photoApi } from '@/api';
+import Error from '@components/Helper/Error';
+import Loading from '@components/Helper/Loading';
+import useFetch from '@hooks/useFetch';
+import type { PhotoDetails } from '@/types';
+
 import styles from './FeedModal.module.css';
-import type { PhotoDetails } from '../../types';
 
 type FeedModalProps = {
     photoId: number;

@@ -1,5 +1,6 @@
-import React from 'react'
-import styles from './Input.module.css'
+import React from 'react';
+
+import styles from './Input.module.css';
 
 type InputProps = {
     label: string;

@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from './FeedPhotosItem.module.css'
-import type { Photo } from '../../types';
+import type { Photo } from '@/types';
+
+import styles from './FeedPhotosItem.module.css';
 
 type FeedPhotosItemProps = {
     photo: Photo;

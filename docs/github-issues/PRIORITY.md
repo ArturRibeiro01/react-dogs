@@ -22,40 +22,39 @@ Concluídas localmente:
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
 
 Pendentes:
 
-- Arquitetura/back-end: `20`, `18`, `19`, `14`, `17`.
+- Arquitetura/back-end: `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-20 - Organizar arquitetura de pastas e aliases
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: produto e planejamento de backend já estão cobertos. Organizar pastas e aliases prepara o frontend para as próximas refatorações.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
 
 ## Priority Medium
 
-1. [ ] `20` Organizar arquitetura de pastas e aliases.
-2. [ ] `18` Migrar estado global de Context API para Zustand.
-3. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-4. [ ] `14` Escolher e migrar para CSS-in-JS.
-5. [ ] `17` Adicionar themes de cores e tokens de design.
-6. [ ] `09` Adicionar cobertura inicial de testes.
-7. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-8. [ ] `11` Melhorar README para portfólio.
+1. [ ] `18` Migrar estado global de Context API para Zustand.
+2. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+3. [ ] `14` Escolher e migrar para CSS-in-JS.
+4. [ ] `17` Adicionar themes de cores e tokens de design.
+5. [ ] `09` Adicionar cobertura inicial de testes.
+6. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+7. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Arquitetura:
 
-1. `20` Organização de pastas e aliases.
-2. `18` Zustand.
-3. `19` React Hook Form e Zod.
-4. `14` CSS-in-JS.
-5. `17` Themes e tokens.
+1. `18` Zustand.
+2. `19` React Hook Form e Zod.
+3. `14` CSS-in-JS.
+4. `17` Themes e tokens.
 
 Qualidade:
 

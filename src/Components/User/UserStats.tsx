@@ -1,10 +1,12 @@
-import React from 'react'
-import { statsApi, tokenStorage } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import Error from '../Helper/Error';
-import Loading from '../Helper/Loading';
+import React from 'react';
+
+import { statsApi, tokenStorage } from '@/api';
+import Error from '@components/Helper/Error';
+import Loading from '@components/Helper/Loading';
+import useFetch from '@hooks/useFetch';
+import type { PhotoStats } from '@/types';
+
 import styles from './UserStats.module.css';
-import type { PhotoStats } from '../../types';
 
 const UserStats = () => {
     const {data, loading, error, request} = useFetch<PhotoStats[]>();

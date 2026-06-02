@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-23 - Planejar API própria para substituir API externa
+20 - Organizar arquitetura de pastas e aliases
 ```
 
 O backlog pendente fica em:
@@ -262,6 +262,7 @@ Para o deploy funcionar, o GitHub Pages do repositório deve usar `GitHub Action
 ## Documentação
 
 - `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
+- `docs/BACKEND_API_PLAN.md`: decisão e plano para criar a API própria em outro repositório.
 - `docs/PROJECT_STATUS.md`: estado atual da modernização.
 - `docs/DEVELOPMENT.md`: guia para retomar desenvolvimento.
 - `docs/DEPLOYMENT.md`: desenho da esteira de CI/CD e GitHub Pages.
@@ -287,4 +288,4 @@ Já foi feito:
 
 ## Observações
 
-A API pública da Origamid é uma dependência externa. Para portfólio mais robusto, o plano futuro é criar ou acoplar um backend próprio, ou pelo menos oferecer modo demo/mock para reduzir risco de indisponibilidade externa.
+A API pública da Origamid é uma dependência externa. Para portfólio mais robusto, a decisão atual é criar uma API própria em outro repositório, sugerido como `dogs-api`, mantendo este repositório como frontend. O modo demo/mock continua como fallback de portfólio.

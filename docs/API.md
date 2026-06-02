@@ -334,11 +334,18 @@ Esse endpoint é usado na rota `/conta/estatisticas`. No modo demo/mock, os dado
 
 Quando este app passar a consumir uma API própria, o backend deve preservar ou adaptar os contratos acima.
 
-O planejamento dessa frente está registrado na issue local:
+Decisão registrada:
 
 ```txt
-docs/github-issues/23-plan-own-backend-api.md
+docs/BACKEND_API_PLAN.md
 ```
+
+Resumo da decisão:
+
+- o backend será criado em outro repositório, sugerido como `dogs-api`
+- este repositório continua sendo apenas o frontend
+- a migração deve acontecer por ambiente usando `VITE_API_URL`
+- a primeira versão da API deve priorizar compatibilidade com o contrato atual
 
 Recomendações:
 

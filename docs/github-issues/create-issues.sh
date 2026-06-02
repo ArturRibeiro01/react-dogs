@@ -43,13 +43,6 @@ create_issue \
   "priority-medium"
 
 create_issue \
-  "Adicionar Error Boundary e feedback global" \
-  "docs/github-issues/22-add-error-boundary-and-global-feedback.md" \
-  "tech-debt" \
-  "ux" \
-  "priority-medium"
-
-create_issue \
   "Polir UI, responsividade e acessibilidade" \
   "docs/github-issues/12-polish-ui-accessibility.md" \
   "ux" \

@@ -24,12 +24,12 @@ docs/github-issues/PRIORITY.md
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
+- `22` Adicionar Error Boundary e feedback global.
 
 ## Issues Pendentes
 
 Produto:
 
-- `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 
 Arquitetura:
@@ -50,10 +50,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-22 - Adicionar Error Boundary e feedback global
+12 - Polir UI, responsividade e acessibilidade
 ```
 
-Motivo: feed, modal e estatísticas já cobrem as áreas principais do produto. Feedback global reduz estados quebrados e melhora a percepção de qualidade.
+Motivo: feed, modal, estatísticas e feedback global já cobrem as principais telas de produto. Falta fechar o acabamento de UI, responsividade e acessibilidade.
 
 ## Como Publicar No GitHub
 
@@ -72,7 +72,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Adicionar Error Boundary e feedback global" --body-file docs/github-issues/22-add-error-boundary-and-global-feedback.md --label tech-debt --label ux --label priority-medium
+gh issue create --title "Polir UI, responsividade e acessibilidade" --body-file docs/github-issues/12-polish-ui-accessibility.md --label ux --label priority-low
 ```
 
 ## Labels Usadas
@@ -103,7 +103,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Completar produto: feedback global e acessibilidade.
+1. Completar produto: acessibilidade, responsividade e acabamento visual.
 2. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
 3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 

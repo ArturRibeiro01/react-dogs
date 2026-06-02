@@ -23,6 +23,12 @@ a{
     text-decoration: none;
     color: #333;
 }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #fb1;
+    outline-offset: 3px;
+}
 img{
     display: block;
     max-width: 100%;

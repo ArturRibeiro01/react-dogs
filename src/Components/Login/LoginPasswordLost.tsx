@@ -29,7 +29,7 @@ const LoginPasswordLost = () => {
     );
 
     if (response?.ok) {
-      setSuccess('Email enviado. Verifique sua caixa de entrada.');
+      setSuccess('E-mail enviado. Verifique sua caixa de entrada.');
     }
   }
 
@@ -38,7 +38,7 @@ const LoginPasswordLost = () => {
       <h1 className="title">Perdeu a senha?</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input
-          label="Email / Usuário"
+          label="E-mail / Usuário"
           type="text"
           name="login"
           {...login}
@@ -46,7 +46,7 @@ const LoginPasswordLost = () => {
         {loading ? (
           <Button disabled>Enviando...</Button>
         ) : (
-          <Button>Enviar Email</Button>
+          <Button>Enviar e-mail</Button>
         )}
         <Error error={error} />
         {success && <StatusMessage variant="success">{success}</StatusMessage>}

@@ -43,12 +43,6 @@ create_issue \
   "priority-medium"
 
 create_issue \
-  "Polir UI, responsividade e acessibilidade" \
-  "docs/github-issues/12-polish-ui-accessibility.md" \
-  "ux" \
-  "priority-low"
-
-create_issue \
   "Organizar arquitetura de pastas e aliases" \
   "docs/github-issues/20-organize-source-architecture.md" \
   "tech-debt" \

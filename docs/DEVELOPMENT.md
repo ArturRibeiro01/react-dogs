@@ -95,7 +95,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-12 - Polir UI, responsividade e acessibilidade
+23 - Planejar API própria para substituir API externa
 ```
 
 ## Ao Finalizar Uma Issue

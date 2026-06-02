@@ -86,11 +86,14 @@ const UserPhotoPost = () => {
                     {...peso}    
                 />
                 <Input 
-                    label="idade"
+                    label="Idade"
                     type="number"
                     name="idade"
                     {...idade}    
                 />
+                <label className={styles.fileLabel} htmlFor="img">
+                    Imagem
+                </label>
                 <input
                     className={styles.file}
                     type="file"
@@ -101,7 +104,7 @@ const UserPhotoPost = () => {
                 />
                 <Error error={imgError} />
                 {loading ? (
-                    <Button disabled>Enviando....</Button>
+                    <Button disabled>Enviando...</Button>
                 ) : (
                     <Button>Enviar</Button>
                 )}

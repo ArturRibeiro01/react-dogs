@@ -20,20 +20,20 @@ Concluídas localmente:
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
+- `12` Polir UI, responsividade e acessibilidade.
 
 Pendentes:
 
-- Produto: `12`.
 - Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-12 - Polir UI, responsividade e acessibilidade
+23 - Planejar API própria para substituir API externa
 ```
 
-Motivo: feed, modal, estatísticas e feedback global já cobrem as principais telas de produto. Falta fechar o acabamento de UI, responsividade e acessibilidade.
+Motivo: a frente principal de produto já está funcional e polida o suficiente para seguir. A API própria reduz dependência externa e prepara evolução do app.
 
 ## Priority Medium
 
@@ -47,15 +47,7 @@ Motivo: feed, modal, estatísticas e feedback global já cobrem as principais te
 8. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
 9. [ ] `11` Melhorar README para portfólio.
 
-## Priority Low
-
-1. [ ] `12` Polir UI, responsividade e acessibilidade.
-
 ## Ordem Funcional Recomendada
-
-Produto:
-
-1. `12` Polimento de UI, responsividade e acessibilidade.
 
 Arquitetura:
 

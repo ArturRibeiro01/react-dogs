@@ -8,7 +8,7 @@ type FeedPhotosItemProps = {
 };
 
 const FeedPhotosItem = ({photo, onSelect}: FeedPhotosItemProps) => {
-    const title = photo.title || photo.nome || 'Foto sem titulo';
+    const title = photo.title || photo.nome || 'Foto sem título';
     const views = photo.acessos ?? photo.views;
 
     return (

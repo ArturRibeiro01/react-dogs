@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import Feed from '../Feed/Feed'
 import UserHeader from './UserHeader'
 import UserPhotoPost from './UserPhotoPost'
@@ -17,6 +17,7 @@ const User = () => {
                 <Route path ="" element={<Feed user={userId}/>} />
                 <Route path ="postar" element={<UserPhotoPost/>} />
                 <Route path ="estatisticas" element={<UserStats/>} />
+                <Route path ="*" element={<Navigate to="/conta" replace />} />
             </Routes>
         </section>
     )

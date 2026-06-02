@@ -9,6 +9,7 @@ import {UserStorage} from './UserContext'
 import User from './Components/User/User';
 import ProtectedRoute from './Components/Helper/ProtectedRoute';
 import ErrorBoundary from './Components/Helper/ErrorBoundary';
+import NotFound from './Components/NotFound';
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
@@ -30,6 +31,7 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
           </UserStorage>

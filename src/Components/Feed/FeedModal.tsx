@@ -49,7 +49,7 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
     }, [onClose]);
 
     const photo = data?.photo;
-    const title = photo?.title || photo?.nome || 'Foto sem titulo';
+    const title = photo?.title || photo?.nome || 'Foto sem título';
     const views = photo?.acessos ?? photo?.views ?? 0;
 
     return (
@@ -102,7 +102,7 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
                                 </div>
                             </dl>
 
-                            <section className={styles.comments} aria-label="Comentarios">
+                            <section className={styles.comments} aria-label="Comentários">
                                 {data.comments.length > 0 ? (
                                     data.comments.map((comment) => (
                                         <p key={comment.comment_ID}>
@@ -111,7 +111,7 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
                                         </p>
                                     ))
                                 ) : (
-                                    <p className={styles.empty}>Nenhum comentario ainda.</p>
+                                    <p className={styles.empty}>Nenhum comentário ainda.</p>
                                 )}
                             </section>
                         </div>

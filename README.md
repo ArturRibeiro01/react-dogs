@@ -8,7 +8,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 
 ## Status
 
-O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com validação básica de formulários, Error Boundary, feedback acessível, modo demo/mock e configuração de API por ambiente.
+O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com validação básica de formulários, Error Boundary, feedback acessível, polimento de UI, modo demo/mock e configuração de API por ambiente.
 
 ## Ambientes Publicados
 
@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-12 - Polir UI, responsividade e acessibilidade
+23 - Planejar API própria para substituir API externa
 ```
 
 O backlog pendente fica em:
@@ -185,6 +185,7 @@ docs/API.md
 - Validação básica de formulários.
 - Error Boundary para falhas inesperadas de renderização.
 - Feedback acessível e padronizado para erro, sucesso e informação.
+- Polimento de UI, foco, rotas vazias, menu mobile e responsividade.
 - Estado de loading, erro e lista vazia no feed.
 - Tratamento amigável para falha de rede da API.
 - Health check da API externa.
@@ -194,7 +195,6 @@ docs/API.md
 ## Funcionalidades Pendentes
 
 - Testes automatizados.
-- Melhorias de acessibilidade e responsividade.
 - Organização de arquitetura e aliases.
 - Zustand.
 - React Hook Form + Zod.

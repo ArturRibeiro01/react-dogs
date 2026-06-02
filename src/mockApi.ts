@@ -133,7 +133,7 @@ async function mockResponse<TData>(data: TData, status = 200): Promise<ApiRespon
 }
 
 function createAuthError(): never {
-  throw new Error('Use usuario demo e senha Demo1234.');
+  throw new Error('Use usuário demo e senha Demo1234.');
 }
 
 export const mockAuthApi = {
@@ -154,7 +154,7 @@ export const mockAuthApi = {
 
   validateToken: async (token: string) => {
     await delay(250);
-    if (token !== DEMO_TOKEN) throw new Error('Token demo invalido.');
+    if (token !== DEMO_TOKEN) throw new Error('Token demo inválido.');
 
     return {
       response: createResponse(),
@@ -166,7 +166,7 @@ export const mockAuthApi = {
 export const mockUserApi = {
   get: async (token: string) => {
     await delay(250);
-    if (token !== DEMO_TOKEN) throw new Error('Usuario demo nao autenticado.');
+    if (token !== DEMO_TOKEN) throw new Error('Usuário demo não autenticado.');
     return mockResponse<User>(demoUser, 200);
   },
 
@@ -186,7 +186,7 @@ export const mockPasswordApi = {
   lost: async (_body: PasswordLostInput) => mockResponse<null>(null),
 
   reset: async ({ key }: PasswordResetInput) => {
-    if (!key) throw new Error('Link de redefinicao invalido.');
+    if (!key) throw new Error('Link de redefinição inválido.');
     return mockResponse<null>(null);
   },
 };
@@ -210,7 +210,7 @@ export const mockPhotoApi = {
 
   get: async (id: number | string) => {
     const photo = demoPhotos.find((item) => String(item.id) === String(id));
-    if (!photo) throw new Error('Foto demo nao encontrada.');
+    if (!photo) throw new Error('Foto demo não encontrada.');
 
     return mockResponse<PhotoDetails>({
       photo,
@@ -239,7 +239,7 @@ export const mockStatsApi = {
       .filter((photo) => photo.author === DEMO_USERNAME)
       .map<PhotoStats>((photo) => ({
         id: photo.id,
-        title: photo.title || photo.nome || 'Foto sem titulo',
+        title: photo.title || photo.nome || 'Foto sem título',
         acessos: photo.acessos ?? photo.views ?? 0,
       }));
 

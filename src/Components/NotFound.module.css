@@ -1,0 +1,26 @@
+.notFound {
+    display: grid;
+    align-content: center;
+    gap: 1rem;
+    min-height: 50vh;
+}
+
+.text {
+    color: #666;
+    line-height: 1.5;
+}
+
+.link {
+    justify-self: start;
+    padding: 0.75rem 1rem;
+    border-radius: 0.2rem;
+    background: #fb1;
+    color: #764701;
+    font-weight: 700;
+}
+
+.link:hover,
+.link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #fea, 0 0 0 4px #fb1;
+}

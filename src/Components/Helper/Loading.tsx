@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './Loading.module.css';
 
 const Loading = () => {
     return (
-        <div role="status" aria-live="polite">
+        <div className={styles.loading} role="status" aria-live="polite">
             Carregando...
         </div>
     )

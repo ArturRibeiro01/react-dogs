@@ -33,7 +33,7 @@ const LoginCreate = () => {
             <h1 className="title">Cadastre-se</h1>
             <form onSubmit={handleSubmit}>
                 <Input label="Usuário" type="text" name="username"{...username} />
-                <Input label="Email" type="email" name="email"{...email} />
+                <Input label="E-mail" type="email" name="email"{...email} />
                 <Input label="Senha" type="password" name="password"{...password} />
                 {loading ? (
                     <Button disabled>Cadastrando...</Button>

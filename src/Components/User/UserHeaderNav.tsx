@@ -15,6 +15,7 @@ const UserHeaderNav = () => {
     const [mobileMenu, setMobileMenu] = React.useState(false);
     const {pathname} = useLocation();
     const getActiveClassName = ({isActive}: NavLinkRenderProps) => isActive ? styles.active : undefined;
+    const navId = 'user-account-navigation';
 
     
     React.useEffect(() => {
@@ -25,7 +26,9 @@ const UserHeaderNav = () => {
         <>
         {mobile && (
             <button 
-                aria-label ="Menu"
+                aria-controls={navId}
+                aria-expanded={mobileMenu}
+                aria-label={mobileMenu ? 'Fechar menu da conta' : 'Abrir menu da conta'}
                 className={`
                     ${styles.mobileButton}
                     ${ mobileMenu && styles.mobileButtonActive}
@@ -35,27 +38,29 @@ const UserHeaderNav = () => {
             </button>
         )}
         <nav 
+            id={navId}
+            aria-label="Navegação da conta"
             className= {`
                 ${mobile ? styles.navMobile : styles.nav} 
                 ${mobileMenu && styles.navMobileActive}`
             }>
-            <NavLink to="/conta" end className={getActiveClassName}>
-                <MinhasFotos/>
+            <NavLink to="/conta" end className={getActiveClassName} aria-label="Minhas fotos">
+                <MinhasFotos aria-hidden="true"/>
                 {mobile && 'Minhas Fotos'}
             </NavLink>
 
-            <NavLink to="/conta/estatisticas" className={getActiveClassName} > 
-                <Estatisticas/>
+            <NavLink to="/conta/estatisticas" className={getActiveClassName} aria-label="Estatísticas">
+                <Estatisticas aria-hidden="true"/>
                 {mobile && 'Estatísticas'}
             </NavLink>
 
-            <NavLink to="/conta/postar" className={getActiveClassName} >
-                <AdicionarFoto/>
+            <NavLink to="/conta/postar" className={getActiveClassName} aria-label="Adicionar foto">
+                <AdicionarFoto aria-hidden="true"/>
                 {mobile && 'Adicionar Foto'}
             </NavLink>
 
-            <button onClick ={userLogout}>
-                <Sair/>
+            <button onClick ={userLogout} aria-label="Sair da conta">
+                <Sair aria-hidden="true"/>
                 {mobile && 'Sair'}
             </button>
         </nav>

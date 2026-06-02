@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-06-01.
+Atualizado em 2026-06-02.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é fechar o polimento de UI, responsividade e acessibilidade.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A próxima etapa recomendada é avançar na frente de arquitetura/back-end, começando pelo planejamento de API própria.
 
 ## Stack Atual
 
@@ -71,6 +71,10 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Endpoint `/api/stats` integrado à API real e ao modo demo/mock.
 - Error Boundary captura erros inesperados de renderização.
 - Feedback de erro, sucesso e informação padronizado com semântica acessível.
+- Menu mobile comunica estado aberto/fechado com `aria-expanded`.
+- Rotas desconhecidas exibem fallback ou redirecionamento amigável.
+- Upload de foto ganhou label acessível, responsividade e textos mais consistentes.
+- Foco visível global e loading visual padronizado.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
 - Fluxo de recuperação e redefinição de senha implementado.
@@ -91,6 +95,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
+- `12` Polir UI, responsividade e acessibilidade.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -99,19 +104,16 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-12 - Polir UI, responsividade e acessibilidade
+23 - Planejar API própria para substituir API externa
 ```
 
-Motivo: feed, modal, estatísticas e feedback global já cobrem as principais telas de produto. O próximo passo natural é refinar responsividade, acessibilidade e acabamento visual.
+Motivo: a frente principal de produto já está funcional e polida o suficiente para seguir. A API própria é o próximo passo para reduzir dependência externa e preparar evolução do app.
 
 ## Ainda Pendente
 
-Produto:
-
-- Polimento de UI, responsividade e acessibilidade.
-
 Arquitetura:
 
+- Planejar API própria para substituir API externa.
 - Organizar pastas e aliases.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formulários com React Hook Form e Zod.

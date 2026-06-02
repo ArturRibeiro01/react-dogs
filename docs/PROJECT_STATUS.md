@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-05-31.
+Atualizado em 2026-06-02.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, começando pelo modal de detalhes da foto.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado e os aliases/imports do frontend foram organizados. A próxima etapa recomendada é migrar o estado global para Zustand.
 
 ## Stack Atual
 
@@ -42,6 +42,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Entry point atualizado para `createRoot`.
 - React Router atualizado da versão beta para 6 estável.
 - Rotas protegidas ajustadas.
+- Validação automática do token preserva rotas internas da conta.
 - `NavLink` atualizado para API do React Router 6.
 - `history` e `web-vitals` removidos por não estarem em uso.
 - Testing Library atualizada e movida para `devDependencies`.
@@ -50,6 +51,9 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Base URL da API configurável via `VITE_API_URL`.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
+- Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
+- Aliases de frontend configurados em Vite e TypeScript.
+- Convenção de imports documentada em `docs/ARCHITECTURE.md`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -64,10 +68,20 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Feed da conta filtrado por usuário logado.
 - Grid responsivo do feed.
 - Visualizações e estado vazio no feed.
+- Modal de detalhes da foto com fechamento por clique fora, botão e Escape.
+- Detalhe de foto integrado à API real e ao modo demo/mock.
+- Tela de estatísticas do usuário com total, média e visualização por foto.
+- Endpoint `/api/stats` integrado à API real e ao modo demo/mock.
+- Error Boundary captura erros inesperados de renderização.
+- Feedback de erro, sucesso e informação padronizado com semântica acessível.
+- Menu mobile comunica estado aberto/fechado com `aria-expanded`.
+- Rotas desconhecidas exibem fallback ou redirecionamento amigável.
+- Upload de foto ganhou label acessível, responsividade e textos mais consistentes.
+- Foco visível global e loading visual padronizado.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
 - Fluxo de recuperação e redefinição de senha implementado.
-- Login, usuário, feed, upload, senha e health check possuem mocks para modo demo.
+- Login, usuário, feed, upload, senha, estatísticas e health check possuem mocks para modo demo.
 
 ## Issues Concluídas Localmente
 
@@ -81,6 +95,12 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `21` Criar API client e configuração por ambiente.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `05` Implementar modal de detalhes da foto.
+- `07` Implementar tela de estatísticas do usuário.
+- `22` Adicionar Error Boundary e feedback global.
+- `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -89,23 +109,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-05 - Implementar modal de detalhes da foto
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: o feed já renderiza dados reais. O modal fecha o fluxo natural de clicar em uma foto e ver detalhes, preparando terreno para comentários, visualizações detalhadas e navegação mais rica.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Migrar o estado global prepara a base para fluxos autenticados mais previsíveis.
 
 ## Ainda Pendente
 
-Produto:
-
-- Modal de detalhes da foto.
-- Estatísticas do usuário.
-- Feedback global e Error Boundary.
-- Polimento de UI, responsividade e acessibilidade.
-
 Arquitetura:
 
-- Organizar pastas e aliases.
 - Migrar estado global de Context API para Zustand.
 - Padronizar formulários com React Hook Form e Zod.
 - Avaliar CSS-in-JS.
@@ -150,9 +162,13 @@ Documentação:
 docs/API.md
 ```
 
-Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a recomendação futura é backend próprio ou modo demo/mock.
+Risco conhecido: a API é externa e pode mudar ou ficar indisponível. Para portfólio mais robusto, a decisão registrada é criar uma API própria em outro repositório e manter o modo demo/mock como fallback.
 
-Existe uma issue pendente para planejar uma API própria em repositório separado: `23`.
+Plano:
+
+```txt
+docs/BACKEND_API_PLAN.md
+```
 
 ## Branches
 

@@ -22,20 +22,17 @@ docs/github-issues/PRIORITY.md
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
-
-## Issues Pendentes
-
-Produto:
-
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
+
+## Issues Pendentes
 
 Arquitetura:
 
-- `23` Planejar API própria para substituir API externa.
-- `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `14` Escolher e migrar para CSS-in-JS.
@@ -50,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-05 - Implementar modal de detalhes da foto
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: o feed com dados reais já está pronto. O modal completa o fluxo principal de exploração das fotos.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
 
 ## Como Publicar No GitHub
 
@@ -72,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Implementar modal de detalhes da foto" --body-file docs/github-issues/05-implement-photo-modal.md --label feature --label priority-medium
+gh issue create --title "Migrar estado global de Context API para Zustand" --body-file docs/github-issues/18-migrate-context-api-to-zustand.md --label tech-debt --label priority-medium
 ```
 
 ## Labels Usadas
@@ -103,9 +100,8 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Completar produto: modal, senha, estatísticas, feedback global e acessibilidade.
-2. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
-3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
+1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
+2. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 
 ## Observações
 

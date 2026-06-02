@@ -4,7 +4,10 @@ import type {
   PasswordLostInput,
   PasswordResetInput,
   Photo,
+  PhotoComment,
+  PhotoDetails,
   PhotoListParams,
+  PhotoStats,
   User,
   UserCreateInput,
 } from './types';
@@ -77,6 +80,35 @@ const demoPhotos: Photo[] = [
   },
 ];
 
+const demoComments: Record<number, PhotoComment[]> = {
+  101: [
+    {
+      comment_ID: '101-1',
+      comment_author: 'ana',
+      comment_content: 'Essa foto ficou linda.',
+    },
+    {
+      comment_ID: '101-2',
+      comment_author: DEMO_USERNAME,
+      comment_content: 'Ela ficou parada por dois segundos. Um recorde.',
+    },
+  ],
+  102: [
+    {
+      comment_ID: '102-1',
+      comment_author: 'marina',
+      comment_content: 'Thor parece pronto para uma aventura.',
+    },
+  ],
+  103: [
+    {
+      comment_ID: '103-1',
+      comment_author: 'lucas',
+      comment_content: 'Mel sempre rouba a cena.',
+    },
+  ],
+};
+
 function delay(ms = 450): Promise<void> {
   return new Promise((resolve) => {
     window.setTimeout(resolve, ms);
@@ -101,7 +133,7 @@ async function mockResponse<TData>(data: TData, status = 200): Promise<ApiRespon
 }
 
 function createAuthError(): never {
-  throw new Error('Use usuario demo e senha Demo1234.');
+  throw new Error('Use usuário demo e senha Demo1234.');
 }
 
 export const mockAuthApi = {
@@ -122,7 +154,7 @@ export const mockAuthApi = {
 
   validateToken: async (token: string) => {
     await delay(250);
-    if (token !== DEMO_TOKEN) throw new Error('Token demo invalido.');
+    if (token !== DEMO_TOKEN) throw new Error('Token demo inválido.');
 
     return {
       response: createResponse(),
@@ -134,7 +166,7 @@ export const mockAuthApi = {
 export const mockUserApi = {
   get: async (token: string) => {
     await delay(250);
-    if (token !== DEMO_TOKEN) throw new Error('Usuario demo nao autenticado.');
+    if (token !== DEMO_TOKEN) throw new Error('Usuário demo não autenticado.');
     return mockResponse<User>(demoUser, 200);
   },
 
@@ -154,7 +186,7 @@ export const mockPasswordApi = {
   lost: async (_body: PasswordLostInput) => mockResponse<null>(null),
 
   reset: async ({ key }: PasswordResetInput) => {
-    if (!key) throw new Error('Link de redefinicao invalido.');
+    if (!key) throw new Error('Link de redefinição inválido.');
     return mockResponse<null>(null);
   },
 };
@@ -176,6 +208,16 @@ export const mockPhotoApi = {
     return mockResponse<Photo>(photo, 201);
   },
 
+  get: async (id: number | string) => {
+    const photo = demoPhotos.find((item) => String(item.id) === String(id));
+    if (!photo) throw new Error('Foto demo não encontrada.');
+
+    return mockResponse<PhotoDetails>({
+      photo,
+      comments: demoComments[photo.id] || [],
+    });
+  },
+
   list: async ({ page, total, user }: PhotoListParams) => {
     const photos =
       String(user) === '0'
@@ -189,4 +231,18 @@ export const mockPhotoApi = {
 
 export const mockHealthApi = {
   photos: () => mockPhotoApi.list({ page: 1, total: 1, user: 0 }),
+};
+
+export const mockStatsApi = {
+  list: async () => {
+    const stats = demoPhotos
+      .filter((photo) => photo.author === DEMO_USERNAME)
+      .map<PhotoStats>((photo) => ({
+        id: photo.id,
+        title: photo.title || photo.nome || 'Foto sem título',
+        acessos: photo.acessos ?? photo.views ?? 0,
+      }));
+
+    return mockResponse<PhotoStats[]>(stats);
+  },
 };

@@ -1,13 +1,15 @@
-import React from 'react'
-import styles from './UserPhotoPost.module.css'
-import Input from '../Forms/Input'
-import Button from '../Forms/Button'
-import useForm from '../../Hooks/useForm'
-import useFetch from '../../Hooks/useFetch'
-import Error from '../Helper/Error'
-import { photoApi, tokenStorage } from '../../api'
-import { useNavigate } from 'react-router-dom'
-import type { Photo } from '../../types'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { photoApi, tokenStorage } from '@/api';
+import Button from '@components/Forms/Button';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import useFetch from '@hooks/useFetch';
+import useForm from '@hooks/useForm';
+import type { Photo } from '@/types';
+
+import styles from './UserPhotoPost.module.css';
 
 type PhotoUploadState = {
     preview?: string;
@@ -86,11 +88,14 @@ const UserPhotoPost = () => {
                     {...peso}    
                 />
                 <Input 
-                    label="idade"
+                    label="Idade"
                     type="number"
                     name="idade"
                     {...idade}    
                 />
+                <label className={styles.fileLabel} htmlFor="img">
+                    Imagem
+                </label>
                 <input
                     className={styles.file}
                     type="file"
@@ -101,7 +106,7 @@ const UserPhotoPost = () => {
                 />
                 <Error error={imgError} />
                 {loading ? (
-                    <Button disabled>Enviando....</Button>
+                    <Button disabled>Enviando...</Button>
                 ) : (
                     <Button>Enviar</Button>
                 )}

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { passwordApi } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import useForm from '../../Hooks/useForm';
-import Button from '../Forms/Button';
-import Input from '../Forms/Input';
-import Error from '../Helper/Error';
+
+import { passwordApi } from '@/api';
+import Button from '@components/Forms/Button';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import StatusMessage from '@components/Helper/StatusMessage';
+import useFetch from '@hooks/useFetch';
+import useForm from '@hooks/useForm';
+
 import styles from './LoginForm.module.css';
 
 const LoginPasswordLost = () => {
@@ -28,7 +31,7 @@ const LoginPasswordLost = () => {
     );
 
     if (response?.ok) {
-      setSuccess('Email enviado. Verifique sua caixa de entrada.');
+      setSuccess('E-mail enviado. Verifique sua caixa de entrada.');
     }
   }
 
@@ -37,7 +40,7 @@ const LoginPasswordLost = () => {
       <h1 className="title">Perdeu a senha?</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input
-          label="Email / Usuário"
+          label="E-mail / Usuário"
           type="text"
           name="login"
           {...login}
@@ -45,10 +48,10 @@ const LoginPasswordLost = () => {
         {loading ? (
           <Button disabled>Enviando...</Button>
         ) : (
-          <Button>Enviar Email</Button>
+          <Button>Enviar e-mail</Button>
         )}
         <Error error={error} />
-        {success && <p className={styles.success}>{success}</p>}
+        {success && <StatusMessage variant="success">{success}</StatusMessage>}
       </form>
       <Link className={styles.perdeu} to="/login">
         Voltar para login

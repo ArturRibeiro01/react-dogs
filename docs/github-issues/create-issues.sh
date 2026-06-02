@@ -36,44 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Implementar modal de detalhes da foto" \
-  "docs/github-issues/05-implement-photo-modal.md" \
-  "feature" \
-  "priority-medium"
-
-create_issue \
-  "Implementar tela de estatisticas do usuario" \
-  "docs/github-issues/07-complete-user-stats.md" \
-  "feature" \
-  "priority-medium"
-
-create_issue \
-  "Planejar API propria para substituir API externa" \
-  "docs/github-issues/23-plan-own-backend-api.md" \
-  "tech-debt" \
-  "documentation" \
-  "priority-medium"
-
-create_issue \
-  "Adicionar Error Boundary e feedback global" \
-  "docs/github-issues/22-add-error-boundary-and-global-feedback.md" \
-  "tech-debt" \
-  "ux" \
-  "priority-medium"
-
-create_issue \
-  "Polir UI, responsividade e acessibilidade" \
-  "docs/github-issues/12-polish-ui-accessibility.md" \
-  "ux" \
-  "priority-low"
-
-create_issue \
-  "Organizar arquitetura de pastas e aliases" \
-  "docs/github-issues/20-organize-source-architecture.md" \
-  "tech-debt" \
-  "priority-medium"
-
-create_issue \
   "Migrar estado global de Context API para Zustand" \
   "docs/github-issues/18-migrate-context-api-to-zustand.md" \
   "tech-debt" \

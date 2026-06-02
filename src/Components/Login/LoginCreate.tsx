@@ -1,11 +1,12 @@
-import React from 'react'
-import Input from '../Forms/Input';
-import Button from '../Forms/Button';
-import Error from '../Helper/Error';
-import useForm from '../../Hooks/useForm'
-import { userApi } from '../../api';
-import {UserContext} from '../../UserContext'
-import useFetch from '../../Hooks/useFetch';
+import React from 'react';
+
+import { userApi } from '@/api';
+import { UserContext } from '@/UserContext';
+import Button from '@components/Forms/Button';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import useFetch from '@hooks/useFetch';
+import useForm from '@hooks/useForm';
 
 const LoginCreate = () => {
     const username = useForm();
@@ -33,7 +34,7 @@ const LoginCreate = () => {
             <h1 className="title">Cadastre-se</h1>
             <form onSubmit={handleSubmit}>
                 <Input label="Usuário" type="text" name="username"{...username} />
-                <Input label="Email" type="email" name="email"{...email} />
+                <Input label="E-mail" type="email" name="email"{...email} />
                 <Input label="Senha" type="password" name="password"{...password} />
                 {loading ? (
                     <Button disabled>Cadastrando...</Button>

@@ -77,9 +77,14 @@ src/
 Pontos importantes:
 
 - `UserContext.tsx` centraliza login, logout, usuário logado e validação de token.
+- A validação automática do token restaura a sessão sem redirecionar, preservando rotas internas como `/conta/estatisticas`.
 - `api.ts` centraliza endpoints e tratamento base de erro.
+- `ErrorBoundary.tsx` captura falhas inesperadas de renderização para evitar tela branca.
+- `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `useForm.ts` mantém validação simples enquanto a issue de React Hook Form/Zod não acontece.
+- `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
+- `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
 
 ## Ordem De Trabalho
 
@@ -92,7 +97,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-05 - Implementar modal de detalhes da foto
+18 - Migrar estado global de Context API para Zustand
 ```
 
 ## Ao Finalizar Uma Issue
@@ -107,7 +112,7 @@ Próxima issue recomendada:
 ## Pendências Técnicas Conhecidas
 
 - `yarn test` ainda é placeholder.
-- Não há mock/demo mode.
+- O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
 - O estado global ainda usa Context API.
 - Formulários ainda usam hook próprio simples.

@@ -17,57 +17,44 @@ Concluídas localmente:
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `05` Implementar modal de detalhes da foto.
+- `07` Implementar tela de estatísticas do usuário.
+- `22` Adicionar Error Boundary e feedback global.
+- `12` Polir UI, responsividade e acessibilidade.
+- `23` Planejar API própria para substituir API externa.
+- `20` Organizar arquitetura de pastas e aliases.
 
 Pendentes:
 
-- Produto: `05`, `07`, `22`, `12`.
-- Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
+- Arquitetura/back-end: `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-05 - Implementar modal de detalhes da foto
+18 - Migrar estado global de Context API para Zustand
 ```
 
-Motivo: o feed já está funcional com dados reais. O modal é o próximo passo natural para completar a experiência principal de navegação por fotos.
+Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
 
 ## Priority Medium
 
-1. [ ] `05` Implementar modal de detalhes da foto.
-2. [ ] `07` Implementar tela de estatísticas do usuário.
-3. [ ] `23` Planejar API própria para substituir API externa.
-4. [ ] `22` Adicionar Error Boundary e feedback global.
-5. [ ] `20` Organizar arquitetura de pastas e aliases.
-6. [ ] `18` Migrar estado global de Context API para Zustand.
-7. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-8. [ ] `14` Escolher e migrar para CSS-in-JS.
-9. [ ] `17` Adicionar themes de cores e tokens de design.
-10. [ ] `09` Adicionar cobertura inicial de testes.
-11. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-12. [ ] `11` Melhorar README para portfólio.
-
-## Priority Low
-
-1. [ ] `12` Polir UI, responsividade e acessibilidade.
+1. [ ] `18` Migrar estado global de Context API para Zustand.
+2. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+3. [ ] `14` Escolher e migrar para CSS-in-JS.
+4. [ ] `17` Adicionar themes de cores e tokens de design.
+5. [ ] `09` Adicionar cobertura inicial de testes.
+6. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+7. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
-Produto:
-
-1. `05` Modal de detalhes da foto.
-2. `07` Estatísticas do usuário.
-3. `22` Error Boundary e feedback global.
-4. `12` Polimento de UI, responsividade e acessibilidade.
-
 Arquitetura:
 
-1. `23` Planejamento de API propria.
-2. `20` Organização de pastas e aliases.
-3. `18` Zustand.
-4. `19` React Hook Form e Zod.
-5. `14` CSS-in-JS.
-6. `17` Themes e tokens.
+1. `18` Zustand.
+2. `19` React Hook Form e Zod.
+3. `14` CSS-in-JS.
+4. `17` Themes e tokens.
 
 Qualidade:
 

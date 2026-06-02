@@ -4,7 +4,9 @@ import type {
   PasswordLostInput,
   PasswordResetInput,
   Photo,
+  PhotoDetails,
   PhotoListParams,
+  PhotoStats,
   User,
   UserCreateInput,
 } from './types';
@@ -13,6 +15,7 @@ import {
   mockHealthApi,
   mockPasswordApi,
   mockPhotoApi,
+  mockStatsApi,
   mockUserApi,
 } from './mockApi';
 
@@ -198,6 +201,12 @@ const realPhotoApi = {
       token,
     }),
 
+  get: (id: number | string) =>
+    apiRequest<PhotoDetails>(`/api/photo/${id}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
   list: ({ page, total, user }: PhotoListParams) => {
     const params = new URLSearchParams({
       _page: String(page),
@@ -216,8 +225,18 @@ const realHealthApi = {
   photos: () => realPhotoApi.list({ page: 1, total: 1, user: 0 }),
 };
 
+const realStatsApi = {
+  list: (token: string | null) =>
+    apiRequest<PhotoStats[]>('/api/stats', {
+      method: 'GET',
+      token,
+      cache: 'no-store',
+    }),
+};
+
 export const authApi = IS_DEMO_MODE ? mockAuthApi : realAuthApi;
 export const userApi = IS_DEMO_MODE ? mockUserApi : realUserApi;
 export const passwordApi = IS_DEMO_MODE ? mockPasswordApi : realPasswordApi;
 export const photoApi = IS_DEMO_MODE ? mockPhotoApi : realPhotoApi;
 export const healthApi = IS_DEMO_MODE ? mockHealthApi : realHealthApi;
+export const statsApi = IS_DEMO_MODE ? mockStatsApi : realStatsApi;

@@ -1,12 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Input from '../Forms/Input';
-import Button from '../Forms/Button'
-import useForm from '../../Hooks/useForm';
-import {UserContext} from '../../UserContext';
-import Error from '../Helper/Error';
-import styles from './LoginForm.module.css'
-import stylesBtn from '../Forms/Button.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { UserContext } from '@/UserContext';
+import Button from '@components/Forms/Button';
+import stylesBtn from '@components/Forms/Button.module.css';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import useForm from '@hooks/useForm';
+
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
 

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { passwordApi } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import useForm from '../../Hooks/useForm';
-import Button from '../Forms/Button';
-import Input from '../Forms/Input';
-import Error from '../Helper/Error';
+
+import { passwordApi } from '@/api';
+import Button from '@components/Forms/Button';
+import Input from '@components/Forms/Input';
+import Error from '@components/Helper/Error';
+import StatusMessage from '@components/Helper/StatusMessage';
+import useFetch from '@hooks/useFetch';
+import useForm from '@hooks/useForm';
+
 import styles from './LoginForm.module.css';
 
 const LoginPasswordReset = () => {
@@ -64,7 +67,7 @@ const LoginPasswordReset = () => {
               <Button>Redefinir Senha</Button>
             )}
             <Error error={error} />
-            {success && <p className={styles.success}>{success}</p>}
+            {success && <StatusMessage variant="success">{success}</StatusMessage>}
           </form>
           <Link className={styles.perdeu} to="/login">
             Voltar para login

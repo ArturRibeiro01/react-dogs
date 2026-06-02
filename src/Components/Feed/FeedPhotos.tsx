@@ -1,17 +1,20 @@
-import React from 'react'
-import { photoApi } from '../../api';
-import useFetch from '../../Hooks/useFetch';
-import FeedPhotosItem from './FeedPhotosItem';
-import Error from '../Helper/Error';
-import Loading from '../Helper/Loading';
+import React from 'react';
+
+import { photoApi } from '@/api';
+import Error from '@components/Helper/Error';
+import Loading from '@components/Helper/Loading';
+import useFetch from '@hooks/useFetch';
+import type { Photo } from '@/types';
+
 import styles from './FeedPhotos.module.css';
-import type { Photo } from '../../types';
+import FeedPhotosItem from './FeedPhotosItem';
 
 type FeedPhotosProps = {
     user?: number | string;
+    onSelectPhoto: (id: number) => void;
 };
 
-const FeedPhotos = ({user = 0}: FeedPhotosProps) => {
+const FeedPhotos = ({user = 0, onSelectPhoto}: FeedPhotosProps) => {
     const {data, loading, error, request} = useFetch<Photo[]>();
 
     React.useEffect(() => {
@@ -35,7 +38,11 @@ const FeedPhotos = ({user = 0}: FeedPhotosProps) => {
         return (
             <ul className={`${styles.feed} animeLeft`}>
                 {data.map((photo) => (
-                    <FeedPhotosItem key={photo.id} photo={photo} />
+                    <FeedPhotosItem
+                        key={photo.id}
+                        photo={photo}
+                        onSelect={() => onSelectPhoto(photo.id)}
+                    />
                 ))}
             </ul>
         );

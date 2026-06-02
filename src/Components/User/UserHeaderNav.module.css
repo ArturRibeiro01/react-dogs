@@ -83,19 +83,20 @@
     position: absolute;
     top: 70px;
     right: 0px;
-    height: 0px;
     padding: 0 1rem;
     background: white;
     box-shadow:  0 1px 2px rgba( 0 0 0 .2);
     border-radius: 0.2rem;
     transform: translateX(-10px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 }
 .navMobileActive{
     transition: .5s;
     transform: initial;
     opacity: 1;
+    visibility: visible;
     z-index: 100;
     pointer-events: initial;
 }
@@ -108,11 +109,19 @@
     border: none;
     border-bottom: 1px solid #eee;
     padding: .5rem 0;
-    cursor:pointer
+    cursor:pointer;
+    color: #333;
 }
+.navMobile a:focus,
+.navMobile button:focus,
 .navMobile a:hover svg > *,
 .navMobile button:hover svg > *{
+    outline: none;
     fill: #fb1;
+}
+.navMobile a:focus,
+.navMobile button:focus {
+    box-shadow: 0 0 0 3px #fea;
 }
 .navMobile button {
     border-bottom: none;

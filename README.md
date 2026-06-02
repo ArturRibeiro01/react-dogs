@@ -8,7 +8,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 
 ## Status
 
-O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público e o feed da conta já usam dados reais da API externa da Origamid, com validação básica de formulários, tratamento de erro de rede e configuração de API por ambiente.
+O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com validação básica de formulários, Error Boundary, feedback acessível, polimento de UI, modo demo/mock e configuração de API por ambiente.
 
 ## Ambientes Publicados
 
@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-05 - Implementar modal de detalhes da foto
+18 - Migrar estado global de Context API para Zustand
 ```
 
 O backlog pendente fica em:
@@ -179,8 +179,13 @@ docs/API.md
 - Modo demo/mock opcional.
 - Feed público com fotos reais.
 - Feed da conta filtrado por usuário logado.
+- Modal de detalhes da foto.
+- Tela de estatísticas do usuário.
 - Upload de foto autenticado.
 - Validação básica de formulários.
+- Error Boundary para falhas inesperadas de renderização.
+- Feedback acessível e padronizado para erro, sucesso e informação.
+- Polimento de UI, foco, rotas vazias, menu mobile e responsividade.
 - Estado de loading, erro e lista vazia no feed.
 - Tratamento amigável para falha de rede da API.
 - Health check da API externa.
@@ -189,11 +194,7 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- Modal de detalhes da foto.
-- Tela de estatísticas do usuário.
-- Error Boundary e feedback global.
 - Testes automatizados.
-- Melhorias de acessibilidade e responsividade.
 - Organização de arquitetura e aliases.
 - Zustand.
 - React Hook Form + Zod.
@@ -261,6 +262,8 @@ Para o deploy funcionar, o GitHub Pages do repositório deve usar `GitHub Action
 ## Documentação
 
 - `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
+- `docs/ARCHITECTURE.md`: estrutura atual, aliases e convenção de imports.
+- `docs/BACKEND_API_PLAN.md`: decisão e plano para criar a API própria em outro repositório.
 - `docs/PROJECT_STATUS.md`: estado atual da modernização.
 - `docs/DEVELOPMENT.md`: guia para retomar desenvolvimento.
 - `docs/DEPLOYMENT.md`: desenho da esteira de CI/CD e GitHub Pages.
@@ -286,4 +289,4 @@ Já foi feito:
 
 ## Observações
 
-A API pública da Origamid é uma dependência externa. Para portfólio mais robusto, o plano futuro é criar ou acoplar um backend próprio, ou pelo menos oferecer modo demo/mock para reduzir risco de indisponibilidade externa.
+A API pública da Origamid é uma dependência externa. Para portfólio mais robusto, a decisão atual é criar uma API própria em outro repositório, sugerido como `dogs-api`, mantendo este repositório como frontend. O modo demo/mock continua como fallback de portfólio.

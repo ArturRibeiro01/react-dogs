@@ -4,9 +4,9 @@ Atualizado em 2026-05-31.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes e documentação inicial.
 
-Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, começando pelo modal de detalhes da foto.
+Todas as issues `priority-high` planejadas foram cobertas localmente. A próxima etapa recomendada é avançar nas issues `priority-medium`, seguindo pela tela de estatísticas do usuário.
 
 ## Stack Atual
 
@@ -64,6 +64,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Feed da conta filtrado por usuário logado.
 - Grid responsivo do feed.
 - Visualizações e estado vazio no feed.
+- Modal de detalhes da foto com fechamento por clique fora, botão e Escape.
+- Detalhe de foto integrado à API real e ao modo demo/mock.
 - Upload de foto autenticado.
 - Endpoints de recuperação de senha verificados na API pública.
 - Fluxo de recuperação e redefinição de senha implementado.
@@ -81,6 +83,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `21` Criar API client e configuração por ambiente.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `05` Implementar modal de detalhes da foto.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -89,16 +92,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-05 - Implementar modal de detalhes da foto
+07 - Implementar tela de estatísticas do usuário
 ```
 
-Motivo: o feed já renderiza dados reais. O modal fecha o fluxo natural de clicar em uma foto e ver detalhes, preparando terreno para comentários, visualizações detalhadas e navegação mais rica.
+Motivo: o feed e o modal de detalhes já completam o fluxo natural de navegação por fotos. A tela de estatísticas fecha a próxima área visível do app autenticado.
 
 ## Ainda Pendente
 
 Produto:
 
-- Modal de detalhes da foto.
 - Estatísticas do usuário.
 - Feedback global e Error Boundary.
 - Polimento de UI, responsividade e acessibilidade.

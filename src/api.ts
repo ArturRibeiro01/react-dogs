@@ -4,6 +4,7 @@ import type {
   PasswordLostInput,
   PasswordResetInput,
   Photo,
+  PhotoDetails,
   PhotoListParams,
   User,
   UserCreateInput,
@@ -196,6 +197,12 @@ const realPhotoApi = {
       method: 'POST',
       body: formData,
       token,
+    }),
+
+  get: (id: number | string) =>
+    apiRequest<PhotoDetails>(`/api/photo/${id}`, {
+      method: 'GET',
+      cache: 'no-store',
     }),
 
   list: ({ page, total, user }: PhotoListParams) => {

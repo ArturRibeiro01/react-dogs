@@ -9,9 +9,10 @@ import type { Photo } from '../../types';
 
 type FeedPhotosProps = {
     user?: number | string;
+    onSelectPhoto: (id: number) => void;
 };
 
-const FeedPhotos = ({user = 0}: FeedPhotosProps) => {
+const FeedPhotos = ({user = 0, onSelectPhoto}: FeedPhotosProps) => {
     const {data, loading, error, request} = useFetch<Photo[]>();
 
     React.useEffect(() => {
@@ -35,7 +36,11 @@ const FeedPhotos = ({user = 0}: FeedPhotosProps) => {
         return (
             <ul className={`${styles.feed} animeLeft`}>
                 {data.map((photo) => (
-                    <FeedPhotosItem key={photo.id} photo={photo} />
+                    <FeedPhotosItem
+                        key={photo.id}
+                        photo={photo}
+                        onSelect={() => onSelectPhoto(photo.id)}
+                    />
                 ))}
             </ul>
         );

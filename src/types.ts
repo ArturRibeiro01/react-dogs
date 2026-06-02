@@ -31,6 +31,17 @@ export type Photo = {
   views?: number;
 };
 
+export type PhotoComment = {
+  comment_ID: string;
+  comment_author: string;
+  comment_content: string;
+};
+
+export type PhotoDetails = {
+  photo: Photo;
+  comments: PhotoComment[];
+};
+
 export type PhotoListParams = {
   page: number;
   total: number;

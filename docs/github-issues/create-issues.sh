@@ -36,12 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Implementar modal de detalhes da foto" \
-  "docs/github-issues/05-implement-photo-modal.md" \
-  "feature" \
-  "priority-medium"
-
-create_issue \
   "Implementar tela de estatisticas do usuario" \
   "docs/github-issues/07-complete-user-stats.md" \
   "feature" \

@@ -22,12 +22,12 @@ docs/github-issues/PRIORITY.md
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `05` Implementar modal de detalhes da foto.
 
 ## Issues Pendentes
 
 Produto:
 
-- `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
@@ -50,10 +50,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-05 - Implementar modal de detalhes da foto
+07 - Implementar tela de estatísticas do usuário
 ```
 
-Motivo: o feed com dados reais já está pronto. O modal completa o fluxo principal de exploração das fotos.
+Motivo: o modal de detalhes já completa a navegação principal do feed. A tela de estatísticas fecha a próxima área visível do app autenticado.
 
 ## Como Publicar No GitHub
 
@@ -72,7 +72,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Implementar modal de detalhes da foto" --body-file docs/github-issues/05-implement-photo-modal.md --label feature --label priority-medium
+gh issue create --title "Implementar tela de estatisticas do usuario" --body-file docs/github-issues/07-complete-user-stats.md --label feature --label priority-medium
 ```
 
 ## Labels Usadas
@@ -103,7 +103,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Completar produto: modal, senha, estatísticas, feedback global e acessibilidade.
+1. Completar produto: estatísticas, feedback global e acessibilidade.
 2. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
 3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 

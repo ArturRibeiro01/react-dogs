@@ -1,6 +1,5 @@
 .photo {
     display: grid;
-    cursor: pointer;
     overflow: hidden;
     border-radius: 0.2rem;
 }
@@ -10,7 +9,25 @@
     grid-row: span 2;
 }
 
-.photo img {
+.button {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 0.2rem;
+    text-align: left;
+}
+
+.button:focus {
+    outline: 3px solid #fb1;
+    outline-offset: 3px;
+}
+
+.button img {
     grid-area: 1 / 1;
     width: 100%;
     height: 100%;
@@ -37,8 +54,8 @@
     background: url('../../Assets/visualizacao.svg') no-repeat center center;
 }
 
-.photo:hover .views,
-.photo:focus-within .views {
+.button:hover .views,
+.button:focus .views {
     display: flex;
 }
 

@@ -4,6 +4,8 @@ import type {
   PasswordLostInput,
   PasswordResetInput,
   Photo,
+  PhotoComment,
+  PhotoDetails,
   PhotoListParams,
   User,
   UserCreateInput,
@@ -76,6 +78,35 @@ const demoPhotos: Photo[] = [
     acessos: 608,
   },
 ];
+
+const demoComments: Record<number, PhotoComment[]> = {
+  101: [
+    {
+      comment_ID: '101-1',
+      comment_author: 'ana',
+      comment_content: 'Essa foto ficou linda.',
+    },
+    {
+      comment_ID: '101-2',
+      comment_author: DEMO_USERNAME,
+      comment_content: 'Ela ficou parada por dois segundos. Um recorde.',
+    },
+  ],
+  102: [
+    {
+      comment_ID: '102-1',
+      comment_author: 'marina',
+      comment_content: 'Thor parece pronto para uma aventura.',
+    },
+  ],
+  103: [
+    {
+      comment_ID: '103-1',
+      comment_author: 'lucas',
+      comment_content: 'Mel sempre rouba a cena.',
+    },
+  ],
+};
 
 function delay(ms = 450): Promise<void> {
   return new Promise((resolve) => {
@@ -174,6 +205,16 @@ export const mockPhotoApi = {
     };
 
     return mockResponse<Photo>(photo, 201);
+  },
+
+  get: async (id: number | string) => {
+    const photo = demoPhotos.find((item) => String(item.id) === String(id));
+    if (!photo) throw new Error('Foto demo nao encontrada.');
+
+    return mockResponse<PhotoDetails>({
+      photo,
+      comments: demoComments[photo.id] || [],
+    });
   },
 
   list: async ({ page, total, user }: PhotoListParams) => {

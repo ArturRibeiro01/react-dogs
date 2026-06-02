@@ -92,7 +92,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-05 - Implementar modal de detalhes da foto
+07 - Implementar tela de estatísticas do usuário
 ```
 
 ## Ao Finalizar Uma Issue
@@ -107,7 +107,7 @@ Próxima issue recomendada:
 ## Pendências Técnicas Conhecidas
 
 - `yarn test` ainda é placeholder.
-- Não há mock/demo mode.
+- O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
 - O estado global ainda usa Context API.
 - Formulários ainda usam hook próprio simples.

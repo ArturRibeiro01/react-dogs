@@ -19,33 +19,33 @@ Concluídas localmente:
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
+- `22` Adicionar Error Boundary e feedback global.
 
 Pendentes:
 
-- Produto: `22`, `12`.
+- Produto: `12`.
 - Arquitetura/back-end: `23`, `20`, `18`, `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-22 - Adicionar Error Boundary e feedback global
+12 - Polir UI, responsividade e acessibilidade
 ```
 
-Motivo: feed, modal e estatísticas já cobrem as principais telas de produto. Feedback global reduz estados quebrados e melhora a experiência quando algo falha.
+Motivo: feed, modal, estatísticas e feedback global já cobrem as principais telas de produto. Falta fechar o acabamento de UI, responsividade e acessibilidade.
 
 ## Priority Medium
 
-1. [ ] `22` Adicionar Error Boundary e feedback global.
-2. [ ] `23` Planejar API própria para substituir API externa.
-3. [ ] `20` Organizar arquitetura de pastas e aliases.
-4. [ ] `18` Migrar estado global de Context API para Zustand.
-5. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-6. [ ] `14` Escolher e migrar para CSS-in-JS.
-7. [ ] `17` Adicionar themes de cores e tokens de design.
-8. [ ] `09` Adicionar cobertura inicial de testes.
-9. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-10. [ ] `11` Melhorar README para portfólio.
+1. [ ] `23` Planejar API própria para substituir API externa.
+2. [ ] `20` Organizar arquitetura de pastas e aliases.
+3. [ ] `18` Migrar estado global de Context API para Zustand.
+4. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+5. [ ] `14` Escolher e migrar para CSS-in-JS.
+6. [ ] `17` Adicionar themes de cores e tokens de design.
+7. [ ] `09` Adicionar cobertura inicial de testes.
+8. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+9. [ ] `11` Melhorar README para portfólio.
 
 ## Priority Low
 
@@ -55,8 +55,7 @@ Motivo: feed, modal e estatísticas já cobrem as principais telas de produto. F
 
 Produto:
 
-1. `22` Error Boundary e feedback global.
-2. `12` Polimento de UI, responsividade e acessibilidade.
+1. `12` Polimento de UI, responsividade e acessibilidade.
 
 Arquitetura:
 

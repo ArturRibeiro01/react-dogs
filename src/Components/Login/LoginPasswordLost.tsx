@@ -6,6 +6,7 @@ import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import Input from '../Forms/Input';
 import Error from '../Helper/Error';
+import StatusMessage from '../Helper/StatusMessage';
 import styles from './LoginForm.module.css';
 
 const LoginPasswordLost = () => {
@@ -48,7 +49,7 @@ const LoginPasswordLost = () => {
           <Button>Enviar Email</Button>
         )}
         <Error error={error} />
-        {success && <p className={styles.success}>{success}</p>}
+        {success && <StatusMessage variant="success">{success}</StatusMessage>}
       </form>
       <Link className={styles.perdeu} to="/login">
         Voltar para login

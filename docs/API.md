@@ -303,6 +303,33 @@ Campos:
 - `peso`
 - `idade`
 
+## Stats
+
+### Estatísticas Do Usuário
+
+```txt
+GET /api/stats
+```
+
+Headers:
+
+```txt
+Authorization: Bearer <token>
+```
+
+Resposta esperada:
+
+```json
+[
+  {
+    "title": "Joel",
+    "acessos": 261541
+  }
+]
+```
+
+Esse endpoint é usado na rota `/conta/estatisticas`. No modo demo/mock, os dados são calculados a partir das fotos do usuário demo.
+
 ## Futuro Backend Próprio
 
 Quando este app passar a consumir uma API própria, o backend deve preservar ou adaptar os contratos acima.

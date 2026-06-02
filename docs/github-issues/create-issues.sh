@@ -36,12 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Implementar tela de estatisticas do usuario" \
-  "docs/github-issues/07-complete-user-stats.md" \
-  "feature" \
-  "priority-medium"
-
-create_issue \
   "Planejar API propria para substituir API externa" \
   "docs/github-issues/23-plan-own-backend-api.md" \
   "tech-debt" \

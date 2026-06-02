@@ -77,6 +77,7 @@ src/
 Pontos importantes:
 
 - `UserContext.tsx` centraliza login, logout, usuário logado e validação de token.
+- A validação automática do token restaura a sessão sem redirecionar, preservando rotas internas como `/conta/estatisticas`.
 - `api.ts` centraliza endpoints e tratamento base de erro.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `useForm.ts` mantém validação simples enquanto a issue de React Hook Form/Zod não acontece.
@@ -92,7 +93,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-07 - Implementar tela de estatísticas do usuário
+22 - Adicionar Error Boundary e feedback global
 ```
 
 ## Ao Finalizar Uma Issue

@@ -23,12 +23,12 @@ docs/github-issues/PRIORITY.md
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `05` Implementar modal de detalhes da foto.
+- `07` Implementar tela de estatísticas do usuário.
 
 ## Issues Pendentes
 
 Produto:
 
-- `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
 - `12` Polir UI, responsividade e acessibilidade.
 
@@ -50,10 +50,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-07 - Implementar tela de estatísticas do usuário
+22 - Adicionar Error Boundary e feedback global
 ```
 
-Motivo: o modal de detalhes já completa a navegação principal do feed. A tela de estatísticas fecha a próxima área visível do app autenticado.
+Motivo: feed, modal e estatísticas já cobrem as áreas principais do produto. Feedback global reduz estados quebrados e melhora a percepção de qualidade.
 
 ## Como Publicar No GitHub
 
@@ -72,7 +72,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Implementar tela de estatisticas do usuario" --body-file docs/github-issues/07-complete-user-stats.md --label feature --label priority-medium
+gh issue create --title "Adicionar Error Boundary e feedback global" --body-file docs/github-issues/22-add-error-boundary-and-global-feedback.md --label tech-debt --label ux --label priority-medium
 ```
 
 ## Labels Usadas
@@ -103,7 +103,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Completar produto: estatísticas, feedback global e acessibilidade.
+1. Completar produto: feedback global e acessibilidade.
 2. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
 3. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
 

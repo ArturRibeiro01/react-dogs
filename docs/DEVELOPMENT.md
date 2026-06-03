@@ -22,6 +22,7 @@ Antes de abrir PR:
 
 ```bash
 yarn typecheck
+yarn test
 yarn build
 ```
 
@@ -113,7 +114,6 @@ Próxima issue recomendada:
 
 ## Pendências Técnicas Conhecidas
 
-- `yarn test` ainda é placeholder.
 - O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
 - CSS ainda usa CSS Modules e CSS global.

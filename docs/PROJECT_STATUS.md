@@ -19,6 +19,9 @@ Todas as issues de produto planejadas para esta fase foram cobertas localmente. 
 - Zustand `^5.0.14`
 - React Hook Form `^7.77.0`
 - Zod `^4.4.3`
+- Vitest `^2.1.9`
+- jsdom `^24.1.3`
+- Testing Library
 - Yarn Classic
 
 ## Ambiente
@@ -62,6 +65,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Formulários migrados para React Hook Form com validação por Zod.
 - Hook próprio `useForm` removido.
 - Schemas de formulário centralizados em `src/schemas/forms.ts`.
+- Cobertura inicial de testes configurada com Vitest, jsdom e Testing Library.
+- Testes adicionados para schemas de formulário, `useFetch`, rota protegida e fluxo básico de login.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -111,6 +116,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
+- `09` Adicionar cobertura inicial de testes.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -133,7 +139,6 @@ Arquitetura:
 
 Qualidade:
 
-- Configurar testes reais.
 - Adicionar scripts de qualidade com Husky e lint-staged.
 - Melhorar README final de portfólio com screenshots.
 
@@ -143,6 +148,7 @@ Comandos que devem continuar passando:
 
 ```bash
 yarn typecheck
+yarn test
 yarn build
 yarn check:api
 ```
@@ -150,6 +156,7 @@ yarn check:api
 Últimas validações feitas durante a modernização:
 
 - `yarn typecheck`: passou.
+- `yarn test`: passou.
 - `yarn build`: passou.
 - `yarn check:api`: endpoint público de fotos funcional em 2026-05-30.
 - Endpoints de senha `/api/password/lost` e `/api/password/reset`: confirmados em 2026-05-31.

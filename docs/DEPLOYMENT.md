@@ -32,7 +32,7 @@ Eventos:
 
 Jobs:
 
-- `ci`: instala dependências, roda typecheck, teste placeholder e build.
+- `ci`: instala dependências, roda typecheck, testes automatizados e build.
 - `deploy-pages`: em push para `develop` ou `main`, monta o artifact do GitHub Pages e publica.
 
 ## Como O Deploy Mantém Dois Ambientes
@@ -143,6 +143,6 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 - GitHub Pages oferece um site por repositório; os dois ambientes usam subpaths no mesmo site.
 - O ambiente publicado depende da branch pareada existir e conseguir buildar.
 - Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
-- `yarn test` ainda é placeholder; quando testes reais forem adicionados, o CI já está preparado para falhar em caso de regressão.
+- `yarn test` roda a suíte automatizada com Vitest; o CI falha em caso de regressão coberta.
 - A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.
 - O workflow força JavaScript Actions para Node 24 com `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` para antecipar a migração do GitHub Actions. Alguns avisos podem continuar aparecendo enquanto actions oficiais ainda declararem runtime Node 20 internamente.

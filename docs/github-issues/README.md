@@ -30,6 +30,7 @@ docs/github-issues/PRIORITY.md
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
+- `09` Adicionar cobertura inicial de testes.
 
 ## Issues Pendentes
 
@@ -40,7 +41,6 @@ Arquitetura:
 
 Qualidade e portfólio:
 
-- `09` Adicionar cobertura inicial de testes.
 - `15` Adicionar scripts de qualidade com Husky e lint-staged.
 - `11` Melhorar README para portfólio.
 
@@ -100,8 +100,8 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
-2. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
+1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, testes, CSS-in-JS e themes.
+2. Fechar qualidade/portfólio: Husky/lint-staged e README.
 
 ## Observações
 

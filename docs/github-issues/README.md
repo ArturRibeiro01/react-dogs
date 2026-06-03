@@ -28,12 +28,12 @@ docs/github-issues/PRIORITY.md
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
+- `18` Migrar estado global de Context API para Zustand.
 
 ## Issues Pendentes
 
 Arquitetura:
 
-- `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
@@ -47,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+19 - Padronizar formulários com React Hook Form e Zod
 ```
 
-Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
+Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara regras mais consistentes.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Migrar estado global de Context API para Zustand" --body-file docs/github-issues/18-migrate-context-api-to-zustand.md --label tech-debt --label priority-medium
+gh issue create --title "Padronizar formularios com React Hook Form e Zod" --body-file docs/github-issues/19-standardize-forms-with-react-hook-form-zod.md --label tech-debt --label feature --label priority-medium
 ```
 
 ## Labels Usadas

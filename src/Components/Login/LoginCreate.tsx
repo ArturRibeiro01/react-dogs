@@ -1,7 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { userApi } from '@/api';
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
@@ -12,8 +13,9 @@ const LoginCreate = () => {
     const username = useForm();
     const email = useForm('email');
     const password = useForm('password');
+    const navigate = useNavigate();
 
-    const {userLogin} = React.useContext(UserContext);
+    const userLogin = useAuthStore((state) => state.userLogin);
     const {loading, error, request} = useFetch();
 
 
@@ -26,7 +28,10 @@ const LoginCreate = () => {
             email: email.value,
             password: password.value
         }));
-        if(response && response.ok) userLogin(username.value, password.value);
+        if(response && response.ok) {
+            const success = await userLogin(username.value, password.value);
+            if (success) navigate('/conta');
+        }
     }
 
     return (
@@ -45,6 +50,6 @@ const LoginCreate = () => {
             </form>
         </section>
     )
-}
+};
 
-export default LoginCreate
+export default LoginCreate;

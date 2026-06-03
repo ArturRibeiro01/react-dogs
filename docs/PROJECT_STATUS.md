@@ -6,7 +6,7 @@ Atualizado em 2026-06-02.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado e os aliases/imports do frontend foram organizados. A próxima etapa recomendada é migrar o estado global para Zustand.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados e o estado global de autenticação foi migrado para Zustand. A próxima etapa recomendada é padronizar formulários com React Hook Form e Zod.
 
 ## Stack Atual
 
@@ -16,6 +16,7 @@ Todas as issues de produto planejadas para esta fase foram cobertas localmente. 
 - TypeScript `^6.0.3`
 - Vite `^6.4.2`
 - Vite Plugin SVGR `^5.2.0`
+- Zustand `^5.0.14`
 - Yarn Classic
 
 ## Ambiente
@@ -54,6 +55,8 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
 - Aliases de frontend configurados em Vite e TypeScript.
 - Convenção de imports documentada em `docs/ARCHITECTURE.md`.
+- Estado global de autenticação migrado de Context API para Zustand.
+- `UserContext` removido.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -101,6 +104,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
+- `18` Migrar estado global de Context API para Zustand.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -109,16 +113,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+19 - Padronizar formulários com React Hook Form e Zod
 ```
 
-Motivo: produto, planejamento de backend e aliases já estão cobertos. Migrar o estado global prepara a base para fluxos autenticados mais previsíveis.
+Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara os fluxos para regras mais consistentes.
 
 ## Ainda Pendente
 
 Arquitetura:
 
-- Migrar estado global de Context API para Zustand.
 - Padronizar formulários com React Hook Form e Zod.
 - Avaliar CSS-in-JS.
 - Adicionar tokens/themes.

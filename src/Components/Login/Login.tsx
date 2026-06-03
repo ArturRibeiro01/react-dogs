@@ -1,7 +1,6 @@
-import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
 
 import styles from './Login.module.css';
 import LoginCreate from './LoginCreate';
@@ -10,10 +9,9 @@ import LoginPasswordLost from './LoginPasswordLost';
 import LoginPasswordReset from './LoginPasswordReset';
 
 const Login = () => {
+    const login = useAuthStore((state) => state.login);
 
-    const {login} = React.useContext(UserContext);
-
-    if(login === true) return <Navigate to="/conta"/>
+    if(login === true) return <Navigate to="/conta" />
     return (
         <section className={styles.login}>
             <div className={styles.forms}>

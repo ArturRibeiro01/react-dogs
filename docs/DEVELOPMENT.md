@@ -64,7 +64,7 @@ feature/* -> develop -> main
 src/
   api.ts
   types.ts
-  UserContext.tsx
+  stores/
   Components/
     Feed/
     Forms/
@@ -76,7 +76,7 @@ src/
 
 Pontos importantes:
 
-- `UserContext.tsx` centraliza login, logout, usuário logado e validação de token.
+- `stores/authStore.ts` centraliza login, logout, usuário logado e validação de token com Zustand.
 - A validação automática do token restaura a sessão sem redirecionar, preservando rotas internas como `/conta/estatisticas`.
 - `api.ts` centraliza endpoints e tratamento base de erro.
 - `ErrorBoundary.tsx` captura falhas inesperadas de renderização para evitar tela branca.
@@ -97,7 +97,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+19 - Padronizar formulários com React Hook Form e Zod
 ```
 
 ## Ao Finalizar Uma Issue

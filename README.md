@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+19 - Padronizar formulários com React Hook Form e Zod
 ```
 
 O backlog pendente fica em:
@@ -46,6 +46,7 @@ docs/github-issues/
 - TypeScript `^6.0.3`
 - Vite `^6.4.2`
 - Vite SVGR para SVGs como componentes React
+- Zustand para estado global de autenticação
 - Yarn Classic
 
 ## Requisitos
@@ -195,8 +196,6 @@ docs/API.md
 ## Funcionalidades Pendentes
 
 - Testes automatizados.
-- Organização de arquitetura e aliases.
-- Zustand.
 - React Hook Form + Zod.
 - CSS-in-JS e tokens/themes.
 
@@ -211,7 +210,7 @@ src/
   index.tsx
   api.ts
   types.ts
-  UserContext.tsx
+  stores/
   App.css
   Assets/
   Components/
@@ -234,6 +233,7 @@ Convenções atuais:
 
 - Componentes React usam `.tsx`.
 - Hooks, helpers e cliente de API usam `.ts`.
+- Estado global de autenticação fica em `src/stores/authStore.ts`.
 - CSS ainda usa CSS global e CSS Modules.
 - SVGs usados como componentes React são importados com `?react`.
 - O acesso à API deve passar por `src/api.ts`.

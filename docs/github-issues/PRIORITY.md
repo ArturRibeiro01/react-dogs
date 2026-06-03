@@ -23,38 +23,37 @@ Concluídas localmente:
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
+- `18` Migrar estado global de Context API para Zustand.
 
 Pendentes:
 
-- Arquitetura/back-end: `18`, `19`, `14`, `17`.
+- Arquitetura/back-end: `19`, `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+19 - Padronizar formulários com React Hook Form e Zod
 ```
 
-Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
+Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara regras mais consistentes.
 
 ## Priority Medium
 
-1. [ ] `18` Migrar estado global de Context API para Zustand.
-2. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-3. [ ] `14` Escolher e migrar para CSS-in-JS.
-4. [ ] `17` Adicionar themes de cores e tokens de design.
-5. [ ] `09` Adicionar cobertura inicial de testes.
-6. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-7. [ ] `11` Melhorar README para portfólio.
+1. [ ] `19` Padronizar formulários com React Hook Form e Zod.
+2. [ ] `14` Escolher e migrar para CSS-in-JS.
+3. [ ] `17` Adicionar themes de cores e tokens de design.
+4. [ ] `09` Adicionar cobertura inicial de testes.
+5. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+6. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Arquitetura:
 
-1. `18` Zustand.
-2. `19` React Hook Form e Zod.
-3. `14` CSS-in-JS.
-4. `17` Themes e tokens.
+1. `19` React Hook Form e Zod.
+2. `14` CSS-in-JS.
+3. `17` Themes e tokens.
 
 Qualidade:
 

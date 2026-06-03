@@ -1,7 +1,6 @@
-import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
 import Feed from '@components/Feed/Feed';
 
 import UserHeader from './UserHeader';
@@ -9,7 +8,7 @@ import UserPhotoPost from './UserPhotoPost';
 import UserStats from './UserStats';
 
 const User = () => {
-    const {data} = React.useContext(UserContext);
+    const data = useAuthStore((state) => state.data);
     const userId = data?.id ?? 0;
 
     return (
@@ -23,6 +22,6 @@ const User = () => {
             </Routes>
         </section>
     )
-}
+};
 
-export default User
+export default User;

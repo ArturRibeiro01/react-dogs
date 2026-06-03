@@ -9,7 +9,8 @@ src/
   api.ts
   mockApi.ts
   types.ts
-  UserContext.tsx
+  stores/
+    authStore.ts
   Assets/
   Components/
     Feed/
@@ -59,7 +60,7 @@ Exemplo:
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
 import useForm from '@hooks/useForm';
 import type { User } from '@/types';

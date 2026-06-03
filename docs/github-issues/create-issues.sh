@@ -36,12 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Migrar estado global de Context API para Zustand" \
-  "docs/github-issues/18-migrate-context-api-to-zustand.md" \
-  "tech-debt" \
-  "priority-medium"
-
-create_issue \
   "Padronizar formularios com React Hook Form e Zod" \
   "docs/github-issues/19-standardize-forms-with-react-hook-form-zod.md" \
   "tech-debt" \

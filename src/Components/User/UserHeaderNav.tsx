@@ -1,23 +1,29 @@
 import React from 'react';
-import { NavLink, useLocation, type NavLinkRenderProps } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, type NavLinkRenderProps } from 'react-router-dom';
 
+import { useAuthStore } from '@/stores/authStore';
 import AdicionarFoto from '@assets/adicionar.svg?react';
 import Estatisticas from '@assets/estatisticas.svg?react';
 import MinhasFotos from '@assets/feed.svg?react';
 import Sair from '@assets/sair.svg?react';
-import { UserContext } from '@/UserContext';
 import { useMedia } from '@hooks/useMedia';
 
 import styles from './UserHeaderNav.module.css';
 
 
 const UserHeaderNav = () => {
-    const {userLogout} = React.useContext(UserContext);
+    const userLogout = useAuthStore((state) => state.userLogout);
     const mobile = useMedia('(max-width: 40rem)');
     const [mobileMenu, setMobileMenu] = React.useState(false);
+    const navigate = useNavigate();
     const {pathname} = useLocation();
     const getActiveClassName = ({isActive}: NavLinkRenderProps) => isActive ? styles.active : undefined;
     const navId = 'user-account-navigation';
+
+    function handleLogout() {
+        userLogout();
+        navigate('/login');
+    }
 
     
     React.useEffect(() => {
@@ -61,7 +67,7 @@ const UserHeaderNav = () => {
                 {mobile && 'Adicionar Foto'}
             </NavLink>
 
-            <button onClick ={userLogout} aria-label="Sair da conta">
+            <button onClick={handleLogout} aria-label="Sair da conta">
                 <Sair aria-hidden="true"/>
                 {mobile && 'Sair'}
             </button>

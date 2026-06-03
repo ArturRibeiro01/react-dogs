@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
 import stylesBtn from '@components/Forms/Button.module.css';
 import Input from '@components/Forms/Input';
@@ -14,13 +14,17 @@ const LoginForm = () => {
 
     const username = useForm('');
     const password = useForm('');
-    const {userLogin, error, loading } = React.useContext(UserContext);
+    const navigate = useNavigate();
+    const error = useAuthStore((state) => state.error);
+    const loading = useAuthStore((state) => state.loading);
+    const userLogin = useAuthStore((state) => state.userLogin);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-        event.preventDefault()
+        event.preventDefault();
 
         if (username.validate() && password.validate()) {
-            userLogin (username.value, password.value)
+            const success = await userLogin(username.value, password.value);
+            if (success) navigate('/conta');
         }
     }
     return (
@@ -50,4 +54,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm
+export default LoginForm;

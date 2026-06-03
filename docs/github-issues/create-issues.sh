@@ -50,12 +50,6 @@ create_issue \
   "priority-medium"
 
 create_issue \
-  "Adicionar cobertura inicial de testes" \
-  "docs/github-issues/09-add-tests.md" \
-  "testing" \
-  "priority-medium"
-
-create_issue \
   "Adicionar scripts de qualidade com Husky e lint-staged" \
   "docs/github-issues/15-add-quality-scripts-husky-lint-staged.md" \
   "tech-debt" \

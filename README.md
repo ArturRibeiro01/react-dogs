@@ -48,6 +48,7 @@ docs/github-issues/
 - Vite SVGR para SVGs como componentes React
 - Zustand para estado global de autenticação
 - React Hook Form e Zod para formulários e validação
+- Vitest, jsdom e Testing Library para testes automatizados
 - Yarn Classic
 
 ## Requisitos
@@ -125,7 +126,13 @@ Valida se a API pública responde com uma lista de fotos.
 yarn test
 ```
 
-Placeholder por enquanto. A configuração real de testes será adicionada em issue própria.
+Executa a suíte automatizada com Vitest.
+
+```bash
+yarn test:watch
+```
+
+Executa Vitest em modo watch para desenvolvimento.
 
 ## Configuração
 
@@ -196,7 +203,6 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- Testes automatizados.
 - CSS-in-JS e tokens/themes.
 
 ## Estrutura
@@ -286,6 +292,7 @@ Já foi feito:
 - Uso de Yarn como package manager único.
 - Feed real com dados da API.
 - Formulários migrados para React Hook Form e Zod.
+- Cobertura inicial de testes com Vitest, jsdom e Testing Library.
 - CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 

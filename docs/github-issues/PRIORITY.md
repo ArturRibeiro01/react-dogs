@@ -25,11 +25,12 @@ Concluídas localmente:
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
+- `09` Adicionar cobertura inicial de testes.
 
 Pendentes:
 
 - Arquitetura/back-end: `14`, `17`.
-- Qualidade/portfólio: `09`, `15`, `11`.
+- Qualidade/portfólio: `15`, `11`.
 
 ## Próxima Issue Recomendada
 
@@ -43,9 +44,8 @@ Motivo: Zustand e formulários já foram padronizados. A próxima decisão arqui
 
 1. [ ] `14` Escolher e migrar para CSS-in-JS.
 2. [ ] `17` Adicionar themes de cores e tokens de design.
-3. [ ] `09` Adicionar cobertura inicial de testes.
-4. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-5. [ ] `11` Melhorar README para portfólio.
+3. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+4. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
@@ -56,9 +56,8 @@ Arquitetura:
 
 Qualidade:
 
-1. `09` Testes.
-2. `15` Husky e lint-staged.
-3. `11` README final de portfólio.
+1. `15` Husky e lint-staged.
+2. `11` README final de portfólio.
 
 ## Critério Para Reordenar
 

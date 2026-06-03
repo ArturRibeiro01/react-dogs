@@ -8,7 +8,7 @@ Este repositório começou como um projeto de estudo em React e está sendo mode
 
 ## Status
 
-O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com validação básica de formulários, Error Boundary, feedback acessível, polimento de UI, modo demo/mock e configuração de API por ambiente.
+O app já foi migrado de Create React App para Vite, atualizado para React 19, React Router 6 estável e TypeScript. O feed público, o feed da conta, o modal de detalhes e a tela de estatísticas já usam dados reais da API externa da Origamid, com formulários padronizados com React Hook Form e Zod, Error Boundary, feedback acessível, polimento de UI, modo demo/mock e configuração de API por ambiente.
 
 ## Ambientes Publicados
 
@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-19 - Padronizar formulários com React Hook Form e Zod
+14 - Escolher e migrar para CSS-in-JS
 ```
 
 O backlog pendente fica em:
@@ -47,6 +47,7 @@ docs/github-issues/
 - Vite `^6.4.2`
 - Vite SVGR para SVGs como componentes React
 - Zustand para estado global de autenticação
+- React Hook Form e Zod para formulários e validação
 - Yarn Classic
 
 ## Requisitos
@@ -183,7 +184,7 @@ docs/API.md
 - Modal de detalhes da foto.
 - Tela de estatísticas do usuário.
 - Upload de foto autenticado.
-- Validação básica de formulários.
+- Formulários padronizados com React Hook Form e Zod.
 - Error Boundary para falhas inesperadas de renderização.
 - Feedback acessível e padronizado para erro, sucesso e informação.
 - Polimento de UI, foco, rotas vazias, menu mobile e responsividade.
@@ -196,7 +197,6 @@ docs/API.md
 ## Funcionalidades Pendentes
 
 - Testes automatizados.
-- React Hook Form + Zod.
 - CSS-in-JS e tokens/themes.
 
 ## Estrutura
@@ -209,6 +209,7 @@ src/
   App.tsx
   index.tsx
   api.ts
+  schemas/
   types.ts
   stores/
   App.css
@@ -234,6 +235,7 @@ Convenções atuais:
 - Componentes React usam `.tsx`.
 - Hooks, helpers e cliente de API usam `.ts`.
 - Estado global de autenticação fica em `src/stores/authStore.ts`.
+- Schemas de validação de formulários ficam em `src/schemas/`.
 - CSS ainda usa CSS global e CSS Modules.
 - SVGs usados como componentes React são importados com `?react`.
 - O acesso à API deve passar por `src/api.ts`.
@@ -283,7 +285,7 @@ Já foi feito:
 - Remoção de dependências antigas não usadas.
 - Uso de Yarn como package manager único.
 - Feed real com dados da API.
-- Validação básica dos formulários.
+- Formulários migrados para React Hook Form e Zod.
 - CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 

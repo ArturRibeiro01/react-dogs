@@ -63,6 +63,7 @@ feature/* -> develop -> main
 ```txt
 src/
   api.ts
+  schemas/
   types.ts
   stores/
   Components/
@@ -82,7 +83,8 @@ Pontos importantes:
 - `ErrorBoundary.tsx` captura falhas inesperadas de renderização para evitar tela branca.
 - `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
-- `useForm.ts` mantém validação simples enquanto a issue de React Hook Form/Zod não acontece.
+- `schemas/forms.ts` centraliza validações dos formulários com Zod.
+- Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
 
@@ -97,7 +99,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-19 - Padronizar formulários com React Hook Form e Zod
+14 - Escolher e migrar para CSS-in-JS
 ```
 
 ## Ao Finalizar Uma Issue
@@ -114,5 +116,4 @@ Próxima issue recomendada:
 - `yarn test` ainda é placeholder.
 - O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
-- O estado global ainda usa Context API.
-- Formulários ainda usam hook próprio simples.
+- CSS ainda usa CSS Modules e CSS global.

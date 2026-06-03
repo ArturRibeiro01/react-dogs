@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-06-02.
+Atualizado em 2026-06-03.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, polimento inicial de UI/acessibilidade e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados e o estado global de autenticação foi migrado para Zustand. A próxima etapa recomendada é padronizar formulários com React Hook Form e Zod.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand e os formulários foram padronizados com React Hook Form e Zod. A próxima etapa recomendada é avaliar CSS-in-JS.
 
 ## Stack Atual
 
@@ -17,6 +17,8 @@ Todas as issues de produto planejadas para esta fase foram cobertas localmente. 
 - Vite `^6.4.2`
 - Vite Plugin SVGR `^5.2.0`
 - Zustand `^5.0.14`
+- React Hook Form `^7.77.0`
+- Zod `^4.4.3`
 - Yarn Classic
 
 ## Ambiente
@@ -57,6 +59,9 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Convenção de imports documentada em `docs/ARCHITECTURE.md`.
 - Estado global de autenticação migrado de Context API para Zustand.
 - `UserContext` removido.
+- Formulários migrados para React Hook Form com validação por Zod.
+- Hook próprio `useForm` removido.
+- Schemas de formulário centralizados em `src/schemas/forms.ts`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -105,6 +110,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
+- `19` Padronizar formulários com React Hook Form e Zod.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -113,16 +119,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-19 - Padronizar formulários com React Hook Form e Zod
+14 - Escolher e migrar para CSS-in-JS
 ```
 
-Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara os fluxos para regras mais consistentes.
+Motivo: os formulários já foram padronizados com React Hook Form e Zod. A próxima modernização arquitetural é decidir se o projeto segue com CSS Modules ou migra para uma solução CSS-in-JS.
 
 ## Ainda Pendente
 
 Arquitetura:
 
-- Padronizar formulários com React Hook Form e Zod.
 - Avaliar CSS-in-JS.
 - Adicionar tokens/themes.
 

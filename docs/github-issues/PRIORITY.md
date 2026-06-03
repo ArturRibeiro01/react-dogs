@@ -24,36 +24,35 @@ Concluídas localmente:
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
+- `19` Padronizar formulários com React Hook Form e Zod.
 
 Pendentes:
 
-- Arquitetura/back-end: `19`, `14`, `17`.
+- Arquitetura/back-end: `14`, `17`.
 - Qualidade/portfólio: `09`, `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-19 - Padronizar formulários com React Hook Form e Zod
+14 - Escolher e migrar para CSS-in-JS
 ```
 
-Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara regras mais consistentes.
+Motivo: Zustand e formulários já foram padronizados. A próxima decisão arquitetural é escolher se a camada visual continua em CSS Modules ou migra para CSS-in-JS.
 
 ## Priority Medium
 
-1. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-2. [ ] `14` Escolher e migrar para CSS-in-JS.
-3. [ ] `17` Adicionar themes de cores e tokens de design.
-4. [ ] `09` Adicionar cobertura inicial de testes.
-5. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-6. [ ] `11` Melhorar README para portfólio.
+1. [ ] `14` Escolher e migrar para CSS-in-JS.
+2. [ ] `17` Adicionar themes de cores e tokens de design.
+3. [ ] `09` Adicionar cobertura inicial de testes.
+4. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+5. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Arquitetura:
 
-1. `19` React Hook Form e Zod.
-2. `14` CSS-in-JS.
-3. `17` Themes e tokens.
+1. `14` CSS-in-JS.
+2. `17` Themes e tokens.
 
 Qualidade:
 

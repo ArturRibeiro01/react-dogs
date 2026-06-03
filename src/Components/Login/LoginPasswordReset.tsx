@@ -1,38 +1,46 @@
 import React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { passwordApi } from '@/api';
+import { passwordResetSchema, type PasswordResetFormData } from '@/schemas/forms';
 import Button from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 import StatusMessage from '@components/Helper/StatusMessage';
 import useFetch from '@hooks/useFetch';
-import useForm from '@hooks/useForm';
 
 import styles from './LoginForm.module.css';
 
 const LoginPasswordReset = () => {
-  const password = useForm('password');
   const { error, loading, request } = useFetch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [success, setSuccess] = React.useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PasswordResetFormData>({
+    resolver: zodResolver(passwordResetSchema),
+    mode: 'onBlur',
+  });
 
   const key = searchParams.get('key');
   const login = searchParams.get('login');
   const invalidUrl = !key || !login;
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function onSubmit({ password }: PasswordResetFormData) {
     setSuccess(null);
 
-    if (invalidUrl || !password.validate()) return;
+    if (!login || !key) return;
 
     const { response } = await request(() =>
       passwordApi.reset({
         login,
         key,
-        password: password.value,
+        password,
       }),
     );
 
@@ -54,12 +62,12 @@ const LoginPasswordReset = () => {
         </>
       ) : (
         <>
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
             <Input
               label="Nova senha"
               type="password"
-              name="password"
-              {...password}
+              error={errors.password?.message}
+              {...register('password')}
             />
             {loading ? (
               <Button disabled>Redefinindo...</Button>

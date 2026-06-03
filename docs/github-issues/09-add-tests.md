@@ -8,7 +8,7 @@ Adicionar cobertura inicial de testes nos pontos de maior risco.
 
 ## Escopo
 
-- Testar `useForm`.
+- Testar schemas de formulario em `src/schemas/forms.ts`.
 - Testar `useFetch` com fetch mockado.
 - Testar login form em cenarios basicos.
 - Testar comportamento de rota protegida.
@@ -17,6 +17,5 @@ Adicionar cobertura inicial de testes nos pontos de maior risco.
 ## Criterios De Aceite
 
 - Testes rodam localmente.
-- Hooks principais tem cobertura minima.
+- Hooks e validacoes principais tem cobertura minima.
 - Falhas de login e validacao sao verificadas.
-

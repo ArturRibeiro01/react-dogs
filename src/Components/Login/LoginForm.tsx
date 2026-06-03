@@ -1,38 +1,52 @@
 import React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { loginSchema, type LoginFormData } from '@/schemas/forms';
 import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
 import stylesBtn from '@components/Forms/Button.module.css';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
-import useForm from '@hooks/useForm';
 
 import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
-
-    const username = useForm('');
-    const password = useForm('');
     const navigate = useNavigate();
     const error = useAuthStore((state) => state.error);
     const loading = useAuthStore((state) => state.loading);
     const userLogin = useAuthStore((state) => state.userLogin);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+        mode: 'onBlur',
+    });
 
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-        event.preventDefault();
-
-        if (username.validate() && password.validate()) {
-            const success = await userLogin(username.value, password.value);
-            if (success) navigate('/conta');
-        }
+    async function onSubmit({ username, password }: LoginFormData) {
+        const success = await userLogin(username, password);
+        if (success) navigate('/conta');
     }
+
     return (
         <section className="animeLeft">
             <h1 className="title">Login</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <Input label="Usuário" type="text" name="username" {...username}/>
-                <Input label="Senha" type="password" name="password" {...password} />
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+                <Input
+                    label="Usuário"
+                    type="text"
+                    error={errors.username?.message}
+                    {...register('username')}
+                />
+                <Input
+                    label="Senha"
+                    type="password"
+                    error={errors.password?.message}
+                    {...register('password')}
+                />
                 {loading ? (
                     <Button disabled>Carregando...</Button>
                 ) : (

@@ -29,12 +29,12 @@ docs/github-issues/PRIORITY.md
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
 - `18` Migrar estado global de Context API para Zustand.
+- `19` Padronizar formulários com React Hook Form e Zod.
 
 ## Issues Pendentes
 
 Arquitetura:
 
-- `19` Padronizar formulários com React Hook Form e Zod.
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
 
@@ -47,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-19 - Padronizar formulários com React Hook Form e Zod
+14 - Escolher e migrar para CSS-in-JS
 ```
 
-Motivo: estado global já foi migrado para Zustand. Padronizar formulários reduz duplicação de validação e prepara regras mais consistentes.
+Motivo: Zustand e formulários já foram padronizados. A próxima decisão arquitetural é escolher se a camada visual continua em CSS Modules ou migra para CSS-in-JS.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Padronizar formularios com React Hook Form e Zod" --body-file docs/github-issues/19-standardize-forms-with-react-hook-form-zod.md --label tech-debt --label feature --label priority-medium
+gh issue create --title "Escolher e migrar para CSS-in-JS" --body-file docs/github-issues/14-choose-and-migrate-css-in-js.md --label tech-debt --label ux --label priority-medium
 ```
 
 ## Labels Usadas

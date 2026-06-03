@@ -36,13 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Padronizar formularios com React Hook Form e Zod" \
-  "docs/github-issues/19-standardize-forms-with-react-hook-form-zod.md" \
-  "tech-debt" \
-  "feature" \
-  "priority-medium"
-
-create_issue \
   "Escolher e migrar para CSS-in-JS" \
   "docs/github-issues/14-choose-and-migrate-css-in-js.md" \
   "tech-debt" \

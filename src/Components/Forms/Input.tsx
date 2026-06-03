@@ -2,25 +2,22 @@ import React from 'react';
 
 import styles from './Input.module.css';
 
-type InputProps = {
+type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
     label: string;
     type: React.HTMLInputTypeAttribute;
     name: string;
-    value: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-    error: string | null;
-    onBlur: React.FocusEventHandler<HTMLInputElement>;
+    error?: string | null;
 };
 
 const Input = ({
     label, 
     type, 
     name,
-    value,
-    onChange,
     error,
-    onBlur,
+    ...props
     }: InputProps) => {
+    const errorId = `${name}-error`;
+
     return (
         <div className={styles.wrapper}>
             <label htmlFor={name} className={styles.label} >{label}</label>
@@ -28,12 +25,16 @@ const Input = ({
                 id={name} 
                 name={name} 
                 className={styles.input} 
-                type={type} 
-                value={value} 
-                onChange={onChange}
-                onBlur={onBlur}
+                type={type}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? errorId : undefined}
+                {...props}
             />
-            {error && <p className={styles.error}>{error}</p>}
+            {error && (
+                <p className={styles.error} id={errorId} role="alert">
+                    {error}
+                </p>
+            )}
         </div>
     )
 }

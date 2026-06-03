@@ -8,6 +8,7 @@ Este documento registra a organização atual do frontend Dogs e a convenção d
 src/
   api.ts
   mockApi.ts
+  schemas/
   types.ts
   stores/
     authStore.ts
@@ -62,7 +63,6 @@ import { Link } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
-import useForm from '@hooks/useForm';
 import type { User } from '@/types';
 
 import styles from './Example.module.css';

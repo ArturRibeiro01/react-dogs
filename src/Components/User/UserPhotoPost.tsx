@@ -1,13 +1,15 @@
 import React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { photoApi, tokenStorage } from '@/api';
+import { photoPostSchema, type PhotoPostFormData } from '@/schemas/forms';
+import type { Photo } from '@/types';
 import Button from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 import useFetch from '@hooks/useFetch';
-import useForm from '@hooks/useForm';
-import type { Photo } from '@/types';
 
 import styles from './UserPhotoPost.module.css';
 
@@ -17,9 +19,14 @@ type PhotoUploadState = {
 };
 
 const UserPhotoPost = () => {
-    const nome = useForm();
-    const peso = useForm('number');
-    const idade = useForm('number');
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<PhotoPostFormData>({
+        resolver: zodResolver(photoPostSchema),
+        mode: 'onBlur',
+    });
     const [img, setImg] = React.useState<PhotoUploadState>({
 
     });
@@ -32,19 +39,18 @@ const UserPhotoPost = () => {
        if(data) navigate('/conta');
     }, [data,navigate]);
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-        event.preventDefault();
+    function onSubmit({ nome, peso, idade }: PhotoPostFormData){
         const file = img.raw;
         const hasImg = Boolean(file);
         setImgError(hasImg ? null : 'Selecione uma imagem.');
 
-        if(!nome.validate() || !peso.validate() || !idade.validate() || !file) return;
+        if(!file) return;
 
         const formData = new FormData();
         formData.append('img', file);
-        formData.append('nome', nome.value);
-        formData.append('peso', peso.value);
-        formData.append('idade', idade.value);
+        formData.append('nome', nome);
+        formData.append('peso', peso);
+        formData.append('idade', idade);
 
         const token = tokenStorage.get();
         request(() => photoApi.create(formData, token));
@@ -74,24 +80,24 @@ const UserPhotoPost = () => {
 
     return (
         <section className={`${styles.photoPost} animeLeft`} >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Input 
                     label="Nome"
                     type="text"
-                    name="nome"
-                    {...nome} 
+                    error={errors.nome?.message}
+                    {...register('nome')}
                 />
                 <Input 
                     label="Peso"
                     type="number"
-                    name="peso"
-                    {...peso}    
+                    error={errors.peso?.message}
+                    {...register('peso')}
                 />
                 <Input 
                     label="Idade"
                     type="number"
-                    name="idade"
-                    {...idade}    
+                    error={errors.idade?.message}
+                    {...register('idade')}
                 />
                 <label className={styles.fileLabel} htmlFor="img">
                     Imagem

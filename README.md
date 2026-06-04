@@ -194,6 +194,7 @@ docs/
   API.md
   ARCHITECTURE.md
   BACKEND_API_PLAN.md
+  CODEX_BACKEND_HANDOFF.md
   DOGS_API_SPEC.md
   DEPLOYMENT.md
   DEVELOPMENT.md
@@ -272,6 +273,7 @@ O resultado é uma base mais previsível para evoluir: ainda simples o bastante 
 - `docs/API.md`: contrato da API pública usada hoje e recomendações para backend próprio.
 - `docs/ARCHITECTURE.md`: estrutura atual, aliases e convenção de imports.
 - `docs/BACKEND_API_PLAN.md`: decisão e plano para criar a API própria em outro repositório.
+- `docs/CODEX_BACKEND_HANDOFF.md`: padrão de trabalho, CI, Husky, docs e prompt para iniciar o backend com Codex.
 - `docs/DOGS_API_SPEC.md`: especificação de produto, domínio e contrato sugerido para o backend próprio.
 - `docs/DEPLOYMENT.md`: esteira de CI/CD e GitHub Pages.
 - `docs/DEVELOPMENT.md`: guia para retomar desenvolvimento.

@@ -1,15 +1,14 @@
 import React from 'react';
-import { NavLink, useLocation, useNavigate, type NavLinkRenderProps } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
-import AdicionarFoto from '@assets/adicionar.svg?react';
-import Estatisticas from '@assets/estatisticas.svg?react';
-import MinhasFotos from '@assets/feed.svg?react';
-import Sair from '@assets/sair.svg?react';
+import adicionarFotoUrl from '@assets/adicionar.svg';
+import estatisticasUrl from '@assets/estatisticas.svg';
+import minhasFotosUrl from '@assets/feed.svg';
+import sairUrl from '@assets/sair.svg';
 import { useMedia } from '@hooks/useMedia';
 
-import styles from './UserHeaderNav.module.css';
-
+import { AccountNav, MobileMenuButton, NavIcon } from './UserHeaderNav.styles';
 
 const UserHeaderNav = () => {
     const userLogout = useAuthStore((state) => state.userLogout);
@@ -17,7 +16,6 @@ const UserHeaderNav = () => {
     const [mobileMenu, setMobileMenu] = React.useState(false);
     const navigate = useNavigate();
     const {pathname} = useLocation();
-    const getActiveClassName = ({isActive}: NavLinkRenderProps) => isActive ? styles.active : undefined;
     const navId = 'user-account-navigation';
 
     function handleLogout() {
@@ -33,45 +31,41 @@ const UserHeaderNav = () => {
     return (
         <>
         {mobile && (
-            <button 
+            <MobileMenuButton
                 aria-controls={navId}
                 aria-expanded={mobileMenu}
                 aria-label={mobileMenu ? 'Fechar menu da conta' : 'Abrir menu da conta'}
-                className={`
-                    ${styles.mobileButton}
-                    ${ mobileMenu && styles.mobileButtonActive}
-                `}
+                $isOpen={mobileMenu}
                 onClick={()=> setMobileMenu(!mobileMenu)
                 }>
-            </button>
+            </MobileMenuButton>
         )}
-        <nav 
+        <AccountNav
             id={navId}
             aria-label="Navegação da conta"
-            className= {`
-                ${mobile ? styles.navMobile : styles.nav} 
-                ${mobileMenu && styles.navMobileActive}`
-            }>
-            <NavLink to="/conta" end className={getActiveClassName} aria-label="Minhas fotos">
-                <MinhasFotos aria-hidden="true"/>
+            $mobile={mobile}
+            $isOpen={mobileMenu}
+        >
+            <NavLink to="/conta" end aria-label="Minhas fotos">
+                <NavIcon src={minhasFotosUrl} alt="" aria-hidden="true" />
                 {mobile && 'Minhas Fotos'}
             </NavLink>
 
-            <NavLink to="/conta/estatisticas" className={getActiveClassName} aria-label="Estatísticas">
-                <Estatisticas aria-hidden="true"/>
+            <NavLink to="/conta/estatisticas" aria-label="Estatísticas">
+                <NavIcon src={estatisticasUrl} alt="" aria-hidden="true" />
                 {mobile && 'Estatísticas'}
             </NavLink>
 
-            <NavLink to="/conta/postar" className={getActiveClassName} aria-label="Adicionar foto">
-                <AdicionarFoto aria-hidden="true"/>
+            <NavLink to="/conta/postar" aria-label="Adicionar foto">
+                <NavIcon src={adicionarFotoUrl} alt="" aria-hidden="true" />
                 {mobile && 'Adicionar Foto'}
             </NavLink>
 
             <button onClick={handleLogout} aria-label="Sair da conta">
-                <Sair aria-hidden="true"/>
+                <NavIcon src={sairUrl} alt="" aria-hidden="true" />
                 {mobile && 'Sair'}
             </button>
-        </nav>
+        </AccountNav>
         </>
     )
 }

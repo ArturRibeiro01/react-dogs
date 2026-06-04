@@ -56,10 +56,10 @@ feature/* -> develop -> main
 - Chamadas HTTP devem passar por `src/api.ts`.
 - Componentes compartilhados devem ter props tipadas explicitamente.
 - Evite `any`; prefira `unknown` ou tipos de domínio.
-- SVGs usados como componentes React devem ser importados com `?react`.
-- Componentes compartilhados novos devem preferir Emotion com `styled`.
-- Componentes migrados para Emotion devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
-- CSS global e CSS Modules ainda existem durante a migração gradual.
+- SVGs decorativos devem ser importados como URL e renderizados com `img` ou `background`.
+- Componentes devem usar Emotion com `styled`.
+- Componentes compartilhados devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- CSS global fica restrito a reset/base e utilitários em `App.css` e `GlobalStyles`.
 
 ## Arquitetura Atual
 
@@ -89,7 +89,8 @@ Pontos importantes:
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `schemas/forms.ts` centraliza validações dos formulários com Zod.
 - `styles/theme.ts` centraliza tokens do tema claro consumidos pelo Emotion.
-- `styles/GlobalStyles.tsx` expõe tokens como CSS variables para CSS global e CSS Modules remanescentes.
+- `styles/GlobalStyles.tsx` expõe tokens como CSS variables para CSS global.
+- Os estilos de componentes ficam em arquivos próprios `*.styles.ts`.
 - Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
@@ -121,4 +122,3 @@ Próxima issue recomendada:
 
 - O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
-- CSS Modules antigos ainda existem em componentes não migrados.

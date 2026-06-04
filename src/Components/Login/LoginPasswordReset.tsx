@@ -1,7 +1,7 @@
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { passwordApi } from '@/api';
 import { passwordResetSchema, type PasswordResetFormData } from '@/schemas/forms';
@@ -11,7 +11,7 @@ import Error from '@components/Helper/Error';
 import StatusMessage from '@components/Helper/StatusMessage';
 import useFetch from '@hooks/useFetch';
 
-import styles from './LoginForm.module.css';
+import { Form, LostPasswordLink } from './LoginForm.styles';
 
 const LoginPasswordReset = () => {
   const { error, loading, request } = useFetch();
@@ -56,13 +56,13 @@ const LoginPasswordReset = () => {
       {invalidUrl ? (
         <>
           <Error error="Link de redefinição inválido ou incompleto." />
-          <Link className={styles.perdeu} to="/login/perdeu">
+          <LostPasswordLink to="/login/perdeu">
             Solicitar novo link
-          </Link>
+          </LostPasswordLink>
         </>
       ) : (
         <>
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
             <Input
               label="Nova senha"
               type="password"
@@ -76,10 +76,10 @@ const LoginPasswordReset = () => {
             )}
             <Error error={error} />
             {success && <StatusMessage variant="success">{success}</StatusMessage>}
-          </form>
-          <Link className={styles.perdeu} to="/login">
+          </Form>
+          <LostPasswordLink to="/login">
             Voltar para login
-          </Link>
+          </LostPasswordLink>
         </>
       )}
     </section>

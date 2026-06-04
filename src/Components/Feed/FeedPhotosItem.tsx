@@ -1,6 +1,6 @@
 import type { Photo } from '@/types';
 
-import styles from './FeedPhotosItem.module.css';
+import { PhotoButton, PhotoItem, PhotoTitle, Views } from './FeedPhotosItem.styles';
 
 type FeedPhotosItemProps = {
     photo: Photo;
@@ -12,20 +12,19 @@ const FeedPhotosItem = ({photo, onSelect}: FeedPhotosItemProps) => {
     const views = photo.acessos ?? photo.views;
 
     return (
-        <li className={styles.photo}>
-            <button
-                className={styles.button}
+        <PhotoItem>
+            <PhotoButton
                 type="button"
                 onClick={onSelect}
                 aria-label={`Abrir detalhes da foto ${title}`}
             >
                 <img src={photo.src} alt={title} />
-                <span className={styles.views}>
+                <Views data-photo-views="true">
                     {views ?? 0}
-                </span>
-                <span className={styles.title}>{title}</span>
-            </button>
-        </li>
+                </Views>
+                <PhotoTitle>{title}</PhotoTitle>
+            </PhotoButton>
+        </PhotoItem>
     );
 }
 

@@ -49,7 +49,7 @@ docs/github-issues/
 - Zustand para estado global de autenticação
 - React Hook Form e Zod para formulários e validação
 - Emotion para CSS-in-JS com `styled` e tema tipado
-- Tokens globais expostos como CSS variables para CSS Modules remanescentes
+- Tokens globais expostos como CSS variables para base global
 - Vitest, jsdom e Testing Library para testes automatizados
 - Yarn Classic
 
@@ -239,6 +239,7 @@ src/
       Header.styles.ts
       index.ts
     Helper/
+      StatusMessage/
     Login/
     User/
   Hooks/
@@ -258,10 +259,10 @@ Convenções atuais:
 - Schemas de validação de formulários ficam em `src/schemas/`.
 - Tema e tokens iniciais ficam em `src/styles/theme.ts`.
 - Tokens do tema também são expostos como CSS variables em `src/styles/GlobalStyles.tsx`.
-- Componentes compartilhados novos devem preferir Emotion com `styled`.
-- Componentes migrados para Emotion devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
-- CSS global e CSS Modules ainda existem durante a migração gradual.
-- SVGs usados como componentes React são importados com `?react`.
+- Componentes usam Emotion com `styled`.
+- Componentes compartilhados devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- CSS global fica restrito a reset/base e utilitários em `App.css` e `GlobalStyles`.
+- SVGs decorativos são importados como URL e renderizados com `img` ou `background`.
 - O acesso à API deve passar por `src/api.ts`.
 - Tipos compartilhados ficam em `src/types.ts`.
 
@@ -314,7 +315,7 @@ Já foi feito:
 - Decisão de CSS-in-JS feita com Emotion.
 - Button, Input, StatusMessage, Header e Footer migrados para Emotion e organizados com arquivos de estilo próprios.
 - Base de tokens/themes criada com tema claro tipado e CSS variables globais.
-- CSS Modules remanescentes passaram a consumir tokens via `var(--...)` para cores, fontes, raios, sombras e z-index principais.
+- CSS Modules removidos; estilos de componentes migrados para arquivos `*.styles.ts` com Emotion.
 - CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 

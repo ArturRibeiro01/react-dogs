@@ -48,7 +48,7 @@ import { photoApi } from '@/api';
 import type { Photo } from '@/types';
 import Button from '@components/Forms/Button';
 import useFetch from '@hooks/useFetch';
-import Dogs from '@assets/dogs.svg?react';
+import dogsLogoUrl from '@assets/dogs.svg';
 ```
 
 ## Convenção De Imports
@@ -58,8 +58,7 @@ Ordem recomendada:
 1. Bibliotecas externas.
 2. Imports internos por alias.
 3. Tipos internos.
-4. CSS Modules relativos, quando o componente ainda não tiver sido migrado.
-5. Imports relativos próximos, quando forem arquivos irmãos da mesma pasta.
+4. Imports relativos próximos, quando forem arquivos irmãos da mesma pasta.
 
 Exemplo:
 
@@ -72,16 +71,15 @@ import { theme } from '@/styles/theme';
 import Button from '@components/Forms/Button';
 import type { User } from '@/types';
 
-import styles from './Example.module.css';
+import { ExampleShell } from './Example.styles';
 import LocalComponent from './LocalComponent';
 ```
 
 ## Regra Prática
 
 - Use alias para atravessar domínios ou pastas distantes.
-- Prefira Emotion com `styled` em componentes novos ou migrados.
-- Organize componentes migrados para Emotion em pasta própria: `Component.tsx`, `Component.styles.ts` e `index.ts`.
-- Use import relativo para CSS Module do próprio componente enquanto ele ainda não tiver sido migrado.
+- Use Emotion com `styled` para estilos de componentes.
+- Organize componentes compartilhados em pasta própria: `Component.tsx`, `Component.styles.ts` e `index.ts`.
 - Use import relativo para arquivos irmãos dentro da mesma pasta.
 - Evite `../../..` em código novo.
 - Remova imports não usados.
@@ -96,12 +94,11 @@ Decisão:
 - Stitches foi evitado por não estar mais mantido.
 - Inline styles ficam restritos a valores pontuais e realmente dinâmicos.
 - `ThemeProvider` é aplicado no `App` e usa tokens de `src/styles/theme.ts`.
-- `GlobalStyles` expõe os tokens como CSS variables para CSS global e CSS Modules remanescentes.
-- `Button`, `Input`, `StatusMessage`, `Header` e `Footer` já usam Emotion.
-- Os estilos Emotion desses componentes ficam em arquivos próprios `*.styles.ts`.
+- `GlobalStyles` expõe os tokens como CSS variables para CSS global.
+- Todos os CSS Modules foram removidos; estilos de componentes ficam em arquivos próprios `*.styles.ts`.
 - O tema claro inicial centraliza cores, tipografia, espaçamentos, raios, sombras, z-index, breakpoints e transições.
 
-CSS global e CSS Modules permanecem enquanto a migração acontece em etapas, mas devem consumir tokens via `var(--...)` quando possível.
+`App.css` permanece apenas para reset/base global e classes utilitárias históricas, como `.container`, `.title` e `.animeLeft`.
 
 ## Próxima Evolução Possível
 

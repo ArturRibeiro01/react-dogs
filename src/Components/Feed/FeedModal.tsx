@@ -6,7 +6,21 @@ import Loading from '@components/Helper/Loading';
 import useFetch from '@hooks/useFetch';
 import type { PhotoDetails } from '@/types';
 
-import styles from './FeedModal.module.css';
+import {
+    Author,
+    CloseButton,
+    Comments,
+    Details,
+    EmptyComment,
+    ImageWrap,
+    ModalArticle,
+    ModalContent,
+    ModalHeader,
+    ModalTitle,
+    Overlay,
+    StatsList,
+    Views,
+} from './FeedModal.styles';
 
 type FeedModalProps = {
     photoId: number;
@@ -55,21 +69,18 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
     const views = photo?.acessos ?? photo?.views ?? 0;
 
     return (
-        <div
-            className={styles.overlay}
+        <Overlay
             onClick={onClose}
             role="presentation"
         >
-            <article
-                className={styles.modal}
+            <ModalArticle
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="feed-modal-title"
                 onClick={(event) => event.stopPropagation()}
             >
-                <button
+                <CloseButton
                     ref={closeButtonRef}
-                    className={styles.close}
                     type="button"
                     onClick={onClose}
                     aria-label="Fechar detalhes da foto"
@@ -79,21 +90,21 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
                 {loading && <Loading />}
 
                 {photo && (
-                    <div className={styles.content}>
-                        <div className={styles.imageWrap}>
+                    <ModalContent>
+                        <ImageWrap>
                             <img src={photo.src} alt={title} />
-                        </div>
+                        </ImageWrap>
 
-                        <div className={styles.details}>
-                            <header className={styles.header}>
-                                <p className={styles.author}>@{photo.author || 'dogs'}</p>
-                                <h2 id="feed-modal-title" className={styles.title}>
+                        <Details>
+                            <ModalHeader>
+                                <Author>@{photo.author || 'dogs'}</Author>
+                                <ModalTitle id="feed-modal-title">
                                     {title}
-                                </h2>
-                                <span className={styles.views}>{views}</span>
-                            </header>
+                                </ModalTitle>
+                                <Views>{views}</Views>
+                            </ModalHeader>
 
-                            <dl className={styles.stats}>
+                            <StatsList>
                                 <div>
                                     <dt>Peso</dt>
                                     <dd>{photo.peso || 0} kg</dd>
@@ -102,9 +113,9 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
                                     <dt>Idade</dt>
                                     <dd>{photo.idade || 0} anos</dd>
                                 </div>
-                            </dl>
+                            </StatsList>
 
-                            <section className={styles.comments} aria-label="Comentários">
+                            <Comments aria-label="Comentários">
                                 {data.comments.length > 0 ? (
                                     data.comments.map((comment) => (
                                         <p key={comment.comment_ID}>
@@ -113,14 +124,14 @@ const FeedModal = ({photoId, onClose}: FeedModalProps) => {
                                         </p>
                                     ))
                                 ) : (
-                                    <p className={styles.empty}>Nenhum comentário ainda.</p>
+                                    <EmptyComment>Nenhum comentário ainda.</EmptyComment>
                                 )}
-                            </section>
-                        </div>
-                    </div>
+                            </Comments>
+                        </Details>
+                    </ModalContent>
                 )}
-            </article>
-        </div>
+            </ModalArticle>
+        </Overlay>
     )
 }
 

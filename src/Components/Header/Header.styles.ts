@@ -22,6 +22,10 @@ export const Nav = styled.nav`
 
 export const LogoLink = styled(Link)`
   padding: ${({ theme }) => theme.spacing.sm} 0;
+
+  img {
+    display: block;
+  }
 `;
 
 export const AccountLink = styled(Link)`

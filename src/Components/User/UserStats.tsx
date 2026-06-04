@@ -6,7 +6,16 @@ import Loading from '@components/Helper/Loading';
 import useFetch from '@hooks/useFetch';
 import type { PhotoStats } from '@/types';
 
-import styles from './UserStats.module.css';
+import {
+    Chart,
+    ChartRow,
+    EmptyStats,
+    Highlight,
+    RowHeader,
+    StatsShell,
+    Summary,
+    Track,
+} from './UserStats.styles';
 
 const UserStats = () => {
     const {data, loading, error, request} = useFetch<PhotoStats[]>();
@@ -36,19 +45,19 @@ const UserStats = () => {
 
     if (data && stats.length === 0) {
         return (
-            <section className={`${styles.stats} animeLeft`}>
-                <p className={styles.empty}>
+            <StatsShell className="animeLeft">
+                <EmptyStats>
                     Publique sua primeira foto para acompanhar as estatísticas.
-                </p>
-            </section>
+                </EmptyStats>
+            </StatsShell>
         );
     }
 
     if (!data) return null;
 
     return (
-        <section className={`${styles.stats} animeLeft`}>
-            <div className={styles.summary}>
+        <StatsShell className="animeLeft">
+            <Summary>
                 <article>
                     <span>Total de acessos</span>
                     <strong>{totalViews.toLocaleString('pt-BR')}</strong>
@@ -63,29 +72,28 @@ const UserStats = () => {
                     <span>Média por foto</span>
                     <strong>{averageViews.toLocaleString('pt-BR')}</strong>
                 </article>
-            </div>
+            </Summary>
 
             {topPhoto && (
-                <div className={styles.highlight}>
+                <Highlight>
                     <span>Foto mais acessada</span>
                     <strong>{topPhoto.title}</strong>
                     <p>{topPhoto.acessos.toLocaleString('pt-BR')} acessos</p>
-                </div>
+                </Highlight>
             )}
 
-            <div className={styles.chart} aria-label="Acessos por foto">
+            <Chart aria-label="Acessos por foto">
                 {stats.map((photo, index) => {
                     const percentage = Math.max((photo.acessos / maxViews) * 100, 4);
 
                     return (
-                        <article key={`${photo.id || photo.title}-${index}`} className={styles.row}>
-                            <div className={styles.rowHeader}>
+                        <ChartRow key={`${photo.id || photo.title}-${index}`}>
+                            <RowHeader>
                                 <h2>{photo.title}</h2>
                                 <span>{photo.acessos.toLocaleString('pt-BR')}</span>
-                            </div>
+                            </RowHeader>
 
-                            <div
-                                className={styles.track}
+                            <Track
                                 role="meter"
                                 aria-label={`${photo.title}: ${photo.acessos} acessos`}
                                 aria-valuemin={0}
@@ -93,12 +101,12 @@ const UserStats = () => {
                                 aria-valuenow={photo.acessos}
                             >
                                 <span style={{width: `${percentage}%`}} />
-                            </div>
-                        </article>
+                            </Track>
+                        </ChartRow>
                     );
                 })}
-            </div>
-        </section>
+            </Chart>
+        </StatsShell>
     )
 }
 

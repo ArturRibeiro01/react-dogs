@@ -1,5 +1,13 @@
 import React from 'react';
-import styles from './ErrorBoundary.module.css';
+
+import {
+    ErrorActionButton,
+    ErrorActions,
+    ErrorBoundaryContainer,
+    ErrorPanel,
+    ErrorText,
+    ErrorTitle,
+} from './ErrorBoundary.styles';
 
 type ErrorBoundaryProps = {
     children: React.ReactNode;
@@ -36,26 +44,26 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
         if (!this.state.hasError) return this.props.children;
 
         return (
-            <main className={`${styles.container} container`}>
-                <section className={styles.panel} role="alert" aria-live="assertive">
-                    <h1 className={styles.title}>Algo saiu do ar</h1>
-                    <p className={styles.text}>
+            <ErrorBoundaryContainer className="container">
+                <ErrorPanel role="alert" aria-live="assertive">
+                    <ErrorTitle>Algo saiu do ar</ErrorTitle>
+                    <ErrorText>
                         O app encontrou um erro inesperado. Tente novamente ou recarregue a página.
-                    </p>
-                    <div className={styles.actions}>
-                        <button className={styles.button} type="button" onClick={this.reset}>
+                    </ErrorText>
+                    <ErrorActions>
+                        <ErrorActionButton type="button" onClick={this.reset}>
                             Tentar novamente
-                        </button>
-                        <button
-                            className={`${styles.button} ${styles.secondary}`}
+                        </ErrorActionButton>
+                        <ErrorActionButton
+                            $variant="secondary"
                             type="button"
                             onClick={this.reload}
                         >
                             Recarregar página
-                        </button>
-                    </div>
-                </section>
-            </main>
+                        </ErrorActionButton>
+                    </ErrorActions>
+                </ErrorPanel>
+            </ErrorBoundaryContainer>
         );
     }
 }

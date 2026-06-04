@@ -29,6 +29,7 @@ Concluídas localmente:
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
 - `25` Migrar CSS Modules restantes para Emotion.
+- `26` Ampliar cobertura de testes unitários e integração.
 
 Pendentes:
 
@@ -40,7 +41,7 @@ Pendentes:
 15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: a base de estilos agora está consolidada em Emotion. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base de estilos está consolidada e a suíte cobre os principais fluxos críticos. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Priority Medium
 

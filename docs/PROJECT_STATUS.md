@@ -6,7 +6,7 @@ Atualizado em 2026-06-04.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura inicial de testes foi criada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada e os CSS Modules foram removidos. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada e os CSS Modules foram removidos. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
 
 ## Stack Atual
 
@@ -68,6 +68,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Schemas de formulário centralizados em `src/schemas/forms.ts`.
 - Cobertura inicial de testes configurada com Vitest, jsdom e Testing Library.
 - Testes adicionados para schemas de formulário, `useFetch`, rota protegida e fluxo básico de login.
+- Cobertura de testes ampliada para Header, FeedPhotos, FeedPhotosItem, UserHeaderNav, recuperação/redefinição de senha e Error Boundary.
 - CSS-in-JS escolhido: Emotion com `@emotion/styled`.
 - `ThemeProvider` adicionado no app.
 - Tema claro tipado adicionado em `src/styles/theme.ts`.
@@ -129,6 +130,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
 - `25` Migrar CSS Modules restantes para Emotion.
+- `26` Ampliar cobertura de testes unitários e integração.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -140,7 +142,7 @@ Próxima issue recomendada:
 15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: a base de estilos agora está consolidada em Emotion. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base de estilos está consolidada e a suíte cobre os principais fluxos críticos. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Ainda Pendente
 
@@ -163,7 +165,7 @@ yarn check:api
 Últimas validações feitas durante a modernização:
 
 - `yarn typecheck`: passou.
-- `yarn test`: passou.
+- `yarn test`: passou com 10 arquivos e 31 testes.
 - `yarn build`: passou.
 - `yarn check:api`: endpoint público de fotos funcional em 2026-05-30.
 - Endpoints de senha `/api/password/lost` e `/api/password/reset`: confirmados em 2026-05-31.

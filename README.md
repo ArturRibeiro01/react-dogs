@@ -45,7 +45,7 @@ docs/github-issues/
 - React Router `6.30.2`
 - TypeScript `^6.0.3`
 - Vite `^6.4.2`
-- Vite SVGR para SVGs como componentes React
+- Vite SVGR disponível para SVGs, com SVGs decorativos renderizados como assets
 - Zustand para estado global de autenticação
 - React Hook Form e Zod para formulários e validação
 - Emotion para CSS-in-JS com `styled` e tema tipado
@@ -196,6 +196,7 @@ docs/API.md
 - Formulários padronizados com React Hook Form e Zod.
 - Error Boundary para falhas inesperadas de renderização.
 - Feedback acessível e padronizado para erro, sucesso e informação.
+- Cobertura de testes para schemas, hooks, rotas protegidas, login, recuperação de senha, Header, Feed, menu da conta e Error Boundary.
 - Polimento de UI, foco, rotas vazias, menu mobile e responsividade.
 - Estado de loading, erro e lista vazia no feed.
 - Tratamento amigável para falha de rede da API.
@@ -317,6 +318,7 @@ Já foi feito:
 - Base de tokens/themes criada com tema claro tipado e CSS variables globais.
 - CSS Modules removidos; estilos de componentes migrados para arquivos `*.styles.ts` com Emotion.
 - CI/CD com GitHub Actions.
+- Cobertura de testes ampliada para fluxos críticos de UI, navegação e fallback.
 - Documentação inicial de API, status e backlog.
 
 ## Observações

@@ -32,12 +32,9 @@ docs/github-issues/PRIORITY.md
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `09` Adicionar cobertura inicial de testes.
 - `14` Escolher e migrar para CSS-in-JS.
+- `17` Adicionar themes de cores e tokens de design.
 
 ## Issues Pendentes
-
-Arquitetura:
-
-- `17` Adicionar themes de cores e tokens de design.
 
 Qualidade e portfólio:
 
@@ -47,10 +44,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-17 - Adicionar themes de cores e tokens de design
+15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: Emotion já foi escolhido e os primeiros componentes compartilhados foram migrados. Agora faz sentido amadurecer tokens e themes.
+Motivo: a base de tokens/themes já está centralizada. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +66,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Adicionar themes de cores e tokens de design" --body-file docs/github-issues/17-add-color-themes-and-design-tokens.md --label feature --label ux --label priority-medium
+gh issue create --title "Adicionar scripts de qualidade com Husky e lint-staged" --body-file docs/github-issues/15-add-quality-scripts-husky-lint-staged.md --label tech-debt --label priority-medium
 ```
 
 ## Labels Usadas

@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import GlobalStyles from '@/styles/GlobalStyles';
 import { theme } from '@/styles/theme';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
@@ -19,6 +20,7 @@ const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 const App = () => {
   return(
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <BrowserRouter basename={routerBasename}>
         <ErrorBoundary>
           <AuthInitializer />

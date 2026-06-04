@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-17 - Adicionar themes de cores e tokens de design
+15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
 O backlog pendente fica em:
@@ -49,6 +49,7 @@ docs/github-issues/
 - Zustand para estado global de autenticação
 - React Hook Form e Zod para formulários e validação
 - Emotion para CSS-in-JS com `styled` e tema tipado
+- Tokens globais expostos como CSS variables para CSS Modules remanescentes
 - Vitest, jsdom e Testing Library para testes automatizados
 - Yarn Classic
 
@@ -204,7 +205,7 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- Expandir tokens/themes para mais componentes e estados visuais.
+- Automatizar checks locais antes de commit com Husky e lint-staged.
 
 ## Estrutura
 
@@ -256,6 +257,7 @@ Convenções atuais:
 - Estado global de autenticação fica em `src/stores/authStore.ts`.
 - Schemas de validação de formulários ficam em `src/schemas/`.
 - Tema e tokens iniciais ficam em `src/styles/theme.ts`.
+- Tokens do tema também são expostos como CSS variables em `src/styles/GlobalStyles.tsx`.
 - Componentes compartilhados novos devem preferir Emotion com `styled`.
 - Componentes migrados para Emotion devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
 - CSS global e CSS Modules ainda existem durante a migração gradual.
@@ -311,6 +313,8 @@ Já foi feito:
 - Cobertura inicial de testes com Vitest, jsdom e Testing Library.
 - Decisão de CSS-in-JS feita com Emotion.
 - Button, Input, StatusMessage, Header e Footer migrados para Emotion e organizados com arquivos de estilo próprios.
+- Base de tokens/themes criada com tema claro tipado e CSS variables globais.
+- CSS Modules remanescentes passaram a consumir tokens via `var(--...)` para cores, fontes, raios, sombras e z-index principais.
 - CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 

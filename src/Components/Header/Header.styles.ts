@@ -6,8 +6,8 @@ import userIconUrl from '@assets/usuario.svg';
 export const HeaderShell = styled.header`
   width: 100%;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  z-index: ${({ theme }) => theme.zIndices.header};
+  box-shadow: ${({ theme }) => theme.shadows.header};
 `;
 
 export const Nav = styled.nav`

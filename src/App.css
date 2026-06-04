@@ -5,10 +5,8 @@
 }
 body{
     margin: 0px;
-    color: #333;
-    --type-first: Helvetica , Arial , sans-serif;
-    --type-second: 'Spectral', Georgia;
-    font-family: var(--type-first);
+    color: var(--color-text);
+    font-family: var(--font-body);
     /* padding-top: 4rem; */
 }
 h1 , h2, h3, h4, p {
@@ -21,12 +19,12 @@ ul , li {
 }
 a{
     text-decoration: none;
-    color: #333;
+    color: var(--color-text);
 }
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid #fb1;
+    outline: 3px solid var(--color-primary);
     outline-offset: 3px;
 }
 img{
@@ -36,8 +34,8 @@ img{
 button, input {
     display: block;
     font-size: 1rem;
-    font-family: var(--type-first);
-    color: #333;
+    font-family: var(--font-body);
+    color: var(--color-text);
 }
 .container{
     max-width: 50rem;
@@ -48,24 +46,24 @@ button, input {
     margin-top: 4rem;
 }
 .title{
-    font-family: var(--type-second) ;   
+    font-family: var(--font-heading);
     line-height: 1;
     font-size: 3rem;
     margin: 1rem 0;
     position: relative;
-    z-index: 1;
+    z-index: var(--z-base);
 }
 .title::after {
     content: '';
     display: block;
     width: 1.5rem;
     height: 1.5rem;
-    background: #fb1;
+    background: var(--color-primary);
     position: absolute;
     bottom: 5px;
     left: -5px;
-    border-radius: 0.2rem;
-    z-index: -1;
+    border-radius: var(--radius-sm);
+    z-index: var(--z-below);
 }
 .animeLeft{
     opacity: 0;

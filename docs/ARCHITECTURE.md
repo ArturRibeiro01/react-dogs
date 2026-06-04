@@ -96,10 +96,12 @@ Decisão:
 - Stitches foi evitado por não estar mais mantido.
 - Inline styles ficam restritos a valores pontuais e realmente dinâmicos.
 - `ThemeProvider` é aplicado no `App` e usa tokens de `src/styles/theme.ts`.
+- `GlobalStyles` expõe os tokens como CSS variables para CSS global e CSS Modules remanescentes.
 - `Button`, `Input`, `StatusMessage`, `Header` e `Footer` já usam Emotion.
 - Os estilos Emotion desses componentes ficam em arquivos próprios `*.styles.ts`.
+- O tema claro inicial centraliza cores, tipografia, espaçamentos, raios, sombras, z-index, breakpoints e transições.
 
-CSS global e CSS Modules permanecem enquanto a migração acontece em etapas.
+CSS global e CSS Modules permanecem enquanto a migração acontece em etapas, mas devem consumir tokens via `var(--...)` quando possível.
 
 ## Próxima Evolução Possível
 

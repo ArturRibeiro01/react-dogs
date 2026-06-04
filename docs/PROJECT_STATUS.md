@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-06-03.
+Atualizado em 2026-06-04.
 
 ## Resumo
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura inicial de testes foi criada e a estratégia de CSS-in-JS foi definida com Emotion. A próxima etapa recomendada é expandir themes e tokens.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura inicial de testes foi criada, a estratégia de CSS-in-JS foi definida com Emotion e a base de tokens/themes foi centralizada. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
 
 ## Stack Atual
 
@@ -70,7 +70,9 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Testes adicionados para schemas de formulário, `useFetch`, rota protegida e fluxo básico de login.
 - CSS-in-JS escolhido: Emotion com `@emotion/styled`.
 - `ThemeProvider` adicionado no app.
-- Tokens iniciais adicionados em `src/styles/theme.ts`.
+- Tema claro tipado adicionado em `src/styles/theme.ts`.
+- Tokens expostos como CSS variables em `src/styles/GlobalStyles.tsx`.
+- CSS Modules remanescentes passaram a consumir tokens via `var(--...)` para cores, fontes, raios, sombras e z-index principais.
 - Button, Input, StatusMessage, Header e Footer migrados para Emotion.
 - Componentes migrados para Emotion organizados com `Component.tsx`, `Component.styles.ts` e `index.ts`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
@@ -124,6 +126,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `09` Adicionar cobertura inicial de testes.
 - `14` Escolher e migrar para CSS-in-JS.
+- `17` Adicionar themes de cores e tokens de design.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -132,16 +135,12 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-17 - Adicionar themes de cores e tokens de design
+15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: Emotion já foi escolhido e os primeiros componentes compartilhados foram migrados. A próxima etapa natural é amadurecer tokens e themes para o restante da interface.
+Motivo: a base de tokens/themes já está centralizada. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Ainda Pendente
-
-Arquitetura:
-
-- Adicionar tokens/themes.
 
 Qualidade:
 

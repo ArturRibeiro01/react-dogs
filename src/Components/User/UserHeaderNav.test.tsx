@@ -43,10 +43,7 @@ describe('UserHeaderNav', () => {
   it('renders account navigation links', () => {
     renderUserHeaderNav();
 
-    expect(screen.getByRole('link', { name: /minhas fotos/i })).toHaveAttribute(
-      'href',
-      '/conta',
-    );
+    expect(screen.getByRole('link', { name: /minhas fotos/i })).toHaveAttribute('href', '/conta');
     expect(screen.getByRole('link', { name: /estatísticas/i })).toHaveAttribute(
       'href',
       '/conta/estatisticas',
@@ -84,8 +81,9 @@ describe('UserHeaderNav', () => {
 
     await userEvent.click(menuButton);
 
-    expect(
-      screen.getByRole('button', { name: /fechar menu da conta/i }),
-    ).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('button', { name: /fechar menu da conta/i })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    );
   });
 });

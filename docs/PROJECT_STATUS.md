@@ -6,7 +6,7 @@ Atualizado em 2026-06-04.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada e os CSS Modules foram removidos. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos e os checks locais foram automatizados. A próxima etapa recomendada é melhorar o README final de portfólio.
 
 ## Stack Atual
 
@@ -23,6 +23,10 @@ Todas as issues de produto planejadas para esta fase foram cobertas localmente. 
 - Vitest `^2.1.9`
 - jsdom `^24.1.3`
 - Testing Library
+- ESLint `8.57.x`
+- Prettier `3.6.x`
+- Husky `9.1.x`
+- lint-staged `15.5.x`
 - Yarn Classic
 
 ## Ambiente
@@ -105,6 +109,11 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Endpoints de recuperação de senha verificados na API pública.
 - Fluxo de recuperação e redefinição de senha implementado.
 - Login, usuário, feed, upload, senha, estatísticas e health check possuem mocks para modo demo.
+- ESLint configurado para React + TypeScript.
+- Prettier configurado como formatador do projeto.
+- Husky configurado com hook `pre-commit`.
+- lint-staged configurado para arquivos alterados.
+- Script `yarn validate` criado para rodar lint, format check, typecheck, testes e build.
 
 ## Issues Concluídas Localmente
 
@@ -131,6 +140,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `17` Adicionar themes de cores e tokens de design.
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
+- `15` Adicionar scripts de qualidade com Husky e lint-staged.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -139,16 +149,15 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 Próxima issue recomendada:
 
 ```txt
-15 - Adicionar scripts de qualidade com Husky e lint-staged
+11 - Melhorar README para portfólio
 ```
 
-Motivo: a base de estilos está consolidada e a suíte cobre os principais fluxos críticos. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
 
 ## Ainda Pendente
 
 Qualidade:
 
-- Adicionar scripts de qualidade com Husky e lint-staged.
 - Melhorar README final de portfólio com screenshots.
 
 ## Validações Recentes
@@ -157,6 +166,8 @@ Comandos que devem continuar passando:
 
 ```bash
 yarn typecheck
+yarn lint
+yarn format:check
 yarn test
 yarn build
 yarn check:api
@@ -165,8 +176,11 @@ yarn check:api
 Últimas validações feitas durante a modernização:
 
 - `yarn typecheck`: passou.
+- `yarn lint`: passou.
+- `yarn format:check`: passou.
 - `yarn test`: passou com 10 arquivos e 31 testes.
 - `yarn build`: passou.
+- `yarn validate`: passou.
 - `yarn check:api`: endpoint público de fotos funcional em 2026-05-30.
 - Endpoints de senha `/api/password/lost` e `/api/password/reset`: confirmados em 2026-05-31.
 - Build local com base `/react-dogs/`: passou.

@@ -30,30 +30,29 @@ Concluídas localmente:
 - `17` Adicionar themes de cores e tokens de design.
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
+- `15` Adicionar scripts de qualidade com Husky e lint-staged.
 
 Pendentes:
 
-- Qualidade/portfólio: `15`, `11`.
+- Qualidade/portfólio: `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-15 - Adicionar scripts de qualidade com Husky e lint-staged
+11 - Melhorar README para portfólio
 ```
 
-Motivo: a base de estilos está consolidada e a suíte cobre os principais fluxos críticos. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
 
 ## Priority Medium
 
-1. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-2. [ ] `11` Melhorar README para portfólio.
+1. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Qualidade:
 
-1. `15` Husky e lint-staged.
-2. `11` README final de portfólio.
+1. `11` README final de portfólio.
 
 ## Critério Para Reordenar
 

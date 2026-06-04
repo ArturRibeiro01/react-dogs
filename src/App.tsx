@@ -18,7 +18,7 @@ import './App.css';
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
 const App = () => {
-  return(
+  return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <BrowserRouter basename={routerBasename}>
@@ -32,7 +32,7 @@ const App = () => {
               path="conta/*"
               element={
                 <ProtectedRoute>
-                  <User/>
+                  <User />
                 </ProtectedRoute>
               }
             />

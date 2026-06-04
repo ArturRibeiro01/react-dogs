@@ -21,12 +21,22 @@ http://localhost:5173
 Antes de abrir PR:
 
 ```bash
+yarn lint
+yarn format:check
 yarn typecheck
 yarn test
 yarn build
 ```
 
-O CI roda esses comandos automaticamente em PRs para `develop` e `main`.
+Ou rode tudo em uma chamada:
+
+```bash
+yarn validate
+```
+
+O CI roda typecheck, testes e build automaticamente em PRs para `develop` e `main`.
+
+O pre-commit local roda `lint-staged`, `typecheck` e `test` via Husky. Arquivos staged recebem ESLint/Prettier automaticamente quando aplicável.
 
 Quando mexer em integração com API:
 
@@ -106,13 +116,13 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-15 - Adicionar scripts de qualidade com Husky e lint-staged
+11 - Melhorar README para portfólio
 ```
 
 ## Ao Finalizar Uma Issue
 
-1. Rode `yarn typecheck`.
-2. Rode `yarn build`.
+1. Rode `yarn validate`.
+2. Rode `yarn check:api` se a issue mexer em integração com API.
 3. Atualize a issue correspondente em `docs/github-issues/`.
 4. Atualize `docs/PROJECT_STATUS.md` se a mudança alterar o estado do projeto.
 5. Atualize `README.md` se mudar setup, scripts, stack, API ou funcionalidades.

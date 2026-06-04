@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-15 - Adicionar scripts de qualidade com Husky e lint-staged
+11 - Melhorar README para portfólio
 ```
 
 O backlog pendente fica em:
@@ -51,6 +51,7 @@ docs/github-issues/
 - Emotion para CSS-in-JS com `styled` e tema tipado
 - Tokens globais expostos como CSS variables para base global
 - Vitest, jsdom e Testing Library para testes automatizados
+- ESLint, Prettier, Husky e lint-staged para qualidade local
 - Yarn Classic
 
 ## Requisitos
@@ -107,6 +108,30 @@ yarn typecheck
 Executa `tsc --noEmit`.
 
 ```bash
+yarn lint
+```
+
+Executa ESLint em todo o projeto.
+
+```bash
+yarn lint:fix
+```
+
+Executa ESLint com correções automáticas.
+
+```bash
+yarn format
+```
+
+Formata o projeto com Prettier.
+
+```bash
+yarn format:check
+```
+
+Verifica se os arquivos seguem o padrão do Prettier.
+
+```bash
 yarn build
 ```
 
@@ -135,6 +160,14 @@ yarn test:watch
 ```
 
 Executa Vitest em modo watch para desenvolvimento.
+
+```bash
+yarn validate
+```
+
+Executa `lint`, `format:check`, `typecheck`, `test` e `build`.
+
+O Husky configura um `pre-commit` local que roda `lint-staged`, `typecheck` e `test` antes do commit.
 
 ## Configuração
 
@@ -206,7 +239,7 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- Automatizar checks locais antes de commit com Husky e lint-staged.
+- Melhorar README final de portfólio com screenshots e narrativa do projeto.
 
 ## Estrutura
 
@@ -319,6 +352,7 @@ Já foi feito:
 - CSS Modules removidos; estilos de componentes migrados para arquivos `*.styles.ts` com Emotion.
 - CI/CD com GitHub Actions.
 - Cobertura de testes ampliada para fluxos críticos de UI, navegação e fallback.
+- Qualidade local automatizada com ESLint, Prettier, Husky, lint-staged e `yarn validate`.
 - Documentação inicial de API, status e backlog.
 
 ## Observações

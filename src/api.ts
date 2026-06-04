@@ -19,8 +19,7 @@ import {
   mockUserApi,
 } from './mockApi';
 
-export const API_URL =
-  import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
+export const API_URL = import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
 
 const TOKEN_KEY = 'token';
 export const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -124,13 +123,10 @@ export async function apiRequest<TData>(
       body: isFormData || typeof body === 'string' ? body : JSON.stringify(body),
     });
   } catch (error) {
-    throw new ApiError(
-      'Nao foi possivel conectar com a API. Tente novamente em instantes.',
-      {
-        cause: error,
-        isNetworkError: true,
-      },
-    );
+    throw new ApiError('Nao foi possivel conectar com a API. Tente novamente em instantes.', {
+      cause: error,
+      isNetworkError: true,
+    });
   }
 
   const data = await parseResponse<TData>(response);

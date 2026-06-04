@@ -11,63 +11,56 @@ import { useMedia } from '@hooks/useMedia';
 import { AccountNav, MobileMenuButton, NavIcon } from './UserHeaderNav.styles';
 
 const UserHeaderNav = () => {
-    const userLogout = useAuthStore((state) => state.userLogout);
-    const mobile = useMedia('(max-width: 40rem)');
-    const [mobileMenu, setMobileMenu] = React.useState(false);
-    const navigate = useNavigate();
-    const {pathname} = useLocation();
-    const navId = 'user-account-navigation';
+  const userLogout = useAuthStore((state) => state.userLogout);
+  const mobile = useMedia('(max-width: 40rem)');
+  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const navId = 'user-account-navigation';
 
-    function handleLogout() {
-        userLogout();
-        navigate('/login');
-    }
+  function handleLogout() {
+    userLogout();
+    navigate('/login');
+  }
 
-    
-    React.useEffect(() => {
-        setMobileMenu(false);
-    },[ pathname ]);
+  React.useEffect(() => {
+    setMobileMenu(false);
+  }, [pathname]);
 
-    return (
-        <>
-        {mobile && (
-            <MobileMenuButton
-                aria-controls={navId}
-                aria-expanded={mobileMenu}
-                aria-label={mobileMenu ? 'Fechar menu da conta' : 'Abrir menu da conta'}
-                $isOpen={mobileMenu}
-                onClick={()=> setMobileMenu(!mobileMenu)
-                }>
-            </MobileMenuButton>
-        )}
-        <AccountNav
-            id={navId}
-            aria-label="Navegação da conta"
-            $mobile={mobile}
-            $isOpen={mobileMenu}
-        >
-            <NavLink to="/conta" end aria-label="Minhas fotos">
-                <NavIcon src={minhasFotosUrl} alt="" aria-hidden="true" />
-                {mobile && 'Minhas Fotos'}
-            </NavLink>
+  return (
+    <>
+      {mobile && (
+        <MobileMenuButton
+          aria-controls={navId}
+          aria-expanded={mobileMenu}
+          aria-label={mobileMenu ? 'Fechar menu da conta' : 'Abrir menu da conta'}
+          $isOpen={mobileMenu}
+          onClick={() => setMobileMenu(!mobileMenu)}
+        ></MobileMenuButton>
+      )}
+      <AccountNav id={navId} aria-label="Navegação da conta" $mobile={mobile} $isOpen={mobileMenu}>
+        <NavLink to="/conta" end aria-label="Minhas fotos">
+          <NavIcon src={minhasFotosUrl} alt="" aria-hidden="true" />
+          {mobile && 'Minhas Fotos'}
+        </NavLink>
 
-            <NavLink to="/conta/estatisticas" aria-label="Estatísticas">
-                <NavIcon src={estatisticasUrl} alt="" aria-hidden="true" />
-                {mobile && 'Estatísticas'}
-            </NavLink>
+        <NavLink to="/conta/estatisticas" aria-label="Estatísticas">
+          <NavIcon src={estatisticasUrl} alt="" aria-hidden="true" />
+          {mobile && 'Estatísticas'}
+        </NavLink>
 
-            <NavLink to="/conta/postar" aria-label="Adicionar foto">
-                <NavIcon src={adicionarFotoUrl} alt="" aria-hidden="true" />
-                {mobile && 'Adicionar Foto'}
-            </NavLink>
+        <NavLink to="/conta/postar" aria-label="Adicionar foto">
+          <NavIcon src={adicionarFotoUrl} alt="" aria-hidden="true" />
+          {mobile && 'Adicionar Foto'}
+        </NavLink>
 
-            <button onClick={handleLogout} aria-label="Sair da conta">
-                <NavIcon src={sairUrl} alt="" aria-hidden="true" />
-                {mobile && 'Sair'}
-            </button>
-        </AccountNav>
-        </>
-    )
-}
+        <button onClick={handleLogout} aria-label="Sair da conta">
+          <NavIcon src={sairUrl} alt="" aria-hidden="true" />
+          {mobile && 'Sair'}
+        </button>
+      </AccountNav>
+    </>
+  );
+};
 
-export default UserHeaderNav
+export default UserHeaderNav;

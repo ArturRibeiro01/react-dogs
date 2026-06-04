@@ -20,10 +20,7 @@ describe('Header', () => {
     renderWithProviders(<Header />);
 
     expect(screen.getByRole('link', { name: /dogs - home/i })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: /login \| criar/i })).toHaveAttribute(
-      'href',
-      '/login',
-    );
+    expect(screen.getByRole('link', { name: /login \| criar/i })).toHaveAttribute('href', '/login');
   });
 
   it('renders the user account link when authenticated', () => {

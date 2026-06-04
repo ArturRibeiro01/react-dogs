@@ -6,7 +6,7 @@ import Loading from '@components/Helper/Loading';
 import useFetch from '@hooks/useFetch';
 import type { Photo } from '@/types';
 
-import styles from './FeedPhotos.module.css';
+import { EmptyMessage, FeedList } from './FeedPhotos.styles';
 import FeedPhotosItem from './FeedPhotosItem';
 
 type FeedPhotosProps = {
@@ -28,15 +28,15 @@ const FeedPhotos = ({user = 0, onSelectPhoto}: FeedPhotosProps) => {
     if(loading) return <Loading/>
     if(data && data.length === 0) {
         return (
-            <p className={styles.empty}>
+            <EmptyMessage>
                 Nenhuma foto encontrada.
-            </p>
+            </EmptyMessage>
         );
     }
 
     if(data)
         return (
-            <ul className={`${styles.feed} animeLeft`}>
+            <FeedList className="animeLeft">
                 {data.map((photo) => (
                     <FeedPhotosItem
                         key={photo.id}
@@ -44,7 +44,7 @@ const FeedPhotos = ({user = 0, onSelectPhoto}: FeedPhotosProps) => {
                         onSelect={() => onSelectPhoto(photo.id)}
                     />
                 ))}
-            </ul>
+            </FeedList>
         );
         else return null
 

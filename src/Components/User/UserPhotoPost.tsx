@@ -11,7 +11,7 @@ import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 import useFetch from '@hooks/useFetch';
 
-import styles from './UserPhotoPost.module.css';
+import { FileInput, FileLabel, PhotoPostShell, Preview } from './UserPhotoPost.styles';
 
 type PhotoUploadState = {
     preview?: string;
@@ -79,7 +79,7 @@ const UserPhotoPost = () => {
     }, [img.preview]);
 
     return (
-        <section className={`${styles.photoPost} animeLeft`} >
+        <PhotoPostShell className="animeLeft">
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Input 
                     label="Nome"
@@ -99,11 +99,10 @@ const UserPhotoPost = () => {
                     error={errors.idade?.message}
                     {...register('idade')}
                 />
-                <label className={styles.fileLabel} htmlFor="img">
+                <FileLabel htmlFor="img">
                     Imagem
-                </label>
-                <input
-                    className={styles.file}
+                </FileLabel>
+                <FileInput
                     type="file"
                     name="img"
                     id="img"
@@ -121,13 +120,10 @@ const UserPhotoPost = () => {
             </form>
             <div>
                 {img.preview && (
-                    <div
-                        className = {styles.preview} 
-                        style={{backgroundImage: `url('${img.preview}')`}}
-                    ></div>
+                    <Preview $imageUrl={img.preview} />
                 )}
             </div>
-        </section>
+        </PhotoPostShell>
     )
 }
 

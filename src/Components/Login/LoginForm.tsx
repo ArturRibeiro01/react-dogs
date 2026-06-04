@@ -1,7 +1,7 @@
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { loginSchema, type LoginFormData } from '@/schemas/forms';
 import { useAuthStore } from '@/stores/authStore';
@@ -9,7 +9,7 @@ import Button, { ButtonLink } from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 
-import styles from './LoginForm.module.css';
+import { Form, LostPasswordLink, SignupSection, Subtitle } from './LoginForm.styles';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const LoginForm = () => {
     return (
         <section className="animeLeft">
             <h1 className="title">Login</h1>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Input
                     label="Usuário"
                     type="text"
@@ -52,17 +52,17 @@ const LoginForm = () => {
                     <Button>Entrar</Button>
                 )}
                 <Error error={error} />
-            </form>
-            <Link className={styles.perdeu} to="/login/perdeu">
+            </Form>
+            <LostPasswordLink to="/login/perdeu">
                 Perdeu a senha?
-            </Link>
-            <div className={styles.cadastro}>
-                <h2 className={styles.subtitle}>Cadastre-se</h2>
+            </LostPasswordLink>
+            <SignupSection>
+                <Subtitle>Cadastre-se</Subtitle>
                 <p>Ainda não possui conta? Cadastre-se no site.</p>
                 <ButtonLink to="/login/criar">
                     Cadastro
                 </ButtonLink>
-            </div>
+            </SignupSection>
         </section>
     );
 };

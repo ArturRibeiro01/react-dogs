@@ -33,6 +33,7 @@ docs/github-issues/PRIORITY.md
 - `09` Adicionar cobertura inicial de testes.
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
+- `25` Migrar CSS Modules restantes para Emotion.
 
 ## Issues Pendentes
 
@@ -47,7 +48,7 @@ Qualidade e portfólio:
 15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: a base de tokens/themes já está centralizada. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base de estilos agora está consolidada em Emotion. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Como Publicar No GitHub
 

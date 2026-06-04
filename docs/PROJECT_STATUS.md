@@ -6,7 +6,7 @@ Atualizado em 2026-06-04.
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura inicial de testes foi criada, a estratégia de CSS-in-JS foi definida com Emotion e a base de tokens/themes foi centralizada. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
+Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura inicial de testes foi criada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada e os CSS Modules foram removidos. A próxima etapa recomendada é automatizar checks locais com Husky e lint-staged.
 
 ## Stack Atual
 
@@ -44,7 +44,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `tsconfig.json` configurado.
 - Script `yarn typecheck` adicionado.
 - `yarn build` agora executa typecheck antes do build.
-- Imports SVG ajustados para `*.svg?react`.
+- Imports SVG ajustados para uso como assets em URL.
 - React atualizado para 19.
 - Entry point atualizado para `createRoot`.
 - React Router atualizado da versão beta para 6 estável.
@@ -72,9 +72,10 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `ThemeProvider` adicionado no app.
 - Tema claro tipado adicionado em `src/styles/theme.ts`.
 - Tokens expostos como CSS variables em `src/styles/GlobalStyles.tsx`.
-- CSS Modules remanescentes passaram a consumir tokens via `var(--...)` para cores, fontes, raios, sombras e z-index principais.
 - Button, Input, StatusMessage, Header e Footer migrados para Emotion.
-- Componentes migrados para Emotion organizados com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- Feed, Login, User, Loading, ErrorBoundary e NotFound migrados para Emotion.
+- CSS Modules removidos do projeto.
+- Componentes migrados para Emotion usam arquivos `Component.styles.ts`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da API criado em `scripts/check-api-health.mjs`.
@@ -127,6 +128,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `09` Adicionar cobertura inicial de testes.
 - `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
+- `25` Migrar CSS Modules restantes para Emotion.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
@@ -138,7 +140,7 @@ Próxima issue recomendada:
 15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: a base de tokens/themes já está centralizada. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base de estilos agora está consolidada em Emotion. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Ainda Pendente
 

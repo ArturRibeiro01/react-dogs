@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import styles from './UserHeader.module.css';
+import { AccountHeader } from './UserHeader.styles';
 import UserHeaderNav from './UserHeaderNav';
 
 const UserHeader = () => {
@@ -19,10 +19,10 @@ const UserHeader = () => {
     },[location]);
 
     return (
-        <header className={styles.header}>
+        <AccountHeader>
             <h1 className="title">{title}</h1>
             <UserHeaderNav />
-        </header>
+        </AccountHeader>
     )
 }
 

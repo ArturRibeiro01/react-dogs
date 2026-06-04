@@ -1,10 +1,10 @@
-import styles from './Loading.module.css';
+import { LoadingMessage } from './Loading.styles';
 
 const Loading = () => {
     return (
-        <div className={styles.loading} role="status" aria-live="polite">
+        <LoadingMessage role="status" aria-live="polite">
             Carregando...
-        </div>
+        </LoadingMessage>
     )
 }
 export default Loading

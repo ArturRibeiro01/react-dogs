@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
 
-import styles from './Login.module.css';
+import { LoginForms, LoginShell } from './Login.styles';
 import LoginCreate from './LoginCreate';
 import LoginForm from './LoginForm';
 import LoginPasswordLost from './LoginPasswordLost';
@@ -13,8 +13,8 @@ const Login = () => {
 
     if(login === true) return <Navigate to="/conta" />
     return (
-        <section className={styles.login}>
-            <div className={styles.forms}>
+        <LoginShell>
+            <LoginForms>
                 <Routes>
                     <Route path="" element={< LoginForm />}/>
                     <Route path="criar" element={< LoginCreate />}/>
@@ -22,8 +22,8 @@ const Login = () => {
                     <Route path="resetar" element={< LoginPasswordReset />}/>
                     <Route path="*" element={<Navigate to="/login" replace />}/>
                 </Routes>
-            </div>
-        </section>
+            </LoginForms>
+        </LoginShell>
     )
 }
 

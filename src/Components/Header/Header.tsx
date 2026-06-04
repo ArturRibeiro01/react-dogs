@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/stores/authStore';
-import Dogs from '@assets/dogs.svg?react';
+import dogsLogoUrl from '@assets/dogs.svg';
 
 import { AccountLink, HeaderShell, LogoLink, Nav } from './Header.styles';
 
@@ -10,7 +10,7 @@ const Header = () => {
     <HeaderShell>
       <Nav>
         <LogoLink to="/" aria-label="Dogs - Home">
-          <Dogs />
+          <img src={dogsLogoUrl} alt="" aria-hidden="true" />
         </LogoLink>
 
         {data ? (

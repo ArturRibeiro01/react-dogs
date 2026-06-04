@@ -70,7 +70,9 @@ describe('Login password recovery', () => {
         url: expect.stringContaining('/login/resetar'),
       });
     });
-    expect(await screen.findByText('E-mail enviado. Verifique sua caixa de entrada.')).toBeInTheDocument();
+    expect(
+      await screen.findByText('E-mail enviado. Verifique sua caixa de entrada.'),
+    ).toBeInTheDocument();
   });
 
   it('shows an invalid reset link message when key or login is missing', () => {

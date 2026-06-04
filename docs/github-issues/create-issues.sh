@@ -36,12 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Adicionar scripts de qualidade com Husky e lint-staged" \
-  "docs/github-issues/15-add-quality-scripts-husky-lint-staged.md" \
-  "tech-debt" \
-  "priority-medium"
-
-create_issue \
   "Melhorar README para portfolio" \
   "docs/github-issues/11-improve-readme-portfolio.md" \
   "documentation" \

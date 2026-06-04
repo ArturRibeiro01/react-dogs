@@ -35,21 +35,21 @@ docs/github-issues/PRIORITY.md
 - `17` Adicionar themes de cores e tokens de design.
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
+- `15` Adicionar scripts de qualidade com Husky e lint-staged.
 
 ## Issues Pendentes
 
 Qualidade e portfólio:
 
-- `15` Adicionar scripts de qualidade com Husky e lint-staged.
 - `11` Melhorar README para portfólio.
 
 ## Próxima Issue Recomendada
 
 ```txt
-15 - Adicionar scripts de qualidade com Husky e lint-staged
+11 - Melhorar README para portfólio
 ```
 
-Motivo: a base de estilos está consolidada e a suíte cobre os principais fluxos críticos. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
+Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
 
 ## Como Publicar No GitHub
 
@@ -68,7 +68,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Adicionar scripts de qualidade com Husky e lint-staged" --body-file docs/github-issues/15-add-quality-scripts-husky-lint-staged.md --label tech-debt --label priority-medium
+gh issue create --title "Melhorar README para portfolio" --body-file docs/github-issues/11-improve-readme-portfolio.md --label documentation --label priority-medium
 ```
 
 ## Labels Usadas
@@ -100,7 +100,7 @@ docs/github-issues/PRIORITY.md
 Resumo:
 
 1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, testes, CSS-in-JS e themes.
-2. Fechar qualidade/portfólio: Husky/lint-staged e README.
+2. Fechar qualidade/portfólio: README.
 
 ## Observações
 

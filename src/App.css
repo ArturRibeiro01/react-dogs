@@ -1,79 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-body{
-    margin: 0px;
-    color: var(--color-text);
-    font-family: var(--font-body);
-    /* padding-top: 4rem; */
+body {
+  margin: 0px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  /* padding-top: 4rem; */
 }
-h1 , h2, h3, h4, p {
-    margin: 0px;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0px;
 }
-ul , li {
-    list-style: none;
-    padding: 0px;
-    margin: 0px
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
-a{
-    text-decoration: none;
-    color: var(--color-text);
+a {
+  text-decoration: none;
+  color: var(--color-text);
 }
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 3px;
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
 }
-img{
-    display: block;
-    max-width: 100%;
+img {
+  display: block;
+  max-width: 100%;
 }
-button, input {
-    display: block;
-    font-size: 1rem;
-    font-family: var(--font-body);
-    color: var(--color-text);
+button,
+input {
+  display: block;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
 }
-.container{
-    max-width: 50rem;
-    padding: 0 1rem;
-    margin: 0 auto;
+.container {
+  max-width: 50rem;
+  padding: 0 1rem;
+  margin: 0 auto;
 }
-.mainContainer{
-    margin-top: 4rem;
+.mainContainer {
+  margin-top: 4rem;
 }
-.title{
-    font-family: var(--font-heading);
-    line-height: 1;
-    font-size: 3rem;
-    margin: 1rem 0;
-    position: relative;
-    z-index: var(--z-base);
+.title {
+  font-family: var(--font-heading);
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
+  position: relative;
+  z-index: var(--z-base);
 }
 .title::after {
-    content: '';
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    background: var(--color-primary);
-    position: absolute;
-    bottom: 5px;
-    left: -5px;
-    border-radius: var(--radius-sm);
-    z-index: var(--z-below);
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--color-primary);
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
+  border-radius: var(--radius-sm);
+  z-index: var(--z-below);
 }
-.animeLeft{
-    opacity: 0;
-    transform: translate3d(-20px);
-    animation: animeLeft .3s forwards;
+.animeLeft {
+  opacity: 0;
+  transform: translate3d(-20px);
+  animation: animeLeft 0.3s forwards;
 }
 
 @keyframes animeLeft {
-    to {
-        opacity: 1;
-        transform: initial;
-    }
+  to {
+    opacity: 1;
+    transform: initial;
+  }
 }

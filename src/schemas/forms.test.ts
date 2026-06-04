@@ -1,11 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  createUserSchema,
-  loginSchema,
-  passwordResetSchema,
-  photoPostSchema,
-} from './forms';
+import { createUserSchema, loginSchema, passwordResetSchema, photoPostSchema } from './forms';
 
 describe('form schemas', () => {
   it('validates login required fields', () => {
@@ -36,10 +31,7 @@ describe('form schemas', () => {
     });
 
     expect(result.success).toBe(false);
-    expect(result.error?.issues.map((issue) => issue.path[0])).toEqual([
-      'email',
-      'password',
-    ]);
+    expect(result.error?.issues.map((issue) => issue.path[0])).toEqual(['email', 'password']);
   });
 
   it('validates password reset strength', () => {
@@ -55,9 +47,6 @@ describe('form schemas', () => {
     });
 
     expect(result.success).toBe(false);
-    expect(result.error?.issues.map((issue) => issue.path[0])).toEqual([
-      'peso',
-      'idade',
-    ]);
+    expect(result.error?.issues.map((issue) => issue.path[0])).toEqual(['peso', 'idade']);
   });
 });

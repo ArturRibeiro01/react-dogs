@@ -1,15 +1,13 @@
 import StatusMessage from './StatusMessage';
 
 type ErrorProps = {
-    error: string | null;
+  error: string | null;
 };
 
-const Error = ({error}: ErrorProps) => {
+const Error = ({ error }: ErrorProps) => {
+  if (!error) return null;
 
-    if(!error) return null;
-
-
-    return <StatusMessage variant="error">{error}</StatusMessage>;
-}
+  return <StatusMessage variant="error">{error}</StatusMessage>;
+};
 
 export default Error;

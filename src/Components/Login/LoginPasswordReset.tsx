@@ -56,9 +56,7 @@ const LoginPasswordReset = () => {
       {invalidUrl ? (
         <>
           <Error error="Link de redefinição inválido ou incompleto." />
-          <LostPasswordLink to="/login/perdeu">
-            Solicitar novo link
-          </LostPasswordLink>
+          <LostPasswordLink to="/login/perdeu">Solicitar novo link</LostPasswordLink>
         </>
       ) : (
         <>
@@ -69,17 +67,11 @@ const LoginPasswordReset = () => {
               error={errors.password?.message}
               {...register('password')}
             />
-            {loading ? (
-              <Button disabled>Redefinindo...</Button>
-            ) : (
-              <Button>Redefinir Senha</Button>
-            )}
+            {loading ? <Button disabled>Redefinindo...</Button> : <Button>Redefinir Senha</Button>}
             <Error error={error} />
             {success && <StatusMessage variant="success">{success}</StatusMessage>}
           </Form>
-          <LostPasswordLink to="/login">
-            Voltar para login
-          </LostPasswordLink>
+          <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
         </>
       )}
     </section>

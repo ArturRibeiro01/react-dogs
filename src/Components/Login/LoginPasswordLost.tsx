@@ -50,17 +50,11 @@ const LoginPasswordLost = () => {
           error={errors.login?.message}
           {...register('login')}
         />
-        {loading ? (
-          <Button disabled>Enviando...</Button>
-        ) : (
-          <Button>Enviar e-mail</Button>
-        )}
+        {loading ? <Button disabled>Enviando...</Button> : <Button>Enviar e-mail</Button>}
         <Error error={error} />
         {success && <StatusMessage variant="success">{success}</StatusMessage>}
       </Form>
-      <LostPasswordLink to="/login">
-        Voltar para login
-      </LostPasswordLink>
+      <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
     </section>
   );
 };

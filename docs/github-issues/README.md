@@ -36,20 +36,19 @@ docs/github-issues/PRIORITY.md
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
 - `15` Adicionar scripts de qualidade com Husky e lint-staged.
+- `11` Melhorar README para portfólio.
 
 ## Issues Pendentes
 
-Qualidade e portfólio:
-
-- `11` Melhorar README para portfólio.
+Nenhuma issue pendente neste diretório.
 
 ## Próxima Issue Recomendada
 
 ```txt
-11 - Melhorar README para portfólio
+Sem issue pendente planejada
 ```
 
-Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
+Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
 
 ## Como Publicar No GitHub
 
@@ -65,11 +64,7 @@ Com GitHub CLI autenticado, rode:
 bash docs/github-issues/create-issues.sh
 ```
 
-Também dá para criar uma issue individualmente:
-
-```bash
-gh issue create --title "Melhorar README para portfolio" --body-file docs/github-issues/11-improve-readme-portfolio.md --label documentation --label priority-medium
-```
+Também dá para criar issues individualmente com `gh issue create` usando um arquivo markdown como corpo.
 
 ## Labels Usadas
 
@@ -99,8 +94,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, testes, CSS-in-JS e themes.
-2. Fechar qualidade/portfólio: README.
+O backlog planejado para esta fase foi concluído. Novas frentes devem ser criadas como novas issues antes de iniciar implementação.
 
 ## Observações
 

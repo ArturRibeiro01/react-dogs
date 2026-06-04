@@ -116,8 +116,10 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-11 - Melhorar README para portfólio
+Sem issue pendente planejada
 ```
+
+Crie uma nova issue antes de iniciar a próxima frente de produto, backend ou qualidade.
 
 ## Ao Finalizar Uma Issue
 

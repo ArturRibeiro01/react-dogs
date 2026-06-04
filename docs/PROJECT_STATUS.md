@@ -4,9 +4,9 @@ Atualizado em 2026-06-04.
 
 ## Resumo
 
-O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação inicial.
+O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação de portfólio.
 
-Todas as issues de produto planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos e os checks locais foram automatizados. A próxima etapa recomendada é melhorar o README final de portfólio.
+Todas as issues planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos, os checks locais foram automatizados e o README foi revisado como apresentação de portfólio.
 
 ## Stack Atual
 
@@ -141,24 +141,19 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
 - `15` Adicionar scripts de qualidade com Husky e lint-staged.
+- `11` Melhorar README para portfólio.
 
 Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o diretório focado no trabalho pendente.
 
 ## Próxima Frente
 
-Próxima issue recomendada:
-
-```txt
-11 - Melhorar README para portfólio
-```
-
-Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
+Não há issues pendentes planejadas neste diretório para a fase atual. As próximas frentes devem nascer como novas issues, preferencialmente separando frontend e backend.
 
 ## Ainda Pendente
 
-Qualidade:
-
-- Melhorar README final de portfólio com screenshots.
+- Criar a API própria em outro repositório.
+- Adicionar mais capturas ou GIFs dos principais fluxos do app.
+- Evoluir testes de integração para fluxos completos de usuário.
 
 ## Validações Recentes
 

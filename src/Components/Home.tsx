@@ -1,11 +1,11 @@
 import Feed from '@components/Feed/Feed';
 
 const Home = () => {
-    return (
-        <section className="container mainContainer">
-            <Feed/>
-        </section>
-    )
-}
+  return (
+    <section className="container mainContainer">
+      <Feed />
+    </section>
+  );
+};
 
-export default Home
+export default Home;

@@ -8,13 +8,21 @@ Este documento registra a organização atual do frontend Dogs e a convenção d
 src/
   api.ts
   mockApi.ts
+  schemas/
+  styles/
   types.ts
-  UserContext.tsx
+  stores/
+    authStore.ts
   Assets/
   Components/
     Feed/
     Forms/
+      Button/
+      Input/
+    Header/
+    Footer/
     Helper/
+      StatusMessage/
     Login/
     User/
   Hooks/
@@ -40,7 +48,7 @@ import { photoApi } from '@/api';
 import type { Photo } from '@/types';
 import Button from '@components/Forms/Button';
 import useFetch from '@hooks/useFetch';
-import Dogs from '@assets/dogs.svg?react';
+import dogsLogoUrl from '@assets/dogs.svg';
 ```
 
 ## Convenção De Imports
@@ -50,8 +58,7 @@ Ordem recomendada:
 1. Bibliotecas externas.
 2. Imports internos por alias.
 3. Tipos internos.
-4. CSS Modules relativos.
-5. Imports relativos próximos, quando forem arquivos irmãos da mesma pasta.
+4. Imports relativos próximos, quando forem arquivos irmãos da mesma pasta.
 
 Exemplo:
 
@@ -59,22 +66,39 @@ Exemplo:
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { UserContext } from '@/UserContext';
+import { useAuthStore } from '@/stores/authStore';
+import { theme } from '@/styles/theme';
 import Button from '@components/Forms/Button';
-import useForm from '@hooks/useForm';
 import type { User } from '@/types';
 
-import styles from './Example.module.css';
+import { ExampleShell } from './Example.styles';
 import LocalComponent from './LocalComponent';
 ```
 
 ## Regra Prática
 
 - Use alias para atravessar domínios ou pastas distantes.
-- Use import relativo para CSS Module do próprio componente.
+- Use Emotion com `styled` para estilos de componentes.
+- Organize componentes compartilhados em pasta própria: `Component.tsx`, `Component.styles.ts` e `index.ts`.
 - Use import relativo para arquivos irmãos dentro da mesma pasta.
 - Evite `../../..` em código novo.
 - Remova imports não usados.
+
+## Estilos
+
+A biblioteca escolhida para CSS-in-JS é Emotion, usando principalmente `@emotion/styled`.
+
+Decisão:
+
+- Emotion foi escolhido por ter boa integração com TypeScript, API familiar para quem já usa styled-components e migração incremental simples.
+- Stitches foi evitado por não estar mais mantido.
+- Inline styles ficam restritos a valores pontuais e realmente dinâmicos.
+- `ThemeProvider` é aplicado no `App` e usa tokens de `src/styles/theme.ts`.
+- `GlobalStyles` expõe os tokens como CSS variables para CSS global.
+- Todos os CSS Modules foram removidos; estilos de componentes ficam em arquivos próprios `*.styles.ts`.
+- O tema claro inicial centraliza cores, tipografia, espaçamentos, raios, sombras, z-index, breakpoints e transições.
+
+`App.css` permanece apenas para reset/base global e classes utilitárias históricas, como `.container`, `.title` e `.animeLeft`.
 
 ## Próxima Evolução Possível
 

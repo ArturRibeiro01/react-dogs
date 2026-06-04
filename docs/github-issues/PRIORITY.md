@@ -1,6 +1,6 @@
 # Ordem Recomendada Das Issues
 
-Todas as issues `priority-high` planejadas foram concluídas localmente. A fila atual começa em `priority-medium`, priorizando primeiro completar produto, depois modernizar arquitetura e por fim fechar qualidade/portfólio.
+Todas as issues planejadas para esta fase foram concluídas localmente.
 
 ## Status Atual
 
@@ -23,44 +23,35 @@ Concluídas localmente:
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
+- `18` Migrar estado global de Context API para Zustand.
+- `19` Padronizar formulários com React Hook Form e Zod.
+- `09` Adicionar cobertura inicial de testes.
+- `14` Escolher e migrar para CSS-in-JS.
+- `17` Adicionar themes de cores e tokens de design.
+- `25` Migrar CSS Modules restantes para Emotion.
+- `26` Ampliar cobertura de testes unitários e integração.
+- `15` Adicionar scripts de qualidade com Husky e lint-staged.
+- `11` Melhorar README para portfólio.
 
 Pendentes:
 
-- Arquitetura/back-end: `18`, `19`, `14`, `17`.
-- Qualidade/portfólio: `09`, `15`, `11`.
+- Nenhuma issue pendente neste diretório.
 
 ## Próxima Issue Recomendada
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+Sem issue pendente planejada
 ```
 
-Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
+Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
 
 ## Priority Medium
 
-1. [ ] `18` Migrar estado global de Context API para Zustand.
-2. [ ] `19` Padronizar formulários com React Hook Form e Zod.
-3. [ ] `14` Escolher e migrar para CSS-in-JS.
-4. [ ] `17` Adicionar themes de cores e tokens de design.
-5. [ ] `09` Adicionar cobertura inicial de testes.
-6. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-7. [ ] `11` Melhorar README para portfólio.
+Nenhuma issue pendente.
 
 ## Ordem Funcional Recomendada
 
-Arquitetura:
-
-1. `18` Zustand.
-2. `19` React Hook Form e Zod.
-3. `14` CSS-in-JS.
-4. `17` Themes e tokens.
-
-Qualidade:
-
-1. `09` Testes.
-2. `15` Husky e lint-staged.
-3. `11` README final de portfólio.
+Nenhuma issue pendente.
 
 ## Critério Para Reordenar
 

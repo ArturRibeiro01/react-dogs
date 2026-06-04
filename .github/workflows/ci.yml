@@ -1,6 +1,6 @@
 name: CI/CD
 
-on:
+'on':
   pull_request:
     branches:
       - develop
@@ -147,19 +147,19 @@ jobs:
           if [ -f site/index.html ]; then
             cp site/index.html site/404.html
           elif [ -f site/dev/index.html ]; then
-            cat > site/index.html <<'HTML'
-          <!doctype html>
-          <html lang="pt-BR">
-            <head>
-              <meta charset="UTF-8" />
-              <meta http-equiv="refresh" content="0; url=/react-dogs/dev/" />
-              <title>Dogs</title>
-            </head>
-            <body>
-              <p>Redirecionando para o ambiente dev...</p>
-            </body>
-          </html>
-          HTML
+            printf '%s\n' \
+              '<!doctype html>' \
+              '<html lang="pt-BR">' \
+              '  <head>' \
+              '    <meta charset="UTF-8" />' \
+              '    <meta http-equiv="refresh" content="0; url=/react-dogs/dev/" />' \
+              '    <title>Dogs</title>' \
+              '  </head>' \
+              '  <body>' \
+              '    <p>Redirecionando para o ambiente dev...</p>' \
+              '  </body>' \
+              '</html>' \
+              > site/index.html
             cp site/index.html site/404.html
           fi
 

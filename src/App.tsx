@@ -1,44 +1,47 @@
+import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import GlobalStyles from '@/styles/GlobalStyles';
+import { theme } from '@/styles/theme';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
+import AuthInitializer from '@components/Helper/AuthInitializer';
 import ErrorBoundary from '@components/Helper/ErrorBoundary';
 import ProtectedRoute from '@components/Helper/ProtectedRoute';
 import Home from '@components/Home';
 import Login from '@components/Login/Login';
 import NotFound from '@components/NotFound';
 import User from '@components/User/User';
-import { UserStorage } from '@/UserContext';
 
 import './App.css';
 
 const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
 const App = () => {
-  return(
-    <div>
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <BrowserRouter basename={routerBasename}>
         <ErrorBoundary>
-          <UserStorage>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="login/*" element={<Login />} />
-              <Route
-                path="conta/*"
-                element={
-                  <ProtectedRoute>
-                    <User/>
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </UserStorage>
+          <AuthInitializer />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="login/*" element={<Login />} />
+            <Route
+              path="conta/*"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
         </ErrorBoundary>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 };
 

@@ -21,11 +21,22 @@ http://localhost:5173
 Antes de abrir PR:
 
 ```bash
+yarn lint
+yarn format:check
 yarn typecheck
+yarn test
 yarn build
 ```
 
-O CI roda esses comandos automaticamente em PRs para `develop` e `main`.
+Ou rode tudo em uma chamada:
+
+```bash
+yarn validate
+```
+
+O CI roda typecheck, testes e build automaticamente em PRs para `develop` e `main`.
+
+O pre-commit local roda `lint-staged`, `typecheck` e `test` via Husky. Arquivos staged recebem ESLint/Prettier automaticamente quando aplicável.
 
 Quando mexer em integração com API:
 
@@ -55,16 +66,20 @@ feature/* -> develop -> main
 - Chamadas HTTP devem passar por `src/api.ts`.
 - Componentes compartilhados devem ter props tipadas explicitamente.
 - Evite `any`; prefira `unknown` ou tipos de domínio.
-- SVGs usados como componentes React devem ser importados com `?react`.
-- CSS atual usa CSS global e CSS Modules.
+- SVGs decorativos devem ser importados como URL e renderizados com `img` ou `background`.
+- Componentes devem usar Emotion com `styled`.
+- Componentes compartilhados devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- CSS global fica restrito a reset/base e utilitários em `App.css` e `GlobalStyles`.
 
 ## Arquitetura Atual
 
 ```txt
 src/
   api.ts
+  schemas/
+  styles/
   types.ts
-  UserContext.tsx
+  stores/
   Components/
     Feed/
     Forms/
@@ -76,14 +91,19 @@ src/
 
 Pontos importantes:
 
-- `UserContext.tsx` centraliza login, logout, usuário logado e validação de token.
+- `stores/authStore.ts` centraliza login, logout, usuário logado e validação de token com Zustand.
 - A validação automática do token restaura a sessão sem redirecionar, preservando rotas internas como `/conta/estatisticas`.
 - `api.ts` centraliza endpoints e tratamento base de erro.
 - `ErrorBoundary.tsx` captura falhas inesperadas de renderização para evitar tela branca.
 - `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
-- `useForm.ts` mantém validação simples enquanto a issue de React Hook Form/Zod não acontece.
+- `schemas/forms.ts` centraliza validações dos formulários com Zod.
+- `styles/theme.ts` centraliza tokens do tema claro consumidos pelo Emotion.
+- `styles/GlobalStyles.tsx` expõe tokens como CSS variables para CSS global.
+- Os estilos de componentes ficam em arquivos próprios `*.styles.ts`.
+- Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
+- `docs/DOGS_API_SPEC.md` documenta o domínio, jornadas, entidades, endpoints e stack sugerida para a API própria.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
 
 ## Ordem De Trabalho
@@ -97,13 +117,15 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+Sem issue pendente planejada
 ```
+
+Crie uma nova issue antes de iniciar a próxima frente de produto, backend ou qualidade.
 
 ## Ao Finalizar Uma Issue
 
-1. Rode `yarn typecheck`.
-2. Rode `yarn build`.
+1. Rode `yarn validate`.
+2. Rode `yarn check:api` se a issue mexer em integração com API.
 3. Atualize a issue correspondente em `docs/github-issues/`.
 4. Atualize `docs/PROJECT_STATUS.md` se a mudança alterar o estado do projeto.
 5. Atualize `README.md` se mudar setup, scripts, stack, API ou funcionalidades.
@@ -111,8 +133,5 @@ Próxima issue recomendada:
 
 ## Pendências Técnicas Conhecidas
 
-- `yarn test` ainda é placeholder.
 - O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
-- O estado global ainda usa Context API.
-- Formulários ainda usam hook próprio simples.

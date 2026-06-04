@@ -1,32 +1,25 @@
 import type { Photo } from '@/types';
 
-import styles from './FeedPhotosItem.module.css';
+import { PhotoButton, PhotoItem, PhotoTitle, Views } from './FeedPhotosItem.styles';
 
 type FeedPhotosItemProps = {
-    photo: Photo;
-    onSelect: () => void;
+  photo: Photo;
+  onSelect: () => void;
 };
 
-const FeedPhotosItem = ({photo, onSelect}: FeedPhotosItemProps) => {
-    const title = photo.title || photo.nome || 'Foto sem título';
-    const views = photo.acessos ?? photo.views;
+const FeedPhotosItem = ({ photo, onSelect }: FeedPhotosItemProps) => {
+  const title = photo.title || photo.nome || 'Foto sem título';
+  const views = photo.acessos ?? photo.views;
 
-    return (
-        <li className={styles.photo}>
-            <button
-                className={styles.button}
-                type="button"
-                onClick={onSelect}
-                aria-label={`Abrir detalhes da foto ${title}`}
-            >
-                <img src={photo.src} alt={title} />
-                <span className={styles.views}>
-                    {views ?? 0}
-                </span>
-                <span className={styles.title}>{title}</span>
-            </button>
-        </li>
-    );
-}
+  return (
+    <PhotoItem>
+      <PhotoButton type="button" onClick={onSelect} aria-label={`Abrir detalhes da foto ${title}`}>
+        <img src={photo.src} alt={title} />
+        <Views data-photo-views="true">{views ?? 0}</Views>
+        <PhotoTitle>{title}</PhotoTitle>
+      </PhotoButton>
+    </PhotoItem>
+  );
+};
 
-export default FeedPhotosItem
+export default FeedPhotosItem;

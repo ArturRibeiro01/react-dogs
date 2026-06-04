@@ -28,29 +28,27 @@ docs/github-issues/PRIORITY.md
 - `12` Polir UI, responsividade e acessibilidade.
 - `23` Planejar API própria para substituir API externa.
 - `20` Organizar arquitetura de pastas e aliases.
+- `18` Migrar estado global de Context API para Zustand.
+- `19` Padronizar formulários com React Hook Form e Zod.
+- `09` Adicionar cobertura inicial de testes.
+- `14` Escolher e migrar para CSS-in-JS.
+- `17` Adicionar themes de cores e tokens de design.
+- `25` Migrar CSS Modules restantes para Emotion.
+- `26` Ampliar cobertura de testes unitários e integração.
+- `15` Adicionar scripts de qualidade com Husky e lint-staged.
+- `11` Melhorar README para portfólio.
 
 ## Issues Pendentes
 
-Arquitetura:
-
-- `18` Migrar estado global de Context API para Zustand.
-- `19` Padronizar formulários com React Hook Form e Zod.
-- `14` Escolher e migrar para CSS-in-JS.
-- `17` Adicionar themes de cores e tokens de design.
-
-Qualidade e portfólio:
-
-- `09` Adicionar cobertura inicial de testes.
-- `15` Adicionar scripts de qualidade com Husky e lint-staged.
-- `11` Melhorar README para portfólio.
+Nenhuma issue pendente neste diretório.
 
 ## Próxima Issue Recomendada
 
 ```txt
-18 - Migrar estado global de Context API para Zustand
+Sem issue pendente planejada
 ```
 
-Motivo: produto, planejamento de backend e aliases já estão cobertos. Zustand prepara o estado global para fluxos autenticados mais previsíveis.
+Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
 
 ## Como Publicar No GitHub
 
@@ -66,11 +64,7 @@ Com GitHub CLI autenticado, rode:
 bash docs/github-issues/create-issues.sh
 ```
 
-Também dá para criar uma issue individualmente:
-
-```bash
-gh issue create --title "Migrar estado global de Context API para Zustand" --body-file docs/github-issues/18-migrate-context-api-to-zustand.md --label tech-debt --label priority-medium
-```
+Também dá para criar issues individualmente com `gh issue create` usando um arquivo markdown como corpo.
 
 ## Labels Usadas
 
@@ -100,8 +94,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-1. Modernizar base técnica: API própria, arquitetura, Zustand, formulários, CSS-in-JS e themes.
-2. Fechar qualidade/portfólio: testes, Husky/lint-staged e README.
+O backlog planejado para esta fase foi concluído. Novas frentes devem ser criadas como novas issues antes de iniciar implementação.
 
 ## Observações
 

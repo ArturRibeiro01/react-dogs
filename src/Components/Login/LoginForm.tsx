@@ -5,8 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { loginSchema, type LoginFormData } from '@/schemas/forms';
 import { useAuthStore } from '@/stores/authStore';
-import Button from '@components/Forms/Button';
-import stylesBtn from '@components/Forms/Button.module.css';
+import Button, { ButtonLink } from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 
@@ -60,9 +59,9 @@ const LoginForm = () => {
             <div className={styles.cadastro}>
                 <h2 className={styles.subtitle}>Cadastre-se</h2>
                 <p>Ainda não possui conta? Cadastre-se no site.</p>
-                <Link className={stylesBtn.button} to="/login/criar">
+                <ButtonLink to="/login/criar">
                     Cadastro
-                </Link>
+                </ButtonLink>
             </div>
         </section>
     );

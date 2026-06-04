@@ -57,7 +57,9 @@ feature/* -> develop -> main
 - Componentes compartilhados devem ter props tipadas explicitamente.
 - Evite `any`; prefira `unknown` ou tipos de domínio.
 - SVGs usados como componentes React devem ser importados com `?react`.
-- CSS atual usa CSS global e CSS Modules.
+- Componentes compartilhados novos devem preferir Emotion com `styled`.
+- Componentes migrados para Emotion devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- CSS global e CSS Modules ainda existem durante a migração gradual.
 
 ## Arquitetura Atual
 
@@ -65,6 +67,7 @@ feature/* -> develop -> main
 src/
   api.ts
   schemas/
+  styles/
   types.ts
   stores/
   Components/
@@ -85,6 +88,7 @@ Pontos importantes:
 - `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `schemas/forms.ts` centraliza validações dos formulários com Zod.
+- `styles/theme.ts` centraliza tokens iniciais consumidos pelo Emotion.
 - Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
@@ -100,7 +104,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-14 - Escolher e migrar para CSS-in-JS
+17 - Adicionar themes de cores e tokens de design
 ```
 
 ## Ao Finalizar Uma Issue
@@ -116,4 +120,4 @@ Próxima issue recomendada:
 
 - O modo demo/mock existe no frontend, mas ainda não substitui persistência real.
 - A API externa é dependência de disponibilidade.
-- CSS ainda usa CSS Modules e CSS global.
+- CSS Modules antigos ainda existem em componentes não migrados.

@@ -9,6 +9,7 @@ src/
   api.ts
   mockApi.ts
   schemas/
+  styles/
   types.ts
   stores/
     authStore.ts
@@ -16,7 +17,12 @@ src/
   Components/
     Feed/
     Forms/
+      Button/
+      Input/
+    Header/
+    Footer/
     Helper/
+      StatusMessage/
     Login/
     User/
   Hooks/
@@ -52,7 +58,7 @@ Ordem recomendada:
 1. Bibliotecas externas.
 2. Imports internos por alias.
 3. Tipos internos.
-4. CSS Modules relativos.
+4. CSS Modules relativos, quando o componente ainda não tiver sido migrado.
 5. Imports relativos próximos, quando forem arquivos irmãos da mesma pasta.
 
 Exemplo:
@@ -62,6 +68,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
+import { theme } from '@/styles/theme';
 import Button from '@components/Forms/Button';
 import type { User } from '@/types';
 
@@ -72,10 +79,27 @@ import LocalComponent from './LocalComponent';
 ## Regra Prática
 
 - Use alias para atravessar domínios ou pastas distantes.
-- Use import relativo para CSS Module do próprio componente.
+- Prefira Emotion com `styled` em componentes novos ou migrados.
+- Organize componentes migrados para Emotion em pasta própria: `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- Use import relativo para CSS Module do próprio componente enquanto ele ainda não tiver sido migrado.
 - Use import relativo para arquivos irmãos dentro da mesma pasta.
 - Evite `../../..` em código novo.
 - Remova imports não usados.
+
+## Estilos
+
+A biblioteca escolhida para CSS-in-JS é Emotion, usando principalmente `@emotion/styled`.
+
+Decisão:
+
+- Emotion foi escolhido por ter boa integração com TypeScript, API familiar para quem já usa styled-components e migração incremental simples.
+- Stitches foi evitado por não estar mais mantido.
+- Inline styles ficam restritos a valores pontuais e realmente dinâmicos.
+- `ThemeProvider` é aplicado no `App` e usa tokens de `src/styles/theme.ts`.
+- `Button`, `Input`, `StatusMessage`, `Header` e `Footer` já usam Emotion.
+- Os estilos Emotion desses componentes ficam em arquivos próprios `*.styles.ts`.
+
+CSS global e CSS Modules permanecem enquanto a migração acontece em etapas.
 
 ## Próxima Evolução Possível
 

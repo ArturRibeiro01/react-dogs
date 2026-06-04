@@ -22,21 +22,4 @@ ensure_label "priority-high" "b60205" "Alta prioridade"
 ensure_label "priority-medium" "fbca04" "Media prioridade"
 ensure_label "priority-low" "cfd3d7" "Baixa prioridade"
 
-create_issue() {
-  local title="$1"
-  local body_file="$2"
-  shift 2
-
-  local args=(issue create --title "$title" --body-file "$body_file")
-  for label in "$@"; do
-    args+=(--label "$label")
-  done
-
-  gh "${args[@]}"
-}
-
-create_issue \
-  "Melhorar README para portfolio" \
-  "docs/github-issues/11-improve-readme-portfolio.md" \
-  "documentation" \
-  "priority-medium"
+echo "Labels sincronizadas. Nao ha issues pendentes para criar neste diretorio."

@@ -1,6 +1,6 @@
 # Ordem Recomendada Das Issues
 
-Todas as issues `priority-high` planejadas foram concluídas localmente. A fila atual começa em `priority-medium`, priorizando primeiro completar produto, depois modernizar arquitetura e por fim fechar qualidade/portfólio.
+Todas as issues planejadas para esta fase foram concluídas localmente.
 
 ## Status Atual
 
@@ -31,28 +31,27 @@ Concluídas localmente:
 - `25` Migrar CSS Modules restantes para Emotion.
 - `26` Ampliar cobertura de testes unitários e integração.
 - `15` Adicionar scripts de qualidade com Husky e lint-staged.
+- `11` Melhorar README para portfólio.
 
 Pendentes:
 
-- Qualidade/portfólio: `11`.
+- Nenhuma issue pendente neste diretório.
 
 ## Próxima Issue Recomendada
 
 ```txt
-11 - Melhorar README para portfólio
+Sem issue pendente planejada
 ```
 
-Motivo: a base técnica, testes, qualidade local e deploy já estão montados. Agora faz sentido fechar a apresentação do projeto como portfólio.
+Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
 
 ## Priority Medium
 
-1. [ ] `11` Melhorar README para portfólio.
+Nenhuma issue pendente.
 
 ## Ordem Funcional Recomendada
 
-Qualidade:
-
-1. `11` README final de portfólio.
+Nenhuma issue pendente.
 
 ## Critério Para Reordenar
 

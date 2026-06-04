@@ -36,13 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Escolher e migrar para CSS-in-JS" \
-  "docs/github-issues/14-choose-and-migrate-css-in-js.md" \
-  "tech-debt" \
-  "ux" \
-  "priority-medium"
-
-create_issue \
   "Adicionar themes de cores e tokens de design" \
   "docs/github-issues/17-add-color-themes-and-design-tokens.md" \
   "feature" \

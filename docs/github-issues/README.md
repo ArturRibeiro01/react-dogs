@@ -31,12 +31,12 @@ docs/github-issues/PRIORITY.md
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `09` Adicionar cobertura inicial de testes.
+- `14` Escolher e migrar para CSS-in-JS.
 
 ## Issues Pendentes
 
 Arquitetura:
 
-- `14` Escolher e migrar para CSS-in-JS.
 - `17` Adicionar themes de cores e tokens de design.
 
 Qualidade e portfólio:
@@ -47,10 +47,10 @@ Qualidade e portfólio:
 ## Próxima Issue Recomendada
 
 ```txt
-14 - Escolher e migrar para CSS-in-JS
+17 - Adicionar themes de cores e tokens de design
 ```
 
-Motivo: Zustand e formulários já foram padronizados. A próxima decisão arquitetural é escolher se a camada visual continua em CSS Modules ou migra para CSS-in-JS.
+Motivo: Emotion já foi escolhido e os primeiros componentes compartilhados foram migrados. Agora faz sentido amadurecer tokens e themes.
 
 ## Como Publicar No GitHub
 
@@ -69,7 +69,7 @@ bash docs/github-issues/create-issues.sh
 Também dá para criar uma issue individualmente:
 
 ```bash
-gh issue create --title "Escolher e migrar para CSS-in-JS" --body-file docs/github-issues/14-choose-and-migrate-css-in-js.md --label tech-debt --label ux --label priority-medium
+gh issue create --title "Adicionar themes de cores e tokens de design" --body-file docs/github-issues/17-add-color-themes-and-design-tokens.md --label feature --label ux --label priority-medium
 ```
 
 ## Labels Usadas

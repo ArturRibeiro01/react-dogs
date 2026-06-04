@@ -26,33 +26,32 @@ Concluídas localmente:
 - `18` Migrar estado global de Context API para Zustand.
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `09` Adicionar cobertura inicial de testes.
+- `14` Escolher e migrar para CSS-in-JS.
 
 Pendentes:
 
-- Arquitetura/back-end: `14`, `17`.
+- Arquitetura/back-end: `17`.
 - Qualidade/portfólio: `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-14 - Escolher e migrar para CSS-in-JS
+17 - Adicionar themes de cores e tokens de design
 ```
 
-Motivo: Zustand e formulários já foram padronizados. A próxima decisão arquitetural é escolher se a camada visual continua em CSS Modules ou migra para CSS-in-JS.
+Motivo: Emotion já foi escolhido e os primeiros componentes compartilhados foram migrados. Agora faz sentido amadurecer tokens e themes.
 
 ## Priority Medium
 
-1. [ ] `14` Escolher e migrar para CSS-in-JS.
-2. [ ] `17` Adicionar themes de cores e tokens de design.
-3. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-4. [ ] `11` Melhorar README para portfólio.
+1. [ ] `17` Adicionar themes de cores e tokens de design.
+2. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+3. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
 
 Arquitetura:
 
-1. `14` CSS-in-JS.
-2. `17` Themes e tokens.
+1. `17` Themes e tokens.
 
 Qualidade:
 

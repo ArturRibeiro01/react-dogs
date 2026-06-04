@@ -1,23 +1,27 @@
+import { ThemeProvider } from '@emotion/react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { theme } from '@/styles/theme';
 import { useAuthStore } from '@/stores/authStore';
 
 import LoginForm from './LoginForm';
 
 const renderLoginForm = () =>
   render(
-    <MemoryRouter
-      initialEntries={['/login']}
-      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-    >
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/conta" element={<p>Minha conta</p>} />
-      </Routes>
-    </MemoryRouter>,
+    <ThemeProvider theme={theme}>
+      <MemoryRouter
+        initialEntries={['/login']}
+        future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+      >
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/conta" element={<p>Minha conta</p>} />
+        </Routes>
+      </MemoryRouter>
+    </ThemeProvider>,
   );
 
 describe('LoginForm', () => {

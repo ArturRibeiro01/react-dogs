@@ -5,6 +5,8 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@hookform/resolvers": "^5.4.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",

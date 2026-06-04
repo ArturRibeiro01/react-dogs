@@ -29,7 +29,7 @@ Ambos são publicados pelo mesmo GitHub Pages do repositório. A separação ent
 Próxima issue recomendada:
 
 ```txt
-14 - Escolher e migrar para CSS-in-JS
+17 - Adicionar themes de cores e tokens de design
 ```
 
 O backlog pendente fica em:
@@ -48,6 +48,7 @@ docs/github-issues/
 - Vite SVGR para SVGs como componentes React
 - Zustand para estado global de autenticação
 - React Hook Form e Zod para formulários e validação
+- Emotion para CSS-in-JS com `styled` e tema tipado
 - Vitest, jsdom e Testing Library para testes automatizados
 - Yarn Classic
 
@@ -203,7 +204,7 @@ docs/API.md
 
 ## Funcionalidades Pendentes
 
-- CSS-in-JS e tokens/themes.
+- Expandir tokens/themes para mais componentes e estados visuais.
 
 ## Estrutura
 
@@ -216,6 +217,7 @@ src/
   index.tsx
   api.ts
   schemas/
+  styles/
   types.ts
   stores/
   App.css
@@ -223,7 +225,18 @@ src/
   Components/
     Feed/
     Forms/
-    Header.tsx
+      Button/
+        Button.tsx
+        Button.styles.ts
+        index.ts
+      Input/
+        Input.tsx
+        Input.styles.ts
+        index.ts
+    Header/
+      Header.tsx
+      Header.styles.ts
+      index.ts
     Helper/
     Login/
     User/
@@ -242,7 +255,10 @@ Convenções atuais:
 - Hooks, helpers e cliente de API usam `.ts`.
 - Estado global de autenticação fica em `src/stores/authStore.ts`.
 - Schemas de validação de formulários ficam em `src/schemas/`.
-- CSS ainda usa CSS global e CSS Modules.
+- Tema e tokens iniciais ficam em `src/styles/theme.ts`.
+- Componentes compartilhados novos devem preferir Emotion com `styled`.
+- Componentes migrados para Emotion devem ficar em pasta própria com `Component.tsx`, `Component.styles.ts` e `index.ts`.
+- CSS global e CSS Modules ainda existem durante a migração gradual.
 - SVGs usados como componentes React são importados com `?react`.
 - O acesso à API deve passar por `src/api.ts`.
 - Tipos compartilhados ficam em `src/types.ts`.
@@ -293,6 +309,8 @@ Já foi feito:
 - Feed real com dados da API.
 - Formulários migrados para React Hook Form e Zod.
 - Cobertura inicial de testes com Vitest, jsdom e Testing Library.
+- Decisão de CSS-in-JS feita com Emotion.
+- Button, Input, StatusMessage, Header e Footer migrados para Emotion e organizados com arquivos de estilo próprios.
 - CI/CD com GitHub Actions.
 - Documentação inicial de API, status e backlog.
 

@@ -63,6 +63,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
+- Handoff para o Codex do backend criado em `docs/CODEX_BACKEND_HANDOFF.md`, incluindo padrões de Husky, CI, docs, issues e `.codex`.
 - Especificação da API própria criada em `docs/DOGS_API_SPEC.md`, considerando tutores, cachorros, múltiplos donos, posts, ambientes e Swagger.
 - Aliases de frontend configurados em Vite e TypeScript.
 - Convenção de imports documentada em `docs/ARCHITECTURE.md`.

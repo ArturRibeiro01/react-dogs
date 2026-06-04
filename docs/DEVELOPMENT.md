@@ -103,6 +103,7 @@ Pontos importantes:
 - Os estilos de componentes ficam em arquivos próprios `*.styles.ts`.
 - Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
+- `docs/CODEX_BACKEND_HANDOFF.md` documenta o padrão de trabalho que deve ser levado para o repositório da API.
 - `docs/DOGS_API_SPEC.md` documenta o domínio, jornadas, entidades, endpoints e stack sugerida para a API própria.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
 

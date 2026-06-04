@@ -88,7 +88,8 @@ Pontos importantes:
 - `StatusMessage.tsx` padroniza feedback acessível de erro, sucesso e informação.
 - `useFetch.ts` gerencia estado de loading, erro e data para requests.
 - `schemas/forms.ts` centraliza validações dos formulários com Zod.
-- `styles/theme.ts` centraliza tokens iniciais consumidos pelo Emotion.
+- `styles/theme.ts` centraliza tokens do tema claro consumidos pelo Emotion.
+- `styles/GlobalStyles.tsx` expõe tokens como CSS variables para CSS global e CSS Modules remanescentes.
 - Os formulários usam React Hook Form integrado aos schemas de Zod.
 - `docs/BACKEND_API_PLAN.md` documenta a decisão de criar a API própria em outro repositório.
 - `docs/ARCHITECTURE.md` documenta aliases, estrutura atual e convenção de imports.
@@ -104,7 +105,7 @@ docs/github-issues/PRIORITY.md
 Próxima issue recomendada:
 
 ```txt
-17 - Adicionar themes de cores e tokens de design
+15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
 ## Ao Finalizar Uma Issue

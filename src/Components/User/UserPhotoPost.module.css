@@ -17,7 +17,7 @@
     padding-bottom: 0.5rem;
 }
 .preview{
-    border-radius: 0.2rem;
+    border-radius: var(--radius-sm);
     background-size: cover;
     background-position: center center;
 }

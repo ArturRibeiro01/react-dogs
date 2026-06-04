@@ -1,7 +1,7 @@
 .photo {
     display: grid;
     overflow: hidden;
-    border-radius: 0.2rem;
+    border-radius: var(--radius-sm);
 }
 
 .photo:nth-child(2) {
@@ -18,12 +18,12 @@
     background: none;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 0.2rem;
+    border-radius: var(--radius-sm);
     text-align: left;
 }
 
 .button:focus {
-    outline: 3px solid #fb1;
+    outline: 3px solid var(--color-primary);
     outline-offset: 3px;
 }
 
@@ -37,8 +37,8 @@
 
 .views {
     align-items: center;
-    background: rgba(0, 0, 0, 0.35);
-    color: white;
+    background: var(--color-overlay-soft);
+    color: var(--color-surface);
     display: none;
     font-size: 1rem;
     grid-area: 1 / 1;
@@ -64,9 +64,9 @@
     font-weight: 700;
     grid-area: 1 / 1;
     align-self: end;
-    color: white;
+    color: var(--color-surface);
     padding: 0.5rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+    background: linear-gradient(transparent, var(--color-overlay-strong));
     overflow-wrap: anywhere;
 }
 

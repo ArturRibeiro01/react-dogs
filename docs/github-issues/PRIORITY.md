@@ -27,31 +27,26 @@ Concluídas localmente:
 - `19` Padronizar formulários com React Hook Form e Zod.
 - `09` Adicionar cobertura inicial de testes.
 - `14` Escolher e migrar para CSS-in-JS.
+- `17` Adicionar themes de cores e tokens de design.
 
 Pendentes:
 
-- Arquitetura/back-end: `17`.
 - Qualidade/portfólio: `15`, `11`.
 
 ## Próxima Issue Recomendada
 
 ```txt
-17 - Adicionar themes de cores e tokens de design
+15 - Adicionar scripts de qualidade com Husky e lint-staged
 ```
 
-Motivo: Emotion já foi escolhido e os primeiros componentes compartilhados foram migrados. Agora faz sentido amadurecer tokens e themes.
+Motivo: a base de tokens/themes já está centralizada. Agora faz sentido automatizar typecheck, testes e build antes dos commits/PRs.
 
 ## Priority Medium
 
-1. [ ] `17` Adicionar themes de cores e tokens de design.
-2. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
-3. [ ] `11` Melhorar README para portfólio.
+1. [ ] `15` Adicionar scripts de qualidade com Husky e lint-staged.
+2. [ ] `11` Melhorar README para portfólio.
 
 ## Ordem Funcional Recomendada
-
-Arquitetura:
-
-1. `17` Themes e tokens.
 
 Qualidade:
 

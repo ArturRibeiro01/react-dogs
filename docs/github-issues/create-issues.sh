@@ -36,13 +36,6 @@ create_issue() {
 }
 
 create_issue \
-  "Adicionar themes de cores e tokens de design" \
-  "docs/github-issues/17-add-color-themes-and-design-tokens.md" \
-  "feature" \
-  "ux" \
-  "priority-medium"
-
-create_issue \
   "Adicionar scripts de qualidade com Husky e lint-staged" \
   "docs/github-issues/15-add-quality-scripts-husky-lint-staged.md" \
   "tech-debt" \

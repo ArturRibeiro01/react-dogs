@@ -13,8 +13,8 @@
 .summary article,
 .highlight,
 .chart {
-    border-radius: 0.2rem;
-    background: #f7f7f7;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-muted);
 }
 
 .summary article {
@@ -25,13 +25,13 @@
 
 .summary span,
 .highlight span {
-    color: #666;
+    color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
 .summary strong {
-    color: #333;
-    font-family: var(--type-second);
+    color: var(--color-text);
+    font-family: var(--font-heading);
     font-size: 2rem;
     line-height: 1;
 }
@@ -40,17 +40,17 @@
     display: grid;
     gap: 0.35rem;
     padding: 1.25rem;
-    border-left: 0.5rem solid #fb1;
+    border-left: 0.5rem solid var(--color-primary);
 }
 
 .highlight strong {
-    font-family: var(--type-second);
+    font-family: var(--font-heading);
     font-size: 1.75rem;
     line-height: 1;
 }
 
 .highlight p {
-    color: #666;
+    color: var(--color-text-muted);
 }
 
 .chart {
@@ -77,7 +77,7 @@
 }
 
 .rowHeader span {
-    color: #666;
+    color: var(--color-text-muted);
     font-weight: 700;
     white-space: nowrap;
 }
@@ -86,21 +86,21 @@
     height: 1rem;
     overflow: hidden;
     border-radius: 999px;
-    background: #ddd;
+    background: var(--color-border-strong);
 }
 
 .track span {
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: #fb1;
+    background: var(--color-primary);
 }
 
 .empty {
     padding: 1.5rem;
-    border-radius: 0.2rem;
-    background: #f7f7f7;
-    color: #666;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-muted);
+    color: var(--color-text-muted);
 }
 
 @media (max-width: 40rem) {

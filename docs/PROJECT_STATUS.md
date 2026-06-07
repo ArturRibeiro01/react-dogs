@@ -31,11 +31,11 @@ Todas as issues planejadas para esta fase foram cobertas localmente. A API próp
 
 ## Ambiente
 
-- Node usado durante a modernização: `18.16.0`
-- Node recomendado: `18+`
+- Node usado durante a modernização inicial: `18.16.0`
+- Node recomendado atual: `20+`
 - Package manager: Yarn 1.x
 
-Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto permanece nas versões modernas compatíveis com esse runtime.
+Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`, que exige Node 20+ nas versões atuais. O CI/CD foi atualizado para Node 20.
 
 ## Concluído
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { passwordApi } from '@/api';
 import { passwordResetSchema, type PasswordResetFormData } from '@/schemas/forms';
@@ -15,7 +15,6 @@ import { Form, LostPasswordLink } from './LoginForm.styles';
 
 const LoginPasswordReset = () => {
   const { error, loading, request } = useFetch();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [success, setSuccess] = React.useState<string | null>(null);
   const {
@@ -27,19 +26,11 @@ const LoginPasswordReset = () => {
     mode: 'onBlur',
   });
 
-  const key = searchParams.get('key');
-  const login = searchParams.get('login');
-  const invalidUrl = !key || !login;
-
   async function onSubmit({ password }: PasswordResetFormData) {
     setSuccess(null);
 
-    if (!login || !key) return;
-
     const { response } = await request(() =>
       passwordApi.reset({
-        login,
-        key,
         password,
       }),
     );
@@ -53,27 +44,18 @@ const LoginPasswordReset = () => {
   return (
     <section className="animeLeft">
       <h1 className="title">Resetar senha</h1>
-      {invalidUrl ? (
-        <>
-          <Error error="Link de redefinição inválido ou incompleto." />
-          <LostPasswordLink to="/login/perdeu">Solicitar novo link</LostPasswordLink>
-        </>
-      ) : (
-        <>
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <Input
-              label="Nova senha"
-              type="password"
-              error={errors.password?.message}
-              {...register('password')}
-            />
-            {loading ? <Button disabled>Redefinindo...</Button> : <Button>Redefinir Senha</Button>}
-            <Error error={error} />
-            {success && <StatusMessage variant="success">{success}</StatusMessage>}
-          </Form>
-          <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
-        </>
-      )}
+      <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Input
+          label="Nova senha"
+          type="password"
+          error={errors.password?.message}
+          {...register('password')}
+        />
+        {loading ? <Button disabled>Redefinindo...</Button> : <Button>Redefinir Senha</Button>}
+        <Error error={error} />
+        {success && <StatusMessage variant="success">{success}</StatusMessage>}
+      </Form>
+      <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
     </section>
   );
 };

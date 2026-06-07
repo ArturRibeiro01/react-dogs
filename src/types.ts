@@ -1,5 +1,5 @@
 export type User = {
-  id: number;
+  id: number | string;
   username: string;
   nome?: string;
   email?: string;
@@ -11,11 +11,9 @@ export type UserCreateInput = {
   password: string;
 };
 
-export type AuthTokenResponse = {
-  token: string;
-  user_display_name?: string;
-  user_email?: string;
-  user_nicename?: string;
+export type AuthSessionUser = {
+  accessToken: string | null;
+  user: User | null;
 };
 
 export type Photo = {
@@ -60,8 +58,6 @@ export type PasswordLostInput = {
 };
 
 export type PasswordResetInput = {
-  login: string;
-  key: string;
   password: string;
 };
 

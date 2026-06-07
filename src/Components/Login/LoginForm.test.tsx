@@ -51,12 +51,12 @@ describe('LoginForm', () => {
     useAuthStore.setState({ userLogin });
 
     renderLoginForm();
-    await userEvent.type(screen.getByLabelText('Usuário'), 'demo');
+    await userEvent.type(screen.getByLabelText('E-mail'), 'demo@dogs.local');
     await userEvent.type(screen.getByLabelText('Senha'), 'Demo1234');
     await userEvent.click(screen.getByRole('button', { name: /entrar/i }));
 
     await waitFor(() => {
-      expect(userLogin).toHaveBeenCalledWith('demo', 'Demo1234');
+      expect(userLogin).toHaveBeenCalledWith('demo@dogs.local', 'Demo1234');
     });
     expect(await screen.findByText('Minha conta')).toBeInTheDocument();
   });

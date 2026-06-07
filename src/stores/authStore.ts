@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
-import { authApi, tokenStorage, userApi } from '@/api';
-import type { User } from '@/types';
+import { authApi, tokenStorage } from '@/api';
+import type { AuthSessionUser, User, UserCreateInput } from '@/types';
 
 type AuthState = {
   data: User | null;
@@ -9,9 +9,11 @@ type AuthState = {
   loading: boolean;
   error: string | null;
   autoLogin: () => Promise<void>;
+  subscribeToAuthChanges: () => () => void;
   clearError: () => void;
-  userLogin: (username: string, password: string) => Promise<boolean>;
-  userLogout: () => void;
+  userLogin: (email: string, password: string) => Promise<boolean>;
+  userSignup: (body: UserCreateInput) => Promise<boolean>;
+  userLogout: () => Promise<void>;
 };
 
 const getErrorMessage = (error: unknown): string => {
@@ -19,9 +21,14 @@ const getErrorMessage = (error: unknown): string => {
   return 'Ocorreu um erro inesperado.';
 };
 
-async function fetchCurrentUser(token: string): Promise<User> {
-  const { data } = await userApi.get(token);
-  return data;
+function persistSession({ accessToken, user }: AuthSessionUser): void {
+  if (accessToken) tokenStorage.set(accessToken);
+  else tokenStorage.remove();
+
+  useAuthStore.setState({
+    data: user,
+    login: Boolean(user && accessToken),
+  });
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -31,17 +38,10 @@ export const useAuthStore = create<AuthState>((set) => ({
   error: null,
 
   autoLogin: async () => {
-    const token = tokenStorage.get();
-    if (!token) {
-      set({ data: null, login: false, loading: false, error: null });
-      return;
-    }
-
     try {
       set({ error: null, loading: true });
-      await authApi.validateToken(token);
-      const data = await fetchCurrentUser(token);
-      set({ data, login: true });
+      const sessionUser = await authApi.getSession();
+      persistSession(sessionUser);
     } catch (error) {
       tokenStorage.remove();
       set({
@@ -54,15 +54,21 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
+  subscribeToAuthChanges: () => {
+    const subscription = authApi.onAuthStateChange((sessionUser) => {
+      persistSession(sessionUser);
+    });
+
+    return subscription.unsubscribe;
+  },
+
   clearError: () => set({ error: null }),
 
-  userLogin: async (username, password) => {
+  userLogin: async (email, password) => {
     try {
       set({ error: null, loading: true });
-      const { data: authData } = await authApi.login({ username, password });
-      tokenStorage.set(authData.token);
-      const data = await fetchCurrentUser(authData.token);
-      set({ data, login: true });
+      const sessionUser = await authApi.login({ email, password });
+      persistSession(sessionUser);
       return true;
     } catch (error) {
       set({
@@ -76,13 +82,36 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  userLogout: () => {
-    tokenStorage.remove();
-    set({
-      data: null,
-      login: false,
-      loading: false,
-      error: null,
-    });
+  userSignup: async (body) => {
+    try {
+      set({ error: null, loading: true });
+      const sessionUser = await authApi.signUp(body);
+      persistSession(sessionUser);
+      return true;
+    } catch (error) {
+      set({
+        data: null,
+        login: false,
+        error: getErrorMessage(error),
+      });
+      return false;
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  userLogout: async () => {
+    try {
+      set({ loading: true });
+      await authApi.logout();
+    } finally {
+      tokenStorage.remove();
+      set({
+        data: null,
+        login: false,
+        loading: false,
+        error: null,
+      });
+    }
   },
 }));

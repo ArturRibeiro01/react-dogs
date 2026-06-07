@@ -94,7 +94,7 @@ Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senh
 
 Requisitos:
 
-- Node 18+
+- Node 20+
 - Yarn 1.x
 
 Instale as dependências:
@@ -127,7 +127,7 @@ Faça preview do build:
 yarn preview
 ```
 
-Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto usa versões modernas compatíveis com esse runtime.
+Observação: a integração com Supabase Auth usa `@supabase/supabase-js`, que exige Node 20+ nas versões atuais. Use Node 20 ou superior para instalar dependências e rodar os checks.
 
 ## Variáveis De Ambiente
 

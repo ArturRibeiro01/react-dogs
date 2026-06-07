@@ -28,6 +28,7 @@ docs/github-issues/PRIORITY.md
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `27` Configurar Supabase Auth no frontend.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -46,7 +47,6 @@ docs/github-issues/PRIORITY.md
 
 ## Issues Pendentes
 
-- `27` Configurar Supabase Auth no frontend.
 - `28` Criar client da Dogs API com contrato novo.
 - `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
@@ -57,10 +57,10 @@ docs/github-issues/PRIORITY.md
 ## Próxima Issue Recomendada
 
 ```txt
-27 Configurar Supabase Auth no frontend
+28 Criar client da Dogs API com contrato novo
 ```
 
-Motivo: a Dogs API valida tokens do Supabase. O frontend precisa primeiro autenticar diretamente no Supabase para que as próximas integrações possam enviar `Authorization: Bearer <supabase_access_token>`.
+Motivo: o frontend já autentica via Supabase. O próximo passo é trocar o client HTTP para o contrato da Dogs API e usar o `access_token` nas chamadas autenticadas.
 
 ## Como Publicar No GitHub
 
@@ -108,7 +108,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-Comece por Supabase Auth, depois client da Dogs API, perfil local, cachorros, posts/feed, upload e, por fim, envs/CI/docs.
+Comece pelo client da Dogs API, depois perfil local, cachorros, posts/feed, upload e, por fim, envs/CI/docs.
 
 ## Ambientes Da Nova API
 

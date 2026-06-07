@@ -145,4 +145,5 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 - Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
 - `yarn test` roda a suíte automatizada com Vitest; o CI falha em caso de regressão coberta.
 - A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.
+- O workflow usa Node 20 porque `@supabase/supabase-js` exige Node 20+ nas versões atuais.
 - O workflow força JavaScript Actions para Node 24 com `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` para antecipar a migração do GitHub Actions. Alguns avisos podem continuar aparecendo enquanto actions oficiais ainda declararem runtime Node 20 internamente.

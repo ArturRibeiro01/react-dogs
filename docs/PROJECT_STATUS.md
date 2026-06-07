@@ -31,11 +31,11 @@ Todas as issues planejadas para esta fase foram cobertas localmente. A API próp
 
 ## Ambiente
 
-- Node usado durante a modernização: `18.16.0`
-- Node recomendado: `18+`
+- Node usado durante a modernização inicial: `18.16.0`
+- Node recomendado atual: `20+`
 - Package manager: Yarn 1.x
 
-Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto permanece nas versões modernas compatíveis com esse runtime.
+Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`, que exige Node 20+ nas versões atuais. O CI/CD foi atualizado para Node 20.
 
 ## Concluído
 
@@ -129,6 +129,7 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `21` Criar API client e configuração por ambiente.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `27` Configurar Supabase Auth no frontend.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -151,9 +152,8 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 
 A próxima frente planejada é integrar o frontend `react-dogs` com a nova `dogs-api`, usando o handoff em `docs/FRONTEND_INTEGRATION_HANDOFF.md`.
 
-Issues pendentes criadas para essa fase:
+Issues pendentes para essa fase:
 
-- `27` Configurar Supabase Auth no frontend.
 - `28` Criar client da Dogs API com contrato novo.
 - `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.

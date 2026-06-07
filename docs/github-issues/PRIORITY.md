@@ -1,6 +1,6 @@
 # Ordem Recomendada Das Issues
 
-Todas as issues planejadas para esta fase foram concluídas localmente.
+Fila atual para integrar o frontend `react-dogs` com a nova `dogs-api`.
 
 ## Status Atual
 
@@ -35,30 +35,52 @@ Concluídas localmente:
 
 Pendentes:
 
-- Nenhuma issue pendente neste diretório.
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Próxima Issue Recomendada
 
 ```txt
-Sem issue pendente planejada
+27 Configurar Supabase Auth no frontend
 ```
 
-Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
+Motivo: a nova Dogs API recebe token emitido pelo Supabase. A autenticação precisa mudar antes de integrar endpoints autenticados.
+
+## Priority High
+
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Priority Medium
 
-Nenhuma issue pendente.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
 
 ## Ordem Funcional Recomendada
 
-Nenhuma issue pendente.
+1. `27` Configurar Supabase Auth no frontend.
+2. `28` Criar client da Dogs API com contrato novo.
+3. `29` Migrar perfil do usuário para Dogs API.
+4. `30` Integrar catálogo de raças e CRUD de cachorros.
+5. `31` Migrar feed público e modal para posts.
+6. `32` Migrar publicação com upload multipart.
+7. `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Critério Para Reordenar
 
 Reordene a fila se uma issue desbloquear claramente outra. Exemplos:
 
-- Se o modal exigir uma reorganização pesada, considerar `20` antes de continuar produto.
-- Se a esteira precisar de deploy externo alem de GitHub Pages, criar uma nova issue especifica de CD.
+- Se `33` bloquear validação em ambiente publicado, antecipar antes dos fluxos de produto.
+- Se o backend adicionar endpoint de estatísticas, criar uma nova issue específica para substituir `/api/stats`.
+- Se o fluxo de publicação exigir nova tela de gestão de cachorros, dividir `30` antes de iniciar `32`.
 
 ## Histórico
 

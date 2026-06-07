@@ -5,7 +5,7 @@ import { createUserSchema, loginSchema, passwordResetSchema, photoPostSchema } f
 describe('form schemas', () => {
   it('validates login required fields', () => {
     const result = loginSchema.safeParse({
-      username: '',
+      email: '',
       password: '',
     });
 

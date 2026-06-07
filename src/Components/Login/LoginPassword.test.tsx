@@ -61,12 +61,12 @@ describe('Login password recovery', () => {
     mockedLost.mockResolvedValue(createApiResponse(null));
 
     renderPasswordLost();
-    await userEvent.type(screen.getByLabelText(/e-mail \/ usuário/i), 'demo');
+    await userEvent.type(screen.getByLabelText(/e-mail/i), 'demo@dogs.local');
     await userEvent.click(screen.getByRole('button', { name: /enviar e-mail/i }));
 
     await waitFor(() => {
       expect(mockedLost).toHaveBeenCalledWith({
-        login: 'demo',
+        login: 'demo@dogs.local',
         url: expect.stringContaining('/login/resetar'),
       });
     });
@@ -75,29 +75,15 @@ describe('Login password recovery', () => {
     ).toBeInTheDocument();
   });
 
-  it('shows an invalid reset link message when key or login is missing', () => {
-    renderPasswordReset('/login/resetar');
-
-    expect(screen.getByRole('alert')).toHaveTextContent(
-      'Link de redefinição inválido ou incompleto.',
-    );
-    expect(screen.getByRole('link', { name: /solicitar novo link/i })).toHaveAttribute(
-      'href',
-      '/login/perdeu',
-    );
-  });
-
   it('resets the password and shows success feedback', async () => {
     mockedReset.mockResolvedValue(createApiResponse(null));
 
-    renderPasswordReset('/login/resetar?key=abc&login=demo');
+    renderPasswordReset('/login/resetar');
     await userEvent.type(screen.getByLabelText(/nova senha/i), 'Demo1234');
     await userEvent.click(screen.getByRole('button', { name: /redefinir senha/i }));
 
     await waitFor(() => {
       expect(mockedReset).toHaveBeenCalledWith({
-        login: 'demo',
-        key: 'abc',
         password: 'Demo1234',
       });
     });

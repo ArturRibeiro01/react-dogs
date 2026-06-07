@@ -1,6 +1,6 @@
 import type {
   ApiResponse,
-  AuthTokenResponse,
+  AuthSessionUser,
   PasswordLostInput,
   PasswordResetInput,
   Photo,
@@ -137,28 +137,54 @@ function createAuthError(): never {
 }
 
 export const mockAuthApi = {
-  login: async ({ username, password }: { username: string; password: string }) => {
+  login: async ({ email, password }: { email: string; password: string }) => {
     await delay();
-    if (username !== DEMO_USERNAME || password !== DEMO_PASSWORD) createAuthError();
+    const isDemoLogin = email === DEMO_USERNAME || email === demoUser.email;
+    if (!isDemoLogin || password !== DEMO_PASSWORD) createAuthError();
 
     return {
-      response: createResponse(),
-      data: {
-        token: DEMO_TOKEN,
-        user_display_name: demoUser.nome,
-        user_email: demoUser.email,
-        user_nicename: demoUser.username,
-      } satisfies AuthTokenResponse,
-    };
+      accessToken: DEMO_TOKEN,
+      user: demoUser,
+    } satisfies AuthSessionUser;
   },
 
-  validateToken: async (token: string) => {
+  signUp: async (body: UserCreateInput) => {
+    await delay();
+    return {
+      accessToken: DEMO_TOKEN,
+      user: {
+        id: 2,
+        username: body.username,
+        email: body.email,
+        nome: body.username,
+      },
+    } satisfies AuthSessionUser;
+  },
+
+  getSession: async () => {
     await delay(250);
-    if (token !== DEMO_TOKEN) throw new Error('Token demo inválido.');
+    const token = window.localStorage.getItem('supabase-access-token');
+
+    if (token !== DEMO_TOKEN) {
+      return {
+        accessToken: null,
+        user: null,
+      } satisfies AuthSessionUser;
+    }
 
     return {
-      response: createResponse(),
-      data: null,
+      accessToken: DEMO_TOKEN,
+      user: demoUser,
+    } satisfies AuthSessionUser;
+  },
+
+  logout: async () => {
+    await delay(150);
+  },
+
+  onAuthStateChange: (_callback: (sessionUser: AuthSessionUser) => void) => {
+    return {
+      unsubscribe: () => undefined,
     };
   },
 };
@@ -185,10 +211,7 @@ export const mockUserApi = {
 export const mockPasswordApi = {
   lost: async (_body: PasswordLostInput) => mockResponse<null>(null),
 
-  reset: async ({ key }: PasswordResetInput) => {
-    if (!key) throw new Error('Link de redefinição inválido.');
-    return mockResponse<null>(null);
-  },
+  reset: async (_body: PasswordResetInput) => mockResponse<null>(null),
 };
 
 export const mockPhotoApi = {

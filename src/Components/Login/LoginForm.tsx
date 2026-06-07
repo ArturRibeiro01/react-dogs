@@ -25,8 +25,8 @@ const LoginForm = () => {
     mode: 'onBlur',
   });
 
-  async function onSubmit({ username, password }: LoginFormData) {
-    const success = await userLogin(username, password);
+  async function onSubmit({ email, password }: LoginFormData) {
+    const success = await userLogin(email, password);
     if (success) navigate('/conta');
   }
 
@@ -34,12 +34,7 @@ const LoginForm = () => {
     <section className="animeLeft">
       <h1 className="title">Login</h1>
       <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input
-          label="Usuário"
-          type="text"
-          error={errors.username?.message}
-          {...register('username')}
-        />
+        <Input label="E-mail" type="email" error={errors.email?.message} {...register('email')} />
         <Input
           label="Senha"
           type="password"

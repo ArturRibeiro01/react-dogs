@@ -18,8 +18,8 @@ const UserHeaderNav = () => {
   const { pathname } = useLocation();
   const navId = 'user-account-navigation';
 
-  function handleLogout() {
-    userLogout();
+  async function handleLogout() {
+    await userLogout();
     navigate('/login');
   }
 

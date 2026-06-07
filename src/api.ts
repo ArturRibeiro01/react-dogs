@@ -1,6 +1,6 @@
 import type {
   ApiResponse,
-  AuthTokenResponse,
+  AuthSessionUser,
   PasswordLostInput,
   PasswordResetInput,
   Photo,
@@ -10,6 +10,7 @@ import type {
   User,
   UserCreateInput,
 } from './types';
+import { IS_SUPABASE_CONFIGURED, supabase } from './supabase';
 import {
   mockAuthApi,
   mockHealthApi,
@@ -21,7 +22,7 @@ import {
 
 export const API_URL = import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
 
-const TOKEN_KEY = 'token';
+const TOKEN_KEY = 'supabase-access-token';
 export const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
 type ApiErrorOptions = {
@@ -68,6 +69,10 @@ function setStoredToken(token: string): void {
 
 function removeStoredToken(): void {
   window.localStorage.removeItem(TOKEN_KEY);
+}
+
+function createOkResponse(status = 200): Response {
+  return new Response(null, { status });
 }
 
 function resolveUrl(path: string): string {
@@ -147,18 +152,100 @@ export const tokenStorage = {
   remove: removeStoredToken,
 };
 
-const realAuthApi = {
-  login: (body: { username: string; password: string }) =>
-    apiRequest<AuthTokenResponse>('/jwt-auth/v1/token', {
-      method: 'POST',
-      body,
-    }),
+function ensureSupabaseConfigured(): void {
+  if (!IS_SUPABASE_CONFIGURED) {
+    throw new Error('Configure VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY para autenticar.');
+  }
+}
 
-  validateToken: (token: string) =>
-    apiRequest<unknown>('/jwt-auth/v1/token/validate', {
-      method: 'POST',
-      token,
-    }),
+function mapSupabaseUser(user: NonNullable<AuthSessionUser['user']>): AuthSessionUser['user'] {
+  return user;
+}
+
+function createLocalUserFromSupabase(user: {
+  id: string;
+  email?: string;
+  user_metadata?: Record<string, unknown>;
+}): NonNullable<AuthSessionUser['user']> {
+  const username =
+    typeof user.user_metadata?.username === 'string'
+      ? user.user_metadata.username
+      : user.email?.split('@')[0] || 'usuario';
+  const name =
+    typeof user.user_metadata?.name === 'string'
+      ? user.user_metadata.name
+      : typeof user.user_metadata?.nome === 'string'
+        ? user.user_metadata.nome
+        : username;
+
+  return {
+    id: user.id,
+    username,
+    nome: name,
+    email: user.email,
+  };
+}
+
+function createAuthSessionUser(
+  accessToken: string | null,
+  user: Parameters<typeof createLocalUserFromSupabase>[0] | null | undefined,
+): AuthSessionUser {
+  return {
+    accessToken,
+    user: user ? mapSupabaseUser(createLocalUserFromSupabase(user)) : null,
+  };
+}
+
+const realAuthApi = {
+  login: async ({ email, password }: { email: string; password: string }) => {
+    ensureSupabaseConfigured();
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw new Error(error.message);
+    return createAuthSessionUser(data.session?.access_token || null, data.user);
+  },
+
+  signUp: async ({ username, email, password }: UserCreateInput) => {
+    ensureSupabaseConfigured();
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          username,
+          name: username,
+        },
+      },
+    });
+    if (error) throw new Error(error.message);
+    return createAuthSessionUser(data.session?.access_token || null, data.user);
+  },
+
+  getSession: async () => {
+    ensureSupabaseConfigured();
+    const { data, error } = await supabase.auth.getSession();
+    if (error) throw new Error(error.message);
+    return createAuthSessionUser(data.session?.access_token || null, data.session?.user);
+  },
+
+  logout: async () => {
+    ensureSupabaseConfigured();
+    const { error } = await supabase.auth.signOut();
+    if (error) throw new Error(error.message);
+  },
+
+  onAuthStateChange: (callback: (sessionUser: AuthSessionUser) => void) => {
+    if (!IS_SUPABASE_CONFIGURED) {
+      return { unsubscribe: () => undefined };
+    }
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      callback(createAuthSessionUser(session?.access_token || null, session?.user));
+    });
+
+    return { unsubscribe: () => subscription.unsubscribe() };
+  },
 };
 
 const realUserApi = {
@@ -176,17 +263,27 @@ const realUserApi = {
 };
 
 const realPasswordApi = {
-  lost: (body: PasswordLostInput) =>
-    apiRequest<unknown>('/api/password/lost', {
-      method: 'POST',
-      body,
-    }),
+  lost: async ({ login, url }: PasswordLostInput) => {
+    ensureSupabaseConfigured();
+    const { error } = await supabase.auth.resetPasswordForEmail(login, {
+      redirectTo: url,
+    });
+    if (error) throw new Error(error.message);
+    return {
+      response: createOkResponse(),
+      data: null,
+    };
+  },
 
-  reset: (body: PasswordResetInput) =>
-    apiRequest<unknown>('/api/password/reset', {
-      method: 'POST',
-      body,
-    }),
+  reset: async ({ password }: PasswordResetInput) => {
+    ensureSupabaseConfigured();
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) throw new Error(error.message);
+    return {
+      response: createOkResponse(),
+      data: null,
+    };
+  },
 };
 
 const realPhotoApi = {

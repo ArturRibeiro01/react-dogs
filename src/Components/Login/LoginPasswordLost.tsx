@@ -44,12 +44,7 @@ const LoginPasswordLost = () => {
     <section className="animeLeft">
       <h1 className="title">Perdeu a senha?</h1>
       <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input
-          label="E-mail / Usuário"
-          type="text"
-          error={errors.login?.message}
-          {...register('login')}
-        />
+        <Input label="E-mail" type="email" error={errors.login?.message} {...register('login')} />
         {loading ? <Button disabled>Enviando...</Button> : <Button>Enviar e-mail</Button>}
         <Error error={error} />
         {success && <StatusMessage variant="success">{success}</StatusMessage>}

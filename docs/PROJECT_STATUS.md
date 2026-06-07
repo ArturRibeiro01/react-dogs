@@ -1,6 +1,6 @@
 # Project Status
 
-Atualizado em 2026-06-04.
+Atualizado em 2026-06-07.
 
 ## Resumo
 
@@ -149,11 +149,22 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 
 ## Próxima Frente
 
-Não há issues pendentes planejadas neste diretório para a fase atual. As próximas frentes devem nascer como novas issues, preferencialmente separando frontend e backend.
+A próxima frente planejada é integrar o frontend `react-dogs` com a nova `dogs-api`, usando o handoff em `docs/FRONTEND_INTEGRATION_HANDOFF.md`.
+
+Issues pendentes criadas para essa fase:
+
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Ainda Pendente
 
-- Criar a API própria em outro repositório.
+- Integrar o frontend com a API própria criada em outro repositório.
+- Configurar URLs hml/prod da Dogs API e envs públicas do Supabase no build do frontend.
 - Adicionar mais capturas ou GIFs dos principais fluxos do app.
 - Evoluir testes de integração para fluxos completos de usuário.
 

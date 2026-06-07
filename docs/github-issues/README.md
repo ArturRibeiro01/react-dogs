@@ -2,6 +2,12 @@
 
 Este diretório contém apenas issues pendentes. As issues já concluídas localmente foram removidas para manter o backlog menor e mais fácil de executar.
 
+A fila atual é focada na integração do frontend `react-dogs` com a nova `dogs-api`, conforme o handoff em:
+
+```txt
+docs/FRONTEND_INTEGRATION_HANDOFF.md
+```
+
 Para histórico do que já foi feito, consulte:
 
 ```txt
@@ -40,15 +46,21 @@ docs/github-issues/PRIORITY.md
 
 ## Issues Pendentes
 
-Nenhuma issue pendente neste diretório.
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Próxima Issue Recomendada
 
 ```txt
-Sem issue pendente planejada
+27 Configurar Supabase Auth no frontend
 ```
 
-Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
+Motivo: a Dogs API valida tokens do Supabase. O frontend precisa primeiro autenticar diretamente no Supabase para que as próximas integrações possam enviar `Authorization: Bearer <supabase_access_token>`.
 
 ## Como Publicar No GitHub
 
@@ -65,6 +77,8 @@ bash docs/github-issues/create-issues.sh
 ```
 
 Também dá para criar issues individualmente com `gh issue create` usando um arquivo markdown como corpo.
+
+O script é idempotente: ele consulta issues abertas e fechadas por título exato e pula qualquer card que já exista.
 
 ## Labels Usadas
 
@@ -94,7 +108,16 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-O backlog planejado para esta fase foi concluído. Novas frentes devem ser criadas como novas issues antes de iniciar implementação.
+Comece por Supabase Auth, depois client da Dogs API, perfil local, cachorros, posts/feed, upload e, por fim, envs/CI/docs.
+
+## Ambientes Da Nova API
+
+Quando a `dogs-api` tiver ambientes publicados:
+
+- `develop` do front deve apontar para hml/dev da API e publicar em `/react-dogs/dev/`.
+- `main` do front deve apontar para produção da API e publicar em `/react-dogs/`.
+- O build do front deve receber `VITE_DOGS_API_URL`, `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` por ambiente.
+- Nunca use service role key do Supabase no frontend.
 
 ## Observações
 

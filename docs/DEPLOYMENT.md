@@ -80,6 +80,17 @@ No environment `github-pages`:
 
 Se `main` ainda não existir e `master` for usada temporariamente como produção, permita também `master`. Quando `main` virar a branch de produção definitiva, remova `master` dessa regra.
 
+No repositório, em `Settings > Secrets and variables > Actions > Variables`, configure as repository variables usadas pelo build do Vite:
+
+```txt
+VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_...
+VITE_DEMO_MODE=false
+```
+
+`VITE_SUPABASE_ANON_KEY` é pública no bundle do frontend. Não configure service role key no GitHub Actions do frontend.
+
 ## Proteção De Branches
 
 Fluxo esperado:

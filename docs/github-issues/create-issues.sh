@@ -44,11 +44,6 @@ create_issue_if_missing() {
 }
 
 create_issue_if_missing \
-  "28 Criar client da Dogs API com contrato novo" \
-  "docs/github-issues/28-criar-client-da-dogs-api-com-contrato-novo.md" \
-  tech-debt priority-high
-
-create_issue_if_missing \
   "29 Migrar perfil do usuário para Dogs API" \
   "docs/github-issues/29-migrar-perfil-do-usuario-para-dogs-api.md" \
   feature priority-high

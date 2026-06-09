@@ -133,6 +133,7 @@ Observação: a integração com Supabase Auth usa `@supabase/supabase-js`, que 
 
 ```bash
 VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL=http://localhost:3333
 VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
 VITE_SUPABASE_ANON_KEY=sb_publishable_...
 VITE_DEMO_MODE=false
@@ -141,6 +142,7 @@ VITE_DEMO_MODE=false
 | Variável                 | Descrição                                                   |
 | ------------------------ | ----------------------------------------------------------- |
 | `VITE_API_URL`           | URL base da API antiga ainda usada por fluxos não migrados. |
+| `VITE_DOGS_API_URL`      | URL base da nova Dogs API.                                  |
 | `VITE_SUPABASE_URL`      | URL pública do projeto Supabase usado no Auth.              |
 | `VITE_SUPABASE_ANON_KEY` | Chave pública anon/publishable do Supabase.                 |
 | `VITE_DEMO_MODE`         | Quando `true`, usa mocks locais em vez dos serviços reais.  |

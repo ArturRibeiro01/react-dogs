@@ -84,6 +84,7 @@ No repositório, em `Settings > Secrets and variables > Actions > Variables`, co
 
 ```txt
 VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL=http://localhost:3333
 VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
 VITE_SUPABASE_ANON_KEY=sb_publishable_...
 VITE_DEMO_MODE=false

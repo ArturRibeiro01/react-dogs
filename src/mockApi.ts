@@ -1,6 +1,16 @@
 import type {
   ApiResponse,
   AuthSessionUser,
+  Breed,
+  Dog,
+  DogCreateInput,
+  DogMembership,
+  DogsListParams,
+  DogsUser,
+  DogsUserUpdateInput,
+  DogUpdateInput,
+  Media,
+  MediaUploadInput,
   PasswordLostInput,
   PasswordResetInput,
   Photo,
@@ -8,6 +18,10 @@ import type {
   PhotoDetails,
   PhotoListParams,
   PhotoStats,
+  Post,
+  PostCreateInput,
+  PostsListParams,
+  PostUpdateInput,
   User,
   UserCreateInput,
 } from './types';
@@ -22,6 +36,74 @@ const demoUser: User = {
   nome: 'Demo',
   email: 'demo@dogs.local',
 };
+
+const demoDogsUser: DogsUser = {
+  id: 'demo-user-id',
+  username: DEMO_USERNAME,
+  name: 'Demo',
+  email: 'demo@dogs.local',
+  city: 'Sao Paulo',
+  state: 'SP',
+};
+
+const demoBreeds: Breed[] = [
+  {
+    id: 'breed-golden',
+    name: 'Golden Retriever',
+    slug: 'golden-retriever',
+  },
+  {
+    id: 'breed-vira-lata',
+    name: 'Vira-lata',
+    slug: 'vira-lata',
+  },
+];
+
+const demoDogs: Dog[] = [
+  {
+    id: 'dog-nina',
+    slug: 'nina',
+    name: 'Nina',
+    breedId: demoBreeds[0].id,
+    breed: demoBreeds[0],
+    city: 'Sao Paulo',
+    state: 'SP',
+    interests: ['walks', 'community'],
+    isPublic: true,
+  },
+  {
+    id: 'dog-thor',
+    slug: 'thor',
+    name: 'Thor',
+    breedId: demoBreeds[1].id,
+    breed: demoBreeds[1],
+    city: 'Sao Paulo',
+    state: 'SP',
+    interests: ['friendship'],
+    isPublic: true,
+  },
+];
+
+const demoPosts: Post[] = [
+  {
+    id: 'post-nina-1',
+    dogId: demoDogs[0].id,
+    authorUserId: demoDogsUser.id,
+    caption: 'Passeio de domingo.',
+    visibility: 'public',
+    dog: demoDogs[0],
+    author: demoDogsUser,
+    media: [
+      {
+        id: 'media-nina-1',
+        postId: 'post-nina-1',
+        dogId: demoDogs[0].id,
+        url: 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80',
+        mimeType: 'image/jpeg',
+      },
+    ],
+  },
+];
 
 const demoPhotos: Photo[] = [
   {
@@ -268,4 +350,115 @@ export const mockStatsApi = {
 
     return mockResponse<PhotoStats[]>(stats);
   },
+};
+
+export const mockDogsAuthApi = {
+  me: async () => mockResponse<DogsUser>(demoDogsUser),
+
+  sync: async () => mockResponse<DogsUser>(demoDogsUser),
+};
+
+export const mockDogsUserApi = {
+  me: async () => mockResponse<DogsUser>(demoDogsUser),
+
+  updateMe: async (body: DogsUserUpdateInput) =>
+    mockResponse<DogsUser>({
+      ...demoDogsUser,
+      ...body,
+    }),
+};
+
+export const mockBreedsApi = {
+  list: async () => mockResponse<Breed[]>(demoBreeds),
+
+  get: async (slug: string) => {
+    const breed = demoBreeds.find((item) => item.slug === slug);
+    if (!breed) throw new Error('Raça demo não encontrada.');
+    return mockResponse<Breed>(breed);
+  },
+};
+
+export const mockDogApi = {
+  list: async (_params: DogsListParams = {}) => mockResponse<Dog[]>(demoDogs),
+
+  get: async (slug: string) => {
+    const dog = demoDogs.find((item) => item.slug === slug);
+    if (!dog) throw new Error('Cachorro demo não encontrado.');
+    return mockResponse<Dog>(dog);
+  },
+
+  create: async (body: DogCreateInput) =>
+    mockResponse<Dog>(
+      {
+        ...body,
+        id: `dog-${Date.now()}`,
+        slug: body.name.toLowerCase().replace(/\s+/g, '-'),
+      },
+      201,
+    ),
+
+  update: async (dogId: string, body: DogUpdateInput) =>
+    mockResponse<Dog>({
+      ...(demoDogs.find((item) => item.id === dogId) || demoDogs[0]),
+      ...body,
+    }),
+
+  remove: async (_dogId: string) => mockResponse<null>(null),
+
+  members: async (dogId: string) =>
+    mockResponse<DogMembership[]>([
+      {
+        id: 'membership-demo-owner',
+        dogId,
+        userId: demoDogsUser.id,
+        role: 'owner',
+        status: 'active',
+        user: demoDogsUser,
+      },
+    ]),
+};
+
+export const mockPostsApi = {
+  list: async (_params: PostsListParams = {}) => mockResponse<Post[]>(demoPosts),
+
+  get: async (postId: string) => {
+    const post = demoPosts.find((item) => item.id === postId);
+    if (!post) throw new Error('Post demo não encontrado.');
+    return mockResponse<Post>(post);
+  },
+
+  create: async (body: PostCreateInput) =>
+    mockResponse<Post>(
+      {
+        id: `post-${Date.now()}`,
+        ...body,
+        authorUserId: demoDogsUser.id,
+        dog: demoDogs.find((item) => item.id === body.dogId),
+        author: demoDogsUser,
+        media: [],
+      },
+      201,
+    ),
+
+  update: async (postId: string, body: PostUpdateInput) =>
+    mockResponse<Post>({
+      ...(demoPosts.find((item) => item.id === postId) || demoPosts[0]),
+      ...body,
+    }),
+
+  remove: async (_postId: string) => mockResponse<null>(null),
+};
+
+export const mockMediaApi = {
+  create: async ({ postId, file }: MediaUploadInput) =>
+    mockResponse<Media>(
+      {
+        id: `media-${Date.now()}`,
+        postId,
+        url: URL.createObjectURL(file),
+        mimeType: file.type,
+        size: file.size,
+      },
+      201,
+    ),
 };

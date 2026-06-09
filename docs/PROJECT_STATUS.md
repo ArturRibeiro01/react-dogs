@@ -60,6 +60,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - Yarn definido como package manager único.
 - `package-lock.json` removido.
 - Base URL da API configurável via `VITE_API_URL`.
+- Client da Dogs API configurável via `VITE_DOGS_API_URL`.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
@@ -130,6 +131,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -154,7 +156,6 @@ A próxima frente planejada é integrar o frontend `react-dogs` com a nova `dogs
 
 Issues pendentes para essa fase:
 
-- `28` Criar client da Dogs API com contrato novo.
 - `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.

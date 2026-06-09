@@ -1,12 +1,26 @@
 import type {
   ApiResponse,
   AuthSessionUser,
+  Breed,
   PasswordLostInput,
   PasswordResetInput,
+  Dog,
+  DogCreateInput,
+  DogMembership,
+  DogsListParams,
+  DogsUser,
+  DogsUserUpdateInput,
+  DogUpdateInput,
+  Media,
+  MediaUploadInput,
   Photo,
   PhotoDetails,
   PhotoListParams,
   PhotoStats,
+  Post,
+  PostCreateInput,
+  PostsListParams,
+  PostUpdateInput,
   User,
   UserCreateInput,
 } from './types';
@@ -16,11 +30,18 @@ import {
   mockHealthApi,
   mockPasswordApi,
   mockPhotoApi,
+  mockBreedsApi,
+  mockDogApi,
+  mockDogsAuthApi,
+  mockDogsUserApi,
+  mockMediaApi,
+  mockPostsApi,
   mockStatsApi,
   mockUserApi,
 } from './mockApi';
 
 export const API_URL = import.meta.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
+export const DOGS_API_URL = import.meta.env.VITE_DOGS_API_URL || 'http://localhost:3333';
 
 const TOKEN_KEY = 'supabase-access-token';
 export const IS_DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
@@ -38,6 +59,7 @@ type ApiRequestOptions = Omit<RequestInit, 'body' | 'headers'> & {
   body?: BodyInit | JsonBody;
   token?: string | null;
   headers?: HeadersInit;
+  auth?: boolean;
 };
 
 export class ApiError extends Error {
@@ -80,6 +102,11 @@ function resolveUrl(path: string): string {
   return `${API_URL}${path}`;
 }
 
+function resolveDogsUrl(path: string): string {
+  if (path.startsWith('http')) return path;
+  return `${DOGS_API_URL}${path}`;
+}
+
 function createHeaders({
   body,
   token,
@@ -105,6 +132,14 @@ async function parseResponse<TData>(response: Response): Promise<TData | null> {
 }
 
 function getErrorMessage(data: unknown): string | null {
+  if (data && typeof data === 'object' && 'error' in data) {
+    const error = data.error;
+    if (error && typeof error === 'object' && 'message' in error) {
+      const message = error.message;
+      if (typeof message === 'string') return message;
+    }
+  }
+
   if (data && typeof data === 'object' && 'message' in data) {
     const message = data.message;
     if (typeof message === 'string') return message;
@@ -144,6 +179,59 @@ export async function apiRequest<TData>(
   }
 
   return { response, data: data as TData };
+}
+
+function createQueryString(params: Record<string, string | number | boolean | undefined>): string {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value === undefined || value === '') return;
+    searchParams.set(key, String(value));
+  });
+
+  const query = searchParams.toString();
+  return query ? `?${query}` : '';
+}
+
+export async function dogsApiRequest<TData>(
+  path: string,
+  options: ApiRequestOptions = {},
+): Promise<ApiResponse<TData>> {
+  const { body, token, headers, auth = false, ...fetchOptions } = options;
+  const isFormData = body instanceof FormData;
+  const authToken = token ?? (auth ? getStoredToken() : null);
+  let response;
+
+  try {
+    response = await fetch(resolveDogsUrl(path), {
+      ...fetchOptions,
+      headers: createHeaders({ body, token: authToken, headers }),
+      body: isFormData || typeof body === 'string' ? body : JSON.stringify(body),
+    });
+  } catch (error) {
+    throw new ApiError('Nao foi possivel conectar com a Dogs API. Tente novamente em instantes.', {
+      cause: error,
+      isNetworkError: true,
+    });
+  }
+
+  const payload = await parseResponse<{
+    data?: TData;
+    pagination?: ApiResponse<TData>['pagination'];
+  }>(response);
+
+  if (!response.ok) {
+    throw new ApiError(getErrorMessage(payload) || 'Erro ao comunicar com a Dogs API.', {
+      response,
+      data: payload,
+    });
+  }
+
+  return {
+    response,
+    data: payload?.data as TData,
+    pagination: payload?.pagination,
+  };
 }
 
 export const tokenStorage = {
@@ -327,9 +415,149 @@ const realStatsApi = {
     }),
 };
 
+const realDogsAuthApi = {
+  me: () =>
+    dogsApiRequest<DogsUser>('/v1/auth/me', {
+      method: 'GET',
+      auth: true,
+      cache: 'no-store',
+    }),
+
+  sync: () =>
+    dogsApiRequest<DogsUser>('/v1/auth/sync', {
+      method: 'POST',
+      auth: true,
+    }),
+};
+
+const realDogsUserApi = {
+  me: () =>
+    dogsApiRequest<DogsUser>('/v1/users/me', {
+      method: 'GET',
+      auth: true,
+      cache: 'no-store',
+    }),
+
+  updateMe: (body: DogsUserUpdateInput) =>
+    dogsApiRequest<DogsUser>('/v1/users/me', {
+      method: 'PATCH',
+      auth: true,
+      body,
+    }),
+};
+
+const realBreedsApi = {
+  list: () =>
+    dogsApiRequest<Breed[]>('/v1/breeds', {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
+  get: (slug: string) =>
+    dogsApiRequest<Breed>(`/v1/breeds/${slug}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+};
+
+const realDogApi = {
+  list: (params: DogsListParams = {}) =>
+    dogsApiRequest<Dog[]>(`/v1/dogs${createQueryString(params)}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
+  get: (slug: string) =>
+    dogsApiRequest<Dog>(`/v1/dogs/${slug}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
+  create: (body: DogCreateInput) =>
+    dogsApiRequest<Dog>('/v1/dogs', {
+      method: 'POST',
+      auth: true,
+      body,
+    }),
+
+  update: (dogId: string, body: DogUpdateInput) =>
+    dogsApiRequest<Dog>(`/v1/dogs/${dogId}`, {
+      method: 'PATCH',
+      auth: true,
+      body,
+    }),
+
+  remove: (dogId: string) =>
+    dogsApiRequest<null>(`/v1/dogs/${dogId}`, {
+      method: 'DELETE',
+      auth: true,
+    }),
+
+  members: (dogId: string) =>
+    dogsApiRequest<DogMembership[]>(`/v1/dogs/${dogId}/members`, {
+      method: 'GET',
+      auth: true,
+      cache: 'no-store',
+    }),
+};
+
+const realPostsApi = {
+  list: (params: PostsListParams = {}) =>
+    dogsApiRequest<Post[]>(`/v1/posts${createQueryString(params)}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
+  get: (postId: string) =>
+    dogsApiRequest<Post>(`/v1/posts/${postId}`, {
+      method: 'GET',
+      cache: 'no-store',
+    }),
+
+  create: (body: PostCreateInput) =>
+    dogsApiRequest<Post>('/v1/posts', {
+      method: 'POST',
+      auth: true,
+      body,
+    }),
+
+  update: (postId: string, body: PostUpdateInput) =>
+    dogsApiRequest<Post>(`/v1/posts/${postId}`, {
+      method: 'PATCH',
+      auth: true,
+      body,
+    }),
+
+  remove: (postId: string) =>
+    dogsApiRequest<null>(`/v1/posts/${postId}`, {
+      method: 'DELETE',
+      auth: true,
+    }),
+};
+
+const realMediaApi = {
+  create: ({ postId, file }: MediaUploadInput) => {
+    const formData = new FormData();
+    formData.append('postId', postId);
+    formData.append('file', file);
+
+    return dogsApiRequest<Media>('/v1/media', {
+      method: 'POST',
+      auth: true,
+      body: formData,
+    });
+  },
+};
+
 export const authApi = IS_DEMO_MODE ? mockAuthApi : realAuthApi;
 export const userApi = IS_DEMO_MODE ? mockUserApi : realUserApi;
 export const passwordApi = IS_DEMO_MODE ? mockPasswordApi : realPasswordApi;
 export const photoApi = IS_DEMO_MODE ? mockPhotoApi : realPhotoApi;
 export const healthApi = IS_DEMO_MODE ? mockHealthApi : realHealthApi;
 export const statsApi = IS_DEMO_MODE ? mockStatsApi : realStatsApi;
+export const dogsAuthApi = IS_DEMO_MODE ? mockDogsAuthApi : realDogsAuthApi;
+export const dogsUserApi = IS_DEMO_MODE ? mockDogsUserApi : realDogsUserApi;
+export const breedsApi = IS_DEMO_MODE ? mockBreedsApi : realBreedsApi;
+export const dogApi = IS_DEMO_MODE ? mockDogApi : realDogApi;
+export const postsApi = IS_DEMO_MODE ? mockPostsApi : realPostsApi;
+export const mediaApi = IS_DEMO_MODE ? mockMediaApi : realMediaApi;

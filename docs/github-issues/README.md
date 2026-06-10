@@ -30,6 +30,7 @@ docs/github-issues/PRIORITY.md
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `27` Configurar Supabase Auth no frontend.
 - `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -48,7 +49,6 @@ docs/github-issues/PRIORITY.md
 
 ## Issues Pendentes
 
-- `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
@@ -57,10 +57,10 @@ docs/github-issues/PRIORITY.md
 ## Próxima Issue Recomendada
 
 ```txt
-29 Migrar perfil do usuário para Dogs API
+30 Integrar catálogo de raças e CRUD de cachorros
 ```
 
-Motivo: o client HTTP da Dogs API já existe. O próximo passo é sincronizar/carregar o perfil local do usuário autenticado via `/v1/auth/sync`, `/v1/auth/me` e `/v1/users/me`.
+Motivo: a autenticação, o client da Dogs API e o perfil local do tutor já foram integrados. O próximo passo é consumir raças e migrar cachorros para `/v1/dogs`.
 
 ## Como Publicar No GitHub
 
@@ -108,7 +108,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-Comece pelo perfil local, depois cachorros, posts/feed, upload e, por fim, envs/CI/docs.
+Comece por cachorros, depois posts/feed, upload e, por fim, envs/CI/docs.
 
 ## Ambientes Da Nova API
 

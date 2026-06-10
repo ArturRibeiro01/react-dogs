@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import { authApi, tokenStorage } from '@/api';
-import type { AuthSessionUser, User, UserCreateInput } from '@/types';
+import { authApi, dogsAuthApi, dogsUserApi, tokenStorage } from '@/api';
+import type { AuthSessionUser, DogsUser, DogsUserUpdateInput, UserCreateInput } from '@/types';
 
 type AuthState = {
-  data: User | null;
+  data: DogsUser | null;
   login: boolean | null;
   loading: boolean;
   error: string | null;
@@ -13,6 +13,7 @@ type AuthState = {
   clearError: () => void;
   userLogin: (email: string, password: string) => Promise<boolean>;
   userSignup: (body: UserCreateInput) => Promise<boolean>;
+  updateProfile: (body: DogsUserUpdateInput) => Promise<boolean>;
   userLogout: () => Promise<void>;
 };
 
@@ -21,13 +22,24 @@ const getErrorMessage = (error: unknown): string => {
   return 'Ocorreu um erro inesperado.';
 };
 
-function persistSession({ accessToken, user }: AuthSessionUser): void {
-  if (accessToken) tokenStorage.set(accessToken);
-  else tokenStorage.remove();
+async function syncDogsUser({ accessToken, user }: AuthSessionUser): Promise<DogsUser | null> {
+  if (!accessToken || !user) {
+    tokenStorage.remove();
+    return null;
+  }
+
+  tokenStorage.set(accessToken);
+  await dogsAuthApi.sync();
+  const { data } = await dogsUserApi.me();
+  return data;
+}
+
+async function persistSession(sessionUser: AuthSessionUser): Promise<void> {
+  const profile = await syncDogsUser(sessionUser);
 
   useAuthStore.setState({
-    data: user,
-    login: Boolean(user && accessToken),
+    data: profile,
+    login: Boolean(profile),
   });
 }
 
@@ -41,7 +53,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       set({ error: null, loading: true });
       const sessionUser = await authApi.getSession();
-      persistSession(sessionUser);
+      await persistSession(sessionUser);
     } catch (error) {
       tokenStorage.remove();
       set({
@@ -56,7 +68,15 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   subscribeToAuthChanges: () => {
     const subscription = authApi.onAuthStateChange((sessionUser) => {
-      persistSession(sessionUser);
+      persistSession(sessionUser).catch((error) => {
+        tokenStorage.remove();
+        useAuthStore.setState({
+          data: null,
+          login: false,
+          loading: false,
+          error: getErrorMessage(error),
+        });
+      });
     });
 
     return subscription.unsubscribe;
@@ -68,9 +88,10 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       set({ error: null, loading: true });
       const sessionUser = await authApi.login({ email, password });
-      persistSession(sessionUser);
+      await persistSession(sessionUser);
       return true;
     } catch (error) {
+      tokenStorage.remove();
       set({
         data: null,
         login: false,
@@ -86,14 +107,29 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       set({ error: null, loading: true });
       const sessionUser = await authApi.signUp(body);
-      persistSession(sessionUser);
+      await persistSession(sessionUser);
       return true;
     } catch (error) {
+      tokenStorage.remove();
       set({
         data: null,
         login: false,
         error: getErrorMessage(error),
       });
+      return false;
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  updateProfile: async (body) => {
+    try {
+      set({ error: null, loading: true });
+      const { data } = await dogsUserApi.updateMe(body);
+      set({ data, login: true });
+      return true;
+    } catch (error) {
+      set({ error: getErrorMessage(error) });
       return false;
     } finally {
       set({ loading: false });

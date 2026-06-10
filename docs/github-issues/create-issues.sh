@@ -44,11 +44,6 @@ create_issue_if_missing() {
 }
 
 create_issue_if_missing \
-  "29 Migrar perfil do usuário para Dogs API" \
-  "docs/github-issues/29-migrar-perfil-do-usuario-para-dogs-api.md" \
-  feature priority-high
-
-create_issue_if_missing \
   "30 Integrar catálogo de raças e CRUD de cachorros" \
   "docs/github-issues/30-integrar-catalogo-de-racas-e-crud-de-cachorros.md" \
   feature priority-medium

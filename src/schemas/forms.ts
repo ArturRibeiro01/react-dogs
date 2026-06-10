@@ -36,8 +36,21 @@ export const photoPostSchema = z.object({
   idade: z.string().trim().min(1, requiredMessage).regex(/^\d+$/, 'Utilize apenas números.'),
 });
 
+export const dogCreateSchema = z.object({
+  name: z.string().trim().min(1, requiredMessage),
+  breedId: z.string().trim().min(1, 'Selecione uma raça.'),
+  city: z.string().trim().optional(),
+  state: z.string().trim().optional(),
+  weight: z.string().trim().optional(),
+  sex: z.enum(['', 'male', 'female', 'unknown']),
+  size: z.enum(['', 'small', 'medium', 'large', 'giant']),
+  bio: z.string().trim().optional(),
+  isPublic: z.boolean(),
+});
+
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type CreateUserFormData = z.infer<typeof createUserSchema>;
 export type PasswordLostFormData = z.infer<typeof passwordLostSchema>;
 export type PasswordResetFormData = z.infer<typeof passwordResetSchema>;
 export type PhotoPostFormData = z.infer<typeof photoPostSchema>;
+export type DogCreateFormData = z.infer<typeof dogCreateSchema>;

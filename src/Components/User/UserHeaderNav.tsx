@@ -49,9 +49,9 @@ const UserHeaderNav = () => {
           {mobile && 'Estatísticas'}
         </NavLink>
 
-        <NavLink to="/conta/postar" aria-label="Adicionar cachorro">
+        <NavLink to="/conta/postar" aria-label="Publicar post">
           <NavIcon src={adicionarFotoUrl} alt="" aria-hidden="true" />
-          {mobile && 'Adicionar Cachorro'}
+          {mobile && 'Publicar'}
         </NavLink>
 
         <button onClick={handleLogout} aria-label="Sair da conta">

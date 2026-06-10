@@ -51,6 +51,31 @@ export const SelectField = styled.select`
   }
 `;
 
+export const TextAreaField = styled.textarea`
+  display: block;
+  width: 100%;
+  min-height: 8rem;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  padding: 0.8rem;
+  resize: vertical;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radii.md};
+  outline: none;
+  background: ${({ theme }) => theme.colors.inputBackground};
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  transition: ${({ theme }) => theme.transitions.fast};
+
+  &:focus,
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.surface};
+    box-shadow: ${({ theme }) => theme.shadows.focus};
+    outline: none;
+  }
+`;
+
 export const CheckboxLabel = styled.label`
   display: flex;
   gap: ${({ theme }) => theme.spacing.sm};

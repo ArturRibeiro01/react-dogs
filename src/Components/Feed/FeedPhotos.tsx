@@ -1,40 +1,45 @@
 import React from 'react';
 
-import { photoApi } from '@/api';
+import { postsApi } from '@/api';
+import type { Post } from '@/types';
 import Error from '@components/Helper/Error';
 import Loading from '@components/Helper/Loading';
 import useFetch from '@hooks/useFetch';
-import type { Photo } from '@/types';
 
 import { EmptyMessage, FeedList } from './FeedPhotos.styles';
 import FeedPhotosItem from './FeedPhotosItem';
 
 type FeedPhotosProps = {
   user?: number | string;
-  onSelectPhoto: (id: number) => void;
+  onSelectPost: (id: string) => void;
 };
 
-const FeedPhotos = ({ user = 0, onSelectPhoto }: FeedPhotosProps) => {
-  const { data, loading, error, request } = useFetch<Photo[]>();
+const FeedPhotos = ({ user = 0, onSelectPost }: FeedPhotosProps) => {
+  const { data, loading, error, request } = useFetch<Post[]>();
 
   React.useEffect(() => {
-    async function fetchPhotos() {
-      await request(() => photoApi.list({ page: 1, total: 6, user }));
+    async function fetchPosts() {
+      await request(() =>
+        postsApi.list({
+          page: 1,
+          perPage: 6,
+        }),
+      );
     }
-    fetchPhotos();
+    fetchPosts();
   }, [request, user]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   if (data && data.length === 0) {
-    return <EmptyMessage>Nenhuma foto encontrada.</EmptyMessage>;
+    return <EmptyMessage>Nenhum post encontrado.</EmptyMessage>;
   }
 
   if (data)
     return (
       <FeedList className="animeLeft">
-        {data.map((photo) => (
-          <FeedPhotosItem key={photo.id} photo={photo} onSelect={() => onSelectPhoto(photo.id)} />
+        {data.map((post) => (
+          <FeedPhotosItem key={post.id} post={post} onSelect={() => onSelectPost(post.id)} />
         ))}
       </FeedList>
     );

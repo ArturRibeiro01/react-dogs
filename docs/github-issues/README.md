@@ -33,6 +33,7 @@ docs/github-issues/PRIORITY.md
 - `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -51,16 +52,15 @@ docs/github-issues/PRIORITY.md
 
 ## Issues Pendentes
 
-- `32` Migrar publicação com upload multipart.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Próxima Issue Recomendada
 
 ```txt
-32 Migrar publicação com upload multipart
+33 Ajustar ambientes, CI/CD e documentação da integração
 ```
 
-Motivo: o feed e o modal já usam `/v1/posts`. O próximo passo é criar posts e enviar imagem via `/v1/media`.
+Motivo: os fluxos principais da integração já usam a Dogs API. Falta consolidar envs, health check, CI/CD e documentação.
 
 ## Como Publicar No GitHub
 
@@ -108,7 +108,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-Comece por upload e, por fim, envs/CI/docs.
+Finalize com envs, CI/CD e documentação.
 
 ## Ambientes Da Nova API
 

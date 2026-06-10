@@ -44,11 +44,6 @@ create_issue_if_missing() {
 }
 
 create_issue_if_missing \
-  "32 Migrar publicação com upload multipart" \
-  "docs/github-issues/32-migrar-publicacao-com-upload-multipart.md" \
-  feature priority-medium
-
-create_issue_if_missing \
   "33 Ajustar ambientes, CI/CD e documentação da integração" \
   "docs/github-issues/33-ajustar-ambientes-ci-cd-e-documentacao-da-integracao.md" \
   ci documentation priority-high

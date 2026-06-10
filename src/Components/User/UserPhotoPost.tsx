@@ -3,108 +3,127 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { breedsApi, dogApi } from '@/api';
-import { dogCreateSchema, type DogCreateFormData } from '@/schemas/forms';
-import type { Breed, Dog, DogSize, DogSex } from '@/types';
+import { dogApi, mediaApi, postsApi } from '@/api';
+import { postUploadSchema, type PostUploadFormData } from '@/schemas/forms';
+import type { Dog, Media, Post } from '@/types';
 import Button from '@components/Forms/Button';
-import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
 import useFetch from '@hooks/useFetch';
 
-import { CheckboxLabel, FileLabel, PhotoPostShell, SelectField } from './UserPhotoPost.styles';
+import {
+  FileInput,
+  FileLabel,
+  PhotoPostShell,
+  Preview,
+  SelectField,
+  TextAreaField,
+} from './UserPhotoPost.styles';
 
 const UserPhotoPost = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<DogCreateFormData>({
-    resolver: zodResolver(dogCreateSchema),
+  } = useForm<PostUploadFormData>({
+    resolver: zodResolver(postUploadSchema),
     mode: 'onBlur',
-    defaultValues: {
-      sex: '',
-      size: '',
-      isPublic: true,
-    },
   });
-  const { data: breeds, error: breedsError, request: requestBreeds } = useFetch<Breed[]>();
-  const { data, error, loading, request } = useFetch<Dog>();
+  const { data: dogs, error: dogsError, request: requestDogs } = useFetch<Dog[]>();
+  const { error: postError, loading: postLoading, request: requestPost } = useFetch<Post>();
+  const { error: mediaError, loading: mediaLoading, request: requestMedia } = useFetch<Media>();
+  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
+  const [uploadError, setUploadError] = React.useState<string | null>(null);
   const navigate = useNavigate();
+  const selectedFile = watch('file');
 
   React.useEffect(() => {
-    requestBreeds(() => breedsApi.list());
-  }, [requestBreeds]);
+    requestDogs(() => dogApi.list({ perPage: 100 }));
+  }, [requestDogs]);
 
   React.useEffect(() => {
-    if (data) navigate('/conta');
-  }, [data, navigate]);
+    const file = selectedFile?.[0];
+    if (!file) {
+      setPreviewUrl(null);
+      return;
+    }
 
-  function onSubmit({
-    name,
-    breedId,
-    city,
-    state,
-    weight,
-    sex,
-    size,
-    bio,
-    isPublic,
-  }: DogCreateFormData) {
-    request(() =>
-      dogApi.create({
-        name,
-        breedId,
-        city: city || undefined,
-        state: state || undefined,
-        weight: weight ? Number(weight) : undefined,
-        sex: sex ? (sex as DogSex) : undefined,
-        size: size ? (size as DogSize) : undefined,
-        bio: bio || undefined,
-        isPublic,
+    if (!URL.createObjectURL) return;
+
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  async function onSubmit({ dogId, caption, file }: PostUploadFormData) {
+    const image = file[0];
+    setUploadError(null);
+
+    const postResult = await requestPost(() =>
+      postsApi.create({
+        dogId,
+        caption: caption || undefined,
+        visibility: 'public',
       }),
     );
+
+    if (!postResult.json) return;
+
+    const createdPost = postResult.json;
+    const mediaResult = await requestMedia(() =>
+      mediaApi.create({
+        postId: createdPost.id,
+        file: image,
+      }),
+    );
+
+    if (!mediaResult.json) {
+      setUploadError('Post criado, mas não foi possível enviar a imagem.');
+      return;
+    }
+
+    navigate('/conta');
   }
+
+  const loading = postLoading || mediaLoading;
+  const error = uploadError || postError || mediaError;
 
   return (
     <PhotoPostShell className="animeLeft">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input label="Nome" type="text" error={errors.name?.message} {...register('name')} />
-        <FileLabel htmlFor="breedId">Raça</FileLabel>
-        <SelectField id="breedId" aria-invalid={Boolean(errors.breedId)} {...register('breedId')}>
+        <FileLabel htmlFor="dogId">Cachorro</FileLabel>
+        <SelectField id="dogId" aria-invalid={Boolean(errors.dogId)} {...register('dogId')}>
           <option value="">Selecione</option>
-          {breeds?.map((breed) => (
-            <option key={breed.id} value={breed.id}>
-              {breed.name}
+          {dogs?.map((dog) => (
+            <option key={dog.id} value={dog.id}>
+              {dog.name}
             </option>
           ))}
         </SelectField>
-        <Error error={errors.breedId?.message || breedsError} />
-        <Input label="Cidade" type="text" error={errors.city?.message} {...register('city')} />
-        <Input label="UF" type="text" error={errors.state?.message} {...register('state')} />
-        <Input label="Peso" type="number" error={errors.weight?.message} {...register('weight')} />
-        <FileLabel htmlFor="sex">Sexo</FileLabel>
-        <SelectField id="sex" {...register('sex')}>
-          <option value="">Não informar</option>
-          <option value="female">Fêmea</option>
-          <option value="male">Macho</option>
-          <option value="unknown">Desconhecido</option>
-        </SelectField>
-        <FileLabel htmlFor="size">Porte</FileLabel>
-        <SelectField id="size" {...register('size')}>
-          <option value="">Não informar</option>
-          <option value="small">Pequeno</option>
-          <option value="medium">Médio</option>
-          <option value="large">Grande</option>
-          <option value="giant">Gigante</option>
-        </SelectField>
-        <Input label="Bio" type="text" error={errors.bio?.message} {...register('bio')} />
-        <CheckboxLabel>
-          <input type="checkbox" {...register('isPublic')} />
-          Perfil público
-        </CheckboxLabel>
-        {loading ? <Button disabled>Cadastrando...</Button> : <Button>Cadastrar cachorro</Button>}
+        <Error error={errors.dogId?.message || dogsError || null} />
+
+        <FileLabel htmlFor="caption">Legenda</FileLabel>
+        <TextAreaField
+          id="caption"
+          aria-invalid={Boolean(errors.caption)}
+          {...register('caption')}
+        />
+        <Error error={errors.caption?.message || null} />
+
+        <FileLabel htmlFor="file">Imagem</FileLabel>
+        <FileInput
+          id="file"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          {...register('file')}
+        />
+        <Error error={errors.file?.message || null} />
+
+        {loading ? <Button disabled>Publicando...</Button> : <Button>Publicar</Button>}
         <Error error={error} />
       </form>
+      {previewUrl && <Preview $imageUrl={previewUrl} aria-label="Prévia da imagem selecionada" />}
     </PhotoPostShell>
   );
 };

@@ -44,11 +44,6 @@ create_issue_if_missing() {
 }
 
 create_issue_if_missing \
-  "30 Integrar catálogo de raças e CRUD de cachorros" \
-  "docs/github-issues/30-integrar-catalogo-de-racas-e-crud-de-cachorros.md" \
-  feature priority-medium
-
-create_issue_if_missing \
   "31 Migrar feed público e modal para posts" \
   "docs/github-issues/31-migrar-feed-publico-e-modal-para-posts.md" \
   feature priority-medium

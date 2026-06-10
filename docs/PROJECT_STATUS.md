@@ -64,6 +64,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
 - Perfil local do tutor sincronizado pela Dogs API após login Supabase.
+- Catálogo de raças e listagem/cadastro de cachorros integrados à Dogs API.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
 - Handoff para o Codex do backend criado em `docs/CODEX_BACKEND_HANDOFF.md`, incluindo padrões de Husky, CI, docs, issues e `.codex`.
 - Especificação da API própria criada em `docs/DOGS_API_SPEC.md`, considerando tutores, cachorros, múltiplos donos, posts, ambientes e Swagger.
@@ -134,6 +135,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - `27` Configurar Supabase Auth no frontend.
 - `28` Criar client da Dogs API com contrato novo.
 - `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -158,7 +160,6 @@ A próxima frente planejada é integrar o frontend `react-dogs` com a nova `dogs
 
 Issues pendentes para essa fase:
 
-- `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.

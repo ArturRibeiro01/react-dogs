@@ -48,7 +48,7 @@ describe('UserHeaderNav', () => {
       'href',
       '/conta/estatisticas',
     );
-    expect(screen.getByRole('link', { name: /adicionar foto/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /adicionar cachorro/i })).toHaveAttribute(
       'href',
       '/conta/postar',
     );

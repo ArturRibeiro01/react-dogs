@@ -21,6 +21,7 @@ Concluídas localmente:
 - `28` Criar client da Dogs API com contrato novo.
 - `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -39,17 +40,16 @@ Concluídas localmente:
 
 Pendentes:
 
-- `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Próxima Issue Recomendada
 
 ```txt
-31 Migrar feed público e modal para posts
+32 Migrar publicação com upload multipart
 ```
 
-Motivo: raças e cachorros já foram integrados. O próximo passo é trocar o feed público e o modal para `/v1/posts`.
+Motivo: o feed e o modal já usam `/v1/posts`. O próximo passo é criar posts e enviar imagem via `/v1/media`.
 
 ## Priority High
 
@@ -57,14 +57,12 @@ Motivo: raças e cachorros já foram integrados. O próximo passo é trocar o fe
 
 ## Priority Medium
 
-- `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
 
 ## Ordem Funcional Recomendada
 
-1. `31` Migrar feed público e modal para posts.
-2. `32` Migrar publicação com upload multipart.
-3. `33` Ajustar ambientes, CI/CD e documentação da integração.
+1. `32` Migrar publicação com upload multipart.
+2. `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Critério Para Reordenar
 

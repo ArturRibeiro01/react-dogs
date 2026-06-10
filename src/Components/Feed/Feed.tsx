@@ -8,12 +8,12 @@ type FeedProps = {
 };
 
 const Feed = ({ user = 0 }: FeedProps) => {
-  const [modalPhotoId, setModalPhotoId] = React.useState<number | null>(null);
+  const [modalPostId, setModalPostId] = React.useState<string | null>(null);
 
   return (
     <div>
-      {modalPhotoId && <FeedModal photoId={modalPhotoId} onClose={() => setModalPhotoId(null)} />}
-      <FeedPhotos user={user} onSelectPhoto={setModalPhotoId} />
+      {modalPostId && <FeedModal postId={modalPostId} onClose={() => setModalPostId(null)} />}
+      <FeedPhotos user={user} onSelectPost={setModalPostId} />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { photoApi } from '@/api';
+import { postsApi } from '@/api';
+import type { Post } from '@/types';
 import Error from '@components/Helper/Error';
 import Loading from '@components/Helper/Loading';
 import useFetch from '@hooks/useFetch';
-import type { PhotoDetails } from '@/types';
 
 import {
   Author,
@@ -23,12 +23,12 @@ import {
 } from './FeedModal.styles';
 
 type FeedModalProps = {
-  photoId: number;
+  postId: string;
   onClose: () => void;
 };
 
-const FeedModal = ({ photoId, onClose }: FeedModalProps) => {
-  const { data, loading, error, request } = useFetch<PhotoDetails>();
+const FeedModal = ({ postId, onClose }: FeedModalProps) => {
+  const { data: post, loading, error, request } = useFetch<Post>();
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const previousFocusRef = React.useRef<Element | null>(null);
 
@@ -48,12 +48,12 @@ const FeedModal = ({ photoId, onClose }: FeedModalProps) => {
   }, []);
 
   React.useEffect(() => {
-    async function fetchPhoto() {
-      await request(() => photoApi.get(photoId));
+    async function fetchPost() {
+      await request(() => postsApi.get(postId));
     }
 
-    fetchPhoto();
-  }, [photoId, request]);
+    fetchPost();
+  }, [postId, request]);
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -64,9 +64,8 @@ const FeedModal = ({ photoId, onClose }: FeedModalProps) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const photo = data?.photo;
-  const title = photo?.title || photo?.nome || 'Foto sem título';
-  const views = photo?.acessos ?? photo?.views ?? 0;
+  const title = post?.caption || post?.dog?.name || 'Post sem título';
+  const imageUrl = post?.media?.[0]?.url || post?.dog?.avatarUrl;
 
   return (
     <Overlay onClick={onClose} role="presentation">
@@ -86,40 +85,33 @@ const FeedModal = ({ photoId, onClose }: FeedModalProps) => {
         {error && <Error error={error} />}
         {loading && <Loading />}
 
-        {photo && (
+        {post && (
           <ModalContent>
-            <ImageWrap>
-              <img src={photo.src} alt={title} />
-            </ImageWrap>
+            <ImageWrap>{imageUrl && <img src={imageUrl} alt={title} />}</ImageWrap>
 
             <Details>
               <ModalHeader>
-                <Author>@{photo.author || 'dogs'}</Author>
+                <Author>@{post.author?.username || post.dog?.slug || 'dogs'}</Author>
                 <ModalTitle id="feed-modal-title">{title}</ModalTitle>
-                <Views>{views}</Views>
+                <Views>0</Views>
               </ModalHeader>
 
               <StatsList>
                 <div>
-                  <dt>Peso</dt>
-                  <dd>{photo.peso || 0} kg</dd>
+                  <dt>Cachorro</dt>
+                  <dd>{post.dog?.name || 'Não informado'}</dd>
                 </div>
                 <div>
-                  <dt>Idade</dt>
-                  <dd>{photo.idade || 0} anos</dd>
+                  <dt>Raça</dt>
+                  <dd>{post.dog?.breed?.name || 'Não informada'}</dd>
                 </div>
               </StatsList>
 
-              <Comments aria-label="Comentários">
-                {data.comments.length > 0 ? (
-                  data.comments.map((comment) => (
-                    <p key={comment.comment_ID}>
-                      <strong>{comment.comment_author}: </strong>
-                      <span>{comment.comment_content}</span>
-                    </p>
-                  ))
+              <Comments aria-label="Legenda">
+                {post.caption ? (
+                  <p>{post.caption}</p>
                 ) : (
-                  <EmptyComment>Nenhum comentário ainda.</EmptyComment>
+                  <EmptyComment>Nenhuma legenda.</EmptyComment>
                 )}
               </Comments>
             </Details>

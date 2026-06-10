@@ -44,11 +44,6 @@ create_issue_if_missing() {
 }
 
 create_issue_if_missing \
-  "31 Migrar feed público e modal para posts" \
-  "docs/github-issues/31-migrar-feed-publico-e-modal-para-posts.md" \
-  feature priority-medium
-
-create_issue_if_missing \
   "32 Migrar publicação com upload multipart" \
   "docs/github-issues/32-migrar-publicacao-com-upload-multipart.md" \
   feature priority-medium

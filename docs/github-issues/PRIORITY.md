@@ -19,6 +19,7 @@ Concluídas localmente:
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
 - `27` Configurar Supabase Auth no frontend.
 - `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -37,7 +38,6 @@ Concluídas localmente:
 
 Pendentes:
 
-- `29` Migrar perfil do usuário para Dogs API.
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
@@ -46,14 +46,13 @@ Pendentes:
 ## Próxima Issue Recomendada
 
 ```txt
-29 Migrar perfil do usuário para Dogs API
+30 Integrar catálogo de raças e CRUD de cachorros
 ```
 
-Motivo: a autenticação via Supabase e o client HTTP da Dogs API já foram implementados. O próximo passo é sincronizar/carregar o perfil local do usuário autenticado.
+Motivo: a autenticação, o client HTTP da Dogs API e o perfil local do tutor já foram integrados. O próximo passo é consumir raças e migrar cachorros para `/v1/dogs`.
 
 ## Priority High
 
-- `29` Migrar perfil do usuário para Dogs API.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Priority Medium
@@ -64,11 +63,10 @@ Motivo: a autenticação via Supabase e o client HTTP da Dogs API já foram impl
 
 ## Ordem Funcional Recomendada
 
-1. `29` Migrar perfil do usuário para Dogs API.
-2. `30` Integrar catálogo de raças e CRUD de cachorros.
-3. `31` Migrar feed público e modal para posts.
-4. `32` Migrar publicação com upload multipart.
-5. `33` Ajustar ambientes, CI/CD e documentação da integração.
+1. `30` Integrar catálogo de raças e CRUD de cachorros.
+2. `31` Migrar feed público e modal para posts.
+3. `32` Migrar publicação com upload multipart.
+4. `33` Ajustar ambientes, CI/CD e documentação da integração.
 
 ## Critério Para Reordenar
 

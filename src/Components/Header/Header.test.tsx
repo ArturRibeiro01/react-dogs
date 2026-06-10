@@ -26,9 +26,9 @@ describe('Header', () => {
   it('renders the user account link when authenticated', () => {
     useAuthStore.setState({
       data: {
-        id: 1,
+        id: 'user-1',
         username: 'demo',
-        nome: 'Demo',
+        name: 'Demo',
         email: 'demo@dogs.local',
       },
       login: true,

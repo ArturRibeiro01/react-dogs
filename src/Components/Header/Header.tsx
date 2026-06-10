@@ -5,6 +5,7 @@ import { AccountLink, HeaderShell, LogoLink, Nav } from './Header.styles';
 
 const Header = () => {
   const data = useAuthStore((state) => state.data);
+  const accountLabel = data?.name || data?.username || data?.email || 'Minha conta';
 
   return (
     <HeaderShell>
@@ -14,7 +15,7 @@ const Header = () => {
         </LogoLink>
 
         {data ? (
-          <AccountLink to="/conta">{data.nome}</AccountLink>
+          <AccountLink to="/conta">{accountLabel}</AccountLink>
         ) : (
           <AccountLink to="/login">Login | Criar</AccountLink>
         )}

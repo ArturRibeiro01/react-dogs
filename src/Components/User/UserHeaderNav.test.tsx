@@ -29,9 +29,9 @@ describe('UserHeaderNav', () => {
     mockedUseMedia.mockReturnValue(false);
     useAuthStore.setState({
       data: {
-        id: 1,
+        id: 'user-1',
         username: 'demo',
-        nome: 'Demo',
+        name: 'Demo',
         email: 'demo@dogs.local',
       },
       login: true,

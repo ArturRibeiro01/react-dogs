@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-06-07.
+Atualizado em 2026-06-11.
 
 ## Resumo
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação de portfólio.
 
-Todas as issues planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos, os checks locais foram automatizados e o README foi revisado como apresentação de portfólio.
+Todas as issues planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, hooks do React foram padronizados com imports nomeados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos, os checks locais foram automatizados e o README foi revisado como apresentação de portfólio.
 
 ## Stack Atual
 
@@ -72,6 +72,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - Especificação da API própria criada em `docs/DOGS_API_SPEC.md`, considerando tutores, cachorros, múltiplos donos, posts, ambientes e Swagger.
 - Aliases de frontend configurados em Vite e TypeScript.
 - Convenção de imports documentada em `docs/ARCHITECTURE.md`.
+- Hooks do React padronizados com imports nomeados, sem `React.useEffect`/`React.useState`.
 - Estado global de autenticação migrado de Context API para Zustand.
 - `UserContext` removido.
 - Formulários migrados para React Hook Form com validação por Zod.
@@ -88,6 +89,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - Feed, Login, User, Loading, ErrorBoundary e NotFound migrados para Emotion.
 - CSS Modules removidos do projeto.
 - Componentes migrados para Emotion usam arquivos `Component.styles.ts`.
+- Medidas fixas em estilos convertidas de `px` para `rem`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
 - Health check da Dogs API criado em `scripts/check-api-health.mjs`.
@@ -142,6 +144,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.
+- `34` Padronizar imports de React Hooks e medidas em estilos.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.

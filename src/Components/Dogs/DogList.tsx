@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 
 import { breedsApi, dogApi } from '@/api';
 import type { Breed, Dog } from '@/types';
@@ -17,7 +17,7 @@ type DogFilters = {
 };
 
 const DogList = () => {
-  const [filters, setFilters] = React.useState<DogFilters>({
+  const [filters, setFilters] = useState<DogFilters>({
     breed: '',
     city: '',
     state: '',
@@ -25,11 +25,11 @@ const DogList = () => {
   const { data: breeds, request: requestBreeds } = useFetch<Breed[]>();
   const { data: dogs, loading, error, request } = useFetch<Dog[]>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     requestBreeds(() => breedsApi.list());
   }, [requestBreeds]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     request(() =>
       dogApi.list({
         breed: filters.breed || undefined,
@@ -41,7 +41,7 @@ const DogList = () => {
     );
   }, [filters, request]);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     setFilters({

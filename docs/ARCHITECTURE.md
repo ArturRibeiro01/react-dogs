@@ -63,13 +63,13 @@ Ordem recomendada:
 Exemplo:
 
 ```ts
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
 import { theme } from '@/styles/theme';
-import Button from '@components/Forms/Button';
 import type { User } from '@/types';
+import Button from '@components/Forms/Button';
 
 import { ExampleShell } from './Example.styles';
 import LocalComponent from './LocalComponent';
@@ -83,6 +83,7 @@ import LocalComponent from './LocalComponent';
 - Use import relativo para arquivos irmãos dentro da mesma pasta.
 - Evite `../../..` em código novo.
 - Remova imports não usados.
+- Importe hooks e APIs do React de forma nomeada, como `useEffect` e `useState`, em vez de usar `React.useEffect`.
 
 ## Estilos
 
@@ -97,6 +98,7 @@ Decisão:
 - `GlobalStyles` expõe os tokens como CSS variables para CSS global.
 - Todos os CSS Modules foram removidos; estilos de componentes ficam em arquivos próprios `*.styles.ts`.
 - O tema claro inicial centraliza cores, tipografia, espaçamentos, raios, sombras, z-index, breakpoints e transições.
+- Use `rem` para medidas fixas em estilos. Evite `px` em arquivos `.styles.ts`, tokens de tema e CSS global.
 
 `App.css` permanece apenas para reset/base global e classes utilitárias históricas, como `.container`, `.title` e `.animeLeft`.
 

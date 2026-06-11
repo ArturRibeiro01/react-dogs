@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -32,16 +32,16 @@ const UserPhotoPost = () => {
   const { data: dogs, error: dogsError, request: requestDogs } = useFetch<Dog[]>();
   const { error: postError, loading: postLoading, request: requestPost } = useFetch<Post>();
   const { error: mediaError, loading: mediaLoading, request: requestMedia } = useFetch<Media>();
-  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
-  const [uploadError, setUploadError] = React.useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const navigate = useNavigate();
   const selectedFile = watch('file');
 
-  React.useEffect(() => {
+  useEffect(() => {
     requestDogs(() => dogApi.list({ perPage: 100 }));
   }, [requestDogs]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const file = selectedFile?.[0];
     if (!file) {
       setPreviewUrl(null);

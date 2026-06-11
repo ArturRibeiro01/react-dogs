@@ -36,11 +36,11 @@ export const AccountLink = styled(Link)`
   &::after {
     content: '';
     display: inline-block;
-    width: 14px;
-    height: 17px;
+    width: 0.875rem;
+    height: 1.0625rem;
     margin-left: ${({ theme }) => theme.spacing.sm};
     position: relative;
-    top: -1px;
+    top: -0.0625rem;
     background: url(${userIconUrl}) no-repeat center center;
   }
 `;

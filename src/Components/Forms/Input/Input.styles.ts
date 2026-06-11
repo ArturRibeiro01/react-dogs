@@ -15,7 +15,7 @@ export const Field = styled.input`
   display: block;
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.md};
   outline: none;
   background: ${({ theme }) => theme.colors.inputBackground};

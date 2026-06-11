@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { Form, LostPasswordLink } from './LoginForm.styles';
 const LoginPasswordReset = () => {
   const { error, loading, request } = useFetch();
   const navigate = useNavigate();
-  const [success, setSuccess] = React.useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const {
     register,
     handleSubmit,

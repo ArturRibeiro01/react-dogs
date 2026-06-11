@@ -45,7 +45,7 @@ export const CloseButton = styled.button`
   width: 3rem;
   height: 3rem;
   padding: 0;
-  border: 4px solid ${({ theme }) => theme.colors.surface};
+  border: 0.25rem solid ${({ theme }) => theme.colors.surface};
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
@@ -79,7 +79,7 @@ export const CloseButton = styled.button`
     right: ${({ theme }) => theme.spacing.sm};
     width: 2.75rem;
     height: 2.75rem;
-    border-width: 3px;
+    border-width: 0.1875rem;
   }
 `;
 

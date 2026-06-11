@@ -33,7 +33,7 @@ export const SelectField = styled.select`
   width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   padding: 0.8rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.md};
   outline: none;
   background: ${({ theme }) => theme.colors.inputBackground};
@@ -58,7 +58,7 @@ export const TextAreaField = styled.textarea`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   padding: 0.8rem;
   resize: vertical;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 0.0625rem solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.md};
   outline: none;
   background: ${({ theme }) => theme.colors.inputBackground};

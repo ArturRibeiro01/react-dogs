@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 import { postsApi } from '@/api';
 import type { Post } from '@/types';
@@ -17,7 +17,7 @@ type FeedPhotosProps = {
 const FeedPhotos = ({ user = 0, onSelectPost }: FeedPhotosProps) => {
   const { data, loading, error, request } = useFetch<Post[]>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchPosts() {
       await request(() =>
         postsApi.list({

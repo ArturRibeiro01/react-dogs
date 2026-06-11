@@ -104,7 +104,7 @@ export const RowHeader = styled.div`
 export const Track = styled.div`
   height: 1rem;
   overflow: hidden;
-  border-radius: 999px;
+  border-radius: 999rem;
   background: ${({ theme }) => theme.colors.borderStrong};
 
   span {

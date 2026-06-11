@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 
 import { postsApi } from '@/api';
 import type { Post } from '@/types';
@@ -29,10 +29,10 @@ type FeedModalProps = {
 
 const FeedModal = ({ postId, onClose }: FeedModalProps) => {
   const { data: post, loading, error, request } = useFetch<Post>();
-  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
-  const previousFocusRef = React.useRef<Element | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<Element | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     previousFocusRef.current = document.activeElement;
     closeButtonRef.current?.focus();
 
@@ -47,7 +47,7 @@ const FeedModal = ({ postId, onClose }: FeedModalProps) => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchPost() {
       await request(() => postsApi.get(postId));
     }
@@ -55,7 +55,7 @@ const FeedModal = ({ postId, onClose }: FeedModalProps) => {
     fetchPost();
   }, [postId, request]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') onClose();
     }

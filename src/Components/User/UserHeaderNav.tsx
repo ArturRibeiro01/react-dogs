@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
@@ -13,7 +13,7 @@ import { AccountNav, MobileMenuButton, NavIcon } from './UserHeaderNav.styles';
 const UserHeaderNav = () => {
   const userLogout = useAuthStore((state) => state.userLogout);
   const mobile = useMedia('(max-width: 40rem)');
-  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const navId = 'user-account-navigation';
@@ -23,7 +23,7 @@ const UserHeaderNav = () => {
     navigate('/login');
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMobileMenu(false);
   }, [pathname]);
 

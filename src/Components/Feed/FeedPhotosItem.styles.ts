@@ -33,8 +33,8 @@ export const PhotoButton = styled.button`
   text-align: left;
 
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.primary};
-    outline-offset: 3px;
+    outline: 0.1875rem solid ${({ theme }) => theme.colors.primary};
+    outline-offset: 0.1875rem;
   }
 
   img {

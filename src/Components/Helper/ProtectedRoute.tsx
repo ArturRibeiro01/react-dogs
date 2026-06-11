@@ -1,10 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { useAuthStore } from '@/stores/authStore';
 
 type ProtectedRouteProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {

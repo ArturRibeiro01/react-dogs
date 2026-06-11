@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 
 import type { ApiResponse } from '@/types';
 
@@ -15,11 +15,11 @@ const getErrorMessage = (error: unknown): string => {
 };
 
 const useFetch = <TData = unknown>() => {
-  const [data, setData] = React.useState<TData | null>(null);
-  const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState(false);
+  const [data, setData] = useState<TData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const request = React.useCallback(
+  const request = useCallback(
     async (
       requester: ApiRequester<TData> | RequestInfo | URL,
       options?: RequestInit,

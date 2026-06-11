@@ -24,6 +24,7 @@ Concluídas localmente:
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
 - `33` Ajustar ambientes, CI/CD e documentação da integração.
+- `34` Padronizar imports de React Hooks e medidas em estilos.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.

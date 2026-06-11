@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 
 import {
   ErrorActionButton,
@@ -10,14 +10,14 @@ import {
 } from './ErrorBoundary.styles';
 
 type ErrorBoundaryProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type ErrorBoundaryState = {
   hasError: boolean;
 };
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
     hasError: false,
   };
@@ -26,7 +26,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, info: React.ErrorInfo) {
+  componentDidCatch(error: Error, info: ErrorInfo) {
     if (import.meta.env.DEV) {
       console.error('Erro capturado pelo ErrorBoundary:', error, info);
     }

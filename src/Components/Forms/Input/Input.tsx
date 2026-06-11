@@ -1,10 +1,10 @@
-import React from 'react';
+import type { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react';
 
 import { Field, FieldError, Label, Wrapper } from './Input.styles';
 
-type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
+type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
   label: string;
-  type: React.HTMLInputTypeAttribute;
+  type: HTMLInputTypeAttribute;
   name: string;
   error?: string | null;
 };

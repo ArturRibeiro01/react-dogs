@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 import FeedModal from './FeedModal';
 import FeedPhotos from './FeedPhotos';
@@ -8,7 +8,7 @@ type FeedProps = {
 };
 
 const Feed = ({ user = 0 }: FeedProps) => {
-  const [modalPostId, setModalPostId] = React.useState<string | null>(null);
+  const [modalPostId, setModalPostId] = useState<string | null>(null);
 
   return (
     <div>

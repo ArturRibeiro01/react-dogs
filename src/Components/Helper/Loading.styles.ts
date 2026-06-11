@@ -11,7 +11,7 @@ export const LoadingMessage = styled.div`
     content: '';
     width: 1rem;
     height: 1rem;
-    border: 3px solid ${({ theme }) => theme.colors.borderStrong};
+    border: 0.1875rem solid ${({ theme }) => theme.colors.borderStrong};
     border-top-color: ${({ theme }) => theme.colors.primary};
     border-radius: 50%;
     animation: spin 0.8s linear infinite;

@@ -34,6 +34,7 @@ docs/github-issues/PRIORITY.md
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -52,15 +53,11 @@ docs/github-issues/PRIORITY.md
 
 ## Issues Pendentes
 
-- `33` Ajustar ambientes, CI/CD e documentação da integração.
+Não há issues pendentes nesta fila.
 
 ## Próxima Issue Recomendada
 
-```txt
-33 Ajustar ambientes, CI/CD e documentação da integração
-```
-
-Motivo: os fluxos principais da integração já usam a Dogs API. Falta consolidar envs, health check, CI/CD e documentação.
+Criar uma nova fila para a evolução de produto, como home pública, dashboard com menu lateral e gestão de cachorros do usuário.
 
 ## Como Publicar No GitHub
 
@@ -108,7 +105,7 @@ docs/github-issues/PRIORITY.md
 
 Resumo:
 
-Finalize com envs, CI/CD e documentação.
+Fila de integração Supabase + Dogs API concluída localmente.
 
 ## Ambientes Da Nova API
 

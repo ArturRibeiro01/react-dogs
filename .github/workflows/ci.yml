@@ -132,7 +132,31 @@ jobs:
 
       - name: Build current branch
         working-directory: current
+        env:
+          DEV_VITE_API_URL: ${{ vars.VITE_API_URL_DEV || vars.VITE_API_URL }}
+          DEV_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_DEV || vars.VITE_DOGS_API_URL }}
+          DEV_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_DEV || vars.VITE_SUPABASE_URL }}
+          DEV_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_DEV || vars.VITE_SUPABASE_ANON_KEY }}
+          DEV_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_DEV || vars.VITE_DEMO_MODE }}
+          PROD_VITE_API_URL: ${{ vars.VITE_API_URL_PROD || vars.VITE_API_URL }}
+          PROD_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_PROD || vars.VITE_DOGS_API_URL }}
+          PROD_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_PROD || vars.VITE_SUPABASE_URL }}
+          PROD_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_PROD || vars.VITE_SUPABASE_ANON_KEY }}
+          PROD_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_PROD || vars.VITE_DEMO_MODE }}
         run: |
+          if [ "${{ steps.branches.outputs.current_base }}" = "/react-dogs/" ]; then
+            export VITE_API_URL="$PROD_VITE_API_URL"
+            export VITE_DOGS_API_URL="$PROD_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$PROD_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$PROD_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$PROD_VITE_DEMO_MODE"
+          else
+            export VITE_API_URL="$DEV_VITE_API_URL"
+            export VITE_DOGS_API_URL="$DEV_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$DEV_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$DEV_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$DEV_VITE_DEMO_MODE"
+          fi
           yarn install --frozen-lockfile
           yarn build --base="${{ steps.branches.outputs.current_base }}"
           mkdir -p "${{ steps.branches.outputs.current_output }}"
@@ -141,7 +165,31 @@ jobs:
       - name: Build paired branch
         if: steps.branches.outputs.paired_branch != ''
         working-directory: paired
+        env:
+          DEV_VITE_API_URL: ${{ vars.VITE_API_URL_DEV || vars.VITE_API_URL }}
+          DEV_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_DEV || vars.VITE_DOGS_API_URL }}
+          DEV_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_DEV || vars.VITE_SUPABASE_URL }}
+          DEV_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_DEV || vars.VITE_SUPABASE_ANON_KEY }}
+          DEV_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_DEV || vars.VITE_DEMO_MODE }}
+          PROD_VITE_API_URL: ${{ vars.VITE_API_URL_PROD || vars.VITE_API_URL }}
+          PROD_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_PROD || vars.VITE_DOGS_API_URL }}
+          PROD_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_PROD || vars.VITE_SUPABASE_URL }}
+          PROD_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_PROD || vars.VITE_SUPABASE_ANON_KEY }}
+          PROD_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_PROD || vars.VITE_DEMO_MODE }}
         run: |
+          if [ "${{ steps.branches.outputs.paired_base }}" = "/react-dogs/" ]; then
+            export VITE_API_URL="$PROD_VITE_API_URL"
+            export VITE_DOGS_API_URL="$PROD_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$PROD_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$PROD_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$PROD_VITE_DEMO_MODE"
+          else
+            export VITE_API_URL="$DEV_VITE_API_URL"
+            export VITE_DOGS_API_URL="$DEV_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$DEV_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$DEV_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$DEV_VITE_DEMO_MODE"
+          fi
           yarn install --frozen-lockfile
           yarn build --base="${{ steps.branches.outputs.paired_base }}"
           mkdir -p "${{ steps.branches.outputs.paired_output }}"

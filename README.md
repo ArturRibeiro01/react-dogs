@@ -147,6 +147,24 @@ VITE_DEMO_MODE=false
 | `VITE_SUPABASE_ANON_KEY` | Chave pública anon/publishable do Supabase.                 |
 | `VITE_DEMO_MODE`         | Quando `true`, usa mocks locais em vez dos serviços reais.  |
 
+No GitHub Actions, as mesmas variáveis podem ser separadas por ambiente:
+
+```txt
+VITE_API_URL_DEV
+VITE_DOGS_API_URL_DEV
+VITE_SUPABASE_URL_DEV
+VITE_SUPABASE_ANON_KEY_DEV
+VITE_DEMO_MODE_DEV
+
+VITE_API_URL_PROD
+VITE_DOGS_API_URL_PROD
+VITE_SUPABASE_URL_PROD
+VITE_SUPABASE_ANON_KEY_PROD
+VITE_DEMO_MODE_PROD
+```
+
+Se as variáveis com sufixo não existirem, o workflow usa as variáveis sem sufixo como fallback. As chaves `VITE_` ficam públicas no bundle; não use service role key do Supabase no frontend.
+
 Contrato atual da API:
 
 ```txt
@@ -167,7 +185,7 @@ docs/API.md
 | `yarn test:watch`   | Executa Vitest em modo watch.                          |
 | `yarn build`        | Executa typecheck e build de produção.                 |
 | `yarn preview`      | Serve localmente o build gerado.                       |
-| `yarn check:api`    | Valida se a API pública responde com lista de fotos.   |
+| `yarn check:api`    | Valida se a Dogs API responde em `/health`.            |
 | `yarn validate`     | Executa lint, format check, typecheck, testes e build. |
 
 O Husky configura um `pre-commit` local que roda `lint-staged`, `typecheck` e `test` antes do commit.

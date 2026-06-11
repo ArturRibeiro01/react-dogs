@@ -43,9 +43,4 @@ create_issue_if_missing() {
   gh "${args[@]}"
 }
 
-create_issue_if_missing \
-  "33 Ajustar ambientes, CI/CD e documentação da integração" \
-  "docs/github-issues/33-ajustar-ambientes-ci-cd-e-documentacao-da-integracao.md" \
-  ci documentation priority-high
-
 echo "Backlog da integracao Dogs API sincronizado."

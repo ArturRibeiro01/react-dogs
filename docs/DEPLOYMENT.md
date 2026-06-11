@@ -90,7 +90,41 @@ VITE_SUPABASE_ANON_KEY=sb_publishable_...
 VITE_DEMO_MODE=false
 ```
 
-`VITE_SUPABASE_ANON_KEY` é pública no bundle do frontend. Não configure service role key no GitHub Actions do frontend.
+Para separar dev e produção, prefira as variáveis com sufixo:
+
+```txt
+VITE_API_URL_DEV=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL_DEV=https://dogs-api-dev.example.com
+VITE_SUPABASE_URL_DEV=https://seu-projeto-dev.supabase.co
+VITE_SUPABASE_ANON_KEY_DEV=sb_publishable_...
+VITE_DEMO_MODE_DEV=false
+
+VITE_API_URL_PROD=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL_PROD=https://dogs-api.example.com
+VITE_SUPABASE_URL_PROD=https://seu-projeto-prod.supabase.co
+VITE_SUPABASE_ANON_KEY_PROD=sb_publishable_...
+VITE_DEMO_MODE_PROD=false
+```
+
+O workflow usa as variáveis com sufixo quando existirem. Se alguma delas não estiver cadastrada, ele usa a variável sem sufixo como fallback, por exemplo `VITE_DOGS_API_URL`.
+
+`VITE_SUPABASE_ANON_KEY` e `VITE_SUPABASE_ANON_KEY_*` são públicas no bundle do frontend. Não configure service role key no GitHub Actions do frontend.
+
+## Health Check Da Dogs API
+
+O script abaixo consulta `GET /health` na URL definida por `VITE_DOGS_API_URL`:
+
+```bash
+yarn check:api
+```
+
+Exemplo:
+
+```bash
+VITE_DOGS_API_URL=https://dogs-api-dev.example.com yarn check:api
+```
+
+Esse check é útil para validar a API publicada antes de apontar o frontend para ela. Ele não roda obrigatoriamente no CI do frontend para evitar bloquear deploy por indisponibilidade externa momentânea.
 
 ## Proteção De Branches
 
@@ -156,6 +190,6 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 - O ambiente publicado depende da branch pareada existir e conseguir buildar.
 - Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
 - `yarn test` roda a suíte automatizada com Vitest; o CI falha em caso de regressão coberta.
-- A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.
+- A Dogs API continua sendo dependência do app em runtime, mas o CI não roda health check obrigatório para evitar falha por indisponibilidade externa.
 - O workflow usa Node 20 porque `@supabase/supabase-js` exige Node 20+ nas versões atuais.
 - O workflow força JavaScript Actions para Node 24 com `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` para antecipar a migração do GitHub Actions. Alguns avisos podem continuar aparecendo enquanto actions oficiais ainda declararem runtime Node 20 internamente.

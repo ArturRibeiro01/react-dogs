@@ -90,8 +90,9 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - Componentes migrados para Emotion usam arquivos `Component.styles.ts`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
-- Health check da API criado em `scripts/check-api-health.mjs`.
+- Health check da Dogs API criado em `scripts/check-api-health.mjs`.
 - CI/CD configurado em `.github/workflows/ci.yml`.
+- GitHub Actions preparado para variáveis `VITE_*_DEV` e `VITE_*_PROD`, com fallback para `VITE_*`.
 - GitHub Pages configurado via Actions para publicar `develop` em `/dev` e `main` na raiz.
 - Deploy de dev confirmado em `https://arturribeiro01.github.io/react-dogs/dev/`.
 - Deploy de produção confirmado em `https://arturribeiro01.github.io/react-dogs/`.
@@ -140,6 +141,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - `30` Integrar catálogo de raças e CRUD de cachorros.
 - `31` Migrar feed público e modal para posts.
 - `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -160,16 +162,16 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 
 ## Próxima Frente
 
-A próxima frente planejada é integrar o frontend `react-dogs` com a nova `dogs-api`, usando o handoff em `docs/FRONTEND_INTEGRATION_HANDOFF.md`.
+A fila de integração Supabase + Dogs API foi concluída localmente. A próxima frente sugerida é evolução de produto e experiência:
 
-Issues pendentes para essa fase:
-
-- `33` Ajustar ambientes, CI/CD e documentação da integração.
+- criar uma home pública mais forte;
+- redirecionar usuário logado para uma dashboard;
+- desenhar dashboard com menu lateral;
+- adicionar gestão de cachorros do usuário.
 
 ## Ainda Pendente
 
-- Integrar o frontend com a API própria criada em outro repositório.
-- Configurar URLs hml/prod da Dogs API e envs públicas do Supabase no build do frontend.
+- Publicar URLs hml/prod reais da Dogs API e preencher as variáveis `VITE_*_DEV` e `VITE_*_PROD` no GitHub.
 - Adicionar mais capturas ou GIFs dos principais fluxos do app.
 - Evoluir testes de integração para fluxos completos de usuário.
 

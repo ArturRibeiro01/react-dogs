@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { dogsApiRequest, tokenStorage } from './api';
+import { DOGS_API_URL, dogsApiRequest, tokenStorage } from './api';
 
 function jsonResponse(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -33,7 +33,7 @@ describe('dogsApiRequest', () => {
 
     const result = await dogsApiRequest('/v1/breeds');
 
-    expect(fetchMock.mock.calls[0][0]).toBe('http://localhost:3333/v1/breeds');
+    expect(fetchMock.mock.calls[0][0]).toBe(`${DOGS_API_URL}/v1/breeds`);
     expect(result.data).toEqual([
       { id: 'breed-1', name: 'Golden Retriever', slug: 'golden-retriever' },
     ]);

@@ -197,28 +197,22 @@ jobs:
 
       - name: Add SPA fallbacks
         run: |
-          if [ -f site/index.html ]; then
-            cp site/index.html site/404.html
-          elif [ -f site/dev/index.html ]; then
-            printf '%s\n' \
-              '<!doctype html>' \
-              '<html lang="pt-BR">' \
-              '  <head>' \
-              '    <meta charset="UTF-8" />' \
-              '    <meta http-equiv="refresh" content="0; url=/react-dogs/dev/" />' \
-              '    <title>Dogs</title>' \
-              '  </head>' \
-              '  <body>' \
-              '    <p>Redirecionando para o ambiente dev...</p>' \
-              '  </body>' \
-              '</html>' \
-              > site/index.html
-            cp site/index.html site/404.html
-          fi
-
-          if [ -f site/dev/index.html ]; then
-            cp site/dev/index.html site/dev/404.html
-          fi
+          printf '%s\n' \
+            '<!doctype html>' \
+            '<html lang="pt-BR">' \
+            '  <head>' \
+            '    <meta charset="UTF-8" />' \
+            '    <title>Dogs</title>' \
+            '    <script>' \
+            '      const path = window.location.pathname;' \
+            "      const base = path.startsWith('/react-dogs/dev/') ? '/react-dogs/dev/' : '/react-dogs/';" \
+            '      const route = path + window.location.search;' \
+            "      window.location.replace(base + '?__route=' + encodeURIComponent(route) + window.location.hash);" \
+            '    </script>' \
+            '  </head>' \
+            '  <body></body>' \
+            '</html>' \
+            > site/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

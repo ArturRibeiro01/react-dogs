@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 export const LoadingMessage = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: ${({ theme }) => theme.spacing.md};
-  margin: ${({ theme }) => theme.spacing.xxl} 0;
+  min-height: 12rem;
+  margin: 0;
   color: ${({ theme }) => theme.colors.textMuted};
 
   &::before {

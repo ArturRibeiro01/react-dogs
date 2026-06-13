@@ -46,6 +46,7 @@ describe('Login password recovery', () => {
   beforeEach(() => {
     mockedLost.mockReset();
     mockedReset.mockReset();
+    window.history.replaceState(null, '', '/');
   });
 
   it('validates the password lost form before submitting', async () => {
@@ -88,5 +89,20 @@ describe('Login password recovery', () => {
       });
     });
     expect(await screen.findByText('Senha redefinida com sucesso.')).toBeInTheDocument();
+  });
+
+  it('explains when the recovery link is expired', async () => {
+    window.history.replaceState(null, '', '/#error=access_denied&error_code=otp_expired');
+
+    renderPasswordReset('/login/resetar');
+
+    expect(
+      await screen.findByText(/este link de recuperação é inválido ou expirou/i),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /solicitar novo link/i })).toHaveAttribute(
+      'href',
+      '/login/perdeu',
+    );
+    expect(screen.queryByLabelText(/nova senha/i)).not.toBeInTheDocument();
   });
 });

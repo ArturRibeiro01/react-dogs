@@ -2,13 +2,16 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { postsApi } from '@/api';
+import { photoApi, postsApi } from '@/api';
 import { renderWithProviders } from '@/test/renderWithProviders';
-import type { ApiResponse, Post } from '@/types';
+import type { ApiResponse, Photo, Post } from '@/types';
 
 import FeedPhotos from './FeedPhotos';
 
 vi.mock('@/api', () => ({
+  photoApi: {
+    list: vi.fn(),
+  },
   postsApi: {
     list: vi.fn(),
   },
@@ -34,20 +37,32 @@ const posts: Post[] = [
   },
 ];
 
+const legacyPhotos: Photo[] = [
+  {
+    id: 1,
+    title: 'Joel',
+    src: 'https://example.com/joel.jpg',
+  },
+];
+
 const createApiResponse = <TData,>(data: TData): ApiResponse<TData> => ({
   response: new Response(null, { status: 200 }),
   data,
 });
 
-const mockedList = vi.mocked(postsApi.list);
+const mockedPostsList = vi.mocked(postsApi.list);
+const mockedPhotosList = vi.mocked(photoApi.list);
 
 describe('FeedPhotos', () => {
   beforeEach(() => {
-    mockedList.mockReset();
+    mockedPostsList.mockReset();
+    mockedPhotosList.mockReset();
+    mockedPhotosList.mockResolvedValue(createApiResponse([]));
   });
 
   it('shows loading while photos are requested', async () => {
-    mockedList.mockReturnValue(new Promise(() => undefined));
+    mockedPostsList.mockReturnValue(new Promise(() => undefined));
+    mockedPhotosList.mockReturnValue(new Promise(() => undefined));
 
     renderWithProviders(<FeedPhotos onSelectPost={vi.fn()} />);
 
@@ -55,7 +70,7 @@ describe('FeedPhotos', () => {
   });
 
   it('renders an error message when the request fails', async () => {
-    mockedList.mockRejectedValue(new Error('Falha ao buscar posts.'));
+    mockedPostsList.mockRejectedValue(new Error('Falha ao buscar posts.'));
 
     renderWithProviders(<FeedPhotos onSelectPost={vi.fn()} />);
 
@@ -63,7 +78,7 @@ describe('FeedPhotos', () => {
   });
 
   it('renders the empty state when no photos are returned', async () => {
-    mockedList.mockResolvedValue(createApiResponse([]));
+    mockedPostsList.mockResolvedValue(createApiResponse([]));
 
     renderWithProviders(<FeedPhotos onSelectPost={vi.fn()} />);
 
@@ -72,14 +87,24 @@ describe('FeedPhotos', () => {
 
   it('renders posts and selects a post by id', async () => {
     const onSelectPost = vi.fn();
-    mockedList.mockResolvedValue(createApiResponse(posts));
+    mockedPostsList.mockResolvedValue(createApiResponse(posts));
 
     renderWithProviders(<FeedPhotos user={7} onSelectPost={onSelectPost} />);
     await waitForElementToBeRemoved(() => screen.queryByRole('status'));
 
-    expect(mockedList).toHaveBeenCalledWith({ page: 1, perPage: 6 });
+    expect(mockedPostsList).toHaveBeenCalledWith({ page: 1, perPage: 6 });
     await userEvent.click(screen.getByRole('button', { name: /abrir detalhes do post nina/i }));
 
     expect(onSelectPost).toHaveBeenCalledWith('post-1');
+  });
+
+  it('renders legacy photos while the new API has no posts', async () => {
+    mockedPostsList.mockResolvedValue(createApiResponse([]));
+    mockedPhotosList.mockResolvedValue(createApiResponse(legacyPhotos));
+
+    renderWithProviders(<FeedPhotos onSelectPost={vi.fn()} />);
+
+    expect(await screen.findByRole('img', { name: 'Joel' })).toBeInTheDocument();
+    expect(mockedPhotosList).toHaveBeenCalledWith({ page: 1, total: 6, user: 0 });
   });
 });

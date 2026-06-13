@@ -17,6 +17,7 @@ const LoginPasswordReset = () => {
   const { error, loading, request } = useFetch();
   const navigate = useNavigate();
   const [success, setSuccess] = useState<string | null>(null);
+  const recoveryError = new URLSearchParams(window.location.hash.slice(1)).get('error_code');
   const {
     register,
     handleSubmit,
@@ -44,18 +45,29 @@ const LoginPasswordReset = () => {
   return (
     <section className="animeLeft">
       <h1 className="title">Resetar senha</h1>
-      <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input
-          label="Nova senha"
-          type="password"
-          error={errors.password?.message}
-          {...register('password')}
-        />
-        {loading ? <Button disabled>Redefinindo...</Button> : <Button>Redefinir Senha</Button>}
-        <Error error={error} />
-        {success && <StatusMessage variant="success">{success}</StatusMessage>}
-      </Form>
-      <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
+      {recoveryError ? (
+        <>
+          <StatusMessage variant="error">
+            Este link de recuperação é inválido ou expirou. Solicite um novo e-mail.
+          </StatusMessage>
+          <LostPasswordLink to="/login/perdeu">Solicitar novo link</LostPasswordLink>
+        </>
+      ) : (
+        <>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <Input
+              label="Nova senha"
+              type="password"
+              error={errors.password?.message}
+              {...register('password')}
+            />
+            {loading ? <Button disabled>Redefinindo...</Button> : <Button>Redefinir Senha</Button>}
+            <Error error={error} />
+            {success && <StatusMessage variant="success">{success}</StatusMessage>}
+          </Form>
+          <LostPasswordLink to="/login">Voltar para login</LostPasswordLink>
+        </>
+      )}
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { DOGS_API_URL, dogsApiRequest, tokenStorage } from './api';
+import { DOGS_API_URL, dogsApiRequest, getSupabaseAuthErrorMessage, tokenStorage } from './api';
 
 function jsonResponse(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -76,6 +76,19 @@ describe('dogsApiRequest', () => {
 
     await expect(dogsApiRequest('/v1/users/me', { auth: true })).rejects.toThrow(
       'Token de autenticação ausente.',
+    );
+  });
+});
+
+describe('getSupabaseAuthErrorMessage', () => {
+  it('translates the Supabase email rate limit', () => {
+    expect(
+      getSupabaseAuthErrorMessage({
+        code: 'over_email_send_rate_limit',
+        message: 'email rate limit exceeded',
+      }),
+    ).toBe(
+      'O limite temporário de envio de e-mails foi atingido. Aguarde alguns minutos e tente novamente.',
     );
   });
 });

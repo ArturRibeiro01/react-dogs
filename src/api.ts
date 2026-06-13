@@ -97,6 +97,28 @@ function createOkResponse(status = 200): Response {
   return new Response(null, { status });
 }
 
+export function getSupabaseAuthErrorMessage(error: unknown): string {
+  const fallback = 'Não foi possível concluir a autenticação. Tente novamente.';
+  if (!error || typeof error !== 'object') return fallback;
+
+  const message = 'message' in error && typeof error.message === 'string' ? error.message : '';
+  const code = 'code' in error && typeof error.code === 'string' ? error.code : '';
+  const normalizedError = `${code} ${message}`.toLowerCase();
+
+  if (
+    normalizedError.includes('email rate limit') ||
+    normalizedError.includes('over_email_send_rate_limit')
+  ) {
+    return 'O limite temporário de envio de e-mails foi atingido. Aguarde alguns minutos e tente novamente.';
+  }
+
+  return message || fallback;
+}
+
+function throwSupabaseAuthError(error: unknown): never {
+  throw new Error(getSupabaseAuthErrorMessage(error));
+}
+
 function resolveUrl(path: string): string {
   if (path.startsWith('http')) return path;
   return `${API_URL}${path}`;
@@ -288,7 +310,7 @@ const realAuthApi = {
   login: async ({ email, password }: { email: string; password: string }) => {
     ensureSupabaseConfigured();
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
     return createAuthSessionUser(data.session?.access_token || null, data.user);
   },
 
@@ -304,21 +326,21 @@ const realAuthApi = {
         },
       },
     });
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
     return createAuthSessionUser(data.session?.access_token || null, data.user);
   },
 
   getSession: async () => {
     ensureSupabaseConfigured();
     const { data, error } = await supabase.auth.getSession();
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
     return createAuthSessionUser(data.session?.access_token || null, data.session?.user);
   },
 
   logout: async () => {
     ensureSupabaseConfigured();
     const { error } = await supabase.auth.signOut();
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
   },
 
   onAuthStateChange: (callback: (sessionUser: AuthSessionUser) => void) => {
@@ -356,7 +378,7 @@ const realPasswordApi = {
     const { error } = await supabase.auth.resetPasswordForEmail(login, {
       redirectTo: url,
     });
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
     return {
       response: createOkResponse(),
       data: null,
@@ -366,7 +388,7 @@ const realPasswordApi = {
   reset: async ({ password }: PasswordResetInput) => {
     ensureSupabaseConfigured();
     const { error } = await supabase.auth.updateUser({ password });
-    if (error) throw new Error(error.message);
+    if (error) throwSupabaseAuthError(error);
     return {
       response: createOkResponse(),
       data: null,

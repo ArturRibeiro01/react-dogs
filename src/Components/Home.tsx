@@ -1,9 +1,9 @@
-import DogList from '@components/Dogs/DogList';
+import Feed from '@components/Feed/Feed';
 
 const Home = () => {
   return (
     <section className="container mainContainer">
-      <DogList />
+      <Feed />
     </section>
   );
 };

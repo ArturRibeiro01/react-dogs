@@ -66,6 +66,9 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - Perfil local do tutor sincronizado pela Dogs API após login Supabase.
 - Catálogo de raças e listagem/cadastro de cachorros integrados à Dogs API.
 - Feed e modal de detalhes migrados para posts da Dogs API.
+- Rota inicial restaurada para o feed público da Dogs API; catálogo disponível em `/cachorros`.
+- Senhas fortes aceitam símbolos e são revalidadas durante a correção do campo.
+- Redirects de recuperação de senha do Supabase documentados para ambiente local e dev.
 - Publicação de posts migrada para `POST /v1/posts` com upload multipart em `POST /v1/media`.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
 - Handoff para o Codex do backend criado em `docs/CODEX_BACKEND_HANDOFF.md`, incluindo padrões de Husky, CI, docs, issues e `.codex`.

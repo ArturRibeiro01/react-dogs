@@ -23,6 +23,16 @@ describe('form schemas', () => {
     expect(result.success).toBe(true);
   });
 
+  it('accepts symbols in strong passwords', () => {
+    const result = createUserSchema.safeParse({
+      username: 'demo',
+      email: 'demo@dogs.local',
+      password: 'Demo@1234',
+    });
+
+    expect(result.success).toBe(true);
+  });
+
   it('rejects invalid email and weak password', () => {
     const result = createUserSchema.safeParse({
       username: 'demo',
@@ -37,6 +47,7 @@ describe('form schemas', () => {
   it('validates password reset strength', () => {
     expect(passwordResetSchema.safeParse({ password: 'demo1234' }).success).toBe(false);
     expect(passwordResetSchema.safeParse({ password: 'Demo1234' }).success).toBe(true);
+    expect(passwordResetSchema.safeParse({ password: 'Demo@1234' }).success).toBe(true);
   });
 
   it('requires numeric values for photo fields', () => {

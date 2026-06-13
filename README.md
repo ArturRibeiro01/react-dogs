@@ -165,6 +165,21 @@ VITE_DEMO_MODE_PROD
 
 Se as variáveis com sufixo não existirem, o workflow usa as variáveis sem sufixo como fallback. As chaves `VITE_` ficam públicas no bundle; não use service role key do Supabase no frontend.
 
+### Redirecionamentos do Supabase Auth
+
+No projeto Supabase de desenvolvimento, acesse `Authentication > URL Configuration` e configure:
+
+```txt
+Site URL
+https://arturribeiro01.github.io/react-dogs/dev/
+
+Redirect URLs
+https://arturribeiro01.github.io/react-dogs/dev/login/resetar
+http://localhost:5173/login/resetar
+```
+
+O frontend envia a rota correspondente ao ambiente no `redirectTo` da recuperação de senha. Se essa URL não estiver autorizada, o Supabase usa o `Site URL` como fallback. Não deixe `http://localhost:3000` como `Site URL` do projeto publicado.
+
 Contrato atual da API:
 
 ```txt

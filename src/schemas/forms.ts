@@ -13,6 +13,10 @@ const emailSchema = z
   .min(1, requiredMessage)
   .refine((value) => value.length === 0 || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), emailMessage);
 
+const strongPasswordSchema = z
+  .string()
+  .regex(/^(?=\S{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/, passwordMessage);
+
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().trim().min(1, requiredMessage),
@@ -21,7 +25,7 @@ export const loginSchema = z.object({
 export const createUserSchema = z.object({
   username: z.string().trim().min(1, requiredMessage),
   email: emailSchema,
-  password: z.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, passwordMessage),
+  password: strongPasswordSchema,
 });
 
 export const passwordLostSchema = z.object({
@@ -29,7 +33,7 @@ export const passwordLostSchema = z.object({
 });
 
 export const passwordResetSchema = z.object({
-  password: z.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, passwordMessage),
+  password: strongPasswordSchema,
 });
 
 export const photoPostSchema = z.object({

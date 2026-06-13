@@ -19,7 +19,7 @@ const LoginCreate = () => {
     formState: { errors },
   } = useForm<CreateUserFormData>({
     resolver: zodResolver(createUserSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
 
   async function onSubmit({ username, email, password }: CreateUserFormData) {

@@ -23,7 +23,7 @@ const LoginPasswordReset = () => {
     formState: { errors },
   } = useForm<PasswordResetFormData>({
     resolver: zodResolver(passwordResetSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
 
   async function onSubmit({ password }: PasswordResetFormData) {

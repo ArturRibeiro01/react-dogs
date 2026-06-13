@@ -62,6 +62,11 @@ const renderUserPhotoPost = () =>
     { initialEntries: ['/conta/postar'] },
   );
 
+const selectDog = async () => {
+  await screen.findByRole('option', { name: dog.name });
+  await userEvent.selectOptions(screen.getByLabelText('Cachorro'), dog.id);
+};
+
 describe('UserPhotoPost', () => {
   beforeEach(() => {
     mockedDogList.mockReset();
@@ -77,7 +82,7 @@ describe('UserPhotoPost', () => {
 
     const file = new File(['image'], 'nina.jpg', { type: 'image/jpeg' });
 
-    await userEvent.selectOptions(await screen.findByLabelText('Cachorro'), dog.id);
+    await selectDog();
     await userEvent.type(screen.getByLabelText('Legenda'), 'Nina no parque');
     await userEvent.upload(screen.getByLabelText('Imagem'), file);
     await userEvent.click(screen.getByRole('button', { name: /publicar/i }));
@@ -101,7 +106,7 @@ describe('UserPhotoPost', () => {
 
     const file = new File(['image'], 'nina.gif', { type: 'image/gif' });
 
-    await userEvent.selectOptions(await screen.findByLabelText('Cachorro'), dog.id);
+    await selectDog();
     await userEvent.upload(screen.getByLabelText('Imagem'), file, { applyAccept: false });
     await userEvent.click(screen.getByRole('button', { name: /publicar/i }));
 

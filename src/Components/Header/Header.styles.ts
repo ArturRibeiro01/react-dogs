@@ -28,6 +28,23 @@ export const LogoLink = styled(Link)`
   }
 `;
 
+export const LogoGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+export const EnvironmentBadge = styled.span`
+  padding: ${({ theme }) => theme.spacing.xxs} ${({ theme }) => theme.spacing.sm};
+  border: 0.0625rem solid #9c2f24;
+  border-radius: ${({ theme }) => theme.radii.sm};
+  background: #fff1f0;
+  color: #7f1d14;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.4;
+`;
+
 export const AccountLink = styled(Link)`
   display: flex;
   align-items: center;

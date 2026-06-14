@@ -5,6 +5,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { renderWithProviders } from '@/test/renderWithProviders';
 
 import Header from './Header';
+import { isDevelopmentEnvironment } from './Header.utils';
 
 describe('Header', () => {
   beforeEach(() => {
@@ -20,6 +21,7 @@ describe('Header', () => {
     renderWithProviders(<Header />);
 
     expect(screen.getByRole('link', { name: /dogs - home/i })).toHaveAttribute('href', '/');
+    expect(screen.getByText('DEV')).toHaveAttribute('title', 'Ambiente de desenvolvimento');
     expect(screen.getByRole('link', { name: /login \| criar/i })).toHaveAttribute('href', '/login');
   });
 
@@ -37,5 +39,11 @@ describe('Header', () => {
     renderWithProviders(<Header />);
 
     expect(screen.getByRole('link', { name: 'Demo' })).toHaveAttribute('href', '/conta');
+  });
+
+  it('identifies local and published development environments', () => {
+    expect(isDevelopmentEnvironment('/')).toBe(true);
+    expect(isDevelopmentEnvironment('/react-dogs/dev/')).toBe(true);
+    expect(isDevelopmentEnvironment('/react-dogs/')).toBe(false);
   });
 });

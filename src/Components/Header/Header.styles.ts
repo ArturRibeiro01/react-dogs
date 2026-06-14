@@ -36,10 +36,10 @@ export const LogoGroup = styled.div`
 
 export const EnvironmentBadge = styled.span`
   padding: ${({ theme }) => theme.spacing.xxs} ${({ theme }) => theme.spacing.sm};
-  border: 0.0625rem solid #9c2f24;
+  border: 0.0625rem solid ${({ theme }) => theme.colors.status.environmentBorder};
   border-radius: ${({ theme }) => theme.radii.sm};
-  background: #fff1f0;
-  color: #7f1d14;
+  background: ${({ theme }) => theme.colors.status.environmentBackground};
+  color: ${({ theme }) => theme.colors.status.environmentText};
   font-size: 0.6875rem;
   font-weight: 700;
   line-height: 1.4;

@@ -9,24 +9,25 @@ type MobileMenuButtonProps = {
   $isOpen: boolean;
 };
 
-const iconButtonStyles = `
+const iconButtonStyles = (transparentColor: string) => `
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
   width: 2.5rem;
-  border: 0.0625rem solid transparent;
+  border: 0.0625rem solid ${transparentColor};
   cursor: pointer;
 `;
 
 export const MobileMenuButton = styled.button<MobileMenuButtonProps>`
-  ${iconButtonStyles}
+  ${({ theme }) => iconButtonStyles(theme.colors.transparent)}
   padding: 0;
   border-radius: ${({ theme }) => theme.radii.sm};
   background: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.surface : theme.colors.border)};
   color: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.primary : theme.colors.text)};
   box-shadow: ${({ $isOpen, theme }) => ($isOpen ? theme.shadows.focus : 'none')};
-  border-color: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.primary : 'transparent')};
+  border-color: ${({ $isOpen, theme }) =>
+    $isOpen ? theme.colors.primary : theme.colors.transparent};
   transition: ${({ theme }) => theme.transitions.base};
 
   &::after {

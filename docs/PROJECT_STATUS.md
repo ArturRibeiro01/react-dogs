@@ -100,6 +100,7 @@ Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`
 - GitHub Actions preparado para variáveis `VITE_*_DEV` e `VITE_*_PROD`, com fallback para `VITE_*`.
 - GitHub Pages configurado via Actions para publicar `develop` em `/dev` e `main` na raiz.
 - Deploy de dev confirmado em `https://arturribeiro01.github.io/react-dogs/dev/`.
+- Navbar identifica visualmente os builds local e publicado de desenvolvimento com o status `DEV`.
 - Deploy de produção confirmado em `https://arturribeiro01.github.io/react-dogs/`.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API exibem mensagem amigável.

@@ -1,18 +1,32 @@
 import { useAuthStore } from '@/stores/authStore';
 import dogsLogoUrl from '@assets/dogs.svg';
 
-import { AccountLink, HeaderShell, LogoLink, Nav } from './Header.styles';
+import {
+  AccountLink,
+  EnvironmentBadge,
+  HeaderShell,
+  LogoGroup,
+  LogoLink,
+  Nav,
+} from './Header.styles';
+import { isDevelopmentEnvironment } from './Header.utils';
 
 const Header = () => {
   const data = useAuthStore((state) => state.data);
   const accountLabel = data?.name || data?.username || data?.email || 'Minha conta';
+  const showDevelopmentBadge = isDevelopmentEnvironment();
 
   return (
     <HeaderShell>
       <Nav>
-        <LogoLink to="/" aria-label="Dogs - Home">
-          <img src={dogsLogoUrl} alt="" aria-hidden="true" />
-        </LogoLink>
+        <LogoGroup>
+          <LogoLink to="/" aria-label="Dogs - Home">
+            <img src={dogsLogoUrl} alt="" aria-hidden="true" />
+          </LogoLink>
+          {showDevelopmentBadge && (
+            <EnvironmentBadge title="Ambiente de desenvolvimento">DEV</EnvironmentBadge>
+          )}
+        </LogoGroup>
 
         {data ? (
           <AccountLink to="/conta">{accountLabel}</AccountLink>

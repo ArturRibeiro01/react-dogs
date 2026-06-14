@@ -102,6 +102,8 @@ Decisão:
 
 `App.css` permanece apenas para reset/base global e classes utilitárias históricas, como `.container`, `.title` e `.animeLeft`.
 
+Cores visuais da aplicação devem ser consumidas por tokens de `src/styles/theme.ts`. Componentes e arquivos de estilo não devem declarar valores hexadecimais, RGB ou HSL diretamente; novos temas devem substituir os tokens sem exigir alterações nos componentes.
+
 ## Próxima Evolução Possível
 
 Quando a base crescer, a estrutura pode migrar para organização por domínio:

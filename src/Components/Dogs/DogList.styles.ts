@@ -58,7 +58,11 @@ export const DogCard = styled.li`
 export const DogImage = styled.div<{ $imageUrl?: string | null }>`
   min-height: 13rem;
   background:
-    linear-gradient(135deg, rgb(251 177 19 / 85%), rgb(255 255 255 / 10%)),
+    linear-gradient(
+      135deg,
+      ${({ theme }) => theme.colors.primaryOverlayStrong},
+      ${({ theme }) => theme.colors.surfaceOverlaySoft}
+    ),
     ${({ $imageUrl }) => ($imageUrl ? `url('${$imageUrl}')` : 'none')};
   background-color: ${({ theme }) => theme.colors.primary};
   background-position: center;

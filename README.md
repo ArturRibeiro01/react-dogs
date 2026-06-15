@@ -30,7 +30,7 @@ Para ativar localmente:
 VITE_DEMO_MODE=true
 ```
 
-Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senha usam dados mockados em memória. Quando `VITE_DEMO_MODE` está ausente ou `false`, o app usa a API pública da Origamid.
+Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senha usam dados mockados em memória. Quando `VITE_DEMO_MODE` está ausente ou `false`, o app usa Supabase Auth e a Dogs API; a API antiga da Origamid permanece apenas como fallback temporário do feed inicial.
 
 ## Screenshot
 
@@ -133,7 +133,7 @@ Observação: a integração com Supabase Auth usa `@supabase/supabase-js`, que 
 
 ```bash
 VITE_API_URL=https://dogsapi.origamid.dev/json
-VITE_DOGS_API_URL=http://localhost:3333
+VITE_DOGS_API_URL=https://dogs-api-dev.onrender.com
 VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
 VITE_SUPABASE_ANON_KEY=sb_publishable_...
 VITE_DEMO_MODE=false
@@ -163,7 +163,7 @@ VITE_SUPABASE_ANON_KEY_PROD
 VITE_DEMO_MODE_PROD
 ```
 
-Se as variáveis com sufixo não existirem, o workflow usa as variáveis sem sufixo como fallback. As chaves `VITE_` ficam públicas no bundle; não use service role key do Supabase no frontend.
+As variáveis de desenvolvimento podem usar as variáveis sem sufixo como fallback. As cinco variáveis `_PROD` são obrigatórias e o deploy falha antes do build se alguma estiver ausente. As chaves `VITE_` ficam públicas no bundle; não use service role key do Supabase no frontend.
 
 ### Redirecionamentos do Supabase Auth
 
@@ -179,6 +179,16 @@ http://localhost:5173/login/resetar
 ```
 
 O frontend envia a rota correspondente ao ambiente no `redirectTo` da recuperação de senha. Se essa URL não estiver autorizada, o Supabase usa o `Site URL` como fallback. Não deixe `http://localhost:3000` como `Site URL` do projeto publicado.
+
+No projeto Supabase de produção, configure:
+
+```txt
+Site URL
+https://arturribeiro01.github.io/react-dogs/
+
+Redirect URLs
+https://arturribeiro01.github.io/react-dogs/login/resetar
+```
 
 Contrato atual da API:
 

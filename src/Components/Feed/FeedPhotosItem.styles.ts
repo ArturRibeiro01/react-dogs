@@ -33,8 +33,8 @@ export const PhotoButton = styled.button`
   text-align: left;
 
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.primary};
-    outline-offset: 3px;
+    outline: 0.1875rem solid ${({ theme }) => theme.colors.primary};
+    outline-offset: 0.1875rem;
   }
 
   img {
@@ -74,7 +74,10 @@ export const PhotoTitle = styled.span`
   align-self: end;
   grid-area: 1 / 1;
   padding: ${({ theme }) => theme.spacing.sm};
-  background: linear-gradient(transparent, ${({ theme }) => theme.colors.overlayStrong});
+  background: linear-gradient(
+    ${({ theme }) => theme.colors.transparent},
+    ${({ theme }) => theme.colors.overlayStrong}
+  );
   color: ${({ theme }) => theme.colors.surface};
   font-size: 0.875rem;
   font-weight: 700;

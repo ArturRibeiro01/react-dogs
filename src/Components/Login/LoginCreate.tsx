@@ -1,41 +1,30 @@
-import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { userApi } from '@/api';
 import { createUserSchema, type CreateUserFormData } from '@/schemas/forms';
 import { useAuthStore } from '@/stores/authStore';
 import Button from '@components/Forms/Button';
 import Input from '@components/Forms/Input';
 import Error from '@components/Helper/Error';
-import useFetch from '@hooks/useFetch';
 
 const LoginCreate = () => {
   const navigate = useNavigate();
-  const userLogin = useAuthStore((state) => state.userLogin);
-  const { loading, error, request } = useFetch();
+  const userSignup = useAuthStore((state) => state.userSignup);
+  const loading = useAuthStore((state) => state.loading);
+  const error = useAuthStore((state) => state.error);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateUserFormData>({
     resolver: zodResolver(createUserSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
 
   async function onSubmit({ username, email, password }: CreateUserFormData) {
-    const { response } = await request(() =>
-      userApi.create({
-        username,
-        email,
-        password,
-      }),
-    );
-    if (response && response.ok) {
-      const success = await userLogin(username, password);
-      if (success) navigate('/conta');
-    }
+    const success = await userSignup({ username, email, password });
+    if (success) navigate('/conta');
   }
 
   return (

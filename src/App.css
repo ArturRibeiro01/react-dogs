@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0px;
+  margin: 0;
   color: var(--color-text);
   font-family: var(--font-body);
   /* padding-top: 4rem; */
@@ -14,13 +14,13 @@ h2,
 h3,
 h4,
 p {
-  margin: 0px;
+  margin: 0;
 }
 ul,
 li {
   list-style: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 a {
   text-decoration: none;
@@ -29,8 +29,8 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 3px solid var(--color-primary);
-  outline-offset: 3px;
+  outline: 0.1875rem solid var(--color-primary);
+  outline-offset: 0.1875rem;
 }
 img {
   display: block;
@@ -66,14 +66,14 @@ input {
   height: 1.5rem;
   background: var(--color-primary);
   position: absolute;
-  bottom: 5px;
-  left: -5px;
+  bottom: 0.3125rem;
+  left: -0.3125rem;
   border-radius: var(--radius-sm);
   z-index: var(--z-below);
 }
 .animeLeft {
   opacity: 0;
-  transform: translate3d(-20px);
+  transform: translate3d(-1.25rem, 0, 0);
   animation: animeLeft 0.3s forwards;
 }
 

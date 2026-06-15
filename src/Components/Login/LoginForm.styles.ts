@@ -15,7 +15,7 @@ export const LostPasswordLink = styled(Link)`
     content: '';
     display: block;
     width: 100%;
-    height: 2px;
+    height: 0.125rem;
     background: currentColor;
   }
 `;

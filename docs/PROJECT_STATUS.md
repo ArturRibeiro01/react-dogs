@@ -1,12 +1,12 @@
 # Project Status
 
-Atualizado em 2026-06-04.
+Atualizado em 2026-06-11.
 
 ## Resumo
 
 O projeto Dogs está em fase de modernização para portfólio. A base técnica já foi estabilizada: Vite, React 19, React Router 6, TypeScript, cliente centralizado de API, feed com dados reais, modal de detalhes, estatísticas do usuário, Error Boundary, feedback acessível, formulários com React Hook Form/Zod, polimento inicial de UI/acessibilidade e documentação de portfólio.
 
-Todas as issues planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos, os checks locais foram automatizados e o README foi revisado como apresentação de portfólio.
+Todas as issues planejadas para esta fase foram cobertas localmente. A API própria foi planejada para um repositório separado, aliases/imports foram organizados, hooks do React foram padronizados com imports nomeados, o estado global de autenticação foi migrado para Zustand, os formulários foram padronizados com React Hook Form e Zod, a cobertura de testes foi ampliada, a estratégia de CSS-in-JS foi definida com Emotion, a base de tokens/themes foi centralizada, os CSS Modules foram removidos, os checks locais foram automatizados e o README foi revisado como apresentação de portfólio.
 
 ## Stack Atual
 
@@ -31,11 +31,11 @@ Todas as issues planejadas para esta fase foram cobertas localmente. A API próp
 
 ## Ambiente
 
-- Node usado durante a modernização: `18.16.0`
-- Node recomendado: `18+`
+- Node usado durante a modernização inicial: `18.16.0`
+- Node recomendado atual: `20+`
 - Package manager: Yarn 1.x
 
-Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto permanece nas versões modernas compatíveis com esse runtime.
+Observação: a integração com Supabase Auth adicionou `@supabase/supabase-js`, que exige Node 20+ nas versões atuais. O CI/CD foi atualizado para Node 20.
 
 ## Concluído
 
@@ -60,13 +60,22 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Yarn definido como package manager único.
 - `package-lock.json` removido.
 - Base URL da API configurável via `VITE_API_URL`.
+- Client da Dogs API configurável via `VITE_DOGS_API_URL`.
 - `.env.example` criado.
 - API client criado em `src/api.ts`.
+- Perfil local do tutor sincronizado pela Dogs API após login Supabase.
+- Catálogo de raças e listagem/cadastro de cachorros integrados à Dogs API.
+- Feed e modal de detalhes migrados para posts da Dogs API.
+- Rota inicial restaurada para o feed público da Dogs API; catálogo disponível em `/cachorros`.
+- Senhas fortes aceitam símbolos e são revalidadas durante a correção do campo.
+- Redirects de recuperação de senha do Supabase documentados para ambiente local e dev.
+- Publicação de posts migrada para `POST /v1/posts` com upload multipart em `POST /v1/media`.
 - Plano de API própria criado em `docs/BACKEND_API_PLAN.md`, com backend separado sugerido como `dogs-api`.
 - Handoff para o Codex do backend criado em `docs/CODEX_BACKEND_HANDOFF.md`, incluindo padrões de Husky, CI, docs, issues e `.codex`.
 - Especificação da API própria criada em `docs/DOGS_API_SPEC.md`, considerando tutores, cachorros, múltiplos donos, posts, ambientes e Swagger.
 - Aliases de frontend configurados em Vite e TypeScript.
 - Convenção de imports documentada em `docs/ARCHITECTURE.md`.
+- Hooks do React padronizados com imports nomeados, sem `React.useEffect`/`React.useState`.
 - Estado global de autenticação migrado de Context API para Zustand.
 - `UserContext` removido.
 - Formulários migrados para React Hook Form com validação por Zod.
@@ -83,12 +92,15 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - Feed, Login, User, Loading, ErrorBoundary e NotFound migrados para Emotion.
 - CSS Modules removidos do projeto.
 - Componentes migrados para Emotion usam arquivos `Component.styles.ts`.
+- Medidas fixas em estilos convertidas de `px` para `rem`.
 - Modo demo/mock criado em `src/mockApi.ts`, ativado por `VITE_DEMO_MODE=true`.
 - Tipos compartilhados criados em `src/types.ts`.
-- Health check da API criado em `scripts/check-api-health.mjs`.
+- Health check da Dogs API criado em `scripts/check-api-health.mjs`.
 - CI/CD configurado em `.github/workflows/ci.yml`.
+- GitHub Actions preparado para variáveis `VITE_*_DEV` e `VITE_*_PROD`, com fallback para `VITE_*`.
 - GitHub Pages configurado via Actions para publicar `develop` em `/dev` e `main` na raiz.
 - Deploy de dev confirmado em `https://arturribeiro01.github.io/react-dogs/dev/`.
+- Navbar identifica visualmente os builds local e publicado de desenvolvimento com o status `DEV`.
 - Deploy de produção confirmado em `https://arturribeiro01.github.io/react-dogs/`.
 - Contrato atual da API documentado em `docs/API.md`.
 - Erros de rede da API exibem mensagem amigável.
@@ -129,6 +141,14 @@ Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+.
 - `21` Criar API client e configuração por ambiente.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
+- `34` Padronizar imports de React Hooks e medidas em estilos.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -149,11 +169,16 @@ Os arquivos dessas issues foram removidos de `docs/github-issues/` para manter o
 
 ## Próxima Frente
 
-Não há issues pendentes planejadas neste diretório para a fase atual. As próximas frentes devem nascer como novas issues, preferencialmente separando frontend e backend.
+A fila de integração Supabase + Dogs API foi concluída localmente. A próxima frente sugerida é evolução de produto e experiência:
+
+- criar uma home pública mais forte;
+- redirecionar usuário logado para uma dashboard;
+- desenhar dashboard com menu lateral;
+- adicionar gestão de cachorros do usuário.
 
 ## Ainda Pendente
 
-- Criar a API própria em outro repositório.
+- Publicar URLs hml/prod reais da Dogs API e preencher as variáveis `VITE_*_DEV` e `VITE_*_PROD` no GitHub.
 - Adicionar mais capturas ou GIFs dos principais fluxos do app.
 - Evoluir testes de integração para fluxos completos de usuário.
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import { Message, type StatusMessageVariant } from './StatusMessage.styles';
 
 type StatusMessageProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   variant?: StatusMessageVariant;
 };
 

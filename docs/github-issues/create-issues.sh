@@ -22,4 +22,25 @@ ensure_label "priority-high" "b60205" "Alta prioridade"
 ensure_label "priority-medium" "fbca04" "Media prioridade"
 ensure_label "priority-low" "cfd3d7" "Baixa prioridade"
 
-echo "Labels sincronizadas. Nao ha issues pendentes para criar neste diretorio."
+create_issue_if_missing() {
+  local title="$1"
+  local body_file="$2"
+  shift 2
+  local labels=("$@")
+
+  if gh issue list --state all --limit 1000 --json title --jq '.[].title' | grep -Fxq "$title"; then
+    echo "Issue ja existe, pulando: $title"
+    return
+  fi
+
+  local args=(issue create --title "$title" --body-file "$body_file")
+  local label
+
+  for label in "${labels[@]}"; do
+    args+=(--label "$label")
+  done
+
+  gh "${args[@]}"
+}
+
+echo "Backlog da integracao Dogs API sincronizado."

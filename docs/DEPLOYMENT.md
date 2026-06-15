@@ -80,6 +80,54 @@ No environment `github-pages`:
 
 Se `main` ainda não existir e `master` for usada temporariamente como produção, permita também `master`. Quando `main` virar a branch de produção definitiva, remova `master` dessa regra.
 
+No repositório, em `Settings > Secrets and variables > Actions > Variables`, configure as repository variables usadas pelo build do Vite:
+
+```txt
+VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL=https://dogs-api-dev.onrender.com
+VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_...
+VITE_DEMO_MODE=false
+```
+
+Para separar dev e produção, prefira as variáveis com sufixo:
+
+```txt
+VITE_API_URL_DEV=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL_DEV=https://dogs-api-dev.onrender.com
+VITE_SUPABASE_URL_DEV=https://xvmhejphdmvanbqpdrxf.supabase.co
+VITE_SUPABASE_ANON_KEY_DEV=sb_publishable_...
+VITE_DEMO_MODE_DEV=false
+
+VITE_API_URL_PROD=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL_PROD=https://dogs-api-prod.onrender.com
+VITE_SUPABASE_URL_PROD=https://kdzerotsxbayllspelyi.supabase.co
+VITE_SUPABASE_ANON_KEY_PROD=sb_publishable_...
+VITE_DEMO_MODE_PROD=false
+```
+
+As cinco variáveis com sufixo `_PROD` são obrigatórias. O workflow interrompe o deploy quando alguma estiver ausente, evitando publicar produção conectada acidentalmente aos serviços de desenvolvimento.
+
+As variáveis de desenvolvimento ainda podem usar as variáveis sem sufixo como fallback.
+
+`VITE_SUPABASE_ANON_KEY` e `VITE_SUPABASE_ANON_KEY_*` são públicas no bundle do frontend. Não configure service role key no GitHub Actions do frontend.
+
+## Health Check Da Dogs API
+
+O script abaixo consulta `GET /health` na URL definida por `VITE_DOGS_API_URL`:
+
+```bash
+yarn check:api
+```
+
+Exemplo:
+
+```bash
+VITE_DOGS_API_URL=https://dogs-api-dev.onrender.com yarn check:api
+```
+
+Esse check é útil para validar a API publicada antes de apontar o frontend para ela. Ele não roda obrigatoriamente no CI do frontend para evitar bloquear deploy por indisponibilidade externa momentânea.
+
 ## Proteção De Branches
 
 Fluxo esperado:
@@ -144,5 +192,6 @@ Isso ajuda o GitHub Pages a servir o app em rotas internas como:
 - O ambiente publicado depende da branch pareada existir e conseguir buildar.
 - Enquanto a branch `main` não existir, pushes diretos em `master` não disparam o workflow; `master` é apenas fallback quando `develop` publica o site completo.
 - `yarn test` roda a suíte automatizada com Vitest; o CI falha em caso de regressão coberta.
-- A API externa continua sendo dependência do app em runtime, mas o CI não roda health check para evitar falha por indisponibilidade externa.
+- A Dogs API continua sendo dependência do app em runtime, mas o CI não roda health check obrigatório para evitar falha por indisponibilidade externa.
+- O workflow usa Node 20 porque `@supabase/supabase-js` exige Node 20+ nas versões atuais.
 - O workflow força JavaScript Actions para Node 24 com `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` para antecipar a migração do GitHub Actions. Alguns avisos podem continuar aparecendo enquanto actions oficiais ainda declararem runtime Node 20 internamente.

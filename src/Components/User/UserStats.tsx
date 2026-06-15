@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { statsApi, tokenStorage } from '@/api';
 import Error from '@components/Helper/Error';
@@ -20,7 +20,7 @@ import {
 const UserStats = () => {
   const { data, loading, error, request } = useFetch<PhotoStats[]>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchStats() {
       const token = tokenStorage.get();
       await request(() => statsApi.list(token));
@@ -29,7 +29,7 @@ const UserStats = () => {
     fetchStats();
   }, [request]);
 
-  const stats = React.useMemo(() => {
+  const stats = useMemo(() => {
     if (!data) return [];
     return [...data].sort((a, b) => b.acessos - a.acessos);
   }, [data]);

@@ -16,6 +16,11 @@ permissions:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  VITE_API_URL: ${{ vars.VITE_API_URL }}
+  VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL }}
+  VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+  VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+  VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE }}
 
 jobs:
   ci:
@@ -36,7 +41,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
 
       - name: Install dependencies
@@ -121,13 +126,60 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
           cache-dependency-path: current/yarn.lock
 
+      - name: Validate deployment variables
+        env:
+          PROD_VITE_API_URL: ${{ vars.VITE_API_URL_PROD }}
+          PROD_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_PROD }}
+          PROD_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_PROD }}
+          PROD_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_PROD }}
+          PROD_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_PROD }}
+        run: |
+          missing=0
+          for variable in \
+            PROD_VITE_API_URL \
+            PROD_VITE_DOGS_API_URL \
+            PROD_VITE_SUPABASE_URL \
+            PROD_VITE_SUPABASE_ANON_KEY \
+            PROD_VITE_DEMO_MODE
+          do
+            if [ -z "${!variable}" ]; then
+              echo "Missing required production variable: ${variable#PROD_}"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
       - name: Build current branch
         working-directory: current
+        env:
+          DEV_VITE_API_URL: ${{ vars.VITE_API_URL_DEV || vars.VITE_API_URL }}
+          DEV_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_DEV || vars.VITE_DOGS_API_URL }}
+          DEV_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_DEV || vars.VITE_SUPABASE_URL }}
+          DEV_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_DEV || vars.VITE_SUPABASE_ANON_KEY }}
+          DEV_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_DEV || vars.VITE_DEMO_MODE }}
+          PROD_VITE_API_URL: ${{ vars.VITE_API_URL_PROD }}
+          PROD_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_PROD }}
+          PROD_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_PROD }}
+          PROD_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_PROD }}
+          PROD_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_PROD }}
         run: |
+          if [ "${{ steps.branches.outputs.current_base }}" = "/react-dogs/" ]; then
+            export VITE_API_URL="$PROD_VITE_API_URL"
+            export VITE_DOGS_API_URL="$PROD_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$PROD_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$PROD_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$PROD_VITE_DEMO_MODE"
+          else
+            export VITE_API_URL="$DEV_VITE_API_URL"
+            export VITE_DOGS_API_URL="$DEV_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$DEV_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$DEV_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$DEV_VITE_DEMO_MODE"
+          fi
           yarn install --frozen-lockfile
           yarn build --base="${{ steps.branches.outputs.current_base }}"
           mkdir -p "${{ steps.branches.outputs.current_output }}"
@@ -136,7 +188,31 @@ jobs:
       - name: Build paired branch
         if: steps.branches.outputs.paired_branch != ''
         working-directory: paired
+        env:
+          DEV_VITE_API_URL: ${{ vars.VITE_API_URL_DEV || vars.VITE_API_URL }}
+          DEV_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_DEV || vars.VITE_DOGS_API_URL }}
+          DEV_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_DEV || vars.VITE_SUPABASE_URL }}
+          DEV_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_DEV || vars.VITE_SUPABASE_ANON_KEY }}
+          DEV_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_DEV || vars.VITE_DEMO_MODE }}
+          PROD_VITE_API_URL: ${{ vars.VITE_API_URL_PROD }}
+          PROD_VITE_DOGS_API_URL: ${{ vars.VITE_DOGS_API_URL_PROD }}
+          PROD_VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL_PROD }}
+          PROD_VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY_PROD }}
+          PROD_VITE_DEMO_MODE: ${{ vars.VITE_DEMO_MODE_PROD }}
         run: |
+          if [ "${{ steps.branches.outputs.paired_base }}" = "/react-dogs/" ]; then
+            export VITE_API_URL="$PROD_VITE_API_URL"
+            export VITE_DOGS_API_URL="$PROD_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$PROD_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$PROD_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$PROD_VITE_DEMO_MODE"
+          else
+            export VITE_API_URL="$DEV_VITE_API_URL"
+            export VITE_DOGS_API_URL="$DEV_VITE_DOGS_API_URL"
+            export VITE_SUPABASE_URL="$DEV_VITE_SUPABASE_URL"
+            export VITE_SUPABASE_ANON_KEY="$DEV_VITE_SUPABASE_ANON_KEY"
+            export VITE_DEMO_MODE="$DEV_VITE_DEMO_MODE"
+          fi
           yarn install --frozen-lockfile
           yarn build --base="${{ steps.branches.outputs.paired_base }}"
           mkdir -p "${{ steps.branches.outputs.paired_output }}"
@@ -144,28 +220,22 @@ jobs:
 
       - name: Add SPA fallbacks
         run: |
-          if [ -f site/index.html ]; then
-            cp site/index.html site/404.html
-          elif [ -f site/dev/index.html ]; then
-            printf '%s\n' \
-              '<!doctype html>' \
-              '<html lang="pt-BR">' \
-              '  <head>' \
-              '    <meta charset="UTF-8" />' \
-              '    <meta http-equiv="refresh" content="0; url=/react-dogs/dev/" />' \
-              '    <title>Dogs</title>' \
-              '  </head>' \
-              '  <body>' \
-              '    <p>Redirecionando para o ambiente dev...</p>' \
-              '  </body>' \
-              '</html>' \
-              > site/index.html
-            cp site/index.html site/404.html
-          fi
-
-          if [ -f site/dev/index.html ]; then
-            cp site/dev/index.html site/dev/404.html
-          fi
+          printf '%s\n' \
+            '<!doctype html>' \
+            '<html lang="pt-BR">' \
+            '  <head>' \
+            '    <meta charset="UTF-8" />' \
+            '    <title>Dogs</title>' \
+            '    <script>' \
+            '      const path = window.location.pathname;' \
+            "      const base = path.startsWith('/react-dogs/dev/') ? '/react-dogs/dev/' : '/react-dogs/';" \
+            '      const route = path + window.location.search;' \
+            "      window.location.replace(base + '?__route=' + encodeURIComponent(route) + window.location.hash);" \
+            '    </script>' \
+            '  </head>' \
+            '  <body></body>' \
+            '</html>' \
+            > site/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

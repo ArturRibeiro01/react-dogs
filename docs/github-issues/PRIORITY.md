@@ -1,6 +1,6 @@
 # Ordem Recomendada Das Issues
 
-Todas as issues planejadas para esta fase foram concluídas localmente.
+Fila atual para integrar o frontend `react-dogs` com a nova `dogs-api`.
 
 ## Status Atual
 
@@ -17,6 +17,14 @@ Concluídas localmente:
 - `10` Adicionar CI/CD com GitHub Actions e GitHub Pages.
 - `06` Completar fluxo de recuperação de senha.
 - `24` Adicionar modo demo/mock para reduzir dependência da API externa.
+- `27` Configurar Supabase Auth no frontend.
+- `28` Criar client da Dogs API com contrato novo.
+- `29` Migrar perfil do usuário para Dogs API.
+- `30` Integrar catálogo de raças e CRUD de cachorros.
+- `31` Migrar feed público e modal para posts.
+- `32` Migrar publicação com upload multipart.
+- `33` Ajustar ambientes, CI/CD e documentação da integração.
+- `34` Padronizar imports de React Hooks e medidas em estilos.
 - `05` Implementar modal de detalhes da foto.
 - `07` Implementar tela de estatísticas do usuário.
 - `22` Adicionar Error Boundary e feedback global.
@@ -35,30 +43,27 @@ Concluídas localmente:
 
 Pendentes:
 
-- Nenhuma issue pendente neste diretório.
+Não há issues pendentes nesta fila.
 
 ## Próxima Issue Recomendada
 
-```txt
-Sem issue pendente planejada
-```
+Criar uma nova fila para a evolução de produto, como home pública, dashboard com menu lateral e gestão de cachorros do usuário.
 
-Motivo: o backlog local planejado foi concluído. Para continuar, crie novas issues para backend próprio, screenshots, observabilidade ou melhorias de produto.
+## Priority High
 
-## Priority Medium
-
-Nenhuma issue pendente.
+Sem itens pendentes.
 
 ## Ordem Funcional Recomendada
 
-Nenhuma issue pendente.
+Sem itens pendentes.
 
 ## Critério Para Reordenar
 
 Reordene a fila se uma issue desbloquear claramente outra. Exemplos:
 
-- Se o modal exigir uma reorganização pesada, considerar `20` antes de continuar produto.
-- Se a esteira precisar de deploy externo alem de GitHub Pages, criar uma nova issue especifica de CD.
+- Se `33` bloquear validação em ambiente publicado, antecipar antes dos fluxos de produto.
+- Se o backend adicionar endpoint de estatísticas, criar uma nova issue específica para substituir `/api/stats`.
+- Se o fluxo de publicação exigir nova tela de gestão de cachorros, dividir `30` antes de iniciar `32`.
 
 ## Histórico
 

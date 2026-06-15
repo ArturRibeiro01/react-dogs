@@ -30,7 +30,7 @@ Para ativar localmente:
 VITE_DEMO_MODE=true
 ```
 
-Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senha usam dados mockados em memória. Quando `VITE_DEMO_MODE` está ausente ou `false`, o app usa a API pública da Origamid.
+Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senha usam dados mockados em memória. Quando `VITE_DEMO_MODE` está ausente ou `false`, o app usa Supabase Auth e a Dogs API; a API antiga da Origamid permanece apenas como fallback temporário do feed inicial.
 
 ## Screenshot
 
@@ -94,7 +94,7 @@ Nesse modo, login, usuário, feed, upload, estatísticas e recuperação de senh
 
 Requisitos:
 
-- Node 18+
+- Node 20+
 - Yarn 1.x
 
 Instale as dependências:
@@ -127,19 +127,68 @@ Faça preview do build:
 yarn preview
 ```
 
-Observação: React Router 7, Vite 8 e `@vitejs/plugin-react` 6 exigem Node 20+. Enquanto o ambiente estiver em Node 18, o projeto usa versões modernas compatíveis com esse runtime.
+Observação: a integração com Supabase Auth usa `@supabase/supabase-js`, que exige Node 20+ nas versões atuais. Use Node 20 ou superior para instalar dependências e rodar os checks.
 
 ## Variáveis De Ambiente
 
 ```bash
 VITE_API_URL=https://dogsapi.origamid.dev/json
+VITE_DOGS_API_URL=https://dogs-api-dev.onrender.com
+VITE_SUPABASE_URL=https://xvmhejphdmvanbqpdrxf.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_...
 VITE_DEMO_MODE=false
 ```
 
-| Variável         | Descrição                                              |
-| ---------------- | ------------------------------------------------------ |
-| `VITE_API_URL`   | URL base da API usada pelo cliente em `src/api.ts`.    |
-| `VITE_DEMO_MODE` | Quando `true`, usa mocks locais em vez da API externa. |
+| Variável                 | Descrição                                                   |
+| ------------------------ | ----------------------------------------------------------- |
+| `VITE_API_URL`           | URL base da API antiga ainda usada por fluxos não migrados. |
+| `VITE_DOGS_API_URL`      | URL base da nova Dogs API.                                  |
+| `VITE_SUPABASE_URL`      | URL pública do projeto Supabase usado no Auth.              |
+| `VITE_SUPABASE_ANON_KEY` | Chave pública anon/publishable do Supabase.                 |
+| `VITE_DEMO_MODE`         | Quando `true`, usa mocks locais em vez dos serviços reais.  |
+
+No GitHub Actions, as mesmas variáveis podem ser separadas por ambiente:
+
+```txt
+VITE_API_URL_DEV
+VITE_DOGS_API_URL_DEV
+VITE_SUPABASE_URL_DEV
+VITE_SUPABASE_ANON_KEY_DEV
+VITE_DEMO_MODE_DEV
+
+VITE_API_URL_PROD
+VITE_DOGS_API_URL_PROD
+VITE_SUPABASE_URL_PROD
+VITE_SUPABASE_ANON_KEY_PROD
+VITE_DEMO_MODE_PROD
+```
+
+As variáveis de desenvolvimento podem usar as variáveis sem sufixo como fallback. As cinco variáveis `_PROD` são obrigatórias e o deploy falha antes do build se alguma estiver ausente. As chaves `VITE_` ficam públicas no bundle; não use service role key do Supabase no frontend.
+
+### Redirecionamentos do Supabase Auth
+
+No projeto Supabase de desenvolvimento, acesse `Authentication > URL Configuration` e configure:
+
+```txt
+Site URL
+https://arturribeiro01.github.io/react-dogs/dev/
+
+Redirect URLs
+https://arturribeiro01.github.io/react-dogs/dev/login/resetar
+http://localhost:5173/login/resetar
+```
+
+O frontend envia a rota correspondente ao ambiente no `redirectTo` da recuperação de senha. Se essa URL não estiver autorizada, o Supabase usa o `Site URL` como fallback. Não deixe `http://localhost:3000` como `Site URL` do projeto publicado.
+
+No projeto Supabase de produção, configure:
+
+```txt
+Site URL
+https://arturribeiro01.github.io/react-dogs/
+
+Redirect URLs
+https://arturribeiro01.github.io/react-dogs/login/resetar
+```
 
 Contrato atual da API:
 
@@ -161,7 +210,7 @@ docs/API.md
 | `yarn test:watch`   | Executa Vitest em modo watch.                          |
 | `yarn build`        | Executa typecheck e build de produção.                 |
 | `yarn preview`      | Serve localmente o build gerado.                       |
-| `yarn check:api`    | Valida se a API pública responde com lista de fotos.   |
+| `yarn check:api`    | Valida se a Dogs API responde em `/health`.            |
 | `yarn validate`     | Executa lint, format check, typecheck, testes e build. |
 
 O Husky configura um `pre-commit` local que roda `lint-staged`, `typecheck` e `test` antes do commit.

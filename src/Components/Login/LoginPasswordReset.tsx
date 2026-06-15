@@ -1,7 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { passwordApi } from '@/api';
 import { passwordResetSchema, type PasswordResetFormData } from '@/schemas/forms';
@@ -15,31 +15,23 @@ import { Form, LostPasswordLink } from './LoginForm.styles';
 
 const LoginPasswordReset = () => {
   const { error, loading, request } = useFetch();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [success, setSuccess] = React.useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const recoveryError = new URLSearchParams(window.location.hash.slice(1)).get('error_code');
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<PasswordResetFormData>({
     resolver: zodResolver(passwordResetSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
-
-  const key = searchParams.get('key');
-  const login = searchParams.get('login');
-  const invalidUrl = !key || !login;
 
   async function onSubmit({ password }: PasswordResetFormData) {
     setSuccess(null);
 
-    if (!login || !key) return;
-
     const { response } = await request(() =>
       passwordApi.reset({
-        login,
-        key,
         password,
       }),
     );
@@ -53,9 +45,11 @@ const LoginPasswordReset = () => {
   return (
     <section className="animeLeft">
       <h1 className="title">Resetar senha</h1>
-      {invalidUrl ? (
+      {recoveryError ? (
         <>
-          <Error error="Link de redefinição inválido ou incompleto." />
+          <StatusMessage variant="error">
+            Este link de recuperação é inválido ou expirou. Solicite um novo e-mail.
+          </StatusMessage>
           <LostPasswordLink to="/login/perdeu">Solicitar novo link</LostPasswordLink>
         </>
       ) : (

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import GlobalStyles from '@/styles/GlobalStyles';
 import { theme } from '@/styles/theme';
+import DogList from '@components/Dogs/DogList';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
 import AuthInitializer from '@components/Helper/AuthInitializer';
@@ -27,6 +28,14 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route
+              path="cachorros"
+              element={
+                <section className="container mainContainer">
+                  <DogList />
+                </section>
+              }
+            />
             <Route path="login/*" element={<Login />} />
             <Route
               path="conta/*"

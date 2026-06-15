@@ -1,9 +1,9 @@
-import React from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { StyledButton } from './Button.styles';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: React.ReactNode;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
 };
 
 const Button = ({ children, ...props }: ButtonProps) => {

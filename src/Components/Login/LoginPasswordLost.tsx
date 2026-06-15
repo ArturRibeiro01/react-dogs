@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ import { Form, LostPasswordLink } from './LoginForm.styles';
 
 const LoginPasswordLost = () => {
   const { error, loading, request } = useFetch();
-  const [success, setSuccess] = React.useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -44,12 +44,7 @@ const LoginPasswordLost = () => {
     <section className="animeLeft">
       <h1 className="title">Perdeu a senha?</h1>
       <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input
-          label="E-mail / Usuário"
-          type="text"
-          error={errors.login?.message}
-          {...register('login')}
-        />
+        <Input label="E-mail" type="email" error={errors.login?.message} {...register('login')} />
         {loading ? <Button disabled>Enviando...</Button> : <Button>Enviar e-mail</Button>}
         <Error error={error} />
         {success && <StatusMessage variant="success">{success}</StatusMessage>}

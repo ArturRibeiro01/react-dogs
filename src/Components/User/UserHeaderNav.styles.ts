@@ -9,37 +9,38 @@ type MobileMenuButtonProps = {
   $isOpen: boolean;
 };
 
-const iconButtonStyles = `
+const iconButtonStyles = (transparentColor: string) => `
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 40px;
-  border: 1px solid transparent;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 0.0625rem solid ${transparentColor};
   cursor: pointer;
 `;
 
 export const MobileMenuButton = styled.button<MobileMenuButtonProps>`
-  ${iconButtonStyles}
+  ${({ theme }) => iconButtonStyles(theme.colors.transparent)}
   padding: 0;
   border-radius: ${({ theme }) => theme.radii.sm};
   background: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.surface : theme.colors.border)};
   color: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.primary : theme.colors.text)};
   box-shadow: ${({ $isOpen, theme }) => ($isOpen ? theme.shadows.focus : 'none')};
-  border-color: ${({ $isOpen, theme }) => ($isOpen ? theme.colors.primary : 'transparent')};
+  border-color: ${({ $isOpen, theme }) =>
+    $isOpen ? theme.colors.primary : theme.colors.transparent};
   transition: ${({ theme }) => theme.transitions.base};
 
   &::after {
     content: '';
     display: block;
-    width: ${({ $isOpen }) => ($isOpen ? '4px' : '1.2rem')};
-    height: ${({ $isOpen }) => ($isOpen ? '4px' : '2px')};
-    border-radius: 2px;
+    width: ${({ $isOpen }) => ($isOpen ? '0.25rem' : '1.2rem')};
+    height: ${({ $isOpen }) => ($isOpen ? '0.25rem' : '0.125rem')};
+    border-radius: 0.125rem;
     background: currentColor;
     box-shadow: ${({ $isOpen }) =>
       $isOpen
-        ? '0 8px currentColor, 0 -8px currentColor'
-        : '0 6px currentColor, 0 -6px currentColor'};
+        ? '0 0.5rem currentColor, 0 -0.5rem currentColor'
+        : '0 0.375rem currentColor, 0 -0.375rem currentColor'};
     transform: ${({ $isOpen }) => ($isOpen ? 'rotate(90deg)' : 'none')};
     transition: ${({ theme }) => theme.transitions.fast};
   }
@@ -60,13 +61,13 @@ export const AccountNav = styled.nav<AccountNavProps>`
       ? `
         display: block;
         position: absolute;
-        top: 70px;
+        top: 4.375rem;
         right: 0;
         padding: 0 ${theme.spacing.lg};
         background: ${theme.colors.surface};
         box-shadow: ${theme.shadows.popover};
         border-radius: ${theme.radii.sm};
-        transform: ${$isOpen ? 'initial' : 'translateX(-10px)'};
+        transform: ${$isOpen ? 'initial' : 'translateX(-0.625rem)'};
         opacity: ${$isOpen ? 1 : 0};
         visibility: ${$isOpen ? 'visible' : 'hidden'};
         z-index: ${$isOpen ? theme.zIndices.header : 'auto'};
@@ -95,7 +96,7 @@ export const AccountNav = styled.nav<AccountNavProps>`
           width: 100%;
           padding: ${theme.spacing.sm} 0;
           border: none;
-          border-bottom: 1px solid ${theme.colors.border};
+          border-bottom: 0.0625rem solid ${theme.colors.border};
           background: none;
           cursor: pointer;
         }
@@ -146,6 +147,6 @@ export const AccountNav = styled.nav<AccountNavProps>`
 export const NavIcon = styled.img`
   display: inline-block;
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
+  width: 1.75rem;
+  height: 1.75rem;
 `;

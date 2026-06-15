@@ -29,9 +29,9 @@ describe('UserHeaderNav', () => {
     mockedUseMedia.mockReturnValue(false);
     useAuthStore.setState({
       data: {
-        id: 1,
+        id: 'user-1',
         username: 'demo',
-        nome: 'Demo',
+        name: 'Demo',
         email: 'demo@dogs.local',
       },
       login: true,
@@ -48,7 +48,7 @@ describe('UserHeaderNav', () => {
       'href',
       '/conta/estatisticas',
     );
-    expect(screen.getByRole('link', { name: /adicionar foto/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /publicar post/i })).toHaveAttribute(
       'href',
       '/conta/postar',
     );

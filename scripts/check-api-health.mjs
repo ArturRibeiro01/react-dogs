@@ -1,25 +1,29 @@
-const apiUrl = process.env.VITE_API_URL || 'https://dogsapi.origamid.dev/json';
-const url = new URL(`${apiUrl.replace(/\/$/, '')}/api/photo/`);
-
-url.searchParams.set('_page', '1');
-url.searchParams.set('_total', '1');
-url.searchParams.set('_user', '0');
+const apiUrl = process.env.VITE_DOGS_API_URL || 'http://localhost:3333';
+const url = new URL(`${apiUrl.replace(/\/$/, '')}/health`);
 
 try {
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
 
   if (!response.ok) {
-    throw new Error(`API responded with ${response.status}`);
+    throw new Error(`Dogs API responded with ${response.status}`);
   }
 
-  const data = await response.json();
+  const contentType = response.headers.get('content-type');
 
-  if (!Array.isArray(data)) {
-    throw new Error('API health response is not an array');
+  if (contentType?.includes('application/json')) {
+    const data = await response.json();
+
+    if (!data || typeof data !== 'object') {
+      throw new Error('Dogs API health response is not an object');
+    }
   }
 
-  console.log(`API health check passed: ${response.status} ${url}`);
+  console.log(`Dogs API health check passed: ${response.status} ${url}`);
 } catch (error) {
-  console.error(`API health check failed: ${error.message}`);
+  console.error(`Dogs API health check failed: ${error.message}`);
   process.exitCode = 1;
 }

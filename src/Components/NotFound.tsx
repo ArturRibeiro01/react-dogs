@@ -5,7 +5,7 @@ const NotFound = () => {
     <NotFoundSection className="container">
       <h1 className="title">Página não encontrada</h1>
       <NotFoundText>O endereço acessado não existe ou foi movido.</NotFoundText>
-      <NotFoundLink to="/">Voltar para o feed</NotFoundLink>
+      <NotFoundLink to="/">Voltar para o feed.</NotFoundLink>
     </NotFoundSection>
   );
 };

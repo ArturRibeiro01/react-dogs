@@ -44,7 +44,7 @@ const LoginCreate = () => {
           error={errors.password?.message}
           {...register('password')}
         />
-        {loading ? <Button disabled>Cadastrando...</Button> : <Button>Cadastrar</Button>}
+        {loading ? <Button disabled>Cadastrando....</Button> : <Button>Cadastrar</Button>}
         <Error error={error} />
       </form>
     </section>
